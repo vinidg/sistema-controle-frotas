@@ -96,3 +96,4 @@ C:\Users\fu14855\Dropbox\Source\SqlServer\Controle Ambulancias\WindowsFormsAppli
 C:\Users\fu14855\Dropbox\Source\SqlServer\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.exe
 C:\Users\fu14855\Dropbox\Source\SqlServer\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.pdb
 C:\Users\fu14855\Dropbox\Source\SqlServer\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.csprojResolveAssemblyReference.cache
+D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Sistema de Controle de Ambulancias.exe.config

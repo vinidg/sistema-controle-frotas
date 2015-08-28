@@ -141,6 +141,12 @@
     <Compile Include="SelecionaAM.Designer.cs">
       <DependentUpon>SelecionaAM.cs</DependentUpon>
     </Compile>
+    <Compile Include="SolicitaConfirma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SolicitaConfirma.Designer.cs">
+      <DependentUpon>SolicitaConfirma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Status.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelecionaAM.resx">
       <DependentUpon>SelecionaAM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolicitaConfirma.resx">
+      <DependentUpon>SolicitaConfirma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Status.resx">
       <DependentUpon>Status.cs</DependentUpon>

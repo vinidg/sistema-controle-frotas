@@ -40,7 +40,6 @@
             this.BtnAM10 = new System.Windows.Forms.Button();
             this.BtnAM15 = new System.Windows.Forms.Button();
             this.BtnAM06 = new System.Windows.Forms.Button();
-            this.BtnAM11 = new System.Windows.Forms.Button();
             this.BtnAM46 = new System.Windows.Forms.Button();
             this.BtnAM07 = new System.Windows.Forms.Button();
             this.BtnAM12 = new System.Windows.Forms.Button();
@@ -64,7 +63,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.BtnAM09 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -210,21 +208,6 @@
             this.BtnAM06.Text = "AM 06";
             this.BtnAM06.UseVisualStyleBackColor = false;
             this.BtnAM06.Click += new System.EventHandler(this.BtnAM06_Click);
-            // 
-            // BtnAM11
-            // 
-            this.BtnAM11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM11.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM11.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM11.ForeColor = System.Drawing.Color.White;
-            this.BtnAM11.Location = new System.Drawing.Point(-2, 578);
-            this.BtnAM11.Name = "BtnAM11";
-            this.BtnAM11.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM11.TabIndex = 10;
-            this.BtnAM11.Text = "AM 11";
-            this.BtnAM11.UseVisualStyleBackColor = false;
-            this.BtnAM11.Visible = false;
-            this.BtnAM11.Click += new System.EventHandler(this.BtnAM11_Click);
             // 
             // BtnAM46
             // 
@@ -524,21 +507,6 @@
             this.linkLabel1.Text = "O que há de novo ?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // BtnAM09
-            // 
-            this.BtnAM09.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM09.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM09.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM09.ForeColor = System.Drawing.Color.White;
-            this.BtnAM09.Location = new System.Drawing.Point(-2, 593);
-            this.BtnAM09.Name = "BtnAM09";
-            this.BtnAM09.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM09.TabIndex = 4;
-            this.BtnAM09.Text = "AM 09";
-            this.BtnAM09.UseVisualStyleBackColor = false;
-            this.BtnAM09.Visible = false;
-            this.BtnAM09.Click += new System.EventHandler(this.BtnAM09_Click);
-            // 
             // CONTROLE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,8 +518,6 @@
             this.Controls.Add(this.Re);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.BtnAM09);
-            this.Controls.Add(this.BtnAM11);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CONTROLE";
             this.Text = "CONTROLE DE AMBULÂNCIA 2015";
@@ -580,7 +546,6 @@
         private System.Windows.Forms.Button BtnAM10;
         private System.Windows.Forms.Button BtnAM15;
         private System.Windows.Forms.Button BtnAM06;
-        private System.Windows.Forms.Button BtnAM11;
         private System.Windows.Forms.Button BtnAM46;
         private System.Windows.Forms.Button BtnAM07;
         private System.Windows.Forms.Button BtnAM12;
@@ -604,7 +569,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtAgendadasHoje;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Button BtnAM09;
     }
 }
 

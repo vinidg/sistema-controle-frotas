@@ -19,10 +19,7 @@ namespace WindowsFormsApplication2
 {
     public partial class CONTROLE : Form
     {
-        //    string AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
-
-
-        // AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
+//adionado para fazer a atualizacao do git
 
 
         public CONTROLE()
@@ -571,7 +568,7 @@ namespace WindowsFormsApplication2
             att.ShowDialog();
         }
 
-
+        //por nada nesse mundo esse vai mudar !!!!
 
 
     }
