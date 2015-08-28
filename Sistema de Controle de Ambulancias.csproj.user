@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias\|C:\Users\Vinicius\Desktop\|D:\Publica\Sistema de Controle de Ambulancias\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias\</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias\</UpdateUrlHistory>
+    <BootstrapperUrlHistory>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias</BootstrapperUrlHistory>
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>
