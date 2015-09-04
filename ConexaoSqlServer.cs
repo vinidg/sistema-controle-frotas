@@ -12,7 +12,7 @@ namespace WindowsFormsApplication2
         public static SqlConnection GetConexao()
         {
             string strCon = "data source = XXX;initial catalog = XXX;user id = XXX; password = XXX";
-            
+            //fui
             SqlConnection conexao = new SqlConnection(strCon);
             conexao.Open();
             return conexao;
