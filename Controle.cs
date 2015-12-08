@@ -144,6 +144,18 @@ namespace WindowsFormsApplication2
             {
                 BtnAM03.BackColor = Color.Firebrick;
             }
+            if (d.AM041 == "BLOQUEADA")
+            {
+                BtnAM04.BackColor = Color.RoyalBlue;
+            }
+            if (d.AM041 == "OCUPADA")
+            {
+                BtnAM04.BackColor = Color.Firebrick;
+            }
+            if (d.AM041 == "DISPONIVEL")
+            {
+                BtnAM04.BackColor = Color.LimeGreen;
+            }
 
             if (d.AM051 == "BLOQUEADA")
             {
@@ -175,15 +187,15 @@ namespace WindowsFormsApplication2
 
             if (d.AM071 == "BLOQUEADA")
             {
-                BtnAM07.BackColor = Color.RoyalBlue;
+                BtnAM08.BackColor = Color.RoyalBlue;
             }
             if (d.AM071 == "OCUPADA")
             {
-                BtnAM07.BackColor = Color.Firebrick;
+                BtnAM08.BackColor = Color.Firebrick;
             }
             if (d.AM071 == "DISPONIVEL")
             {
-                BtnAM07.BackColor = Color.LimeGreen;
+                BtnAM08.BackColor = Color.LimeGreen;
             }
 
             if (d.AM081 == "BLOQUEADA")
@@ -199,17 +211,17 @@ namespace WindowsFormsApplication2
                 BtnAM08.BackColor = Color.Firebrick;
             }
 
-            if (d.AM091 == "OCUPADA")
+            if (d.AM091 == "BLOQUEADA")
             {
-                BtnAM09.BackColor = Color.Firebrick;
+                BtnAM09.BackColor = Color.RoyalBlue;
             }
             if (d.AM091 == "DISPONIVEL")
             {
                 BtnAM09.BackColor = Color.LimeGreen;
             }
-            if (d.AM091 == "BLOQUEADA")
+            if (d.AM091 == "OCUPADA")
             {
-                BtnAM09.BackColor = Color.RoyalBlue;
+                BtnAM09.BackColor = Color.Firebrick;
             }
 
             if (d.AM101 == "BLOQUEADA")
@@ -223,71 +235,6 @@ namespace WindowsFormsApplication2
             if (d.AM101 == "OCUPADA")
             {
                 BtnAM10.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM111 == "OCUPADA")
-            {
-                BtnAM11.BackColor = Color.Firebrick;
-            }
-            if (d.AM111 == "DISPONIVEL")
-            {
-                BtnAM11.BackColor = Color.LimeGreen;
-            }
-            if (d.AM111 == "BLOQUEADA")
-            {
-                BtnAM11.BackColor = Color.RoyalBlue;
-            }
-
-            if (d.AM121 == "BLOQUEADA")
-            {
-                BtnAM12.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM121 == "DISPONIVEL")
-            {
-                BtnAM12.BackColor = Color.LimeGreen;
-            }
-            if (d.AM121 == "OCUPADA")
-            {
-                BtnAM12.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM131 == "OCUPADA")
-            {
-                BtnAM13.BackColor = Color.Firebrick;
-            }
-            if (d.AM131 == "DISPONIVEL")
-            {
-                BtnAM13.BackColor = Color.LimeGreen;
-            }
-            if (d.AM131 == "BLOQUEADA")
-            {
-                BtnAM13.BackColor = Color.RoyalBlue;
-            }
-
-            if (d.AM141 == "BLOQUEADA")
-            {
-                BtnAM14.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM141 == "DISPONIVEL")
-            {
-                BtnAM14.BackColor = Color.LimeGreen;
-            }
-            if (d.AM141 == "OCUPADA")
-            {
-                BtnAM14.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM151 == "OCUPADA")
-            {
-                BtnAM15.BackColor = Color.Firebrick;
-            }
-            if (d.AM151 == "DISPONIVEL")
-            {
-                BtnAM15.BackColor = Color.LimeGreen;
-            }
-            if (d.AM151 == "BLOQUEADA")
-            {
-                BtnAM15.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM461 == "DISPONIVEL")
@@ -353,25 +300,25 @@ namespace WindowsFormsApplication2
             sta.ShowDialog();
         }
 
-        private void BtnAM05_Click(object sender, EventArgs e)
+        private void BtnAM04_Click(object sender, EventArgs e)
         {
             Status sta = new Status("5");
             sta.ShowDialog();
         }
 
-        private void BtnAM06_Click(object sender, EventArgs e)
+        private void BtnAM05_Click(object sender, EventArgs e)
         {
             Status sta = new Status("6");
             sta.ShowDialog();
         }
 
-        private void BtnAM07_Click(object sender, EventArgs e)
+        private void BtnAM06_Click(object sender, EventArgs e)
         {
             Status sta = new Status("7");
             sta.ShowDialog();
         }
 
-        private void BtnAM08_Click(object sender, EventArgs e)
+        private void BtnAM07_Click(object sender, EventArgs e)
         {
             Status sta = new Status("8");
             sta.ShowDialog();
@@ -383,7 +330,7 @@ namespace WindowsFormsApplication2
             sta.ShowDialog();
         }
 
-        private void BtnAM10_Click(object sender, EventArgs e)
+        private void BtnAM08_Click(object sender, EventArgs e)
         {
             Status sta = new Status("10");
             sta.ShowDialog();
@@ -395,21 +342,9 @@ namespace WindowsFormsApplication2
             sta.ShowDialog();
         }
 
-        private void BtnAM12_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("12");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM13_Click(object sender, EventArgs e)
+        private void BtnAM10_Click(object sender, EventArgs e)
         {
             Status sta = new Status("13");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM14_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("14");
             sta.ShowDialog();
         }
 
@@ -553,6 +488,18 @@ namespace WindowsFormsApplication2
         {
             Atualizacao att = new Atualizacao();
             att.ShowDialog();
+        }
+
+        private void BtnAM09_Click_1(object sender, EventArgs e)
+        {
+            Status sta = new Status("12");
+            sta.ShowDialog();
+        }
+
+        private void BtnAM11_Click_1(object sender, EventArgs e)
+        {
+            Status sta = new Status("14");
+            sta.ShowDialog();
         }
 
 

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
   <asmv1:assemblyIdentity name="Sistema de Controle de Ambulancias.exe" version="2.0.0.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
-  <description asmv2:iconFile="Icons-Land-Transport-Ambulance.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <description asmv2:iconFile="favicon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Sistema de Controle de Ambulancias" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.11" language="neutral" processorArchitecture="msil" />
     <commandLine file="Sistema de Controle de Ambulancias.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -128,33 +128,42 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="3165696">
-      <assemblyIdentity name="Sistema de Controle de Ambulancias" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="3007488">
+      <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.11" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>u0YiFKaveTSNlKnurrV/8xsI3Qncrn27l8FqSZKq6rs=</dsig:DigestValue>
+        <dsig:DigestValue>C/WsCXDHmpMvVGjkw7txoCWtVP0QhDfCv7zGCcBj48k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Icons-Land-Transport-Ambulance.ico" size="372526">
+  <file name="AtualizaçãoDiariaAgendamentos.xml" size="71" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>PATU+AvXSe5k8MTwqRALzpqCSRxjY7URGHg/8+iIOB0=</dsig:DigestValue>
+      <dsig:DigestValue>QL8AZI2a7pz8ZE2xCV+CR3aVYl/8VGu8QNRbv05hoMM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sistema de Controle de Ambulancias.exe.config" size="569">
+  <file name="favicon.ico" size="32038">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ceeIii3MvkWlU6scLmxDhXVXLY5Hiju9qdHPMCer3eY=</dsig:DigestValue>
+      <dsig:DigestValue>w0fDsGAWRpcEFX84J2/HkDBmUEAaqMkO1a0F/sOokrg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Sistema de Controle de Ambulancias.exe.config" size="832">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>N33QTWdd5NEinsJ8fLXsWV58c90uTdSueP99n2z31xM=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

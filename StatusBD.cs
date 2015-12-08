@@ -12,12 +12,110 @@ namespace WindowsFormsApplication2
 {
     class StatusBD
     {
-        string AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
+        string AM01, AM02, AMRC, AM03, AM04, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM46, AM47, AM52;
+
+        public string AM521
+        {
+            get { return AM52; }
+            set { AM52 = value; }
+        }
+
+        public string AM471
+        {
+            get { return AM47; }
+            set { AM47 = value; }
+        }
+
+        public string AM461
+        {
+            get { return AM46; }
+            set { AM46 = value; }
+        }
+
+        public string AM121
+        {
+            get { return AM12; }
+            set { AM12 = value; }
+        }
+
+        public string AM111
+        {
+            get { return AM11; }
+            set { AM11 = value; }
+        }
+
+        public string AM101
+        {
+            get { return AM10; }
+            set { AM10 = value; }
+        }
+
+        public string AM091
+        {
+            get { return AM09; }
+            set { AM09 = value; }
+        }
+
+        public string AM081
+        {
+            get { return AM08; }
+            set { AM08 = value; }
+        }
+
+        public string AM071
+        {
+            get { return AM07; }
+            set { AM07 = value; }
+        }
+
+        public string AM061
+        {
+            get { return AM06; }
+            set { AM06 = value; }
+        }
+
+        public string AM051
+        {
+            get { return AM05; }
+            set { AM05 = value; }
+        }
+
+        public string AM041
+        {
+            get { return AM04; }
+            set { AM04 = value; }
+        }
+
+        public string AM031
+        {
+            get { return AM03; }
+            set { AM03 = value; }
+        }
+
+        public string AMRC1
+        {
+            get { return AMRC; }
+            set { AMRC = value; }
+        }
+
+        public string AM021
+        {
+            get { return AM02; }
+            set { AM02 = value; }
+        }
+
+        public string AM011
+        {
+            get { return AM01; }
+            set { AM01 = value; }
+        }
         string idSolicitacoes_Ambulancias, IdOutroPaciente, idSolicitacoesPacientes, Cancelamento, DtHrCiencia, DtHrCienciaReg, DtHrChegadaOrigem, DtHrChegadaOrigemReg, DtHrSaidaOrigem, DtHrSaidaOrigemReg, DtHrChegadaDestino, DtHrChegadaDestinoReg, DtHrLiberacaoEquipe, DtHrLiberacaoEquipeReg, DtHrEquipePatio, DtHrEquipePatioReg, idAmbulanciaSol;
         string Origem, Destino;
         string Condutor, Equipe;
 
         int ContadorMaxdePacientes;
+
+
 
         public int ContadorMaxdePacientes1
         {
@@ -201,114 +299,7 @@ namespace WindowsFormsApplication2
             get { return idSolicitacoes_Ambulancias; }
             set { idSolicitacoes_Ambulancias = value; }
         }
-        public string AM111
-        {
-            get { return AM11; }
-            set { AM11 = value; }
-        }
-
-        public string AM521
-        {
-            get { return AM52; }
-            set { AM52 = value; }
-        }
-
-        public string AM471
-        {
-            get { return AM47; }
-            set { AM47 = value; }
-        }
-
-        public string AM461
-        {
-            get { return AM46; }
-            set { AM46 = value; }
-        }
-
-        public string AM151
-        {
-            get { return AM15; }
-            set { AM15 = value; }
-        }
-
-        public string AM141
-        {
-            get { return AM14; }
-            set { AM14 = value; }
-        }
-
-        public string AM131
-        {
-            get { return AM13; }
-            set { AM13 = value; }
-        }
-
-        public string AM121
-        {
-            get { return AM12; }
-            set { AM12 = value; }
-        }
-
-        public string AM101
-        {
-            get { return AM10; }
-            set { AM10 = value; }
-        }
-
-        public string AM091
-        {
-            get { return AM09; }
-            set { AM09 = value; }
-        }
-
-        public string AM081
-        {
-            get { return AM08; }
-            set { AM08 = value; }
-        }
-
-        public string AM071
-        {
-            get { return AM07; }
-            set { AM07 = value; }
-        }
-
-        public string AM061
-        {
-            get { return AM06; }
-            set { AM06 = value; }
-        }
-
-        public string AM051
-        {
-            get { return AM05; }
-            set { AM05 = value; }
-        }
-
-        public string AM031
-        {
-            get { return AM03; }
-            set { AM03 = value; }
-        }
-
-        public string AMRC1
-        {
-            get { return AMRC; }
-            set { AMRC = value; }
-        }
-
-        public string AM021
-        {
-            get { return AM02; }
-            set { AM02 = value; }
-        }
-
-        public string AM011
-        {
-            get { return AM01; }
-            set { AM01 = value; }
-        }
-
+      
 
         public void puxarStatus()
         {
@@ -333,20 +324,18 @@ namespace WindowsFormsApplication2
                 AM02 = CD.Tables[0].Rows[1][2].ToString();
                 AMRC = CD.Tables[0].Rows[2][2].ToString();
                 AM03 = CD.Tables[0].Rows[3][2].ToString();
-                AM05 = CD.Tables[0].Rows[4][2].ToString();
-                AM06 = CD.Tables[0].Rows[5][2].ToString();
-                AM07 = CD.Tables[0].Rows[6][2].ToString();
-                AM08 = CD.Tables[0].Rows[7][2].ToString();
-                AM09 = CD.Tables[0].Rows[8][2].ToString();
-                AM10 = CD.Tables[0].Rows[9][2].ToString();
-                AM11 = CD.Tables[0].Rows[10][2].ToString();
-                AM12 = CD.Tables[0].Rows[11][2].ToString();
-                AM13 = CD.Tables[0].Rows[12][2].ToString();
-                AM14 = CD.Tables[0].Rows[13][2].ToString();
-                AM15 = CD.Tables[0].Rows[14][2].ToString();
-                AM46 = CD.Tables[0].Rows[15][2].ToString();
-                AM47 = CD.Tables[0].Rows[16][2].ToString();
-                AM52 = CD.Tables[0].Rows[17][2].ToString();
+                AM04 = CD.Tables[0].Rows[4][2].ToString();
+                AM05 = CD.Tables[0].Rows[5][2].ToString();
+                AM06 = CD.Tables[0].Rows[6][2].ToString();
+                AM07 = CD.Tables[0].Rows[7][2].ToString();
+                AM08 = CD.Tables[0].Rows[9][2].ToString();
+                AM09 = CD.Tables[0].Rows[10][2].ToString();
+                AM10 = CD.Tables[0].Rows[11][2].ToString();
+                AM11 = CD.Tables[0].Rows[12][2].ToString();
+                AM12 = CD.Tables[0].Rows[13][2].ToString();
+                AM46 = CD.Tables[0].Rows[14][2].ToString();
+                AM47 = CD.Tables[0].Rows[15][2].ToString();
+                AM52 = CD.Tables[0].Rows[16][2].ToString();
 
             }
             catch (Exception ex)

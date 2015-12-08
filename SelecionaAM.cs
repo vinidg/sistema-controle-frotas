@@ -48,15 +48,6 @@ namespace WindowsFormsApplication2
         {
             if (STatus == "Ocupada")
             {
-                /* PainelAM2.Visible = false;
-                label22.Text = AMocup;
-                label23.Visible = false;
-                BtnOutraAM.Visible = false;
-                BtnConfimar.Visible = false;
-                label22.Visible = false;
-                BtnImprimir.Location = new Point(519, 315);
-                BtnCancelar.Location = new Point(551, 381);
-                */
                 PainelAM2.Visible = false;
                 label23.Visible = true;
                 BtnOutraAM.Visible = true;
@@ -121,9 +112,6 @@ namespace WindowsFormsApplication2
                 conexao.Close();
 
             }
-
-
-
         }
 
         private void ConsultarSolicitacao()
@@ -293,212 +281,173 @@ namespace WindowsFormsApplication2
 
             if (d.AMRC1 == "DISPONIVEL")
             {
-                button20.BackColor = Color.LimeGreen;
+                BtnAmRC.BackColor = Color.LimeGreen;
             }
             if (d.AMRC1 == "OCUPADA")
             {
-                button20.BackColor = Color.Firebrick;
+                BtnAmRC.BackColor = Color.Firebrick;
             }
             if (d.AMRC1 == "BLOQUEADA")
             {
-                button20.BackColor = Color.RoyalBlue;
+                BtnAmRC.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM031 == "BLOQUEADA")
             {
-                button5.BackColor = Color.RoyalBlue;
+                BtnAm04.BackColor = Color.RoyalBlue;
             }
             if (d.AM031 == "DISPONIVEL")
             {
-                button5.BackColor = Color.LimeGreen;
+                BtnAm04.BackColor = Color.LimeGreen;
             }
             if (d.AM031 == "OCUPADA")
             {
-                button5.BackColor = Color.Firebrick;
+                BtnAm04.BackColor = Color.Firebrick;
             }
 
             if (d.AM051 == "BLOQUEADA")
             {
-                button10.BackColor = Color.RoyalBlue;
+                BtnAm05.BackColor = Color.RoyalBlue;
             }
             if (d.AM051 == "OCUPADA")
             {
-                button10.BackColor = Color.Firebrick;
+                BtnAm05.BackColor = Color.Firebrick;
             }
             if (d.AM051 == "DISPONIVEL")
             {
-                button10.BackColor = Color.LimeGreen;
+                BtnAm05.BackColor = Color.LimeGreen;
             }
 
             if (d.AM061 == "BLOQUEADA")
             {
-                button13.BackColor = Color.RoyalBlue;
+                BtnAm06.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM061 == "DISPONIVEL")
             {
-                button13.BackColor = Color.LimeGreen;
+                BtnAm06.BackColor = Color.LimeGreen;
             }
 
             if (d.AM061 == "OCUPADA")
             {
-                button13.BackColor = Color.Firebrick;
+                BtnAm06.BackColor = Color.Firebrick;
             }
 
             if (d.AM071 == "BLOQUEADA")
             {
-                button16.BackColor = Color.RoyalBlue;
+                BtnAm07.BackColor = Color.RoyalBlue;
             }
             if (d.AM071 == "OCUPADA")
             {
-                button16.BackColor = Color.Firebrick;
+                BtnAm07.BackColor = Color.Firebrick;
             }
             if (d.AM071 == "DISPONIVEL")
             {
-                button16.BackColor = Color.LimeGreen;
+                BtnAm07.BackColor = Color.LimeGreen;
             }
 
             if (d.AM081 == "BLOQUEADA")
             {
-                button19.BackColor = Color.RoyalBlue;
+                BtnAm08.BackColor = Color.RoyalBlue;
             }
             if (d.AM081 == "DISPONIVEL")
             {
-                button19.BackColor = Color.LimeGreen;
+                BtnAm08.BackColor = Color.LimeGreen;
             }
             if (d.AM081 == "OCUPADA")
             {
-                button19.BackColor = Color.Firebrick;
+                BtnAm08.BackColor = Color.Firebrick;
             }
 
             if (d.AM091 == "OCUPADA")
             {
-                button6.BackColor = Color.Firebrick;
+                BtnAm09.BackColor = Color.Firebrick;
             }
             if (d.AM091 == "DISPONIVEL")
             {
-                button6.BackColor = Color.LimeGreen;
+                BtnAm09.BackColor = Color.LimeGreen;
             }
             if (d.AM091 == "BLOQUEADA")
             {
-                button6.BackColor = Color.RoyalBlue;
+                BtnAm09.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM101 == "BLOQUEADA")
             {
-                button9.BackColor = Color.RoyalBlue;
+                BtnAm10.BackColor = Color.RoyalBlue;
             }
             if (d.AM101 == "DISPONIVEL")
             {
-                button9.BackColor = Color.LimeGreen;
+                BtnAm10.BackColor = Color.LimeGreen;
             }
             if (d.AM101 == "OCUPADA")
             {
-                button9.BackColor = Color.Firebrick;
+                BtnAm10.BackColor = Color.Firebrick;
             }
 
             if (d.AM111 == "OCUPADA")
             {
-                button12.BackColor = Color.Firebrick;
+                BtnAm11.BackColor = Color.Firebrick;
             }
             if (d.AM111 == "DISPONIVEL")
             {
-                button12.BackColor = Color.LimeGreen;
+                BtnAm11.BackColor = Color.LimeGreen;
             }
             if (d.AM111 == "BLOQUEADA")
             {
-                button12.BackColor = Color.RoyalBlue;
+                BtnAm11.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM121 == "BLOQUEADA")
             {
-                button15.BackColor = Color.RoyalBlue;
+                BtnAm12.BackColor = Color.RoyalBlue;
             }
             if (d.AM121 == "DISPONIVEL")
             {
-                button15.BackColor = Color.LimeGreen;
+                BtnAm12.BackColor = Color.LimeGreen;
             }
             if (d.AM121 == "OCUPADA")
             {
-                button15.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM131 == "OCUPADA")
-            {
-                button18.BackColor = Color.Firebrick;
-            }
-            if (d.AM131 == "DISPONIVEL")
-            {
-                button18.BackColor = Color.LimeGreen;
-            }
-            if (d.AM131 == "BLOQUEADA")
-            {
-                button18.BackColor = Color.RoyalBlue;
-            }
-
-            if (d.AM141 == "BLOQUEADA")
-            {
-                button7.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM141 == "DISPONIVEL")
-            {
-                button7.BackColor = Color.LimeGreen;
-            }
-            if (d.AM141 == "OCUPADA")
-            {
-                button7.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM151 == "OCUPADA")
-            {
-                button8.BackColor = Color.Firebrick;
-            }
-            if (d.AM151 == "DISPONIVEL")
-            {
-                button8.BackColor = Color.LimeGreen;
-            }
-            if (d.AM151 == "BLOQUEADA")
-            {
-                button8.BackColor = Color.RoyalBlue;
+                BtnAm12.BackColor = Color.Firebrick;
             }
 
             if (d.AM461 == "DISPONIVEL")
             {
-                button11.BackColor = Color.LimeGreen;
+                BtnAm46.BackColor = Color.LimeGreen;
             }
             if (d.AM461 == "OCUPADA")
             {
-                button11.BackColor = Color.Firebrick;
+                BtnAm46.BackColor = Color.Firebrick;
             }
             if (d.AM461 == "BLOQUEADA")
             {
-                button11.BackColor = Color.RoyalBlue;
+                BtnAm46.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM471 == "OCUPADA")
             {
-                button14.BackColor = Color.Firebrick;
+                BtnAm47.BackColor = Color.Firebrick;
             }
             if (d.AM471 == "DISPONIVEL")
             {
-                button14.BackColor = Color.LimeGreen;
+                BtnAm47.BackColor = Color.LimeGreen;
             }
             if (d.AM471 == "BLOQUEADA")
             {
-                button14.BackColor = Color.RoyalBlue;
+                BtnAm47.BackColor = Color.RoyalBlue;
             }
 
             if (d.AM521 == "DISPONIVEL")
             {
-                button17.BackColor = Color.LimeGreen;
+                BtnAm52.BackColor = Color.LimeGreen;
             }
             if (d.AM521 == "OCUPADA")
             {
-                button17.BackColor = Color.Firebrick;
+                BtnAm52.BackColor = Color.Firebrick;
             }
             if (d.AM521 == "BLOQUEADA")
             {
-                button17.BackColor = Color.RoyalBlue;
+                BtnAm52.BackColor = Color.RoyalBlue;
             }
 
             // AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
@@ -1023,108 +972,7 @@ namespace WindowsFormsApplication2
                     }
                 }
             }
-            if (label22.Text == "AM 13")
-            {
-                if (d.AM131 == "OCUPADA")
-                {
-                    d.countparaMaxPacientes("13");
-                    if (d.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (d.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "13";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (d.AM131 == "DISPONIVEL")
-                {
-                    idAmbu = "13";
-                    ConfirmaAM();
-                }
-                if (d.AM131 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
-            if (label22.Text == "AM 14")
-            {
-                if (d.AM141 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (d.AM141 == "DISPONIVEL")
-                {
-                    idAmbu = "14";
-                    ConfirmaAM();
-
-                }
-                if (d.AM141 == "OCUPADA")
-                {
-                    d.countparaMaxPacientes("14");
-                    if (d.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (d.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "14";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-
-
-            }
-            if (label22.Text == "AM 15")
-            {
-                if (d.AM151 == "OCUPADA")
-                {
-                    d.countparaMaxPacientes("15");
-                    if (d.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (d.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "15";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (d.AM151 == "DISPONIVEL")
-                {
-                    idAmbu = "15";
-                    ConfirmaAM();
-
-                }
-                if (d.AM151 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
+           
             if (label22.Text == "AM 46")
             {
                 if (d.AM461 == "DISPONIVEL")

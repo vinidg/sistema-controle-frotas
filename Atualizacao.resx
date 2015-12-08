@@ -135,6 +135,11 @@ Versão 2.0.1.6
 
 * Correção de Bugs;
 * Mascara para digitar corretamente a data de agendamento;
-* Opção para alterar as solicitações;</value>
+* Opção para alterar as solicitações;
+
+08/12/2015
+
+* Correção dos números das ambulâncias
+* Bloqueio de ambulância ao solicitar o motivo da solicitação como UTI e Sala Vermelha</value>
   </data>
 </root>
