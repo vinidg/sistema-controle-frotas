@@ -137,7 +137,7 @@
             this.BtnAM14.Name = "BtnAM14";
             this.BtnAM14.Size = new System.Drawing.Size(204, 101);
             this.BtnAM14.TabIndex = 3;
-            this.BtnAM14.Text = "AM 14";
+            this.BtnAM14.Text = "AM 11";
             this.BtnAM14.UseVisualStyleBackColor = false;
             this.BtnAM14.Click += new System.EventHandler(this.BtnAM14_Click);
             // 
@@ -151,7 +151,7 @@
             this.BtnAM03.Name = "BtnAM03";
             this.BtnAM03.Size = new System.Drawing.Size(204, 101);
             this.BtnAM03.TabIndex = 5;
-            this.BtnAM03.Text = "AM 04";
+            this.BtnAM03.Text = "AM 03";
             this.BtnAM03.UseVisualStyleBackColor = false;
             this.BtnAM03.Click += new System.EventHandler(this.BtnAM03_Click);
             // 
@@ -165,7 +165,7 @@
             this.BtnAM05.Name = "BtnAM05";
             this.BtnAM05.Size = new System.Drawing.Size(204, 101);
             this.BtnAM05.TabIndex = 6;
-            this.BtnAM05.Text = "AM 05";
+            this.BtnAM05.Text = "AM 04";
             this.BtnAM05.UseVisualStyleBackColor = false;
             this.BtnAM05.Click += new System.EventHandler(this.BtnAM05_Click);
             // 
@@ -179,7 +179,7 @@
             this.BtnAM10.Name = "BtnAM10";
             this.BtnAM10.Size = new System.Drawing.Size(204, 101);
             this.BtnAM10.TabIndex = 7;
-            this.BtnAM10.Text = "AM 10";
+            this.BtnAM10.Text = "AM 08";
             this.BtnAM10.UseVisualStyleBackColor = false;
             this.BtnAM10.Click += new System.EventHandler(this.BtnAM10_Click);
             // 
@@ -193,7 +193,7 @@
             this.BtnAM15.Name = "BtnAM15";
             this.BtnAM15.Size = new System.Drawing.Size(204, 101);
             this.BtnAM15.TabIndex = 8;
-            this.BtnAM15.Text = "AM 15";
+            this.BtnAM15.Text = "AM 12";
             this.BtnAM15.UseVisualStyleBackColor = false;
             this.BtnAM15.Click += new System.EventHandler(this.BtnAM15_Click);
             // 
@@ -207,7 +207,7 @@
             this.BtnAM06.Name = "BtnAM06";
             this.BtnAM06.Size = new System.Drawing.Size(204, 101);
             this.BtnAM06.TabIndex = 9;
-            this.BtnAM06.Text = "AM 06";
+            this.BtnAM06.Text = "AM 05";
             this.BtnAM06.UseVisualStyleBackColor = false;
             this.BtnAM06.Click += new System.EventHandler(this.BtnAM06_Click);
             // 
@@ -250,7 +250,7 @@
             this.BtnAM07.Name = "BtnAM07";
             this.BtnAM07.Size = new System.Drawing.Size(204, 101);
             this.BtnAM07.TabIndex = 12;
-            this.BtnAM07.Text = "AM 07";
+            this.BtnAM07.Text = "AM 06";
             this.BtnAM07.UseVisualStyleBackColor = false;
             this.BtnAM07.Click += new System.EventHandler(this.BtnAM07_Click);
             // 
@@ -264,7 +264,7 @@
             this.BtnAM12.Name = "BtnAM12";
             this.BtnAM12.Size = new System.Drawing.Size(204, 101);
             this.BtnAM12.TabIndex = 13;
-            this.BtnAM12.Text = "AM 12";
+            this.BtnAM12.Text = "AM 09";
             this.BtnAM12.UseVisualStyleBackColor = false;
             this.BtnAM12.Click += new System.EventHandler(this.BtnAM12_Click);
             // 
@@ -292,7 +292,7 @@
             this.BtnAM08.Name = "BtnAM08";
             this.BtnAM08.Size = new System.Drawing.Size(204, 101);
             this.BtnAM08.TabIndex = 15;
-            this.BtnAM08.Text = "AM 08";
+            this.BtnAM08.Text = "AM 07";
             this.BtnAM08.UseVisualStyleBackColor = false;
             this.BtnAM08.Click += new System.EventHandler(this.BtnAM08_Click);
             // 
@@ -307,7 +307,7 @@
             this.BtnAM13.Name = "BtnAM13";
             this.BtnAM13.Size = new System.Drawing.Size(204, 101);
             this.BtnAM13.TabIndex = 16;
-            this.BtnAM13.Text = "AM 13";
+            this.BtnAM13.Text = "AM 10";
             this.BtnAM13.UseVisualStyleBackColor = false;
             this.BtnAM13.Click += new System.EventHandler(this.BtnAM13_Click);
             // 

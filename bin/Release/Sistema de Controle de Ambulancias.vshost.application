@@ -14,14 +14,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Sistema de Controle de Ambulancias.exe.manifest" size="10998">
+    <dependentAssembly dependencyType="install" codebase="Sistema de Controle de Ambulancias.exe.manifest" size="11000">
       <assemblyIdentity name="Sistema de Controle de Ambulancias.exe" version="2.0.0.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6x+Nob44k2geZWJkvQf6NWEQORo4shN7t3yp49vHEl4=</dsig:DigestValue>
+        <dsig:DigestValue>cYHL1sUuB22nUpgwVPRUMnxA8ZaNvrKvPBPWvnr6pDU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

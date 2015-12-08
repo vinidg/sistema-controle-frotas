@@ -49,22 +49,6 @@ namespace WindowsFormsApplication2
 
         }
 
-
-        /* public void ramdomAds(){
-             Random rnd = new Random();
-             int oi = rnd.Next(200);
-             if (oi == 26 || oi == 2 || oi == 30 || oi == 21 || oi == 14 || oi == 12 || oi == 19 || oi == 7)
-             {
-                 webBrowser1.Visible = true;
-                
-             }
-             else if (oi == 11 || oi == 27 || oi == 17)
-             {
-                 webBrowser1.Visible = false;
-                 webBrowser1.Refresh();
-             }
-
-         }*/
         public void timerAtualiza(int foi)
         {
             if (foi != 1)

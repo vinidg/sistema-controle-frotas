@@ -550,7 +550,25 @@ namespace WindowsFormsApplication2
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.Items.Clear();
+            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
+            {
+                BtnAvancada.PerformClick();
+                BtnAvancada.Enabled = false;
+                BtnBasica.Enabled = false;
+            }
+            else
+            {
+                label2.Visible = true;
+                Btnagendanao.Visible = true;
+                Btnagendasim.Visible = true;
+                TipoAM = "";
+                BtnAvancada.Enabled = true;
+                BtnBasica.Enabled = true;
+                BtnAvancada.BackColor = Color.PaleTurquoise;
+                BtnAvancada.ForeColor = Color.Teal;
+                BtnBasica.ForeColor = Color.Teal;
+                BtnBasica.BackColor = Color.PaleTurquoise;
+            }
 
         }
 
