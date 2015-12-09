@@ -818,8 +818,8 @@ namespace WindowsFormsApplication2
                     BtnAddPaciente.Location = new Point(71, 244);
                     BtnAddPaciente.Size = new Size(306, 146);
                     BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("9");
-                    atualizarStatusOcupadoReservado("9");
+                    d.atualizarStatusOcupado("10");
+                    atualizarStatusOcupadoReservado("10");
                     d.atualizarStatusOcupadoPaciente();
                     id = d.IdSolicitacoesPacientes;
                     Destino.Text = d.Destino1;
@@ -922,8 +922,8 @@ namespace WindowsFormsApplication2
                     BtnAddPaciente.Location = new Point(71, 244);
                     BtnAddPaciente.Size = new Size(306, 146);
                     BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("10");
-                    atualizarStatusOcupadoReservado("10");
+                    d.atualizarStatusOcupado("12");
+                    atualizarStatusOcupadoReservado("12");
                     d.atualizarStatusOcupadoPaciente();
                     id = d.IdSolicitacoesPacientes;
                     Destino.Text = d.Destino1;
@@ -947,8 +947,8 @@ namespace WindowsFormsApplication2
                     BtnAddPaciente.Location = new Point(71, 244);
                     BtnAddPaciente.Size = new Size(306, 146);
                     BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("11");
-                    atualizarStatusOcupadoReservado("11");
+                    d.atualizarStatusOcupado("13");
+                    atualizarStatusOcupadoReservado("13");
                     d.atualizarStatusOcupadoPaciente();
                     id = d.IdSolicitacoesPacientes;
                     Destino.Text = d.Destino1;
@@ -1052,8 +1052,8 @@ namespace WindowsFormsApplication2
                     BtnAddPaciente.Location = new Point(71, 244);
                     BtnAddPaciente.Size = new Size(306, 146);
                     BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("12");
-                    atualizarStatusOcupadoReservado("12");
+                    d.atualizarStatusOcupado("14");
+                    atualizarStatusOcupadoReservado("14");
                     d.atualizarStatusOcupadoPaciente();
                     id = d.IdSolicitacoesPacientes;
                     Destino.Text = d.Destino1;
@@ -1118,8 +1118,8 @@ namespace WindowsFormsApplication2
                     BtnAddPaciente.Location = new Point(71, 244);
                     BtnAddPaciente.Size = new Size(306, 146);
                     BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("13");
-                    atualizarStatusOcupadoReservado("13");
+                    d.atualizarStatusOcupado("15");
+                    atualizarStatusOcupadoReservado("15");
                     d.atualizarStatusOcupadoPaciente();
                     id = d.IdSolicitacoesPacientes;
                     Destino.Text = d.Destino1;

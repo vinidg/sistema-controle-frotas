@@ -187,15 +187,15 @@ namespace WindowsFormsApplication2
 
             if (d.AM071 == "BLOQUEADA")
             {
-                BtnAM08.BackColor = Color.RoyalBlue;
+                BtnAM07.BackColor = Color.RoyalBlue;
             }
             if (d.AM071 == "OCUPADA")
             {
-                BtnAM08.BackColor = Color.Firebrick;
+                BtnAM07.BackColor = Color.Firebrick;
             }
             if (d.AM071 == "DISPONIVEL")
             {
-                BtnAM08.BackColor = Color.LimeGreen;
+                BtnAM07.BackColor = Color.LimeGreen;
             }
 
             if (d.AM081 == "BLOQUEADA")

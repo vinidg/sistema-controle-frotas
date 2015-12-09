@@ -71,14 +71,11 @@ namespace WindowsFormsApplication2
         private void VerificarPacienteJaestaInclusoNaMesma()
         {
 
-            if (AMocup.Where(c => char.IsLetter(c)).Count() > 0)
-            {
-                return;
-            }
-            else
-            {
-
-            }
+      //      if (AMocup.Where(c => char.IsLetter(c)).Count() > 0)
+       //     {
+        //        return;
+         //   }
+          
 
             SqlConnection conexao = ConexaoSqlServer.GetConexao();
             string sqlQuery = "select COUNT(idSolicitacoes_Ambulancias) from solicitacoes_ambulancias WHERE idSolicitacoesPacientes='" + LabelIDPaciente.Text + "' AND idAmbulanciaSol = '" + AMocup + "'";
@@ -86,9 +83,6 @@ namespace WindowsFormsApplication2
             {
 
                 SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                //SqlDataReader MyReader2;
-
-
 
                 int newProdID = (Int32)objComm.ExecuteScalar();
 
@@ -294,13 +288,27 @@ namespace WindowsFormsApplication2
 
             if (d.AM031 == "BLOQUEADA")
             {
-                BtnAm04.BackColor = Color.RoyalBlue;
+                BtnAM03.BackColor = Color.RoyalBlue;
             }
             if (d.AM031 == "DISPONIVEL")
             {
-                BtnAm04.BackColor = Color.LimeGreen;
+                BtnAM03.BackColor = Color.LimeGreen;
             }
             if (d.AM031 == "OCUPADA")
+            {
+                BtnAM03.BackColor = Color.Firebrick;
+            }
+
+
+            if (d.AM041 == "BLOQUEADA")
+            {
+                BtnAm04.BackColor = Color.RoyalBlue;
+            }
+            if (d.AM041 == "DISPONIVEL")
+            {
+                BtnAm04.BackColor = Color.LimeGreen;
+            }
+            if (d.AM041 == "OCUPADA")
             {
                 BtnAm04.BackColor = Color.Firebrick;
             }
@@ -450,9 +458,12 @@ namespace WindowsFormsApplication2
                 BtnAm52.BackColor = Color.RoyalBlue;
             }
 
-            // AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
         }
-
+         private void BtnAM03_Click(object sender, EventArgs e)
+        {
+            PainelAM2.Visible = false;
+            label22.Text = "AM 03";
+        }
         private void button5_Click(object sender, EventArgs e)
         {
             PainelAM2.Visible = false;
@@ -671,7 +682,7 @@ namespace WindowsFormsApplication2
                 }
 
             }
-            if (label22.Text == "AM 04")
+            if (label22.Text == "AM 03")
             {
                 if (d.AM031 == "BLOQUEADA")
                 {
@@ -704,14 +715,20 @@ namespace WindowsFormsApplication2
 
                 }
             }
-            if (label22.Text == "AM 05")
+
+            if (label22.Text == "AM 04")
             {
-                if (d.AM051 == "BLOQUEADA")
+                if (d.AM031 == "BLOQUEADA")
                 {
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (d.AM051 == "OCUPADA")
+                if (d.AM031 == "DISPONIVEL")
+                {
+                    idAmbu = "5";
+                    ConfirmaAM();
+                }
+                if (d.AM031 == "OCUPADA")
                 {
                     d.countparaMaxPacientes("5");
                     if (d.ContadorMaxdePacientes1 >= 5)
@@ -729,30 +746,18 @@ namespace WindowsFormsApplication2
                             ConfirmaAM();
                         }
                     }
-                }
-                if (d.AM051 == "DISPONIVEL")
-                {
-                    idAmbu = "5";
-                    ConfirmaAM();
-                }
 
+                }
             }
-            if (label22.Text == "AM 06")
+
+            if (label22.Text == "AM 05")
             {
-                if (d.AM061 == "BLOQUEADA")
+                if (d.AM051 == "BLOQUEADA")
                 {
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-
                 }
-
-                if (d.AM061 == "DISPONIVEL")
-                {
-                    idAmbu = "6";
-                    ConfirmaAM();
-                }
-
-                if (d.AM061 == "OCUPADA")
+                if (d.AM051 == "OCUPADA")
                 {
                     d.countparaMaxPacientes("6");
                     if (d.ContadorMaxdePacientes1 >= 5)
@@ -771,17 +776,29 @@ namespace WindowsFormsApplication2
                         }
                     }
                 }
+                if (d.AM051 == "DISPONIVEL")
+                {
+                    idAmbu = "6";
+                    ConfirmaAM();
+                }
 
             }
-            if (label22.Text == "AM 07")
+            if (label22.Text == "AM 06")
             {
-                if (d.AM071 == "BLOQUEADA")
+                if (d.AM061 == "BLOQUEADA")
                 {
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+
                 }
 
-                if (d.AM071 == "OCUPADA")
+                if (d.AM061 == "DISPONIVEL")
+                {
+                    idAmbu = "7";
+                    ConfirmaAM();
+                }
+
+                if (d.AM061 == "OCUPADA")
                 {
                     d.countparaMaxPacientes("7");
                     if (d.ContadorMaxdePacientes1 >= 5)
@@ -800,26 +817,17 @@ namespace WindowsFormsApplication2
                         }
                     }
                 }
-                if (d.AM071 == "DISPONIVEL")
-                {
-                    idAmbu = "7";
-                    ConfirmaAM();
-                }
 
             }
-            if (label22.Text == "AM 08")
+            if (label22.Text == "AM 07")
             {
-                if (d.AM081 == "BLOQUEADA")
+                if (d.AM071 == "BLOQUEADA")
                 {
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (d.AM081 == "DISPONIVEL")
-                {
-                    idAmbu = "8";
-                    ConfirmaAM();
-                }
-                if (d.AM081 == "OCUPADA")
+
+                if (d.AM071 == "OCUPADA")
                 {
                     d.countparaMaxPacientes("8");
                     if (d.ContadorMaxdePacientes1 >= 5)
@@ -838,54 +846,26 @@ namespace WindowsFormsApplication2
                         }
                     }
                 }
-
-            }
-            if (label22.Text == "AM 09")
-            {
-                if (d.AM091 == "OCUPADA")
+                if (d.AM071 == "DISPONIVEL")
                 {
-                    d.countparaMaxPacientes("9");
-                    if (d.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (d.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "9";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (d.AM091 == "DISPONIVEL")
-                {
-                    idAmbu = "9";
+                    idAmbu = "8";
                     ConfirmaAM();
                 }
-                if (d.AM091 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
             }
-            if (label22.Text == "AM 10")
+            if (label22.Text == "AM 08")
             {
-                if (d.AM101 == "BLOQUEADA")
+                if (d.AM081 == "BLOQUEADA")
                 {
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (d.AM101 == "DISPONIVEL")
+                if (d.AM081 == "DISPONIVEL")
                 {
                     idAmbu = "10";
                     ConfirmaAM();
                 }
-                if (d.AM101 == "OCUPADA")
+                if (d.AM081 == "OCUPADA")
                 {
                     d.countparaMaxPacientes("10");
                     if (d.ContadorMaxdePacientes1 >= 5)
@@ -906,11 +886,11 @@ namespace WindowsFormsApplication2
                 }
 
             }
-            if (label22.Text == "AM 11")
+            if (label22.Text == "AM 09")
             {
-                if (d.AM111 == "OCUPADA")
+                if (d.AM091 == "OCUPADA")
                 {
-                    d.countparaMaxPacientes("11");
+                    d.countparaMaxPacientes("12");
                     if (d.ContadorMaxdePacientes1 >= 5)
                     {
                         MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -922,14 +902,80 @@ namespace WindowsFormsApplication2
                         if (a == DialogResult.Yes)
                         {
 
-                            idAmbu = "11";
+                            idAmbu = "12";
+                            ConfirmaAM();
+                        }
+                    }
+                }
+                if (d.AM091 == "DISPONIVEL")
+                {
+                    idAmbu = "12";
+                    ConfirmaAM();
+                }
+                if (d.AM091 == "BLOQUEADA")
+                {
+                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+            }
+            if (label22.Text == "AM 10")
+            {
+                if (d.AM101 == "BLOQUEADA")
+                {
+                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (d.AM101 == "DISPONIVEL")
+                {
+                    idAmbu = "13";
+                    ConfirmaAM();
+                }
+                if (d.AM101 == "OCUPADA")
+                {
+                    d.countparaMaxPacientes("13");
+                    if (d.ContadorMaxdePacientes1 >= 5)
+                    {
+                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (d.ContadorMaxdePacientes1 >= 1)
+                    {
+                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                        if (a == DialogResult.Yes)
+                        {
+
+                            idAmbu = "13";
+                            ConfirmaAM();
+                        }
+                    }
+                }
+
+            }
+            if (label22.Text == "AM 11")
+            {
+                if (d.AM111 == "OCUPADA")
+                {
+                    d.countparaMaxPacientes("14");
+                    if (d.ContadorMaxdePacientes1 >= 5)
+                    {
+                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (d.ContadorMaxdePacientes1 >= 1)
+                    {
+                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                        if (a == DialogResult.Yes)
+                        {
+
+                            idAmbu = "14";
                             ConfirmaAM();
                         }
                     }
                 }
                 if (d.AM111 == "DISPONIVEL")
                 {
-                    idAmbu = "11";
+                    idAmbu = "14";
                     ConfirmaAM();
                 }
                 if (d.AM111 == "BLOQUEADA")
@@ -949,12 +995,12 @@ namespace WindowsFormsApplication2
 
                 if (d.AM121 == "DISPONIVEL")
                 {
-                    idAmbu = "12";
+                    idAmbu = "15";
                     ConfirmaAM();
                 }
                 if (d.AM121 == "OCUPADA")
                 {
-                    d.countparaMaxPacientes("12");
+                    d.countparaMaxPacientes("15");
                     if (d.ContadorMaxdePacientes1 >= 5)
                     {
                         MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -966,7 +1012,7 @@ namespace WindowsFormsApplication2
                         if (a == DialogResult.Yes)
                         {
 
-                            idAmbu = "12";
+                            idAmbu = "15";
                             ConfirmaAM();
                         }
                     }
@@ -1301,13 +1347,11 @@ namespace WindowsFormsApplication2
                return;
             }
                MessageBox.Show("Deseja salvar as alterações feitas ?","Atenção !", MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation);
-              
+               AlterarCampos();
                 bloquearCampos();
 
             }
 
-            
-            
         }
 
         private void DesbloquarCampos()
@@ -1442,7 +1486,8 @@ namespace WindowsFormsApplication2
         private void BtnBasica_Click(object sender, EventArgs e)
         {
             TipoAM = "Basica";  
-
+            
+            
                 if (BtnAvancada.BackColor == Color.PaleTurquoise)
             {
                 BtnBasica.BackColor = Color.PaleTurquoise;
@@ -1458,6 +1503,7 @@ namespace WindowsFormsApplication2
 
         private void Btnagendasim_Click(object sender, EventArgs e)
         {
+            
             txtAtendMarcado.Focus();
             txtAtendMarcado.Text = DateTime.Now.ToString();
             Agendamento = "Sim";
@@ -1721,5 +1767,9 @@ namespace WindowsFormsApplication2
         {
             Motivo();
         }
+
+
+
+
     }
 }

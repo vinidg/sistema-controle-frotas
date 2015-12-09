@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CbTipoMotivoSelecionado = new System.Windows.Forms.ComboBox();
             this.painelCancelar = new System.Windows.Forms.Panel();
             this.BtnConfirmando = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -42,9 +41,11 @@
             this.txtResponsavel = new System.Windows.Forms.TextBox();
             this.DtHrCancelamento = new System.Windows.Forms.TextBox();
             this.MotivoCancelar = new System.Windows.Forms.ComboBox();
+            this.CbTipoMotivoSelecionado = new System.Windows.Forms.ComboBox();
             this.CbMotivoChamado = new System.Windows.Forms.ComboBox();
             this.PainelAM2 = new System.Windows.Forms.Panel();
             this.painelAM = new System.Windows.Forms.Panel();
+            this.BtnAM03 = new System.Windows.Forms.Button();
             this.BtnAmRC = new System.Windows.Forms.Button();
             this.BtnAm52 = new System.Windows.Forms.Button();
             this.BtnAm08 = new System.Windows.Forms.Button();
@@ -118,8 +119,8 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
             this.panel1.Controls.Add(this.painelCancelar);
+            this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
             this.panel1.Controls.Add(this.CbMotivoChamado);
             this.panel1.Controls.Add(this.PainelAM2);
             this.panel1.Controls.Add(this.BtnAlterar);
@@ -175,20 +176,6 @@
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
             // 
-            // CbTipoMotivoSelecionado
-            // 
-            this.CbTipoMotivoSelecionado.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.CbTipoMotivoSelecionado.Enabled = false;
-            this.CbTipoMotivoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbTipoMotivoSelecionado.FormattingEnabled = true;
-            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(265, 352);
-            this.CbTipoMotivoSelecionado.Name = "CbTipoMotivoSelecionado";
-            this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(227, 23);
-            this.CbTipoMotivoSelecionado.TabIndex = 58;
-            this.CbTipoMotivoSelecionado.SelectedIndexChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_SelectedIndexChanged);
-            this.CbTipoMotivoSelecionado.TextChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_TextChanged);
-            this.CbTipoMotivoSelecionado.Click += new System.EventHandler(this.CbTipoMotivoSelecionado_Click);
-            // 
             // painelCancelar
             // 
             this.painelCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -202,7 +189,7 @@
             this.painelCancelar.Controls.Add(this.txtResponsavel);
             this.painelCancelar.Controls.Add(this.DtHrCancelamento);
             this.painelCancelar.Controls.Add(this.MotivoCancelar);
-            this.painelCancelar.Location = new System.Drawing.Point(502, 242);
+            this.painelCancelar.Location = new System.Drawing.Point(505, 238);
             this.painelCancelar.Name = "painelCancelar";
             this.painelCancelar.Size = new System.Drawing.Size(558, 187);
             this.painelCancelar.TabIndex = 16;
@@ -345,6 +332,20 @@
             this.MotivoCancelar.Size = new System.Drawing.Size(273, 21);
             this.MotivoCancelar.TabIndex = 50;
             // 
+            // CbTipoMotivoSelecionado
+            // 
+            this.CbTipoMotivoSelecionado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CbTipoMotivoSelecionado.Enabled = false;
+            this.CbTipoMotivoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbTipoMotivoSelecionado.FormattingEnabled = true;
+            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(265, 352);
+            this.CbTipoMotivoSelecionado.Name = "CbTipoMotivoSelecionado";
+            this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(227, 23);
+            this.CbTipoMotivoSelecionado.TabIndex = 58;
+            this.CbTipoMotivoSelecionado.SelectedIndexChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_SelectedIndexChanged);
+            this.CbTipoMotivoSelecionado.TextChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_TextChanged);
+            this.CbTipoMotivoSelecionado.Click += new System.EventHandler(this.CbTipoMotivoSelecionado_Click);
+            // 
             // CbMotivoChamado
             // 
             this.CbMotivoChamado.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -381,7 +382,7 @@
             this.PainelAM2.Controls.Add(this.painelAM);
             this.PainelAM2.Controls.Add(this.BtnUTI02);
             this.PainelAM2.Controls.Add(this.BtnUTI01);
-            this.PainelAM2.Location = new System.Drawing.Point(511, 280);
+            this.PainelAM2.Location = new System.Drawing.Point(508, 275);
             this.PainelAM2.Name = "PainelAM2";
             this.PainelAM2.Size = new System.Drawing.Size(545, 147);
             this.PainelAM2.TabIndex = 48;
@@ -389,6 +390,7 @@
             // painelAM
             // 
             this.painelAM.BackColor = System.Drawing.Color.RoyalBlue;
+            this.painelAM.Controls.Add(this.BtnAM03);
             this.painelAM.Controls.Add(this.BtnAmRC);
             this.painelAM.Controls.Add(this.BtnAm52);
             this.painelAM.Controls.Add(this.BtnAm08);
@@ -406,6 +408,16 @@
             this.painelAM.Name = "painelAM";
             this.painelAM.Size = new System.Drawing.Size(519, 141);
             this.painelAM.TabIndex = 1;
+            // 
+            // BtnAM03
+            // 
+            this.BtnAM03.Location = new System.Drawing.Point(34, 2);
+            this.BtnAM03.Name = "BtnAM03";
+            this.BtnAM03.Size = new System.Drawing.Size(75, 47);
+            this.BtnAM03.TabIndex = 16;
+            this.BtnAM03.Text = "AM 03";
+            this.BtnAM03.UseVisualStyleBackColor = true;
+            this.BtnAM03.Click += new System.EventHandler(this.BtnAM03_Click);
             // 
             // BtnAmRC
             // 
@@ -429,7 +441,7 @@
             // 
             // BtnAm08
             // 
-            this.BtnAm08.Location = new System.Drawing.Point(330, 2);
+            this.BtnAm08.Location = new System.Drawing.Point(34, 48);
             this.BtnAm08.Name = "BtnAm08";
             this.BtnAm08.Size = new System.Drawing.Size(75, 47);
             this.BtnAm08.TabIndex = 12;
@@ -449,7 +461,7 @@
             // 
             // BtnAm12
             // 
-            this.BtnAm12.Location = new System.Drawing.Point(256, 48);
+            this.BtnAm12.Location = new System.Drawing.Point(330, 48);
             this.BtnAm12.Name = "BtnAm12";
             this.BtnAm12.Size = new System.Drawing.Size(75, 47);
             this.BtnAm12.TabIndex = 10;
@@ -459,7 +471,7 @@
             // 
             // BtnAm07
             // 
-            this.BtnAm07.Location = new System.Drawing.Point(256, 2);
+            this.BtnAm07.Location = new System.Drawing.Point(330, 2);
             this.BtnAm07.Name = "BtnAm07";
             this.BtnAm07.Size = new System.Drawing.Size(75, 47);
             this.BtnAm07.TabIndex = 9;
@@ -479,18 +491,17 @@
             // 
             // BtnAm11
             // 
-            this.BtnAm11.Location = new System.Drawing.Point(182, 48);
+            this.BtnAm11.Location = new System.Drawing.Point(256, 48);
             this.BtnAm11.Name = "BtnAm11";
             this.BtnAm11.Size = new System.Drawing.Size(75, 47);
             this.BtnAm11.TabIndex = 7;
             this.BtnAm11.Text = "AM 11";
             this.BtnAm11.UseVisualStyleBackColor = true;
-            this.BtnAm11.Visible = false;
             this.BtnAm11.Click += new System.EventHandler(this.button12_Click);
             // 
             // BtnAm06
             // 
-            this.BtnAm06.Location = new System.Drawing.Point(182, 2);
+            this.BtnAm06.Location = new System.Drawing.Point(256, 3);
             this.BtnAm06.Name = "BtnAm06";
             this.BtnAm06.Size = new System.Drawing.Size(75, 47);
             this.BtnAm06.TabIndex = 6;
@@ -500,7 +511,7 @@
             // 
             // BtnAm10
             // 
-            this.BtnAm10.Location = new System.Drawing.Point(108, 48);
+            this.BtnAm10.Location = new System.Drawing.Point(182, 48);
             this.BtnAm10.Name = "BtnAm10";
             this.BtnAm10.Size = new System.Drawing.Size(75, 47);
             this.BtnAm10.TabIndex = 4;
@@ -510,7 +521,7 @@
             // 
             // BtnAm05
             // 
-            this.BtnAm05.Location = new System.Drawing.Point(108, 2);
+            this.BtnAm05.Location = new System.Drawing.Point(182, 3);
             this.BtnAm05.Name = "BtnAm05";
             this.BtnAm05.Size = new System.Drawing.Size(75, 47);
             this.BtnAm05.TabIndex = 3;
@@ -520,18 +531,17 @@
             // 
             // BtnAm09
             // 
-            this.BtnAm09.Location = new System.Drawing.Point(34, 48);
+            this.BtnAm09.Location = new System.Drawing.Point(108, 48);
             this.BtnAm09.Name = "BtnAm09";
             this.BtnAm09.Size = new System.Drawing.Size(75, 47);
             this.BtnAm09.TabIndex = 1;
             this.BtnAm09.Text = "AM 09";
             this.BtnAm09.UseVisualStyleBackColor = true;
-            this.BtnAm09.Visible = false;
             this.BtnAm09.Click += new System.EventHandler(this.button6_Click);
             // 
             // BtnAm04
             // 
-            this.BtnAm04.Location = new System.Drawing.Point(34, 2);
+            this.BtnAm04.Location = new System.Drawing.Point(108, 2);
             this.BtnAm04.Name = "BtnAm04";
             this.BtnAm04.Size = new System.Drawing.Size(75, 47);
             this.BtnAm04.TabIndex = 0;
@@ -1293,5 +1303,6 @@
         private System.Windows.Forms.Button BtnAlterar;
         private System.Windows.Forms.ComboBox CbTipoMotivoSelecionado;
         private System.Windows.Forms.ComboBox CbMotivoChamado;
+        private System.Windows.Forms.Button BtnAM03;
     }
 }

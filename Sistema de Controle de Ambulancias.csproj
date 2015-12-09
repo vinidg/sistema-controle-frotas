@@ -113,7 +113,6 @@
     <Compile Include="Atualizacao.Designer.cs">
       <DependentUpon>Atualizacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="conexaoMysql.cs" />
     <Compile Include="ConexaoSqlServer.cs" />
     <Compile Include="Controle.cs">
       <SubType>Form</SubType>

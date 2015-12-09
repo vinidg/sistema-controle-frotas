@@ -371,7 +371,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtSolicitacoes);
             this.panel1.Controls.Add(this.BtnNew);
-            this.panel1.Location = new System.Drawing.Point(12, 139);
+            this.panel1.Location = new System.Drawing.Point(12, 123);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1268, 569);
             this.panel1.TabIndex = 0;
@@ -499,7 +499,7 @@
             // 
             this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 117);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 101);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(102, 13);
             this.linkLabel1.TabIndex = 26;
@@ -512,7 +512,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1292, 772);
+            this.ClientSize = new System.Drawing.Size(1292, 741);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Re);

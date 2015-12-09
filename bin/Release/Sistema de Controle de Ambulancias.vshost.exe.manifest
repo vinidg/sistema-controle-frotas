@@ -4,7 +4,7 @@
   <description asmv2:iconFile="favicon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.10" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.15" language="neutral" processorArchitecture="msil" />
     <commandLine file="Sistema de Controle de Ambulancias.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -128,14 +128,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="3002880">
-      <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.10" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="2998784">
+      <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.15" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>u7nTR4i089AfJJvkzD8F75NohVkBdsrv0Cu10KOMk3k=</dsig:DigestValue>
+        <dsig:DigestValue>ZdZZwLvV/zCSiBw4RCiXdfkjjH+5ib5mhrv+I5Z7z/8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
