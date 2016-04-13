@@ -201,7 +201,7 @@
             this.BtnConfirmando.BackColor = System.Drawing.Color.Red;
             this.BtnConfirmando.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.BtnConfirmando.ForeColor = System.Drawing.Color.Snow;
-            this.BtnConfirmando.Location = new System.Drawing.Point(87, 135);
+            this.BtnConfirmando.Location = new System.Drawing.Point(103, 135);
             this.BtnConfirmando.Name = "BtnConfirmando";
             this.BtnConfirmando.Size = new System.Drawing.Size(135, 43);
             this.BtnConfirmando.TabIndex = 56;
@@ -217,7 +217,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(292, 71);
+            this.label27.Location = new System.Drawing.Point(308, 71);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 16);
             this.label27.TabIndex = 55;
@@ -231,7 +231,7 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(3, 71);
+            this.label26.Location = new System.Drawing.Point(19, 71);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(85, 16);
             this.label26.TabIndex = 54;
@@ -245,7 +245,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(292, 16);
+            this.label25.Location = new System.Drawing.Point(308, 16);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(183, 16);
             this.label25.TabIndex = 53;
@@ -259,7 +259,7 @@
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(3, 16);
+            this.label24.Location = new System.Drawing.Point(19, 16);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(160, 16);
             this.label24.TabIndex = 50;
@@ -270,7 +270,7 @@
             this.CancelaSolicitacao.BackColor = System.Drawing.Color.LightGray;
             this.CancelaSolicitacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.CancelaSolicitacao.ForeColor = System.Drawing.Color.Black;
-            this.CancelaSolicitacao.Location = new System.Drawing.Point(321, 139);
+            this.CancelaSolicitacao.Location = new System.Drawing.Point(356, 134);
             this.CancelaSolicitacao.Name = "CancelaSolicitacao";
             this.CancelaSolicitacao.Size = new System.Drawing.Size(135, 43);
             this.CancelaSolicitacao.TabIndex = 52;
@@ -284,7 +284,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtObsCancelamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObsCancelamento.Location = new System.Drawing.Point(295, 90);
+            this.txtObsCancelamento.Location = new System.Drawing.Point(311, 90);
             this.txtObsCancelamento.Name = "txtObsCancelamento";
             this.txtObsCancelamento.Size = new System.Drawing.Size(229, 21);
             this.txtObsCancelamento.TabIndex = 51;
@@ -296,7 +296,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResponsavel.Enabled = false;
             this.txtResponsavel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResponsavel.Location = new System.Drawing.Point(3, 90);
+            this.txtResponsavel.Location = new System.Drawing.Point(19, 90);
             this.txtResponsavel.Name = "txtResponsavel";
             this.txtResponsavel.Size = new System.Drawing.Size(165, 21);
             this.txtResponsavel.TabIndex = 50;
@@ -308,7 +308,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DtHrCancelamento.Enabled = false;
             this.DtHrCancelamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtHrCancelamento.Location = new System.Drawing.Point(295, 35);
+            this.DtHrCancelamento.Location = new System.Drawing.Point(311, 35);
             this.DtHrCancelamento.Name = "DtHrCancelamento";
             this.DtHrCancelamento.Size = new System.Drawing.Size(229, 21);
             this.DtHrCancelamento.TabIndex = 50;
@@ -318,16 +318,23 @@
             this.MotivoCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.MotivoCancelar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MotivoCancelar.FormattingEnabled = true;
             this.MotivoCancelar.Items.AddRange(new object[] {
-            "Paciente desistiu da ambulancia",
-            "Familiares recusa remoção",
-            "Duplicidade de ocorrência",
             "Alteração na solicitação",
+            "Duplicidade de ocorrência",
+            "Erro de digitação",
+            "Familiares recusa remoção",
+            "Indisponibilidade de VTR",
+            "Meios próprios",
+            "Paciente de alta",
+            "Paciente desistiu da ambulancia",
+            "Paciente evadiu",
             "Recusado pelo enfermeiro do controle",
             "Recusado por parte da equipe de ambulacia",
+            "Unidade cancelou",
             "Outro motivo"});
-            this.MotivoCancelar.Location = new System.Drawing.Point(3, 35);
+            this.MotivoCancelar.Location = new System.Drawing.Point(19, 35);
             this.MotivoCancelar.Name = "MotivoCancelar";
             this.MotivoCancelar.Size = new System.Drawing.Size(273, 21);
             this.MotivoCancelar.TabIndex = 50;

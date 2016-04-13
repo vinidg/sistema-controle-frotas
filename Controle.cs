@@ -19,11 +19,6 @@ namespace WindowsFormsApplication2
 {
     public partial class CONTROLE : Form
     {
-        //    string AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
-
-
-        // AM01, AM02, AMRC, AM03, AM05, AM06, AM07, AM08, AM09, AM10, AM11, AM12, AM13, AM14, AM15, AM46, AM47, AM52;
-
 
         public CONTROLE()
         {
@@ -46,7 +41,6 @@ namespace WindowsFormsApplication2
             {
                 Environment.Exit(1);
             }
-
         }
 
         public void timerAtualiza(int foi)
@@ -95,7 +89,6 @@ namespace WindowsFormsApplication2
             if (d.AM011 == "BLOQUEADA")
             {
                 BtnAM01.BackColor = Color.RoyalBlue;
-
             }
             if (d.AM011 == "DISPONIVEL")
             {
@@ -105,7 +98,6 @@ namespace WindowsFormsApplication2
             {
                 BtnAM01.BackColor = Color.Firebrick;
             }
-
             if (d.AM021 == "BLOQUEADA")
             {
                 BtnAM02.BackColor = Color.RoyalBlue;
@@ -118,7 +110,6 @@ namespace WindowsFormsApplication2
             {
                 BtnAM02.BackColor = Color.LimeGreen;
             }
-
             if (d.AMRC1 == "DISPONIVEL")
             {
                 BtnAMRC.BackColor = Color.LimeGreen;
@@ -131,7 +122,6 @@ namespace WindowsFormsApplication2
             {
                 BtnAMRC.BackColor = Color.RoyalBlue;
             }
-
             if (d.AM031 == "BLOQUEADA")
             {
                 BtnAM03.BackColor = Color.RoyalBlue;
@@ -222,6 +212,19 @@ namespace WindowsFormsApplication2
             if (d.AM091 == "OCUPADA")
             {
                 BtnAM09.BackColor = Color.Firebrick;
+            }
+
+            if (d.AM111 == "BLOQUEADA")
+            {
+                BtnAM11.BackColor = Color.RoyalBlue;
+            }
+            if (d.AM111 == "DISPONIVEL")
+            {
+                BtnAM11.BackColor = Color.LimeGreen;
+            }
+            if (d.AM111 == "OCUPADA")
+            {
+                BtnAM11.BackColor = Color.Firebrick;
             }
 
             if (d.AM101 == "BLOQUEADA")
@@ -364,7 +367,6 @@ namespace WindowsFormsApplication2
         {
             Status sta = new Status("17");
             sta.ShowDialog();
-
         }
 
         private void BtnAM52_Click(object sender, EventArgs e)
@@ -452,23 +454,26 @@ namespace WindowsFormsApplication2
         {
             Status();
             countparaSol();
-            // ramdomAds();
+            atualizadorParaNotificador();
+
         }
 
-        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        private void atualizadorParaNotificador()
         {
-            StringBuilder message = new StringBuilder();
+            Update update = new Update();
+            update.up();
+            if (update.Avisar == true)
+            {
+                avisandoAoControle.Visible = true;
+                avisandoAoControle.Text = "Nova atualização no sistema de Controle de Ambulancias. Reinicie o sistema !!!";
 
-            message.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
-            message.AppendLine();
-
-            MessageBox.Show(message.ToString(), "NewWindow Event");
+            }
         }
 
         private void txtAgendadasHoje_Click(object sender, EventArgs e)
         {
-            Solicitacoes Sol = new Solicitacoes("", "");
-            Sol.ShowDialog();
+            Solicitacoes solicitacoes = new Solicitacoes("", "");
+            solicitacoes.ShowDialog();
             timerAtualiza(1);
             if (txtAgendadasHoje.Focus())
             {
@@ -486,8 +491,8 @@ namespace WindowsFormsApplication2
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Atualizacao att = new Atualizacao();
-            att.ShowDialog();
+            Atualizacao atualizacao = new Atualizacao();
+            atualizacao.ShowDialog();
         }
 
         private void BtnAM09_Click_1(object sender, EventArgs e)
@@ -501,9 +506,6 @@ namespace WindowsFormsApplication2
             Status sta = new Status("14");
             sta.ShowDialog();
         }
-
-
-
 
     }
 

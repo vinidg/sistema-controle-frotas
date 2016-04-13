@@ -434,14 +434,8 @@ namespace WindowsFormsApplication2
 
                 while (MyReader2.Read())
                 {
-
                     Origem = MyReader2["Origem"].ToString();
                     Destino = MyReader2["Destino"].ToString();
-
-                    //    dt.Columns.Add("Cloum");
-                    //   dt.Rows.Add(MyReader2["Paciente"].ToString());
-                    //    ds.Tables.Add(dt);
-
                 }
             }
             finally

@@ -11,7 +11,13 @@ namespace Solicitacao_de_Ambulancias
 {
    class Update
     {
-        bool yn;
+        bool yn, avisar;
+
+        public bool Avisar
+        {
+            get { return avisar; }
+            set { avisar = value; }
+        }
 
         public bool Yn
         {
@@ -25,7 +31,6 @@ namespace Solicitacao_de_Ambulancias
             Version newVersion = null;
 
             string xmlURL = @"\\\10.1.0.7\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\update.xml";
-            //string xmlURL = @"C:\Users\Vinicius\Dropbox\Source\WindowsFormsApplication2\update\update.xml";
             XmlTextReader reader = null;
 
             try
@@ -77,23 +82,13 @@ namespace Solicitacao_de_Ambulancias
             Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             if (appverion.CompareTo(newVersion) < 0)
             {
-
-              DialogResult hds=  MessageBox.Show("Versao " + newVersion.Major + "." + newVersion.Minor + "." + newVersion.Build +"."+newVersion.Revision+" do sistema esta disponivel, deseja atualizar ?", "Atenção",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
-              if (hds == DialogResult.Yes)
-                {
-                    yn = true;
-                    Process.Start(donwloadurl);
-                }
-                else
-                {
-
-                }
+                avisar = true;
             }
             else
             {
+                avisar = false;
                 yn = false;
                 Console.WriteLine("Atualizado");
-           //     MessageBox.Show("Esta atualizado !");
             }
         }
     }

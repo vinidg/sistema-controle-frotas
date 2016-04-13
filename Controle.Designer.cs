@@ -63,6 +63,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.notificador = new System.Windows.Forms.NotifyIcon(this.components);
+            this.avisandoAoControle = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -371,7 +373,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtSolicitacoes);
             this.panel1.Controls.Add(this.BtnNew);
-            this.panel1.Location = new System.Drawing.Point(12, 123);
+            this.panel1.Location = new System.Drawing.Point(12, 119);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1268, 569);
             this.panel1.TabIndex = 0;
@@ -499,7 +501,7 @@
             // 
             this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 101);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 97);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(102, 13);
             this.linkLabel1.TabIndex = 26;
@@ -507,17 +509,36 @@
             this.linkLabel1.Text = "O que há de novo ?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // notificador
+            // 
+            this.notificador.Text = "Nova atualização, reinicie o sistema !!!";
+            this.notificador.Visible = true;
+            // 
+            // avisandoAoControle
+            // 
+            this.avisandoAoControle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.avisandoAoControle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.avisandoAoControle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.avisandoAoControle.ForeColor = System.Drawing.Color.Red;
+            this.avisandoAoControle.Location = new System.Drawing.Point(12, 90);
+            this.avisandoAoControle.Name = "avisandoAoControle";
+            this.avisandoAoControle.Size = new System.Drawing.Size(1268, 16);
+            this.avisandoAoControle.TabIndex = 27;
+            this.avisandoAoControle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.avisandoAoControle.Visible = false;
+            // 
             // CONTROLE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1292, 741);
+            this.ClientSize = new System.Drawing.Size(1292, 733);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Re);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.avisandoAoControle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CONTROLE";
             this.Text = "CONTROLE DE AMBULÂNCIA 2015";
@@ -569,6 +590,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtAgendadasHoje;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.NotifyIcon notificador;
+        private System.Windows.Forms.Label avisandoAoControle;
     }
 }
 

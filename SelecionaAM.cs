@@ -71,12 +71,6 @@ namespace WindowsFormsApplication2
         private void VerificarPacienteJaestaInclusoNaMesma()
         {
 
-      //      if (AMocup.Where(c => char.IsLetter(c)).Count() > 0)
-       //     {
-        //        return;
-         //   }
-          
-
             SqlConnection conexao = ConexaoSqlServer.GetConexao();
             string sqlQuery = "select COUNT(idSolicitacoes_Ambulancias) from solicitacoes_ambulancias WHERE idSolicitacoesPacientes='" + LabelIDPaciente.Text + "' AND idAmbulanciaSol = '" + AMocup + "'";
             try

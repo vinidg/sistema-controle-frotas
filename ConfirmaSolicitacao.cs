@@ -21,7 +21,7 @@ namespace WindowsFormsApplication2
         string pegaUnidadeEnd;  //para pegar o endereco com o nome da unidade
         string Sexo, pegamotivo;
         string Endereco1;
-        string rowz;
+        string linha;
         public ConfirmaSolicitacao()
         {
             InitializeComponent();
@@ -82,54 +82,6 @@ namespace WindowsFormsApplication2
 
         public void Limpar()
         {
-            /*  label2.Visible = false;
-            Btnagendanao.Visible = false;
-            Btnagendasim.Visible = false;
-            label3.Visible = false;
-            txtAtendMarcado.Visible = false;
-            label4.Visible = false;
-            label5.Visible = false;
-            txtNomeSolicitante.Visible = false;
-            label6.Visible = false;
-            CbLocalSolicita.Visible = false;
-            label7.Visible = false;
-            txtTelefone.Visible = false;
-            label8.Visible = false;
-            label9.Visible = false;
-            txtNomePaciente.Visible = false;
-            label10.Visible = false;
-            RbFemenino.Visible = false;
-            RbMasculino.Visible = false;
-            label11.Visible = false;
-            txtIdade.Visible = false;
-            label12.Visible = false;
-            txtDiagnostico.Visible = false;
-            label13.Visible = false;
-            CbMotivoChamado.Visible = false;
-            label14.Visible = false;
-            CbTipoMotivoSelecionado.Visible = false;
-            CbAtendimentoPrioridade.Visible = false;
-            label15.Visible = false;
-            label16.Visible = false;
-            CbOrigem.Visible = false;
-            label17.Visible = false;
-            CbDestino.Visible = false;
-            label18.Visible = false;
-            txtEnderecoOrigem.Visible = false;
-            label19.Visible = false;
-            txtEnderecoDestino.Visible = false;
-            label20.Visible = false;
-            richTextBox1.Visible = false;
-            BtnSalvar.Visible = false;
-            Btnagendasim.BackColor = Color.PaleTurquoise;
-            Btnagendanao.BackColor = Color.PaleTurquoise;
-            BtnAvancada.BackColor = Color.PaleTurquoise;
-            BtnBasica.BackColor = Color.PaleTurquoise;
-            Btnagendasim.ForeColor = Color.DimGray;
-            Btnagendanao.ForeColor = Color.DimGray;
-            BtnAvancada.ForeColor = Color.DimGray;
-            BtnBasica.ForeColor = Color.DimGray;
-            */
 
             txtAtendMarcado.Text = "";
             txtNomeSolicitante.Text = "";
@@ -202,9 +154,6 @@ namespace WindowsFormsApplication2
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
             pegaUnidade = CbLocalSolicita.Text;
             unidade_telefone();
         }
@@ -240,7 +189,6 @@ namespace WindowsFormsApplication2
             else if (RbMasculino.Checked)
             {
                 Sexo = "M";
-
             }
 
             if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
@@ -273,10 +221,6 @@ namespace WindowsFormsApplication2
                 RegistrarSolicitacao();
             }
 
-
-
-
-
         }
 
 
@@ -305,8 +249,6 @@ namespace WindowsFormsApplication2
                 // MySqlDataReader MyReader2;
 
                 objComm.ExecuteNonQuery();
-
-
 
             }
             catch (Exception ex)
@@ -359,10 +301,10 @@ namespace WindowsFormsApplication2
 
             foreach (DataRow row in dt.Rows)
             {
-                rowz = string.Format("{0}", row.ItemArray[0]);
-                CbLocalSolicita.Items.Add(rowz);
-                CbDestino.Items.Add(rowz);
-                CbOrigem.Items.Add(rowz);
+                linha = string.Format("{0}", row.ItemArray[0]);
+                CbLocalSolicita.Items.Add(linha);
+                CbDestino.Items.Add(linha);
+                CbOrigem.Items.Add(linha);
             }
 
             // MessageBox.Show("Solicitação salva com sucesso !!!");
@@ -533,8 +475,8 @@ namespace WindowsFormsApplication2
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    string rowz = string.Format("{0}", row.ItemArray[0]);
-                    CbTipoMotivoSelecionado.Items.Add(rowz);
+                    string fila = string.Format("{0}", row.ItemArray[0]);
+                    CbTipoMotivoSelecionado.Items.Add(fila);
 
                 }
 
@@ -550,7 +492,8 @@ namespace WindowsFormsApplication2
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
+            CbTipoMotivoSelecionado.Items.Clear();
+            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA" || CbMotivoChamado.Text == "")
             {
                 BtnAvancada.PerformClick();
                 BtnAvancada.Enabled = false;

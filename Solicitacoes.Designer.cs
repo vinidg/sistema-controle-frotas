@@ -70,7 +70,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(64, -32);
+            this.label1.Location = new System.Drawing.Point(64, -24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1144, 20);
             this.label1.TabIndex = 0;
@@ -91,7 +91,7 @@
             this.columnHeader6});
             this.ListaComPriori.FullRowSelect = true;
             this.ListaComPriori.GridLines = true;
-            this.ListaComPriori.Location = new System.Drawing.Point(68, 8);
+            this.ListaComPriori.Location = new System.Drawing.Point(68, 16);
             this.ListaComPriori.MultiSelect = false;
             this.ListaComPriori.Name = "ListaComPriori";
             this.ListaComPriori.Size = new System.Drawing.Size(1140, 197);
@@ -139,7 +139,7 @@
             // 
             this.txtTotal1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal1.Enabled = false;
-            this.txtTotal1.Location = new System.Drawing.Point(1170, 211);
+            this.txtTotal1.Location = new System.Drawing.Point(1170, 219);
             this.txtTotal1.Name = "txtTotal1";
             this.txtTotal1.Size = new System.Drawing.Size(38, 20);
             this.txtTotal1.TabIndex = 2;
@@ -148,7 +148,7 @@
             // 
             this.txtTotal2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal2.Enabled = false;
-            this.txtTotal2.Location = new System.Drawing.Point(1170, 487);
+            this.txtTotal2.Location = new System.Drawing.Point(1170, 495);
             this.txtTotal2.Name = "txtTotal2";
             this.txtTotal2.Size = new System.Drawing.Size(38, 20);
             this.txtTotal2.TabIndex = 5;
@@ -167,7 +167,7 @@
             this.columnHeader12});
             this.ListaSemPriori.FullRowSelect = true;
             this.ListaSemPriori.GridLines = true;
-            this.ListaSemPriori.Location = new System.Drawing.Point(68, 284);
+            this.ListaSemPriori.Location = new System.Drawing.Point(68, 292);
             this.ListaSemPriori.MultiSelect = false;
             this.ListaSemPriori.Name = "ListaSemPriori";
             this.ListaSemPriori.Size = new System.Drawing.Size(1140, 197);
@@ -216,7 +216,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(64, 244);
+            this.label2.Location = new System.Drawing.Point(64, 252);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(1144, 20);
             this.label2.TabIndex = 3;
@@ -227,7 +227,7 @@
             // 
             this.txtTotal3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal3.Enabled = false;
-            this.txtTotal3.Location = new System.Drawing.Point(1170, 754);
+            this.txtTotal3.Location = new System.Drawing.Point(1170, 762);
             this.txtTotal3.Name = "txtTotal3";
             this.txtTotal3.Size = new System.Drawing.Size(38, 20);
             this.txtTotal3.TabIndex = 8;
@@ -248,7 +248,7 @@
             this.columnHeader18});
             this.ListaAgenda.FullRowSelect = true;
             this.ListaAgenda.GridLines = true;
-            this.ListaAgenda.Location = new System.Drawing.Point(68, 551);
+            this.ListaAgenda.Location = new System.Drawing.Point(68, 559);
             this.ListaAgenda.MultiSelect = false;
             this.ListaAgenda.Name = "ListaAgenda";
             this.ListaAgenda.Size = new System.Drawing.Size(1140, 197);
@@ -302,7 +302,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(68, 512);
+            this.label3.Location = new System.Drawing.Point(68, 520);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(1140, 20);
             this.label3.TabIndex = 6;
@@ -314,7 +314,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(4, 8);
+            this.label4.Location = new System.Drawing.Point(4, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 197);
             this.label4.TabIndex = 9;
@@ -326,7 +326,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(4, 284);
+            this.label5.Location = new System.Drawing.Point(4, 292);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 197);
             this.label5.TabIndex = 10;
@@ -338,7 +338,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(4, 551);
+            this.label6.Location = new System.Drawing.Point(4, 559);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 197);
             this.label6.TabIndex = 11;
@@ -350,7 +350,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1220, 733);
+            this.ClientSize = new System.Drawing.Size(1220, 749);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);

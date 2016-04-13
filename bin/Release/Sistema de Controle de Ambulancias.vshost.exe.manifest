@@ -4,7 +4,7 @@
   <description asmv2:iconFile="favicon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.15" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.18" language="neutral" processorArchitecture="msil" />
     <commandLine file="Sistema de Controle de Ambulancias.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -128,14 +128,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="2998784">
-      <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.15" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="738304">
+      <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.18" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZdZZwLvV/zCSiBw4RCiXdfkjjH+5ib5mhrv+I5Z7z/8=</dsig:DigestValue>
+        <dsig:DigestValue>YIMcbwSepRmyfwl+9/MHxE7KZzdXAkYqMbkTI4y9R2I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -157,13 +157,13 @@
       <dsig:DigestValue>w0fDsGAWRpcEFX84J2/HkDBmUEAaqMkO1a0F/sOokrg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sistema de Controle de Ambulancias.exe.config" size="832">
+  <file name="Sistema de Controle de Ambulancias.exe.config" size="501">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>N33QTWdd5NEinsJ8fLXsWV58c90uTdSueP99n2z31xM=</dsig:DigestValue>
+      <dsig:DigestValue>0UByvpLt87DZX9V+egB//uABOITEIwczOFkJjICPb7c=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
