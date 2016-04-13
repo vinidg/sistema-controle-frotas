@@ -5,7 +5,7 @@
 <img src="http://blogdovalente.com.br/wp-content/uploads/2016/03/upa24h.jpg" align="right" height="200" width="200">
 
 
-O sistema é utilizado para contrle de frota de ambulâncias do transporte sanitário para uso do Trasnporte Sanitário de São Bernardo do Campo. 
+O sistema é utilizado para contrle de frota de ambulâncias do transporte sanitário para uso do Transporte Sanitário de São Bernardo do Campo. 
 
 
 __________________________________________________________________________________________
