@@ -65,6 +65,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.notificador = new System.Windows.Forms.NotifyIcon(this.components);
             this.avisandoAoControle = new System.Windows.Forms.Label();
+            this.Consultar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -313,9 +314,9 @@
             // BtnNew
             // 
             this.BtnNew.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnNew.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BtnNew.BackColor = System.Drawing.Color.DodgerBlue;
             this.BtnNew.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNew.ForeColor = System.Drawing.Color.DimGray;
+            this.BtnNew.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.BtnNew.Location = new System.Drawing.Point(996, 79);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(144, 46);
@@ -365,6 +366,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.Consultar);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtAgendadasHoje);
             this.panel1.Controls.Add(this.groupBox2);
@@ -527,6 +529,20 @@
             this.avisandoAoControle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.avisandoAoControle.Visible = false;
             // 
+            // Consultar
+            // 
+            this.Consultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Consultar.BackColor = System.Drawing.Color.Maroon;
+            this.Consultar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Consultar.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Consultar.Location = new System.Drawing.Point(1121, 3);
+            this.Consultar.Name = "Consultar";
+            this.Consultar.Size = new System.Drawing.Size(144, 46);
+            this.Consultar.TabIndex = 29;
+            this.Consultar.Text = "CONSULTAR";
+            this.Consultar.UseVisualStyleBackColor = false;
+            this.Consultar.Click += new System.EventHandler(this.Consultar_Click);
+            // 
             // CONTROLE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,6 +608,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.NotifyIcon notificador;
         private System.Windows.Forms.Label avisandoAoControle;
+        private System.Windows.Forms.Button Consultar;
     }
 }
 

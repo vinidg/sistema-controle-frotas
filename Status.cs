@@ -1731,7 +1731,7 @@ namespace WindowsFormsApplication2
             if (ListadePacientes.SelectedItems.Count > 0)
             {
                 IDpesquisa = ListadePacientes.SelectedItems[0].Text;
-                
+
             }
             SelecionaAM sand = new SelecionaAM(IDpesquisa, cdAM, codEquipe, this.Text);
             this.Dispose();

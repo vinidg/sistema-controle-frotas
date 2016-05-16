@@ -507,6 +507,12 @@ namespace WindowsFormsApplication2
             sta.ShowDialog();
         }
 
+        private void Consultar_Click(object sender, EventArgs e)
+        {
+            Consulta consulta = new Consulta();
+            consulta.ShowDialog();
+        }
+
     }
 
 

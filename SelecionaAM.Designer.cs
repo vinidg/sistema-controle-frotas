@@ -1219,7 +1219,6 @@
             this.Name = "SelecionaAM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Confirmar Solicitação";
-            this.Load += new System.EventHandler(this.SelecionaAM_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.painelCancelar.ResumeLayout(false);

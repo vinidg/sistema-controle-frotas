@@ -1208,7 +1208,6 @@ namespace WindowsFormsApplication2
             report.ProcessingMode = ProcessingMode.Local;
             report.LocalReport.ReportEmbeddedResource = "WindowsFormsApplication2.Report1.rdlc";
             ReportParameter[] listReport = new ReportParameter[n];
-
             listReport[0] = new ReportParameter("Nome", txtNomePaciente.Text);
             listReport[1] = new ReportParameter("Tipo", tipoAM);
             listReport[2] = new ReportParameter("Agendado", Agendade);
@@ -1244,14 +1243,10 @@ namespace WindowsFormsApplication2
             listReport[32] = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
             listReport[33] = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
 
-
-
             report.LocalReport.SetParameters(listReport);
             report.LocalReport.Refresh();
 
-
-            // reportViewer1.Visible = true;
-
+            //reportViewer1.Visible = true;
 
             Warning[] warnings;
             string[] streamids;
@@ -1286,14 +1281,11 @@ namespace WindowsFormsApplication2
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
             {
-
                 cancelar();
                 imprimirFicha();
                 this.Dispose();
 
             }
-
-
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
@@ -1759,12 +1751,6 @@ namespace WindowsFormsApplication2
         private void CbTipoMotivoSelecionado_Click(object sender, EventArgs e)
         {
             Motivo();
-        }
-
-        private void SelecionaAM_Load(object sender, EventArgs e)
-        {
-
-            this.reportViewer1.RefreshReport();
         }
 
 
