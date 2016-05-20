@@ -103,14 +103,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="775168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="775680">
       <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.1.18" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YLgc7y8NbKRcZURIP84+DOZ9JdeUDosGsvf3Uo1PLIA=</dsig:DigestValue>
+        <dsig:DigestValue>kRUPrA3SCfOvU1RPMUdr+0uDaHMY5UyUOa9zKXKBzDE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

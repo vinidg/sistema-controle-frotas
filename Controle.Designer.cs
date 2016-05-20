@@ -52,6 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Consultar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtAgendadasHoje = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -65,7 +66,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.notificador = new System.Windows.Forms.NotifyIcon(this.components);
             this.avisandoAoControle = new System.Windows.Forms.Label();
-            this.Consultar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -364,7 +364,7 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(252)))), ((int)(((byte)(253)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Controls.Add(this.Consultar);
             this.panel1.Controls.Add(this.label6);
@@ -379,6 +379,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1268, 569);
             this.panel1.TabIndex = 0;
+            // 
+            // Consultar
+            // 
+            this.Consultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Consultar.BackColor = System.Drawing.Color.Maroon;
+            this.Consultar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Consultar.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Consultar.Location = new System.Drawing.Point(1121, 3);
+            this.Consultar.Name = "Consultar";
+            this.Consultar.Size = new System.Drawing.Size(144, 46);
+            this.Consultar.TabIndex = 29;
+            this.Consultar.Text = "CONSULTAR";
+            this.Consultar.UseVisualStyleBackColor = false;
+            this.Consultar.Click += new System.EventHandler(this.Consultar_Click);
             // 
             // label6
             // 
@@ -529,25 +543,11 @@
             this.avisandoAoControle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.avisandoAoControle.Visible = false;
             // 
-            // Consultar
-            // 
-            this.Consultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Consultar.BackColor = System.Drawing.Color.Maroon;
-            this.Consultar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Consultar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Consultar.Location = new System.Drawing.Point(1121, 3);
-            this.Consultar.Name = "Consultar";
-            this.Consultar.Size = new System.Drawing.Size(144, 46);
-            this.Consultar.TabIndex = 29;
-            this.Consultar.Text = "CONSULTAR";
-            this.Consultar.UseVisualStyleBackColor = false;
-            this.Consultar.Click += new System.EventHandler(this.Consultar_Click);
-            // 
             // CONTROLE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1292, 733);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
