@@ -1101,7 +1101,6 @@ namespace WindowsFormsApplication2
                         DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                         if (a == DialogResult.Yes)
                         {
-
                             idAmbu = "18";
                             ConfirmaAM();
                         }
@@ -1112,14 +1111,10 @@ namespace WindowsFormsApplication2
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-
-
             }
         }
         private void ConfirmaAM()
         {
-
 
             //registrar a solicitacao de ambulancia
             SqlConnection conexao = ConexaoSqlServer.GetConexao();
@@ -1130,14 +1125,12 @@ namespace WindowsFormsApplication2
             "UPDATE solicitacoes_paciente SET AmSolicitada = '1' WHERE idPaciente_Solicitacoes = " + LabelIDPaciente.Text + ";";
             try
             {
-
                 SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
                 SqlDataReader MyReader2;
 
                 MyReader2 = objComm.ExecuteReader();
 
                 MessageBox.Show("Solicitação salva com sucesso !!!");
-
             }
             finally
             {
@@ -1150,7 +1143,6 @@ namespace WindowsFormsApplication2
         private void BtnImprimir_Click(object sender, EventArgs e)
         {
             imprimirFicha();
-
         }
         public void imprimirFicha()
         {
@@ -1206,7 +1198,7 @@ namespace WindowsFormsApplication2
             int n = 34;
             ReportViewer report = new ReportViewer();
             report.ProcessingMode = ProcessingMode.Local;
-            report.LocalReport.ReportEmbeddedResource = "WindowsFormsApplication2.Report1.rdlc";
+            report.LocalReport.ReportPath = "WindowsFormsApplication2.Report1.rdlc";
             ReportParameter[] listReport = new ReportParameter[n];
             listReport[0] = new ReportParameter("Nome", txtNomePaciente.Text);
             listReport[1] = new ReportParameter("Tipo", tipoAM);
@@ -1229,20 +1221,46 @@ namespace WindowsFormsApplication2
             listReport[18] = new ReportParameter("Registrado", System.Environment.UserName);
             listReport[19] = new ReportParameter("HrRegistro", DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"));
             listReport[20] = new ReportParameter("AM", amSolicitada);
-            listReport[21] = new ReportParameter("Condutor", d.Condutor1);
-            listReport[22] = new ReportParameter("Equipe", d.Equipe1);
-            listReport[23] = new ReportParameter("Prioridade", priori);
-            listReport[24] = new ReportParameter("Cancelamento", cancelado);
-            listReport[25] = new ReportParameter("HrCancelamento", DtHrCancelamento.Text);
-            listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelar.Text);
-            listReport[27] = new ReportParameter("NomeCancelante", txtResponsavel.Text);
-            listReport[28] = new ReportParameter("HrCiencia", d.DtHrCiencia1);
-            listReport[29] = new ReportParameter("HrSaida", d.DtHrSaidaOrigem1);
-            listReport[30] = new ReportParameter("HrLiberacao", d.DtHrLiberacaoEquipe1);
-            listReport[31] = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
-            listReport[32] = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
-            listReport[33] = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
-
+            if (d.Condutor1 != null)
+            {
+                listReport[21] = new ReportParameter("Condutor", d.Condutor1);
+            } if (d.Equipe1 != null)
+            {
+                listReport[22] = new ReportParameter("Equipe", d.Equipe1);
+            } if (priori != null)
+            {
+                listReport[23] = new ReportParameter("Prioridade", priori);
+            } if (cancelado != null)
+            {
+                listReport[24] = new ReportParameter("Cancelamento", cancelado);
+            } if (DtHrCancelamento.Text != null)
+            {
+                listReport[25] = new ReportParameter("HrCancelamento", DtHrCancelamento.Text);
+            } if (MotivoCancelar.Text != null)
+            {
+                listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelar.Text);
+            } if (txtResponsavel.Text != null)
+            {
+                listReport[27] = new ReportParameter("NomeCancelante", txtResponsavel.Text);
+            } if (d.DtHrCiencia1 != null)
+            {
+                listReport[28] = new ReportParameter("HrCiencia", d.DtHrCiencia1);
+            } if (d.DtHrSaidaOrigem1 != null)
+            {
+                listReport[29] = new ReportParameter("HrSaida", d.DtHrSaidaOrigem1);
+            } if (d.DtHrLiberacaoEquipe1 != null)
+            {
+                listReport[30] = new ReportParameter("HrLiberacao", d.DtHrLiberacaoEquipe1);
+            } if (d.DtHrChegadaOrigem1 != null)
+            {
+                listReport[31] = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
+            } if (d.DtHrChegadaDestino1 != null)
+            {
+                listReport[32] = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
+            } if (d.DtHrEquipePatio1 != null)
+            {
+                listReport[33] = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
+            }
             report.LocalReport.SetParameters(listReport);
             report.LocalReport.Refresh();
 
@@ -1284,10 +1302,8 @@ namespace WindowsFormsApplication2
                 cancelar();
                 imprimirFicha();
                 this.Dispose();
-
             }
         }
-
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             
@@ -1295,7 +1311,6 @@ namespace WindowsFormsApplication2
             DesbloquarCampos();
             }else
             {
-
                 if (RbFemenino.Checked)
                 {
                     Sexo = "F";
@@ -1303,16 +1318,12 @@ namespace WindowsFormsApplication2
                 else if (RbMasculino.Checked)
                 {
                     Sexo = "M";
-
                 }
-
                 if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
                 {
-
                     MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 else if (txtNomeSolicitante.Text == "" ||
                 CbLocalSolicita.Text == "" ||
                 txtTelefone.Text == "" ||
