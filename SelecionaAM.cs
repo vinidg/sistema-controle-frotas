@@ -1239,7 +1239,7 @@ namespace WindowsFormsApplication2
             ReportParameter a0 = new ReportParameter("Nome", txtNomePaciente.Text);
             ReportParameter a1 = new ReportParameter("Tipo", tipoAM);
             ReportParameter a2 = new ReportParameter("Agendado", Agendade);
-            ReportParameter a3= new ReportParameter("DtHrAgendado", txtAtendMarcado.Text);
+            ReportParameter a3 = new ReportParameter("DtHrAgendado", txtAtendMarcado.Text);
             ReportParameter a4 = new ReportParameter("ID", LabelIDPaciente.Text);
             ReportParameter a5 = new ReportParameter("Sexo", Sexo);
             ReportParameter a6 = new ReportParameter("Idade", txtIdade.Text);
@@ -1270,7 +1270,7 @@ namespace WindowsFormsApplication2
             ReportParameter a31 = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
             ReportParameter a32 = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
             ReportParameter a33 = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
-
+            report.ShowParameterPrompts = true;
             report.LocalReport.SetParameters(new ReportParameter[] { a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, 
                 a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28,
                 a29, a30, a31, a32, a33 });
