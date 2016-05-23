@@ -50,3 +50,5 @@ D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Debug\Sistema de Con
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Debug\Sistema de Controle de Ambulancias.exe
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Debug\Sistema de Controle de Ambulancias.pdb
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Debug\Sistema de Controle de Ambulancias.csprojResolveAssemblyReference.cache
+D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Debug\RdlCompile.cache
+D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Debug\RdlCompile.compiled

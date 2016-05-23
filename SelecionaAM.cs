@@ -1199,7 +1199,7 @@ namespace WindowsFormsApplication2
             ReportViewer report = new ReportViewer();
             report.ProcessingMode = ProcessingMode.Local;
             report.LocalReport.ReportPath = "WindowsFormsApplication2.Report1.rdlc";
-            ReportParameter[] listReport = new ReportParameter[n];
+            /**ReportParameter[] listReport = new ReportParameter[n];
             listReport[0] = new ReportParameter("Nome", txtNomePaciente.Text);
             listReport[1] = new ReportParameter("Tipo", tipoAM);
             listReport[2] = new ReportParameter("Agendado", Agendade);
@@ -1221,47 +1221,59 @@ namespace WindowsFormsApplication2
             listReport[18] = new ReportParameter("Registrado", System.Environment.UserName);
             listReport[19] = new ReportParameter("HrRegistro", DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"));
             listReport[20] = new ReportParameter("AM", amSolicitada);
-            if (d.Condutor1 != null)
-            {
-                listReport[21] = new ReportParameter("Condutor", d.Condutor1);
-            } if (d.Equipe1 != null)
-            {
-                listReport[22] = new ReportParameter("Equipe", d.Equipe1);
-            } if (priori != null)
-            {
-                listReport[23] = new ReportParameter("Prioridade", priori);
-            } if (cancelado != null)
-            {
-                listReport[24] = new ReportParameter("Cancelamento", cancelado);
-            } if (DtHrCancelamento.Text != null)
-            {
-                listReport[25] = new ReportParameter("HrCancelamento", DtHrCancelamento.Text);
-            } if (MotivoCancelar.Text != null)
-            {
-                listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelar.Text);
-            } if (txtResponsavel.Text != null)
-            {
-                listReport[27] = new ReportParameter("NomeCancelante", txtResponsavel.Text);
-            } if (d.DtHrCiencia1 != null)
-            {
-                listReport[28] = new ReportParameter("HrCiencia", d.DtHrCiencia1);
-            } if (d.DtHrSaidaOrigem1 != null)
-            {
-                listReport[29] = new ReportParameter("HrSaida", d.DtHrSaidaOrigem1);
-            } if (d.DtHrLiberacaoEquipe1 != null)
-            {
-                listReport[30] = new ReportParameter("HrLiberacao", d.DtHrLiberacaoEquipe1);
-            } if (d.DtHrChegadaOrigem1 != null)
-            {
-                listReport[31] = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
-            } if (d.DtHrChegadaDestino1 != null)
-            {
-                listReport[32] = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
-            } if (d.DtHrEquipePatio1 != null)
-            {
-                listReport[33] = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
-            }
-            report.LocalReport.SetParameters(listReport);
+            listReport[21] = new ReportParameter("Condutor", d.Condutor1);
+            listReport[22] = new ReportParameter("Equipe", d.Equipe1);
+            listReport[23] = new ReportParameter("Prioridade", priori);
+            listReport[24] = new ReportParameter("Cancelamento", cancelado);
+            listReport[25] = new ReportParameter("HrCancelamento", DtHrCancelamento.Text);
+            listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelar.Text);
+            listReport[27] = new ReportParameter("NomeCancelante", txtResponsavel.Text);
+            listReport[28] = new ReportParameter("HrCiencia", d.DtHrCiencia1);
+            listReport[29] = new ReportParameter("HrSaida", d.DtHrSaidaOrigem1);
+            listReport[30] = new ReportParameter("HrLiberacao", d.DtHrLiberacaoEquipe1);
+            listReport[31] = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
+            listReport[32] = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
+            listReport[33] = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
+            **/
+
+            ReportParameter a0 = new ReportParameter("Nome", txtNomePaciente.Text);
+            ReportParameter a1 = new ReportParameter("Tipo", tipoAM);
+            ReportParameter a2 = new ReportParameter("Agendado", Agendade);
+            ReportParameter a3= new ReportParameter("DtHrAgendado", txtAtendMarcado.Text);
+            ReportParameter a4 = new ReportParameter("ID", LabelIDPaciente.Text);
+            ReportParameter a5 = new ReportParameter("Sexo", Sexo);
+            ReportParameter a6 = new ReportParameter("Idade", txtIdade.Text);
+            ReportParameter a7 = new ReportParameter("Diagnostico", txtDiagnostico.Text);
+            ReportParameter a8 = new ReportParameter("Motivo", CbMotivoChamado.Text);
+            ReportParameter a9 = new ReportParameter("Submotivo", CbTipoMotivoSelecionado.Text);
+            ReportParameter a10 = new ReportParameter("Origem", CbOrigem.Text);
+            ReportParameter a11 = new ReportParameter("Destino", CbDestino.Text);
+            ReportParameter a12 = new ReportParameter("EnderecoOrigem", txtEnderecoOrigem.Text);
+            ReportParameter a13 = new ReportParameter("EnderecoDestino", txtEnderecoDestino.Text);
+            ReportParameter a14 = new ReportParameter("Obsgerais", richTextBox1.Text);
+            ReportParameter a15 = new ReportParameter("NomeSolicitante", txtNomeSolicitante.Text);
+            ReportParameter a16 = new ReportParameter("LocalSolicitacao", CbLocalSolicita.Text);
+            ReportParameter a17 = new ReportParameter("Telefone", txtTelefone.Text);
+            ReportParameter a18 = new ReportParameter("Registrado", System.Environment.UserName);
+            ReportParameter a19 = new ReportParameter("HrRegistro", DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"));
+            ReportParameter a20 = new ReportParameter("AM", amSolicitada);
+            ReportParameter a21 = new ReportParameter("Condutor", d.Condutor1);
+            ReportParameter a22 = new ReportParameter("Equipe", d.Equipe1);
+            ReportParameter a23 = new ReportParameter("Prioridade", priori);
+            ReportParameter a24 = new ReportParameter("Cancelamento", cancelado);
+            ReportParameter a25 = new ReportParameter("HrCancelamento", DtHrCancelamento.Text);
+            ReportParameter a26 = new ReportParameter("MotivoCancelamento", MotivoCancelar.Text);
+            ReportParameter a27 = new ReportParameter("NomeCancelante", txtResponsavel.Text);
+            ReportParameter a28 = new ReportParameter("HrCiencia", d.DtHrCiencia1);
+            ReportParameter a29 = new ReportParameter("HrSaida", d.DtHrSaidaOrigem1);
+            ReportParameter a30 = new ReportParameter("HrLiberacao", d.DtHrLiberacaoEquipe1);
+            ReportParameter a31 = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
+            ReportParameter a32 = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
+            ReportParameter a33 = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
+
+            report.LocalReport.SetParameters(new ReportParameter[] { a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, 
+                a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28,
+                a29, a30, a31, a32, a33 });
             report.LocalReport.Refresh();
 
             //reportViewer1.Visible = true;
@@ -1512,6 +1524,7 @@ namespace WindowsFormsApplication2
                 Btnagendasim.BackColor = Color.PaleTurquoise;
 
             }
+
             Btnagendanao.BackColor = Color.PaleTurquoise;
             Btnagendasim.BackColor = Color.Teal;
             Btnagendasim.ForeColor = Color.PaleTurquoise;
@@ -1555,7 +1568,6 @@ namespace WindowsFormsApplication2
 
                 MyReader2 = objComm.ExecuteReader();
 
-                //MessageBox.Show("Alterado com sucesso !!!");
                 while (MyReader2.Read())
                 {
                     txtTelefone.Text = MyReader2.GetString(0);
