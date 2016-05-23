@@ -1,20 +1,20 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Reporting.WebForms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
-using Microsoft.Reporting.WebForms;
-using System.Drawing.Printing;
-using System.Collections.Specialized;
-using System.Drawing.Imaging;
-using System.Data.SqlClient;
 
 
 namespace WindowsFormsApplication2
@@ -1199,7 +1199,7 @@ namespace WindowsFormsApplication2
             ReportViewer report = new ReportViewer();
             report.ProcessingMode = ProcessingMode.Local;
             report.LocalReport.ReportPath = "WindowsFormsApplication2.Report1.rdlc";
-            /**ReportParameter[] listReport = new ReportParameter[n];
+            ReportParameter[] listReport = new ReportParameter[n];
             listReport[0] = new ReportParameter("Nome", txtNomePaciente.Text);
             listReport[1] = new ReportParameter("Tipo", tipoAM);
             listReport[2] = new ReportParameter("Agendado", Agendade);
@@ -1234,9 +1234,8 @@ namespace WindowsFormsApplication2
             listReport[31] = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
             listReport[32] = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
             listReport[33] = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
-            **/
 
-            ReportParameter a0 = new ReportParameter("Nome", txtNomePaciente.Text);
+           /** ReportParameter a0 = new ReportParameter("Nome", txtNomePaciente.Text);
             ReportParameter a1 = new ReportParameter("Tipo", tipoAM);
             ReportParameter a2 = new ReportParameter("Agendado", Agendade);
             ReportParameter a3 = new ReportParameter("DtHrAgendado", txtAtendMarcado.Text);
@@ -1269,11 +1268,9 @@ namespace WindowsFormsApplication2
             ReportParameter a30 = new ReportParameter("HrLiberacao", d.DtHrLiberacaoEquipe1);
             ReportParameter a31 = new ReportParameter("HrChegadaOrigem", d.DtHrChegadaOrigem1);
             ReportParameter a32 = new ReportParameter("HrChegadaDestino", d.DtHrChegadaDestino1);
-            ReportParameter a33 = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);
+            ReportParameter a33 = new ReportParameter("HrEquipepatio", d.DtHrEquipePatio1);**/
             report.ShowParameterPrompts = true;
-            report.LocalReport.SetParameters(new ReportParameter[] { a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, 
-                a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28,
-                a29, a30, a31, a32, a33 });
+            report.LocalReport.SetParameters( listReport );
             report.LocalReport.Refresh();
 
             //reportViewer1.Visible = true;
