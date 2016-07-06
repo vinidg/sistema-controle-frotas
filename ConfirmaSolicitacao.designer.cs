@@ -73,6 +73,7 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.PacienteNaoAcompanhante = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,6 +123,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.PacienteNaoAcompanhante);
             this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.BtnSalvar);
             this.panel1.Controls.Add(this.BtnLimpar);
@@ -281,6 +283,7 @@
             // CbDestino
             // 
             this.CbDestino.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.CbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbDestino.FormattingEnabled = true;
             this.CbDestino.Location = new System.Drawing.Point(605, 200);
@@ -303,6 +306,7 @@
             // CbOrigem
             // 
             this.CbOrigem.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.CbOrigem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbOrigem.FormattingEnabled = true;
             this.CbOrigem.Location = new System.Drawing.Point(605, 152);
@@ -541,6 +545,7 @@
             // CbLocalSolicita
             // 
             this.CbLocalSolicita.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CbLocalSolicita.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbLocalSolicita.FormattingEnabled = true;
             this.CbLocalSolicita.Location = new System.Drawing.Point(195, 219);
             this.CbLocalSolicita.Name = "CbLocalSolicita";
@@ -628,6 +633,18 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
+            // PacienteNaoAcompanhante
+            // 
+            this.PacienteNaoAcompanhante.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PacienteNaoAcompanhante.AutoSize = true;
+            this.PacienteNaoAcompanhante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PacienteNaoAcompanhante.Location = new System.Drawing.Point(297, 450);
+            this.PacienteNaoAcompanhante.Name = "PacienteNaoAcompanhante";
+            this.PacienteNaoAcompanhante.Size = new System.Drawing.Size(242, 20);
+            this.PacienteNaoAcompanhante.TabIndex = 44;
+            this.PacienteNaoAcompanhante.Text = "Paciente não possui acompanhante";
+            this.PacienteNaoAcompanhante.UseVisualStyleBackColor = true;
+            // 
             // ConfirmaSolicitacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -695,5 +712,6 @@
         private System.Windows.Forms.Button BtnSalvar;
         private System.Windows.Forms.Button BtnLimpar;
         private System.Windows.Forms.MaskedTextBox txtAtendMarcado;
+        private System.Windows.Forms.CheckBox PacienteNaoAcompanhante;
     }
 }

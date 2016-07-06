@@ -191,6 +191,7 @@ namespace WindowsFormsApplication2
                 Sexo = "M";
             }
 
+
             if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
             {
 
@@ -226,38 +227,29 @@ namespace WindowsFormsApplication2
 
         private void RegistrarSolicitacao()
         {
-            //registrar a solicitacao de vaga
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
+            InteracaoBanco IB = new InteracaoBanco();
 
             if (Agendamento == "Nao")
             {
                 txtAtendMarcado.Text = " ";
             }
             VerificarPontos(this);
-            string sqlQuery = "insert into solicitacoes_paciente(TipoSolicitacao,DtHrdoInicio,Agendamento,DtHrAgendamento," +
-            "NomeSolicitante,LocalSolicitacao,Telefone,Paciente,Genero,Idade,Diagnostico,Motivo,SubMotivo,Prioridade,Origem," +
-            "EnderecoOrigem,Destino,EnderecoDestino,ObsGerais,AmSolicitada) VALUES " +
-            "('" + TipoAM + "','" + now + "','" + Agendamento + "','" + this.txtAtendMarcado.Text + "','" + this.txtNomeSolicitante.Text + "','" +
-            this.CbLocalSolicita.Text + "','" + this.txtTelefone.Text + "','" + this.txtNomePaciente.Text + "','" + Sexo + "','" + this.txtIdade.Text + "','" + this.txtDiagnostico.Text + "','" +
-            this.CbMotivoChamado.Text + "','" + this.CbTipoMotivoSelecionado.Text + "','" + this.CbAtendimentoPrioridade.Checked + "','" + this.CbOrigem.Text + "','" +
-            this.txtEnderecoOrigem.Text + "','" + this.CbDestino.Text + "','" + this.txtEnderecoDestino.Text + "','" + this.richTextBox1.Text + "','" + 0 + "')";
 
             try
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                // MySqlDataReader MyReader2;
-
-                objComm.ExecuteNonQuery();
+                IB.inserirSolicitacao(TipoAM, now.ToString(), Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
+                this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
+                this.CbAtendimentoPrioridade.Checked.ToString(), this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
+                0, this.PacienteNaoAcompanhante.Checked.ToString(), System.Environment.UserName, now);
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             finally
             {
-                conexao.Close();
                 MessageBox.Show("Solicitação salva com sucesso !!!");
                 this.Dispose();
             }
@@ -539,8 +531,8 @@ namespace WindowsFormsApplication2
 
                 while (MyReader.Read())
                 {
-                   txtNomePaciente.AutoCompleteCustomSource.Add(MyReader["Paciente"].ToString());
-   
+                    txtNomePaciente.AutoCompleteCustomSource.Add(MyReader["Paciente"].ToString());
+
                 }
 
             }

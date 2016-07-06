@@ -140,6 +140,12 @@ Versão 2.0.1.6
 08/12/2015
 
 * Correção dos números das ambulâncias
-* Bloqueio de ambulância ao solicitar o motivo da solicitação como UTI e Sala Vermelha</value>
+* Bloqueio de ambulância ao solicitar o motivo da solicitação como UTI e Sala Vermelha
+
+31/05/2016
+
+* Inserção de pesquisa de solicitações passadas
+* Correção de bugs e atualização de dll
+</value>
   </data>
 </root>
