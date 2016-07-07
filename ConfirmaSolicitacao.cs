@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using db_transporte_sanitario;
 
 namespace WindowsFormsApplication2
 {
@@ -237,7 +238,7 @@ namespace WindowsFormsApplication2
 
             try
             {
-                IB.inserirSolicitacao(TipoAM, now.ToString(), Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
+                IB.inserirSolicitacaoDoPaciente(TipoAM, now.ToString(), Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
                 this.CbAtendimentoPrioridade.Checked.ToString(), this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
                 0, this.PacienteNaoAcompanhante.Checked.ToString(), System.Environment.UserName, now);
@@ -280,86 +281,41 @@ namespace WindowsFormsApplication2
 
         public void Endereco()
         {
-            //Consultar na tabela de enderecos
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "select NomeUnidade from enderecos";
-
-
-            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conexao);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow row in dt.Rows)
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-                linha = string.Format("{0}", row.ItemArray[0]);
-                CbLocalSolicita.Items.Add(linha);
-                CbDestino.Items.Add(linha);
-                CbOrigem.Items.Add(linha);
+                CbLocalSolicita.DataSource = db.enderecos.ToList();
+                CbLocalSolicita.ValueMember = "NomeUnidade";
+                CbLocalSolicita.DisplayMember = "NomeUnidade";
+                CbDestino.DataSource = db.enderecos.ToList();
+                CbDestino.ValueMember = "NomeUnidade";
+                CbDestino.DisplayMember = "NomeUnidade";
+                CbOrigem.DataSource = db.enderecos.ToList();
+                CbOrigem.ValueMember = "NomeUnidade";
+                CbOrigem.DisplayMember = "NomeUnidade";
             }
-
-            // MessageBox.Show("Solicitação salva com sucesso !!!");
-
-            conexao.Close();
         }
         public void unidade_telefone()
         {
-            //consulta para mostrar o telefone quando clicar no enderenco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery2 = "select Telefone from enderecos where NomeUnidade = '" + pegaUnidade + "'";
-            try
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                SqlCommand objComm = new SqlCommand(sqlQuery2, conexao);
-                SqlDataReader MyReader2;
+                var telefoneDoEndereco = db.enderecos
+                    .Where(e => e.NomeUnidade == pegaUnidade)
+                    .Select(e => e.Telefone);
 
-                MyReader2 = objComm.ExecuteReader();
-
-                //MessageBox.Show("Alterado com sucesso !!!");
-                while (MyReader2.Read())
-                {
-                    txtTelefone.Text = MyReader2.GetString(0);
-                }
-                conexao.Close();
+                txtTelefone.Text = telefoneDoEndereco.FirstOrDefault();
+             
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-
         }
         private void unidade_Endereco()
         {
-            //consulta para mostrar o telefone quando clicar no enderenco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery2 = "select Endereco from enderecos where NomeUnidade = '" + pegaUnidadeEnd + "'";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-                SqlCommand objComm = new SqlCommand(sqlQuery2, conexao);
-                SqlDataReader MyReader2;
+                var enderecoDoEnderecos = db.enderecos
+                    .Where(e => e.NomeUnidade == pegaUnidadeEnd)
+                    .Select(e => e.Endereco);
 
-                MyReader2 = objComm.ExecuteReader();
-
-                //MessageBox.Show("Alterado com sucesso !!!");
-                while (MyReader2.Read())
-                {
-                    Endereco1 = MyReader2.GetString(0);
-
-                }
-
-                conexao.Close();
+                Endereco1 = enderecoDoEnderecos.FirstOrDefault();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void CbOrigem_SelectedIndexChanged(object sender, EventArgs e)
@@ -452,39 +408,22 @@ namespace WindowsFormsApplication2
                 pegamotivo = "TRANSPORTE_DE_PROFISSIONAIS";
             }
 
-
-            //Consultar na tabela de enderecos
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "select " + pegamotivo + " from referencias";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
+                var pegarReferenciasPegarMotivo = db.referencias.Select(a => pegamotivo);
 
-                SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conexao);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                CbTipoMotivoSelecionado.DataSource = db.referencias.ToList();
+                CbTipoMotivoSelecionado.ValueMember = pegamotivo;
+                CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
 
-                foreach (DataRow row in dt.Rows)
-                {
-                    string fila = string.Format("{0}", row.ItemArray[0]);
-                    CbTipoMotivoSelecionado.Items.Add(fila);
-
-                }
-
-                // MessageBox.Show("Solicitação salva com sucesso !!!");
-                conexao.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.Items.Clear();
+            CbTipoMotivoSelecionado.ValueMember = "";
+            CbTipoMotivoSelecionado.DisplayMember = "";
+
             if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA" || CbMotivoChamado.Text == "")
             {
                 BtnAvancada.PerformClick();
@@ -518,52 +457,26 @@ namespace WindowsFormsApplication2
             RbMasculino.Checked = false;
             txtIdade.Text = "";
 
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "SELECT Paciente, Genero, Idade FROM solicitacoes_paciente";
-            try
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader;
-
-                MyReader = objComm.ExecuteReader();
-
-
-                while (MyReader.Read())
-                {
-                    txtNomePaciente.AutoCompleteCustomSource.Add(MyReader["Paciente"].ToString());
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
+                var autoCompletar = db.solicitacoes_paciente
+                    .Select(a => a.Paciente).Distinct().ToArray();
+                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+                source.AddRange(autoCompletar);
+                txtNomePaciente.AutoCompleteCustomSource = source;
 
             }
         }
 
         private void txtNomePaciente_KeyUp(object sender, KeyEventArgs e)
         {
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "SELECT Genero, Idade FROM solicitacoes_paciente WHERE Paciente = '" + txtNomePaciente.Text + "'";
-            try
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader;
-
-                MyReader = objComm.ExecuteReader();
-
-
-                while (MyReader.Read())
-                {
-
-                    if (MyReader["Genero"].ToString() == "M")
+                var autoCompletarDadosPaciente = db.solicitacoes_paciente
+                    .Where(a => a.Paciente == txtNomePaciente.Text)
+                    .Select(a => new {a.Genero, a.Idade}).FirstOrDefault();
+                               
+                    if (autoCompletarDadosPaciente.Genero == "M")
                     {
                         RbFemenino.Checked = false;
                         RbMasculino.Checked = true;
@@ -575,24 +488,9 @@ namespace WindowsFormsApplication2
                     }
 
 
-                    txtIdade.Text = MyReader["Idade"].ToString();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
+                    txtIdade.Text = autoCompletarDadosPaciente.Idade;
+             }
         }
-
-
-
-
 
     }
 }
