@@ -75,7 +75,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mqJnBKQws3i8aLQkJBp86DK8jjtKDJpcsCZeJrBtr/s=</dsig:DigestValue>
+        <dsig:DigestValue>SGXjmcVJsItPF7t8NNMAoTasuF6BxvLF82dMqZMUn6E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -284,14 +284,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="3041792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sistema de Controle de Ambulancias.exe" size="3042304">
       <assemblyIdentity name="Sistema de Controle de Ambulancias" version="2.0.3.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7b+ILZdB80MNRVDqvTBPJm7cngfr4FiV58NILreba54=</dsig:DigestValue>
+        <dsig:DigestValue>q4nx9ye51tHUK/VE9HVJcSOTnb3AD9aXiR4FPwg0ozc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

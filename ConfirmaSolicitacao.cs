@@ -345,11 +345,11 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "AVALIAÇÃO DE MÉDICO ESPECIALISTA")
             {
-                pegamotivo = "AVALIAÇÃO_DE_MÉDICO_ESPECIALISTA";
+                pegamotivo = "AVALIACAO_DE_MEDICO_ESPECIALISTA";
             }
             else if (CbMotivoChamado.Text == "AVALIAÇÃO DE PROFISSIONAL NÃO MÉDICO")
             {
-                pegamotivo = "AVALIAÇÃO_DE_PROFISSIONAL_NÃO_MÉDICO";
+                pegamotivo = "AVALIACAO_DE_PROFISSIONAL_NAO_MEDICO";
             }
             else if (CbMotivoChamado.Text == "CONSULTA AGENDADA")
             {
@@ -361,11 +361,11 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "EVENTO COMEMORATIVO")
             {
-                pegamotivo = "EVENTO_COMEMORATIVO_DO_MUNICÍPIO";
+                pegamotivo = "EVENTO_COMEMORATIVO_DO_MUNICIPIO";
             }
             else if (CbMotivoChamado.Text == "EVENTO DE CULTURA, LAZER OU RELIGIÃO")
             {
-                pegamotivo = "EVENTO_DE_CULTURA,_LAZER_OU_RELIGIÃO";
+                pegamotivo = "EVENTO_DE_CULTURA_LAZER_OU_RELIGIAO";
             }
             else if (CbMotivoChamado.Text == "EVENTO ESPORTIVO")
             {
@@ -377,19 +377,19 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "EXAME DE URGÊNCIA")
             {
-                pegamotivo = "EXAME_DE_URGÊNCIA";
+                pegamotivo = "EXAME_DE_URGENCIA";
             }
             else if (CbMotivoChamado.Text == "INTERNAÇÃO EM ENFERMARIA")
             {
-                pegamotivo = "[INTERNAÇÃO_EM_ENFERMARIA]";
+                pegamotivo = "INTERNACAO_EM_ENFERMARIA";
             }
             else if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI")
             {
-                pegamotivo = "[INTERNAÇÃO_EM_UTI]";
+                pegamotivo = "INTERNACAO_EM_UTI";
             }
             else if (CbMotivoChamado.Text == "PROCEDIMENTO")
             {
-                pegamotivo = "[PROCEDIMENTO]";
+                pegamotivo = "PROCEDIMENTO";
             }
             else if (CbMotivoChamado.Text == "RETORNO")
             {
@@ -397,11 +397,11 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
             {
-                pegamotivo = "[SALA_VERMELHA/EMERGÊNCIA]";
+                pegamotivo = "SALA_VERMELHA_EMERGENCIA";
             }
             else if (CbMotivoChamado.Text == "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS")
             {
-                pegamotivo = "[TRANSPORTE_DE_INSUMOS/PRODUTOS/MATERIAIS]";
+                pegamotivo = "TRANSPORTE_DE_INSUMOS_PRODUTOS_MATERIAIS";
             }
             else if (CbMotivoChamado.Text == "TRANSPORTE DE PROFISSIONAIS")
             {
@@ -410,8 +410,6 @@ namespace WindowsFormsApplication2
 
             using(DAHUEEntities db = new DAHUEEntities())
             {
-                var pegarReferenciasPegarMotivo = db.referencias.Select(a => pegamotivo);
-
                 CbTipoMotivoSelecionado.DataSource = db.referencias.ToList();
                 CbTipoMotivoSelecionado.ValueMember = pegamotivo;
                 CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
@@ -421,8 +419,9 @@ namespace WindowsFormsApplication2
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.ValueMember = "";
+            CbTipoMotivoSelecionado.DataSource = null;
             CbTipoMotivoSelecionado.DisplayMember = "";
+            CbTipoMotivoSelecionado.ValueMember = "";
 
             if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA" || CbMotivoChamado.Text == "")
             {
