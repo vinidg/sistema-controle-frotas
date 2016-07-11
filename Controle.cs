@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-
+using db_transporte_sanitario;
 
 namespace WindowsFormsApplication2
 {
@@ -24,7 +24,6 @@ namespace WindowsFormsApplication2
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            Status();
             countparaSol();
             countparaSolAgendadas();
             Re.Text = System.Environment.UserName;
@@ -70,7 +69,7 @@ namespace WindowsFormsApplication2
             timerAtualiza(1);
             if (txtSolicitacoes.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
 
@@ -78,306 +77,19 @@ namespace WindowsFormsApplication2
         {
             if (txtSolicitacoes.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
-        public void Status()
-        {
-            StatusBD d = new StatusBD();
-            d.puxarStatus();
-
-            if (d.AM011 == "BLOQUEADA")
-            {
-                BtnAM01.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM011 == "DISPONIVEL")
-            {
-                BtnAM01.BackColor = Color.LimeGreen;
-            }
-            if (d.AM011 == "OCUPADA")
-            {
-                BtnAM01.BackColor = Color.Firebrick;
-            }
-            if (d.AM021 == "BLOQUEADA")
-            {
-                BtnAM02.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM021 == "OCUPADA")
-            {
-                BtnAM02.BackColor = Color.Firebrick;
-            }
-            if (d.AM021 == "DISPONIVEL")
-            {
-                BtnAM02.BackColor = Color.LimeGreen;
-            }
-            if (d.AMRC1 == "DISPONIVEL")
-            {
-                BtnAMRC.BackColor = Color.LimeGreen;
-            }
-            if (d.AMRC1 == "OCUPADA")
-            {
-                BtnAMRC.BackColor = Color.Firebrick;
-            }
-            if (d.AMRC1 == "BLOQUEADA")
-            {
-                BtnAMRC.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM031 == "BLOQUEADA")
-            {
-                BtnAM03.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM031 == "DISPONIVEL")
-            {
-                BtnAM03.BackColor = Color.LimeGreen;
-            }
-            if (d.AM031 == "OCUPADA")
-            {
-                BtnAM03.BackColor = Color.Firebrick;
-            }
-            if (d.AM041 == "BLOQUEADA")
-            {
-                BtnAM04.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM041 == "OCUPADA")
-            {
-                BtnAM04.BackColor = Color.Firebrick;
-            }
-            if (d.AM041 == "DISPONIVEL")
-            {
-                BtnAM04.BackColor = Color.LimeGreen;
-            }
-
-            if (d.AM051 == "BLOQUEADA")
-            {
-                BtnAM05.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM051 == "OCUPADA")
-            {
-                BtnAM05.BackColor = Color.Firebrick;
-            }
-            if (d.AM051 == "DISPONIVEL")
-            {
-                BtnAM05.BackColor = Color.LimeGreen;
-            }
-
-            if (d.AM061 == "BLOQUEADA")
-            {
-                BtnAM06.BackColor = Color.RoyalBlue;
-            }
-
-            if (d.AM061 == "DISPONIVEL")
-            {
-                BtnAM06.BackColor = Color.LimeGreen;
-            }
-
-            if (d.AM061 == "OCUPADA")
-            {
-                BtnAM06.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM071 == "BLOQUEADA")
-            {
-                BtnAM07.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM071 == "OCUPADA")
-            {
-                BtnAM07.BackColor = Color.Firebrick;
-            }
-            if (d.AM071 == "DISPONIVEL")
-            {
-                BtnAM07.BackColor = Color.LimeGreen;
-            }
-
-            if (d.AM081 == "BLOQUEADA")
-            {
-                BtnAM08.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM081 == "DISPONIVEL")
-            {
-                BtnAM08.BackColor = Color.LimeGreen;
-            }
-            if (d.AM081 == "OCUPADA")
-            {
-                BtnAM08.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM091 == "BLOQUEADA")
-            {
-                BtnAM09.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM091 == "DISPONIVEL")
-            {
-                BtnAM09.BackColor = Color.LimeGreen;
-            }
-            if (d.AM091 == "OCUPADA")
-            {
-                BtnAM09.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM111 == "BLOQUEADA")
-            {
-                BtnAM11.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM111 == "DISPONIVEL")
-            {
-                BtnAM11.BackColor = Color.LimeGreen;
-            }
-            if (d.AM111 == "OCUPADA")
-            {
-                BtnAM11.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM101 == "BLOQUEADA")
-            {
-                BtnAM10.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM101 == "DISPONIVEL")
-            {
-                BtnAM10.BackColor = Color.LimeGreen;
-            }
-            if (d.AM101 == "OCUPADA")
-            {
-                BtnAM10.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM461 == "DISPONIVEL")
-            {
-                BtnAM46.BackColor = Color.LimeGreen;
-            }
-            if (d.AM461 == "OCUPADA")
-            {
-                BtnAM46.BackColor = Color.Firebrick;
-            }
-            if (d.AM461 == "BLOQUEADA")
-            {
-                BtnAM46.BackColor = Color.RoyalBlue;
-            }
-
-            if (d.AM471 == "OCUPADA")
-            {
-                BtnAM47.BackColor = Color.Firebrick;
-            }
-            if (d.AM471 == "DISPONIVEL")
-            {
-                BtnAM47.BackColor = Color.LimeGreen;
-            }
-            if (d.AM471 == "BLOQUEADA")
-            {
-                BtnAM47.BackColor = Color.RoyalBlue;
-            }
-
-            if (d.AM521 == "DISPONIVEL")
-            {
-                BtnAM52.BackColor = Color.LimeGreen;
-            }
-            if (d.AM521 == "OCUPADA")
-            {
-                BtnAM52.BackColor = Color.Firebrick;
-            }
-            if (d.AM521 == "BLOQUEADA")
-            {
-                BtnAM52.BackColor = Color.RoyalBlue;
-            }
-        }
-        private void button3_Click(object sender, EventArgs e)
+  
+        private void abreStatusComIdDaAM()
         {
             Status sta = new Status("3");
             sta.ShowDialog();
 
         }
-        private void BtnAM01_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("1");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM02_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("2");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM03_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("4");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM04_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("5");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM05_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("6");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM06_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("7");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM07_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("8");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM09_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("9");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM08_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("10");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM11_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("11");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM10_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("13");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM15_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("15");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM46_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("16");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM47_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("17");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM52_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("18");
-            sta.ShowDialog();
-        }
-
+   
         private void label1_Click(object sender, EventArgs e)
         {
-            Status();
             countparaSol();
             countparaSolAgendadas();
         }
@@ -452,7 +164,7 @@ namespace WindowsFormsApplication2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Status();
+            pegarDadosDasAmbulancias();
             countparaSol();
             atualizadorParaNotificador();
 
@@ -477,7 +189,7 @@ namespace WindowsFormsApplication2
             timerAtualiza(1);
             if (txtAgendadasHoje.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
 
@@ -485,7 +197,7 @@ namespace WindowsFormsApplication2
         {
             if (txtAgendadasHoje.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
 
@@ -501,20 +213,23 @@ namespace WindowsFormsApplication2
             sta.ShowDialog();
         }
 
-        private void BtnAM11_Click_1(object sender, EventArgs e)
-        {
-            Status sta = new Status("14");
-            sta.ShowDialog();
-        }
-
         private void Consultar_Click(object sender, EventArgs e)
         {
             Consulta consulta = new Consulta();
             consulta.ShowDialog();
         }
 
+        public void pegarDadosDasAmbulancias()
+        {
+            InteracaoBanco inb = new InteracaoBanco();
+                dataGridView1.DataSource = inb.getAllAmbulancias("BASICO");
+                   
+                
+            }
+        }
+
     }
 
 
-}
+
 

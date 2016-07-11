@@ -22,7 +22,6 @@ namespace WindowsFormsApplication2
         string pegaUnidadeEnd;  //para pegar o endereco com o nome da unidade
         string Sexo, pegamotivo;
         string Endereco1;
-        string linha;
         public ConfirmaSolicitacao()
         {
             InitializeComponent();

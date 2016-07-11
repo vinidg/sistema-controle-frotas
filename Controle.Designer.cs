@@ -31,22 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CONTROLE));
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnAM01 = new System.Windows.Forms.Button();
-            this.BtnAM02 = new System.Windows.Forms.Button();
-            this.BtnAMRC = new System.Windows.Forms.Button();
-            this.BtnAM11 = new System.Windows.Forms.Button();
-            this.BtnAM03 = new System.Windows.Forms.Button();
-            this.BtnAM04 = new System.Windows.Forms.Button();
-            this.BtnAM08 = new System.Windows.Forms.Button();
-            this.BtnAM12 = new System.Windows.Forms.Button();
-            this.BtnAM05 = new System.Windows.Forms.Button();
-            this.BtnAM46 = new System.Windows.Forms.Button();
-            this.BtnAM06 = new System.Windows.Forms.Button();
-            this.BtnAM09 = new System.Windows.Forms.Button();
-            this.BtnAM47 = new System.Windows.Forms.Button();
-            this.BtnAM07 = new System.Windows.Forms.Button();
-            this.BtnAM10 = new System.Windows.Forms.Button();
-            this.BtnAM52 = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.txtSolicitacoes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +40,21 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtAgendadasHoje = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ListaUsb = new System.Windows.Forms.ListView();
+            this.AM = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StatusAM = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Idade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Origem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Destino = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ListaUsa = new System.Windows.Forms.ListView();
+            this.AMUsa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StatusUsa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NomePacienteUsa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IdadeUsa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrigemUsa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DestinoUsa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -86,238 +84,13 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // BtnAM01
-            // 
-            this.BtnAM01.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM01.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM01.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM01.ForeColor = System.Drawing.Color.White;
-            this.BtnAM01.Location = new System.Drawing.Point(7, 20);
-            this.BtnAM01.Name = "BtnAM01";
-            this.BtnAM01.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM01.TabIndex = 0;
-            this.BtnAM01.Text = "AM 01";
-            this.BtnAM01.UseVisualStyleBackColor = false;
-            this.BtnAM01.Click += new System.EventHandler(this.BtnAM01_Click);
-            // 
-            // BtnAM02
-            // 
-            this.BtnAM02.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM02.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM02.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM02.ForeColor = System.Drawing.Color.White;
-            this.BtnAM02.Location = new System.Drawing.Point(212, 20);
-            this.BtnAM02.Name = "BtnAM02";
-            this.BtnAM02.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM02.TabIndex = 1;
-            this.BtnAM02.Text = "AM 02";
-            this.BtnAM02.UseVisualStyleBackColor = false;
-            this.BtnAM02.Click += new System.EventHandler(this.BtnAM02_Click);
-            // 
-            // BtnAMRC
-            // 
-            this.BtnAMRC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAMRC.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAMRC.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAMRC.ForeColor = System.Drawing.Color.White;
-            this.BtnAMRC.Location = new System.Drawing.Point(7, 227);
-            this.BtnAMRC.Name = "BtnAMRC";
-            this.BtnAMRC.Size = new System.Drawing.Size(204, 101);
-            this.BtnAMRC.TabIndex = 2;
-            this.BtnAMRC.Text = "AM RC";
-            this.BtnAMRC.UseVisualStyleBackColor = false;
-            this.BtnAMRC.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // BtnAM11
-            // 
-            this.BtnAM11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM11.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM11.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM11.ForeColor = System.Drawing.Color.White;
-            this.BtnAM11.Location = new System.Drawing.Point(622, 125);
-            this.BtnAM11.Name = "BtnAM11";
-            this.BtnAM11.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM11.TabIndex = 3;
-            this.BtnAM11.Text = "AM 11";
-            this.BtnAM11.UseVisualStyleBackColor = false;
-            this.BtnAM11.Click += new System.EventHandler(this.BtnAM11_Click_1);
-            // 
-            // BtnAM03
-            // 
-            this.BtnAM03.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM03.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM03.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM03.ForeColor = System.Drawing.Color.White;
-            this.BtnAM03.Location = new System.Drawing.Point(7, 21);
-            this.BtnAM03.Name = "BtnAM03";
-            this.BtnAM03.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM03.TabIndex = 5;
-            this.BtnAM03.Text = "AM 03";
-            this.BtnAM03.UseVisualStyleBackColor = false;
-            this.BtnAM03.Click += new System.EventHandler(this.BtnAM03_Click);
-            // 
-            // BtnAM04
-            // 
-            this.BtnAM04.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM04.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM04.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM04.ForeColor = System.Drawing.Color.White;
-            this.BtnAM04.Location = new System.Drawing.Point(212, 21);
-            this.BtnAM04.Name = "BtnAM04";
-            this.BtnAM04.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM04.TabIndex = 6;
-            this.BtnAM04.Text = "AM 04";
-            this.BtnAM04.UseVisualStyleBackColor = false;
-            this.BtnAM04.Click += new System.EventHandler(this.BtnAM04_Click);
-            // 
-            // BtnAM08
-            // 
-            this.BtnAM08.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM08.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM08.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM08.ForeColor = System.Drawing.Color.White;
-            this.BtnAM08.Location = new System.Drawing.Point(7, 125);
-            this.BtnAM08.Name = "BtnAM08";
-            this.BtnAM08.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM08.TabIndex = 7;
-            this.BtnAM08.Text = "AM 08";
-            this.BtnAM08.UseVisualStyleBackColor = false;
-            this.BtnAM08.Click += new System.EventHandler(this.BtnAM08_Click);
-            // 
-            // BtnAM12
-            // 
-            this.BtnAM12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM12.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM12.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM12.ForeColor = System.Drawing.Color.White;
-            this.BtnAM12.Location = new System.Drawing.Point(828, 125);
-            this.BtnAM12.Name = "BtnAM12";
-            this.BtnAM12.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM12.TabIndex = 8;
-            this.BtnAM12.Text = "AM 12";
-            this.BtnAM12.UseVisualStyleBackColor = false;
-            this.BtnAM12.Click += new System.EventHandler(this.BtnAM15_Click);
-            // 
-            // BtnAM05
-            // 
-            this.BtnAM05.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM05.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM05.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM05.ForeColor = System.Drawing.Color.White;
-            this.BtnAM05.Location = new System.Drawing.Point(417, 21);
-            this.BtnAM05.Name = "BtnAM05";
-            this.BtnAM05.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM05.TabIndex = 9;
-            this.BtnAM05.Text = "AM 05";
-            this.BtnAM05.UseVisualStyleBackColor = false;
-            this.BtnAM05.Click += new System.EventHandler(this.BtnAM05_Click);
-            // 
-            // BtnAM46
-            // 
-            this.BtnAM46.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM46.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM46.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM46.ForeColor = System.Drawing.Color.White;
-            this.BtnAM46.Location = new System.Drawing.Point(212, 227);
-            this.BtnAM46.Name = "BtnAM46";
-            this.BtnAM46.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM46.TabIndex = 11;
-            this.BtnAM46.Text = "AM 46";
-            this.BtnAM46.UseVisualStyleBackColor = false;
-            this.BtnAM46.Click += new System.EventHandler(this.BtnAM46_Click);
-            // 
-            // BtnAM06
-            // 
-            this.BtnAM06.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM06.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM06.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM06.ForeColor = System.Drawing.Color.White;
-            this.BtnAM06.Location = new System.Drawing.Point(622, 21);
-            this.BtnAM06.Name = "BtnAM06";
-            this.BtnAM06.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM06.TabIndex = 12;
-            this.BtnAM06.Text = "AM 06";
-            this.BtnAM06.UseVisualStyleBackColor = false;
-            this.BtnAM06.Click += new System.EventHandler(this.BtnAM06_Click);
-            // 
-            // BtnAM09
-            // 
-            this.BtnAM09.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM09.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM09.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM09.ForeColor = System.Drawing.Color.White;
-            this.BtnAM09.Location = new System.Drawing.Point(212, 125);
-            this.BtnAM09.Name = "BtnAM09";
-            this.BtnAM09.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM09.TabIndex = 13;
-            this.BtnAM09.Text = "AM 09";
-            this.BtnAM09.UseVisualStyleBackColor = false;
-            this.BtnAM09.Click += new System.EventHandler(this.BtnAM09_Click_1);
-            // 
-            // BtnAM47
-            // 
-            this.BtnAM47.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM47.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM47.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM47.ForeColor = System.Drawing.Color.White;
-            this.BtnAM47.Location = new System.Drawing.Point(417, 227);
-            this.BtnAM47.Name = "BtnAM47";
-            this.BtnAM47.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM47.TabIndex = 14;
-            this.BtnAM47.Text = "AM 47";
-            this.BtnAM47.UseVisualStyleBackColor = false;
-            this.BtnAM47.Click += new System.EventHandler(this.BtnAM47_Click);
-            // 
-            // BtnAM07
-            // 
-            this.BtnAM07.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM07.BackColor = System.Drawing.Color.Brown;
-            this.BtnAM07.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM07.ForeColor = System.Drawing.Color.White;
-            this.BtnAM07.Location = new System.Drawing.Point(827, 21);
-            this.BtnAM07.Name = "BtnAM07";
-            this.BtnAM07.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM07.TabIndex = 15;
-            this.BtnAM07.Text = "AM 07";
-            this.BtnAM07.UseVisualStyleBackColor = false;
-            this.BtnAM07.Click += new System.EventHandler(this.BtnAM07_Click);
-            // 
-            // BtnAM10
-            // 
-            this.BtnAM10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM10.AutoEllipsis = true;
-            this.BtnAM10.BackColor = System.Drawing.Color.RoyalBlue;
-            this.BtnAM10.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM10.ForeColor = System.Drawing.Color.White;
-            this.BtnAM10.Location = new System.Drawing.Point(417, 125);
-            this.BtnAM10.Name = "BtnAM10";
-            this.BtnAM10.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM10.TabIndex = 16;
-            this.BtnAM10.Text = "AM 10";
-            this.BtnAM10.UseVisualStyleBackColor = false;
-            this.BtnAM10.Click += new System.EventHandler(this.BtnAM10_Click);
-            // 
-            // BtnAM52
-            // 
-            this.BtnAM52.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAM52.BackColor = System.Drawing.Color.LimeGreen;
-            this.BtnAM52.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAM52.ForeColor = System.Drawing.Color.White;
-            this.BtnAM52.Location = new System.Drawing.Point(622, 227);
-            this.BtnAM52.Name = "BtnAM52";
-            this.BtnAM52.Size = new System.Drawing.Size(204, 101);
-            this.BtnAM52.TabIndex = 17;
-            this.BtnAM52.Text = "AM 52";
-            this.BtnAM52.UseVisualStyleBackColor = false;
-            this.BtnAM52.Click += new System.EventHandler(this.BtnAM52_Click);
-            // 
             // BtnNew
             // 
             this.BtnNew.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnNew.BackColor = System.Drawing.Color.DodgerBlue;
-            this.BtnNew.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNew.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNew.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnNew.Location = new System.Drawing.Point(996, 79);
+            this.BtnNew.Location = new System.Drawing.Point(1112, 16);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(144, 46);
             this.BtnNew.TabIndex = 18;
@@ -329,7 +102,7 @@
             // 
             this.txtSolicitacoes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSolicitacoes.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSolicitacoes.Location = new System.Drawing.Point(613, 67);
+            this.txtSolicitacoes.Location = new System.Drawing.Point(858, 74);
             this.txtSolicitacoes.Name = "txtSolicitacoes";
             this.txtSolicitacoes.Size = new System.Drawing.Size(77, 25);
             this.txtSolicitacoes.TabIndex = 19;
@@ -342,7 +115,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(599, 25);
+            this.label2.Location = new System.Drawing.Point(842, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 39);
             this.label2.TabIndex = 20;
@@ -383,10 +156,10 @@
             // Consultar
             // 
             this.Consultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Consultar.BackColor = System.Drawing.Color.Maroon;
-            this.Consultar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Consultar.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Consultar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Consultar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Consultar.Location = new System.Drawing.Point(1121, 3);
+            this.Consultar.Location = new System.Drawing.Point(1112, 68);
             this.Consultar.Name = "Consultar";
             this.Consultar.Size = new System.Drawing.Size(144, 46);
             this.Consultar.TabIndex = 29;
@@ -399,7 +172,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(825, 9);
+            this.label6.Location = new System.Drawing.Point(974, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(117, 55);
             this.label6.TabIndex = 28;
@@ -410,7 +183,7 @@
             // 
             this.txtAgendadasHoje.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAgendadasHoje.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendadasHoje.Location = new System.Drawing.Point(844, 67);
+            this.txtAgendadasHoje.Location = new System.Drawing.Point(993, 74);
             this.txtAgendadasHoje.Name = "txtAgendadasHoje";
             this.txtAgendadasHoje.Size = new System.Drawing.Size(77, 25);
             this.txtAgendadasHoje.TabIndex = 27;
@@ -421,20 +194,7 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox2.Controls.Add(this.BtnAM03);
-            this.groupBox2.Controls.Add(this.BtnAMRC);
-            this.groupBox2.Controls.Add(this.BtnAM11);
-            this.groupBox2.Controls.Add(this.BtnAM04);
-            this.groupBox2.Controls.Add(this.BtnAM08);
-            this.groupBox2.Controls.Add(this.BtnAM12);
-            this.groupBox2.Controls.Add(this.BtnAM52);
-            this.groupBox2.Controls.Add(this.BtnAM05);
-            this.groupBox2.Controls.Add(this.BtnAM10);
-            this.groupBox2.Controls.Add(this.BtnAM46);
-            this.groupBox2.Controls.Add(this.BtnAM07);
-            this.groupBox2.Controls.Add(this.BtnAM06);
-            this.groupBox2.Controls.Add(this.BtnAM47);
-            this.groupBox2.Controls.Add(this.BtnAM09);
+            this.groupBox2.Controls.Add(this.ListaUsb);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(95, 169);
             this.groupBox2.Name = "groupBox2";
@@ -443,18 +203,113 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "USB";
             // 
+            // ListaUsb
+            // 
+            this.ListaUsb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ListaUsb.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AM,
+            this.StatusAM,
+            this.Nome,
+            this.Idade,
+            this.Origem,
+            this.Destino});
+            this.ListaUsb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListaUsb.GridLines = true;
+            this.ListaUsb.Location = new System.Drawing.Point(6, 25);
+            this.ListaUsb.MultiSelect = false;
+            this.ListaUsb.Name = "ListaUsb";
+            this.ListaUsb.Size = new System.Drawing.Size(1033, 316);
+            this.ListaUsb.TabIndex = 0;
+            this.ListaUsb.UseCompatibleStateImageBehavior = false;
+            this.ListaUsb.View = System.Windows.Forms.View.Details;
+            // 
+            // AM
+            // 
+            this.AM.Text = "AM";
+            // 
+            // StatusAM
+            // 
+            this.StatusAM.Text = "Status";
+            this.StatusAM.Width = 80;
+            // 
+            // Nome
+            // 
+            this.Nome.Text = "Nome do Paciente";
+            this.Nome.Width = 153;
+            // 
+            // Idade
+            // 
+            this.Idade.Text = "Idade";
+            // 
+            // Origem
+            // 
+            this.Origem.Text = "Origem";
+            this.Origem.Width = 160;
+            // 
+            // Destino
+            // 
+            this.Destino.Text = "Destino";
+            this.Destino.Width = 160;
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.BtnAM02);
-            this.groupBox1.Controls.Add(this.BtnAM01);
+            this.groupBox1.Controls.Add(this.ListaUsa);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(95, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(422, 127);
+            this.groupBox1.Size = new System.Drawing.Size(741, 127);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "USA";
+            // 
+            // ListaUsa
+            // 
+            this.ListaUsa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ListaUsa.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AMUsa,
+            this.StatusUsa,
+            this.NomePacienteUsa,
+            this.IdadeUsa,
+            this.OrigemUsa,
+            this.DestinoUsa});
+            this.ListaUsa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListaUsa.GridLines = true;
+            this.ListaUsa.Location = new System.Drawing.Point(6, 25);
+            this.ListaUsa.MultiSelect = false;
+            this.ListaUsa.Name = "ListaUsa";
+            this.ListaUsa.Size = new System.Drawing.Size(729, 96);
+            this.ListaUsa.TabIndex = 1;
+            this.ListaUsa.UseCompatibleStateImageBehavior = false;
+            this.ListaUsa.View = System.Windows.Forms.View.Details;
+            // 
+            // AMUsa
+            // 
+            this.AMUsa.Text = "AM";
+            // 
+            // StatusUsa
+            // 
+            this.StatusUsa.Text = "Status";
+            this.StatusUsa.Width = 100;
+            // 
+            // NomePacienteUsa
+            // 
+            this.NomePacienteUsa.Text = "Nome do Paciente";
+            this.NomePacienteUsa.Width = 177;
+            // 
+            // IdadeUsa
+            // 
+            this.IdadeUsa.Text = "Idade";
+            // 
+            // OrigemUsa
+            // 
+            this.OrigemUsa.Text = "Origem";
+            this.OrigemUsa.Width = 160;
+            // 
+            // DestinoUsa
+            // 
+            this.DestinoUsa.Text = "Destino";
+            this.DestinoUsa.Width = 160;
             // 
             // panel2
             // 
@@ -574,22 +429,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button BtnAM01;
-        private System.Windows.Forms.Button BtnAM02;
-        private System.Windows.Forms.Button BtnAMRC;
-        private System.Windows.Forms.Button BtnAM11;
-        private System.Windows.Forms.Button BtnAM03;
-        private System.Windows.Forms.Button BtnAM04;
-        private System.Windows.Forms.Button BtnAM08;
-        private System.Windows.Forms.Button BtnAM12;
-        private System.Windows.Forms.Button BtnAM05;
-        private System.Windows.Forms.Button BtnAM46;
-        private System.Windows.Forms.Button BtnAM06;
-        private System.Windows.Forms.Button BtnAM09;
-        private System.Windows.Forms.Button BtnAM47;
-        private System.Windows.Forms.Button BtnAM07;
-        private System.Windows.Forms.Button BtnAM10;
-        private System.Windows.Forms.Button BtnAM52;
         private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.TextBox txtSolicitacoes;
         private System.Windows.Forms.Label label2;
@@ -601,7 +440,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtAgendadasHoje;
@@ -609,6 +447,21 @@
         private System.Windows.Forms.NotifyIcon notificador;
         private System.Windows.Forms.Label avisandoAoControle;
         private System.Windows.Forms.Button Consultar;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListView ListaUsb;
+        private System.Windows.Forms.ColumnHeader AM;
+        private System.Windows.Forms.ColumnHeader StatusAM;
+        private System.Windows.Forms.ColumnHeader Nome;
+        private System.Windows.Forms.ColumnHeader Idade;
+        private System.Windows.Forms.ColumnHeader Destino;
+        private System.Windows.Forms.ColumnHeader Origem;
+        private System.Windows.Forms.ListView ListaUsa;
+        private System.Windows.Forms.ColumnHeader AMUsa;
+        private System.Windows.Forms.ColumnHeader StatusUsa;
+        private System.Windows.Forms.ColumnHeader NomePacienteUsa;
+        private System.Windows.Forms.ColumnHeader IdadeUsa;
+        private System.Windows.Forms.ColumnHeader DestinoUsa;
+        private System.Windows.Forms.ColumnHeader OrigemUsa;
     }
 }
 

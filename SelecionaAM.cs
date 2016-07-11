@@ -239,7 +239,7 @@ namespace WindowsFormsApplication2
         public void StatusSolicita()
         {
             StatusBD d = new StatusBD();
-            d.puxarStatus();
+
             if (d.AM011 == "BLOQUEADA")
             {
                 BtnUTI01.BackColor = Color.RoyalBlue;
@@ -575,7 +575,7 @@ namespace WindowsFormsApplication2
         private void verificarAMstatus()
         {
             StatusBD statusBD = new StatusBD();
-            statusBD.puxarStatus();
+     
 
             if (label22.Text == "AM 01")
             {

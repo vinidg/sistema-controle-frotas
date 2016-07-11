@@ -120,7 +120,7 @@
             this.BtnBloqueio.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.BtnBloqueio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBloqueio.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnBloqueio.Location = new System.Drawing.Point(899, 71);
+            this.BtnBloqueio.Location = new System.Drawing.Point(899, 45);
             this.BtnBloqueio.Name = "BtnBloqueio";
             this.BtnBloqueio.Size = new System.Drawing.Size(306, 214);
             this.BtnBloqueio.TabIndex = 2;
@@ -245,7 +245,7 @@
             this.PainelBloqueio.Controls.Add(this.label4);
             this.PainelBloqueio.Controls.Add(this.txtDtHorasBloqueio);
             this.PainelBloqueio.Controls.Add(this.label5);
-            this.PainelBloqueio.Location = new System.Drawing.Point(823, 71);
+            this.PainelBloqueio.Location = new System.Drawing.Point(832, 45);
             this.PainelBloqueio.Name = "PainelBloqueio";
             this.PainelBloqueio.Size = new System.Drawing.Size(382, 216);
             this.PainelBloqueio.TabIndex = 11;
@@ -613,6 +613,7 @@
             this.Origem.Name = "Origem";
             this.Origem.Size = new System.Drawing.Size(477, 37);
             this.Origem.TabIndex = 14;
+            this.Origem.Text = "Origem";
             this.Origem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Destino
@@ -625,6 +626,7 @@
             this.Destino.Name = "Destino";
             this.Destino.Size = new System.Drawing.Size(493, 37);
             this.Destino.TabIndex = 16;
+            this.Destino.Text = "Destino";
             this.Destino.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -711,7 +713,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1253, 634);
             this.Controls.Add(this.painelCentral);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using db_transporte_sanitario;
 
 namespace WindowsFormsApplication2
 {
@@ -149,7 +150,7 @@ namespace WindowsFormsApplication2
             get { return Condutor; }
             set { Condutor = value; }
         }
-        string idcancelados_pacientes, idPaciente, idSolicitacaoAM, MotivoCancelamento, DtHrCancelamento, ResposavelCancelamento, ObsCancelamento;
+        string idPaciente, idSolicitacaoAM, MotivoCancelamento, DtHrCancelamento, ResposavelCancelamento, ObsCancelamento;
 
         public string ObsCancelamento1
         {
@@ -300,54 +301,6 @@ namespace WindowsFormsApplication2
             set { idSolicitacoes_Ambulancias = value; }
         }
       
-
-        public void puxarStatus()
-        {
-
-            //Consultar no banco de dados o status da ambulancia
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            try
-            {
-                string sqlQuery = "select * from ambulancia";
-
-
-
-                SqlDataAdapter objComm = new SqlDataAdapter(sqlQuery, conexao);
-
-
-                DataSet CD = new DataSet();
-                objComm.Fill(CD);
-
-                AM01 = CD.Tables[0].Rows[0][2].ToString();
-                AM02 = CD.Tables[0].Rows[1][2].ToString();
-                AMRC = CD.Tables[0].Rows[2][2].ToString();
-                AM03 = CD.Tables[0].Rows[3][2].ToString();
-                AM04 = CD.Tables[0].Rows[4][2].ToString();
-                AM05 = CD.Tables[0].Rows[5][2].ToString();
-                AM06 = CD.Tables[0].Rows[6][2].ToString();
-                AM07 = CD.Tables[0].Rows[7][2].ToString();
-                AM08 = CD.Tables[0].Rows[9][2].ToString();
-                AM09 = CD.Tables[0].Rows[10][2].ToString();
-                AM10 = CD.Tables[0].Rows[11][2].ToString();
-                AM11 = CD.Tables[0].Rows[12][2].ToString();
-                AM12 = CD.Tables[0].Rows[13][2].ToString();
-                AM46 = CD.Tables[0].Rows[14][2].ToString();
-                AM47 = CD.Tables[0].Rows[15][2].ToString();
-                AM52 = CD.Tables[0].Rows[16][2].ToString();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-            }
-
-        }
 
         public void countparaMaxPacientes(string AMSelecionada)
         {

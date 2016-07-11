@@ -294,7 +294,6 @@ namespace WindowsFormsApplication2
         //////////////////////////////////////////////////////VERIFICAR STATUS DA AMBULANCIA E ENCAIXAR AS INFORMACOES CORRESPONDENTES/////////////////////////////
         public void statusJanela()
         {
-            d.puxarStatus();
 
             if (cdAM == "1")
             {
