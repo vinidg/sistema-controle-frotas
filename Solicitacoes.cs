@@ -76,10 +76,7 @@ namespace WindowsFormsApplication2
                 IT2.SubItems.Add(MyReader2["Origem"].ToString());
                 IT2.SubItems.Add(MyReader2["Destino"].ToString());
 
-                // if (dataAgenda != " " || dataAgenda != null)
-                //    {
-                //        dataformatada = dataAgenda.Substring(0, 10);
-                //     }
+
 
                 if (Priori == "False" && Agenda == "Nao")
                 {
@@ -94,10 +91,7 @@ namespace WindowsFormsApplication2
                 {
                     ListaAgenda.Items.Add(IT2);
                 }
-                // if (Agenda == "Sim" && dataformatada == dataagora)
-                //    {
-                //         ListaSemPriori.Items.Add(IT2);
-                //   }
+
                 dataAgenda = "";
                 dataformatada = "";
                 Agenda = "";
