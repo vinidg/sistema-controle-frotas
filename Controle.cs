@@ -30,7 +30,7 @@ namespace WindowsFormsApplication2
             Re.Text = System.Environment.UserName;
             timerAtualiza(0);
             update();
-            
+
             this.Text = "Sistema de Controle de Ambulancias. Versão: " + appverion;
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
@@ -97,67 +97,48 @@ namespace WindowsFormsApplication2
         }
         private void countparaSol()
         {
-            //CONTA AS solicitacoes
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "SELECT COUNT(idPaciente_Solicitacoes) FROM [dbo].[solicitacoes_paciente] WHERE AmSolicitada = '0' and Agendamento = 'Nao'";
-            try
-            {
-
-                using (SqlCommand objComm = new SqlCommand(sqlQuery, conexao))
+            int zero = 0;
+          
+            using (DAHUEEntities db = new DAHUEEntities())
                 {
-                    int count = (int)objComm.ExecuteScalar();
-                    txtSolicitacoes.Text = count.ToString();
-                }
-            }
-            finally
-            {
-                conexao.Close();
+                    var query= from sp in db.solicitacoes_paciente
+                               where sp.AmSolicitada == zero && sp.Agendamento == "Nao"
+                               select sp.idPaciente_Solicitacoes;
 
-            }
+                    var countQuery = query.Count();
+                    txtSolicitacoes.Text = countQuery.ToString();
+                }
+
         }
 
         private void countparaSolAgendadas()
         {
             DateTime Data = DateTime.Now;
             int i = 0;
-            string str = "";
-            string data = "";
+            int zero = 0;
             int contagem = 0;
             string dataHoje = Data.ToString("dd/MM/yyyy");
+
             //CONTA AS solicitacoes agendadas
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
+            using(DAHUEEntities db = new DAHUEEntities()){
 
-            string sqlQuery = "SELECT DtHrAgendamento FROM [dbo].[solicitacoes_paciente] WHERE Agendamento = 'Sim' and AmSolicitada = '0'";
+                var query = from solicitacoes_paciente in db.solicitacoes_paciente
+                            where solicitacoes_paciente.Agendamento == "Sim" && 
+                            solicitacoes_paciente.AmSolicitada == zero
+                            select solicitacoes_paciente.DtHrAgendamento ;
 
-            try
-            {
-                SqlDataAdapter objComm = new SqlDataAdapter(sqlQuery, conexao);
-
-                DataSet CD = new DataSet();
-                objComm.Fill(CD);
-
-                //verificar se é igual a data de 'hoje'
-                while (i < CD.Tables[0].Rows.Count)
+                var queryPaciente = query.ToList();
+                foreach(var item in queryPaciente)
                 {
-                    str = CD.Tables[0].Rows[i][0].ToString();
-                    data = str.Substring(0, 10);
-
+                    string data = item.Substring(0, 10);
                     if (data == dataHoje)
                     {
                         contagem++;
                     }
-                    i++;
+                  i++;
                 }
-
-                txtAgendadasHoje.Text = contagem.ToString();
             }
-            finally
-            {
-                conexao.Close();
-
-            }
+                txtAgendadasHoje.Text = contagem.ToString();    
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -216,24 +197,24 @@ namespace WindowsFormsApplication2
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var queryUsb = from am in db.ambulancia
-                            join sa in db.solicitacoes_ambulancias
-                            on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
-                            equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
-                            from sa in sa_join.DefaultIfEmpty()
-                            join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
-                            from sp in sp_join.DefaultIfEmpty()
-                            where
-                            am.TipoAM == "BASICO"
-                            select new
-                            {
-                                am.idAmbulancia,
-                                am.NomeAmbulancia,
-                                am.StatusAmbulancia,
-                                Paciente = sp.Paciente,
-                                Idade = sp.Idade,
-                                Origem = sp.Origem,
-                                Destino = sp.Destino
-                            };
+                               join sa in db.solicitacoes_ambulancias
+                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                               from sa in sa_join.DefaultIfEmpty()
+                               join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                               from sp in sp_join.DefaultIfEmpty()
+                               where
+                               am.TipoAM == "BASICO"
+                               select new
+                               {
+                                   am.idAmbulancia,
+                                   am.NomeAmbulancia,
+                                   am.StatusAmbulancia,
+                                   Paciente = sp.Paciente,
+                                   Idade = sp.Idade,
+                                   Origem = sp.Origem,
+                                   Destino = sp.Destino
+                               };
 
                 var queryAmbulanciaUsb = queryUsb.ToList();
 
@@ -241,24 +222,24 @@ namespace WindowsFormsApplication2
                 listaUsb.ClearSelection();
 
                 var queryUsa = from am in db.ambulancia
-                            join sa in db.solicitacoes_ambulancias
-                            on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
-                            equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
-                            from sa in sa_join.DefaultIfEmpty()
-                            join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
-                            from sp in sp_join.DefaultIfEmpty()
-                            where
-                            am.TipoAM == "AVANCADO"
-                            select new
-                            {
-                                am.idAmbulancia,
-                                am.NomeAmbulancia,
-                                am.StatusAmbulancia,
-                                Paciente = sp.Paciente,
-                                Idade = sp.Idade,
-                                Origem = sp.Origem,
-                                Destino = sp.Destino
-                            };
+                               join sa in db.solicitacoes_ambulancias
+                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                               from sa in sa_join.DefaultIfEmpty()
+                               join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                               from sp in sp_join.DefaultIfEmpty()
+                               where
+                               am.TipoAM == "AVANCADO"
+                               select new
+                               {
+                                   am.idAmbulancia,
+                                   am.NomeAmbulancia,
+                                   am.StatusAmbulancia,
+                                   Paciente = sp.Paciente,
+                                   Idade = sp.Idade,
+                                   Origem = sp.Origem,
+                                   Destino = sp.Destino
+                               };
 
                 var queryAmbulanciaUsa = queryUsa.ToList();
 
@@ -274,7 +255,7 @@ namespace WindowsFormsApplication2
             listaUsb.Columns[0].Visible = false;
             listaUsb.Columns[1].HeaderText = "Ambulancia";
             listaUsb.Columns[2].HeaderText = "Status";
-            
+
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

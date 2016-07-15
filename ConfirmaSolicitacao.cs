@@ -463,26 +463,26 @@ namespace WindowsFormsApplication2
 
         private void txtNomePaciente_KeyUp(object sender, KeyEventArgs e)
         {
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var autoCompletarDadosPaciente = db.solicitacoes_paciente
-                    .Where(a => a.Paciente == txtNomePaciente.Text)
-                    .Select(a => new {a.Genero, a.Idade}).FirstOrDefault();
+            /*          using (DAHUEEntities db = new DAHUEEntities())
+                      {
+                          var autoCompletarDadosPaciente = db.solicitacoes_paciente
+                              .Where(a => a.Paciente == txtNomePaciente.Text)
+                              .Select(a => new {a.Genero, a.Idade}).FirstOrDefault();
                                
-                    if (autoCompletarDadosPaciente.Genero == "M")
-                    {
-                        RbFemenino.Checked = false;
-                        RbMasculino.Checked = true;
-                    }
-                    else
-                    {
-                        RbMasculino.Checked = false;
-                        RbFemenino.Checked = true;
-                    }
+                              if (autoCompletarDadosPaciente.Genero == "M")
+                              {
+                                  RbFemenino.Checked = false;
+                                  RbMasculino.Checked = true;
+                              }
+                              else
+                              {
+                                  RbMasculino.Checked = false;
+                                  RbFemenino.Checked = true;
+                              }
 
 
-                    txtIdade.Text = autoCompletarDadosPaciente.Idade;
-             }
+                              txtIdade.Text = autoCompletarDadosPaciente.Idade;
+                       }*/
         }
 
     }

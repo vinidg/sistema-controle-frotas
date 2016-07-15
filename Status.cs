@@ -16,7 +16,7 @@ namespace WindowsFormsApplication2
     public partial class Status : Form
     {
         DateTime now = DateTime.Now;
-        string cdAM, txtHoras, txtAlteradores, hora, alterador, sqlQuery, msg, resposavel = System.Environment.UserName;
+        string codigoDaAmbulancia, txtHoras, txtAlteradores, hora, alterador, sqlQuery, msg, resposavel = System.Environment.UserName;
         string id, codEquipe, SolicitaAM;
         string NomeAM, idSolicitacoesPacientes;
         StatusBD d = new StatusBD();
@@ -30,7 +30,7 @@ namespace WindowsFormsApplication2
             label7.Visible = false;
             label8.Visible = false;
             txtDtHorasBloqueio.Text = now.ToString();
-            cdAM = Cod;
+            codigoDaAmbulancia = Cod;
 
             selectEquipeBD();
             statusJanela();
@@ -62,7 +62,7 @@ namespace WindowsFormsApplication2
 
             SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-            string sqlQuery = "INSERT INTO equipe (Condutor, Enfermeiros, DtEscala, idAM ) VALUES ('" + txtMoto.Text + "','" + txtEquipe.Text + "', '" + now.ToString() + "','" + cdAM + "')";
+            string sqlQuery = "INSERT INTO equipe (Condutor, Enfermeiros, DtEscala, idAM ) VALUES ('" + txtMoto.Text + "','" + txtEquipe.Text + "', '" + now.ToString() + "','" + codigoDaAmbulancia + "')";
 
 
             try
@@ -118,7 +118,7 @@ namespace WindowsFormsApplication2
         private void selectEquipeBD()
         {
             SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "SELECT TOP 1 * FROM equipe WHERE idAM = '" + cdAM + "' ORDER BY idEquipe DESC ";
+            string sqlQuery = "SELECT TOP 1 * FROM equipe WHERE idAM = '" + codigoDaAmbulancia + "' ORDER BY idEquipe DESC ";
             try
             {
 
@@ -168,8 +168,8 @@ namespace WindowsFormsApplication2
         /// ////////////////////////////////////////////////////////////BLOQUEIO////////////////////////////////////////////////////////////////////
         private void BtnBloquear_Click(object sender, EventArgs e)
         {
-            sqlQuery = "INSERT INTO bloqueio (DtHrStatus, Registrado, Motivo, FkAM) VALUES ('" + txtDtHorasBloqueio.Text + "', '" + txtResposavel.Text + "', '" + CbMotivoBloqueio.Text + "','" + cdAM + "');" +
-            "UPDATE ambulancia SET Status ='BLOQUEADA' WHERE idAmbulancia ='" + cdAM + "'";
+            sqlQuery = "INSERT INTO bloqueio (DtHrStatus, Registrado, Motivo, FkAM) VALUES ('" + txtDtHorasBloqueio.Text + "', '" + txtResposavel.Text + "', '" + CbMotivoBloqueio.Text + "','" + codigoDaAmbulancia + "');" +
+            "UPDATE ambulancia SET Status ='BLOQUEADA' WHERE idAmbulancia ='" + codigoDaAmbulancia + "'";
             msg = "Ambulância Bloqueada !";
             Bloqueio();
             PainelBloqueio.Visible = false;
@@ -187,8 +187,8 @@ namespace WindowsFormsApplication2
         private void BtnDesbloquear_Click(object sender, EventArgs e)
         {
 
-            sqlQuery = "INSERT INTO desbloqueioam (Registrado, DthrDesblo,FkAMd) VALUES ('" + resposavel + "','" + now.ToString() + "','" + cdAM + "');" +
-            "UPDATE ambulancia SET Status ='DISPONIVEL' WHERE idAmbulancia ='" + cdAM + "'";
+            sqlQuery = "INSERT INTO desbloqueioam (Registrado, DthrDesblo,FkAMd) VALUES ('" + resposavel + "','" + now.ToString() + "','" + codigoDaAmbulancia + "');" +
+            "UPDATE ambulancia SET Status ='DISPONIVEL' WHERE idAmbulancia ='" + codigoDaAmbulancia + "'";
             msg = "Ambulância Desbloqueada !";
             Bloqueio();
             BtnDesbloquear.Visible = false;
@@ -295,7 +295,7 @@ namespace WindowsFormsApplication2
         public void statusJanela()
         {
 
-            if (cdAM == "1")
+            if (codigoDaAmbulancia == "1")
             {
                 if (d.AM011 == "BLOQUEADA")
                 {
@@ -308,7 +308,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -363,7 +363,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 01";
             }
-            if (cdAM == "2")
+            if (codigoDaAmbulancia == "2")
             {
                 if (d.AM021 == "BLOQUEADA")
                 {
@@ -377,7 +377,7 @@ namespace WindowsFormsApplication2
 
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -431,7 +431,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 02";
             }
-            if (cdAM == "3")
+            if (codigoDaAmbulancia == "3")
             {
                 if (d.AMRC1 == "DISPONIVEL")
                 {
@@ -475,7 +475,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM RC";
             }
-            if (cdAM == "4")
+            if (codigoDaAmbulancia == "4")
             {
                 if (d.AM031 == "BLOQUEADA")
                 {
@@ -489,7 +489,7 @@ namespace WindowsFormsApplication2
 
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -541,7 +541,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 03";
             }
-            if (cdAM == "5")
+            if (codigoDaAmbulancia == "5")
             {
                 if (d.AM041 == "BLOQUEADA")
                 {
@@ -554,7 +554,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -606,7 +606,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 04";
             }
-            if (cdAM == "6")
+            if (codigoDaAmbulancia == "6")
             {
                 if (d.AM051 == "BLOQUEADA")
                 {
@@ -620,7 +620,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -674,7 +674,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 05";
             }
-            if (cdAM == "7")
+            if (codigoDaAmbulancia == "7")
             {
                 if (d.AM061 == "BLOQUEADA")
                 {
@@ -687,7 +687,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -739,7 +739,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 06";
             }
-            if (cdAM == "8")
+            if (codigoDaAmbulancia == "8")
             {
                 if (d.AM071 == "BLOQUEADA")
                 {
@@ -752,7 +752,7 @@ namespace WindowsFormsApplication2
                     ListadePacientes.Visible = false;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -804,7 +804,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 07";
             }
-            if (cdAM == "10")
+            if (codigoDaAmbulancia == "10")
             {
                 if (d.AM081 == "OCUPADA")
                 {
@@ -844,7 +844,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -869,7 +869,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 08";
             }
-            if (cdAM == "12")
+            if (codigoDaAmbulancia == "12")
             {
                 if (d.AM091 == "BLOQUEADA")
                 {
@@ -881,7 +881,7 @@ namespace WindowsFormsApplication2
                     ListadePacientes.Visible = false;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
                     label8.Visible = true;
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -933,7 +933,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 09";
             }
-            if (cdAM == "13")
+            if (codigoDaAmbulancia == "13")
             {
                 if (d.AM101 == "OCUPADA")
                 {
@@ -973,7 +973,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -998,7 +998,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 10";
             }
-            if (cdAM == "14")
+            if (codigoDaAmbulancia == "14")
             {
                 if (d.AM111 == "BLOQUEADA")
                 {
@@ -1011,7 +1011,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -1064,7 +1064,7 @@ namespace WindowsFormsApplication2
                 label1.Text = "AM 11";
             }
 
-            if (cdAM == "15")
+            if (codigoDaAmbulancia == "15")
             {
                 if (d.AM121 == "BLOQUEADA")
                 {
@@ -1077,7 +1077,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -1130,7 +1130,7 @@ namespace WindowsFormsApplication2
                 label1.Text = "AM 12";
             }
           
-            if (cdAM == "16")
+            if (codigoDaAmbulancia == "16")
             {
                 if (d.AM461 == "DISPONIVEL")
                 {
@@ -1170,7 +1170,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -1195,7 +1195,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 46";
             }
-            if (cdAM == "17")
+            if (codigoDaAmbulancia == "17")
             {
                 if (d.AM471 == "OCUPADA")
                 {
@@ -1235,7 +1235,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -1260,7 +1260,7 @@ namespace WindowsFormsApplication2
                 }
                 label1.Text = "AM 47";
             }
-            if (cdAM == "18")
+            if (codigoDaAmbulancia == "18")
             {
                 if (d.AM521 == "DISPONIVEL")
                 {
@@ -1300,7 +1300,7 @@ namespace WindowsFormsApplication2
                     label8.Visible = true;
                     SqlConnection conexao = ConexaoSqlServer.GetConexao();
 
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + cdAM + "'";
+                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
 
 
                     try
@@ -1350,7 +1350,7 @@ namespace WindowsFormsApplication2
                 alterador = "DtHrCienciaReg";
                 msg = "Alterado !";
 
-                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
                 txtHora.Enabled = false;
                 txtAlterador.Enabled = false;
                 return;
@@ -1376,7 +1376,7 @@ namespace WindowsFormsApplication2
             hora = "DtHrCiencia";
             alterador = "DtHrCienciaReg";
             msg = "Avise a equipe que é necessario informar a chegada na origem !";
-            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
 
 
         }
@@ -1400,7 +1400,7 @@ namespace WindowsFormsApplication2
                 alterador = "DtHrChegadaOrigemReg";
                 msg = "Alterado !";
 
-                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
                 txtHora2.Enabled = false;
                 txtAlterador2.Enabled = false;
                 return;
@@ -1419,7 +1419,7 @@ namespace WindowsFormsApplication2
             hora = "DtHrChegadaOrigem";
             alterador = "DtHrChegadaOrigemReg";
             msg = "Avise a equipe que é necessario informar a saida da origem !";
-            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
         }
 
         private void BtnSaiuOrigem_Click(object sender, EventArgs e)
@@ -1440,7 +1440,7 @@ namespace WindowsFormsApplication2
                 alterador = "DtHrSaidaOrigemReg";
                 msg = "Alterado !";
 
-                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
                 txtHora3.Enabled = false;
                 txtAlterador3.Enabled = false;
                 return;
@@ -1458,7 +1458,7 @@ namespace WindowsFormsApplication2
             hora = "DtHrSaidaOrigem";
             alterador = "DtHrSaidaOrigemReg";
             msg = "Avise a equipe que é necessario informar ao chegar ao destino !";
-            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
         }
 
         private void BtnEquipeDestino_Click(object sender, EventArgs e)
@@ -1479,7 +1479,7 @@ namespace WindowsFormsApplication2
                 alterador = "DtHrChegadaDestinoReg";
                 msg = "Alterado !";
 
-                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
                 txtHora4.Enabled = false;
                 txtAlterador4.Enabled = false;
                 return;
@@ -1498,7 +1498,7 @@ namespace WindowsFormsApplication2
             hora = "DtHrChegadaDestino";
             alterador = "DtHrChegadaDestinoReg";
             msg = "Avise a equipe que é necessario informar ao ser liberado do destino !";
-            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
         }
 
         private void EquipeLiberada_Click(object sender, EventArgs e)
@@ -1519,7 +1519,7 @@ namespace WindowsFormsApplication2
                 alterador = "DtHrLiberacaoEquipeReg";
                 msg = "Alterado !";
 
-                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+                SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
                 txtHora5.Enabled = false;
                 txtAlterador5.Enabled = false;
                 return;
@@ -1537,7 +1537,7 @@ namespace WindowsFormsApplication2
             hora = "DtHrLiberacaoEquipe";
             alterador = "DtHrLiberacaoEquipeReg";
             msg = "Avise a equipe que é necessario informar a chegada no pátio !";
-            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, cdAM);
+            SalvaHorario(hora, alterador, txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
         }
 
         private void BtnPatio_Click(object sender, EventArgs e)
@@ -1550,19 +1550,19 @@ namespace WindowsFormsApplication2
             txtHoras = txtHora6.Text;
             txtAlteradores = txtAlterador6.Text;
             msg = "Equipe disponivel !";
-            SalvaHorario("DtHrEquipePatio", "DtHrEquipePatioReg", txtHoras, txtAlteradores, msg, cdAM);
+            SalvaHorario("DtHrEquipePatio", "DtHrEquipePatioReg", txtHoras, txtAlteradores, msg, codigoDaAmbulancia);
 
 
-            string upAM = "UPDATE ambulancia SET Status='DISPONIVEL' WHERE idAmbulancia='" + cdAM + "'";
+            string upAM = "UPDATE ambulancia SET Status='DISPONIVEL' WHERE idAmbulancia='" + codigoDaAmbulancia + "'";
             updateSolicitacao(upAM);
 
-            string upSA = "UPDATE solicitacoes_ambulancias SET SolicitacaoConcluida = '1' WHERE idAmbulanciaSol = '" + cdAM + "' AND SolicitacaoConcluida='0'";
+            string upSA = "UPDATE solicitacoes_ambulancias SET SolicitacaoConcluida = '1' WHERE idAmbulanciaSol = '" + codigoDaAmbulancia + "' AND SolicitacaoConcluida='0'";
             updateSolicitacao(upSA);
             DialogResult rs = MessageBox.Show("Deseja imprimir a ficha completa da solicitação ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (rs == DialogResult.Yes)
             {
 
-                SelecionaAM samb = new SelecionaAM(id, cdAM, codEquipe, this.Text);
+                SelecionaAM samb = new SelecionaAM(id, codigoDaAmbulancia, codEquipe, this.Text);
                 samb.imprimirFicha();
                 this.Dispose();
             }
@@ -1718,7 +1718,7 @@ namespace WindowsFormsApplication2
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            SelecionaAM sand = new SelecionaAM(id, cdAM, codEquipe, this.Text);
+            SelecionaAM sand = new SelecionaAM(id, codigoDaAmbulancia, codEquipe, this.Text);
             this.Dispose();
             sand.ShowDialog();
         }
@@ -1732,7 +1732,7 @@ namespace WindowsFormsApplication2
                 IDpesquisa = ListadePacientes.SelectedItems[0].Text;
 
             }
-            SelecionaAM sand = new SelecionaAM(IDpesquisa, cdAM, codEquipe, this.Text);
+            SelecionaAM sand = new SelecionaAM(IDpesquisa, codigoDaAmbulancia, codEquipe, this.Text);
             this.Dispose();
             sand.ShowDialog();
         }
