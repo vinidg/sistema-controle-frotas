@@ -83,13 +83,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void abreStatusComIdDaAM()
-        {
-            Status sta = new Status("3");
-            sta.ShowDialog();
-
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
             countparaSol();
@@ -300,14 +293,14 @@ namespace WindowsFormsApplication2
         private void listaUsb_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string cellValue = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
-            Status sta = new Status(cellValue);
+            Status sta = new Status(Convert.ToInt32(cellValue));
             sta.ShowDialog();
         }
 
         private void listaUsa_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string cellValue = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
-            Status sta = new Status(cellValue);
+            Status sta = new Status(Convert.ToInt32(cellValue));
             sta.ShowDialog();
         }
 

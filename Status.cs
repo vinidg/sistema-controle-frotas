@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using db_transporte_sanitario;
 
 namespace WindowsFormsApplication2
 {
@@ -16,12 +17,13 @@ namespace WindowsFormsApplication2
     public partial class Status : Form
     {
         DateTime now = DateTime.Now;
-        string codigoDaAmbulancia, txtHoras, txtAlteradores, hora, alterador, sqlQuery, msg, resposavel = System.Environment.UserName;
-        string id, codEquipe, SolicitaAM;
-        string NomeAM, idSolicitacoesPacientes;
+        string txtHoras, txtAlteradores, hora, alterador, resposavel = System.Environment.UserName;
+        int id, codEquipe, SolicitaAM;
+        int codigoDaAmbulancia, idSolicitacoesPacientes;
+        string NomeAM;
         StatusBD d = new StatusBD();
 
-        public Status(string Cod)
+        public Status(int Cod)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -54,36 +56,14 @@ namespace WindowsFormsApplication2
         /////////////////////////////////////////////////////////////////////////////TROCAR EQUIPE////////////////////////////////////////////////////////////////////////////////////////
         private void BtTrocar_Click(object sender, EventArgs e)
         {
-
-
-
+            InteracaoBanco ib = new InteracaoBanco();
             DateTime now = DateTime.Now;
 
+            ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now.ToString(), codigoDaAmbulancia);
 
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
+            MessageBox.Show("Equipe trocada !");
 
-            string sqlQuery = "INSERT INTO equipe (Condutor, Enfermeiros, DtEscala, idAM ) VALUES ('" + txtMoto.Text + "','" + txtEquipe.Text + "', '" + now.ToString() + "','" + codigoDaAmbulancia + "')";
-
-
-            try
-            {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-
-
-                SqlDataReader MyReader2;
-
-
-
-                MyReader2 = objComm.ExecuteReader();
-
-                MessageBox.Show("Equipe trocada !");
-            }
-            finally
-            {
-                conexao.Close();
-            }
-            listView1.Items.Clear();
+            equipeView.DataSource = null;
             Paineltrocar.Visible = false;
             selectEquipeBD();
             EquipeAtribuiNaOcupada();
@@ -92,61 +72,33 @@ namespace WindowsFormsApplication2
         {
             if (this.Text == "Ocupada")
             {
-                SqlConnection conexao1 = ConexaoSqlServer.GetConexao();
-
-                string sqlQuery2 = "INSERT INTO equipe_solam (idequipe, idSolAM) VALUES ('" + codEquipe + "','" + SolicitaAM + "')";
-
-
-                try
-                {
-
-                    SqlCommand objComm1 = new SqlCommand(sqlQuery2, conexao1);
-                    SqlDataReader MyReader1;
-                    MyReader1 = objComm1.ExecuteReader();
-
-                    MessageBox.Show("Equipe trocada !");
-
-                }
-
-                finally
-                {
-                    conexao1.Close();
-                }
+                InteracaoBanco ib = new InteracaoBanco();
+                ib.inserirEquipeAmOcupada(codEquipe ,SolicitaAM);
+                
+                MessageBox.Show("Equipe trocada !");
             }
         }
         ///////////////////////////////////////////////////////SELECT EQUIPE////////////////////////////////////////////////////////////////////////////////////////
         private void selectEquipeBD()
         {
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "SELECT TOP 1 * FROM equipe WHERE idAM = '" + codigoDaAmbulancia + "' ORDER BY idEquipe DESC ";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
 
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader2;
+            var query = (from equipe in db.equipe
+                        where equipe.idAM == codigoDaAmbulancia 
+                        orderby equipe.idEquipe descending 
+                        select new {
+                            Condutor = equipe.Condutor, 
+                            Enfermeiros = equipe.Enfermeiros, 
+                            DtEscala = equipe.DtEscala,
+                            idAM = equipe.idAM
+                        }).Take(1);
+            var queryEquipe = query.ToList();
 
-                MyReader2 = objComm.ExecuteReader();
+            equipeView.DataSource = queryEquipe;
 
-
-                while (MyReader2.Read())
-                {
-                    codEquipe = MyReader2["idEquipe"].ToString();
-
-                    ListViewItem saturno = new ListViewItem(MyReader2["Condutor"].ToString());
-
-                    saturno.SubItems.Add(MyReader2["Enfermeiros"].ToString());
-                    listView1.Items.Add(saturno);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-
+            codEquipe = equipeView.SelectedCells[0].RowIndex;
+            MessageBox.Show(codEquipe.ToString());
             }
 
         }
@@ -165,13 +117,14 @@ namespace WindowsFormsApplication2
             PainelBloqueio.Visible = true;
             txtResposavel.Text = resposavel;
         }
+        
         /// ////////////////////////////////////////////////////////////BLOQUEIO////////////////////////////////////////////////////////////////////
         private void BtnBloquear_Click(object sender, EventArgs e)
         {
-            sqlQuery = "INSERT INTO bloqueio (DtHrStatus, Registrado, Motivo, FkAM) VALUES ('" + txtDtHorasBloqueio.Text + "', '" + txtResposavel.Text + "', '" + CbMotivoBloqueio.Text + "','" + codigoDaAmbulancia + "');" +
-            "UPDATE ambulancia SET Status ='BLOQUEADA' WHERE idAmbulancia ='" + codigoDaAmbulancia + "'";
-            msg = "Ambulância Bloqueada !";
-            Bloqueio();
+            InteracaoBanco IB = new InteracaoBanco();
+            IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
+                     
+            MessageBox.Show("Ambulância Bloqueada !");
             PainelBloqueio.Visible = false;
             BtnDesbloquear.Visible = true;
             BtnBloqueio.Visible = false;
@@ -186,11 +139,10 @@ namespace WindowsFormsApplication2
 
         private void BtnDesbloquear_Click(object sender, EventArgs e)
         {
+            InteracaoBanco IB = new InteracaoBanco();
+            IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
 
-            sqlQuery = "INSERT INTO desbloqueioam (Registrado, DthrDesblo,FkAMd) VALUES ('" + resposavel + "','" + now.ToString() + "','" + codigoDaAmbulancia + "');" +
-            "UPDATE ambulancia SET Status ='DISPONIVEL' WHERE idAmbulancia ='" + codigoDaAmbulancia + "'";
-            msg = "Ambulância Desbloqueada !";
-            Bloqueio();
+            MessageBox.Show("Ambulância Desbloqueada !");
             BtnDesbloquear.Visible = false;
             BtnBloqueio.Visible = true;
             painelCentral.BackColor = Color.Green;
@@ -199,104 +151,52 @@ namespace WindowsFormsApplication2
             label8.Visible = false;
         }
 
-
-
-        public void Bloqueio()
-        {
-
-
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-            try
-            {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader2;
-
-                MyReader2 = objComm.ExecuteReader();
-
-                MessageBox.Show(msg);
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
-
-        }
-
-
-
         /// ////////////////////////////////////////////////////////////FIM - BLOQUEIO////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////VERIFICAR QUAL PACIENTE ESTA NA AM E SE TEM MAIS DE 1/////////////////////////////
-        public void atualizarStatusOcupadoReservado(string CodAM)
+        public void atualizarStatusOcupadoReservado(int CodAM)
         {
+            int zero = 0;
             //atualizar a AM dependendo do status no banco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-            string sqlQuery = "SELECT * FROM solicitacoes_ambulancias WHERE idAmbulanciaSol = '" + CodAM + "' AND SolicitacaoConcluida='0'";
-
-
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader2;
-
-                MyReader2 = objComm.ExecuteReader();
-
-                while (MyReader2.Read())
-                {
-                    
-                    idSolicitacoesPacientes = MyReader2["idSolicitacoesPacientes"].ToString();
-                   
-                    atualizarStatusOcupadoPacientePorCodigo();
-                }
-            }
-            finally
-            {
-                conexao.Close();
+                var query = from solicitacoes_ambulancias in db.solicitacoes_ambulancias 
+                            where solicitacoes_ambulancias.idAmbulanciaSol == CodAM && 
+                            solicitacoes_ambulancias.SolicitacaoConcluida == zero 
+                            select new { solicitacoes_ambulancias.idSolicitacoesPacientes };
+                
+                var queryAM = query.First();
+                idSolicitacoesPacientes = Convert.ToInt32(queryAM.ToString());
 
             }
+             
+            atualizarStatusOcupadoPacientePorCodigo();
+            
         }
         public void atualizarStatusOcupadoPacientePorCodigo()
         {
-
             //atualizar a AM dependendo do status no banco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-            string sqlQuery = "SELECT idPaciente_Solicitacoes, Paciente FROM solicitacoes_paciente where idPaciente_Solicitacoes='" + idSolicitacoesPacientes + "'";
-
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader2;
-
-                MyReader2 = objComm.ExecuteReader();
-
-                while (MyReader2.Read())
-                {
-                    ListViewItem Pac = new ListViewItem(MyReader2["idPaciente_Solicitacoes"].ToString());
-                    Pac.SubItems.Add(MyReader2["Paciente"].ToString());
-                    ListadePacientes.Items.Add(Pac);
-               
-
-                }
-
-
+                var query = from solicitacoes_paciente in db.solicitacoes_paciente
+                            where solicitacoes_paciente.idPaciente_Solicitacoes == idSolicitacoesPacientes
+                            select new
+                            {
+                                solicitacoes_paciente.idPaciente_Solicitacoes,
+                                solicitacoes_paciente.Paciente
+                            };
+                var querySP = query.ToList();
+                ListadePacientes.DataSource = querySP;
             }
-            finally
-            {
-                conexao.Close();
-            }
+
         }
         //////////////////////////////////////////////////////VERIFICAR QUAL PACIENTE ESTA NA AM E SE TEM MAIS DE 1 ---  FIM/////////////////////////////
         //////////////////////////////////////////////////////VERIFICAR STATUS DA AMBULANCIA E ENCAIXAR AS INFORMACOES CORRESPONDENTES/////////////////////////////
         public void statusJanela()
         {
-
-            if (codigoDaAmbulancia == "1")
+            using(DAHUEEntities db = new DAHUEEntities())
             {
+
+            }
                 if (d.AM011 == "BLOQUEADA")
                 {
                     painelCentral.BackColor = Color.RoyalBlue;
@@ -332,6 +232,7 @@ namespace WindowsFormsApplication2
                     }
 
                 }
+
                 if (d.AM011 == "OCUPADA")
                 {
                     painelCentral.BackColor = Color.Firebrick;
@@ -347,10 +248,10 @@ namespace WindowsFormsApplication2
                     d.atualizarStatusOcupadoPaciente();
                     atualizarStatusOcupadoReservado("1");
                     id = d.IdSolicitacoesPacientes;
-       
+
                     Destino.Text = d.Destino1;
                     Origem.Text = d.Origem1;
-                    
+
                     SolicitaAM = d.IdSolicitacoes_Ambulancias;
                     label7.Text = id;
 
@@ -362,969 +263,7 @@ namespace WindowsFormsApplication2
                     ListadePacientes.Visible = false;
                 }
                 label1.Text = "AM 01";
-            }
-            if (codigoDaAmbulancia == "2")
-            {
-                if (d.AM021 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    label8.Visible = true;
-                    ListadePacientes.Visible = false;
-
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM021 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("2");
-                    d.atualizarStatusOcupadoPaciente();
-                    atualizarStatusOcupadoReservado("2");
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM021 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    
-                    ListadePacientes.Visible = false;
-                }
-                label1.Text = "AM 02";
-            }
-            if (codigoDaAmbulancia == "3")
-            {
-                if (d.AMRC1 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AMRC1 == "OCUPADA")
-                {
-                    this.Text = "Ocupada";
-
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    d.atualizarStatusOcupado("3");
-                    atualizarStatusOcupadoReservado("3");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                   
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-
-                    painelCentral.BackColor = Color.Firebrick;
-                }
-                if (d.AMRC1 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    label8.Visible = true;
-                    ListadePacientes.Visible = false;
-                }
-                label1.Text = "AM RC";
-            }
-            if (codigoDaAmbulancia == "4")
-            {
-                if (d.AM031 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM031 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM031 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("4");
-                    atualizarStatusOcupadoReservado("4");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                label1.Text = "AM 03";
-            }
-            if (codigoDaAmbulancia == "5")
-            {
-                if (d.AM041 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM041 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("5");
-                    atualizarStatusOcupadoReservado("5");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM041 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                label1.Text = "AM 04";
-            }
-            if (codigoDaAmbulancia == "6")
-            {
-                if (d.AM051 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-
-                if (d.AM051 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-
-                if (d.AM051 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("6");
-                    atualizarStatusOcupadoReservado("6");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                label1.Text = "AM 05";
-            }
-            if (codigoDaAmbulancia == "7")
-            {
-                if (d.AM061 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM061 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("7");
-                    atualizarStatusOcupadoReservado("7");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM061 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                label1.Text = "AM 06";
-            }
-            if (codigoDaAmbulancia == "8")
-            {
-                if (d.AM071 == "BLOQUEADA")
-                {
-                    label8.Visible = true;
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM071 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM071 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("8");
-                    atualizarStatusOcupadoReservado("8");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                label1.Text = "AM 07";
-            }
-            if (codigoDaAmbulancia == "10")
-            {
-                if (d.AM081 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("10");
-                    atualizarStatusOcupadoReservado("10");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM081 == "DISPONIVEL")
-                {
-                    this.Text = "Disponivel";
-                    painelCentral.BackColor = Color.LimeGreen;
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM081 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                label1.Text = "AM 08";
-            }
-            if (codigoDaAmbulancia == "12")
-            {
-                if (d.AM091 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-                    label8.Visible = true;
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM091 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM091 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("12");
-                    atualizarStatusOcupadoReservado("12");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                label1.Text = "AM 09";
-            }
-            if (codigoDaAmbulancia == "13")
-            {
-                if (d.AM101 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("13");
-                    atualizarStatusOcupadoReservado("13");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM101 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM101 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                label1.Text = "AM 10";
-            }
-            if (codigoDaAmbulancia == "14")
-            {
-                if (d.AM111 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM111 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM111 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("14");
-                    atualizarStatusOcupadoReservado("14");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                label1.Text = "AM 11";
-            }
-
-            if (codigoDaAmbulancia == "15")
-            {
-                if (d.AM121 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                if (d.AM121 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM121 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("15");
-                    atualizarStatusOcupadoReservado("15");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                label1.Text = "AM 12";
-            }
-          
-            if (codigoDaAmbulancia == "16")
-            {
-                if (d.AM461 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM461 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("16");
-                    atualizarStatusOcupadoReservado("16");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM461 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                label1.Text = "AM 46";
-            }
-            if (codigoDaAmbulancia == "17")
-            {
-                if (d.AM471 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("17");
-                    atualizarStatusOcupadoReservado("17");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM471 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM471 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                label1.Text = "AM 47";
-            }
-            if (codigoDaAmbulancia == "18")
-            {
-                if (d.AM521 == "DISPONIVEL")
-                {
-                    painelCentral.BackColor = Color.LimeGreen;
-                    this.Text = "Disponivel";
-                    ListadePacientes.Visible = false;
-                }
-                if (d.AM521 == "OCUPADA")
-                {
-                    painelCentral.BackColor = Color.Firebrick;
-                    this.Text = "Ocupada";
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    d.atualizarStatusOcupado("18");
-                    atualizarStatusOcupadoReservado("18");
-                    d.atualizarStatusOcupadoPaciente();
-                    id = d.IdSolicitacoesPacientes;
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
-                    label7.Text = id;
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
-                    ListadePacientes.Visible = true;
-                }
-                if (d.AM521 == "BLOQUEADA")
-                {
-                    painelCentral.BackColor = Color.RoyalBlue;
-                    BtnAddPaciente.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    this.Text = "Bloqueio";
-                    ListadePacientes.Visible = false;
-                    label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
-                    {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
-                    }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-                }
-                label1.Text = "AM 52";
-            }
+            
         }
         ///////////////////////////////////////////////////////FIM STATUS AM///////////////////////////////////////////////////////////////////////////////
 

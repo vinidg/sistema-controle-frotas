@@ -32,9 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAddPaciente = new System.Windows.Forms.Button();
             this.BtnBloqueio = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Moto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Equipe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnTroca = new System.Windows.Forms.Button();
             this.BtTrocar = new System.Windows.Forms.Button();
             this.txtEquipe = new System.Windows.Forms.TextBox();
@@ -80,13 +77,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
-            this.ListadePacientes = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.equipeView = new System.Windows.Forms.DataGridView();
+            this.ListadePacientes = new System.Windows.Forms.DataGridView();
             this.Paineltrocar.SuspendLayout();
             this.PainelBloqueio.SuspendLayout();
             this.PainelHistorico.SuspendLayout();
             this.painelCentral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.equipeView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -127,32 +125,6 @@
             this.BtnBloqueio.Text = "Bloquear Ambulância";
             this.BtnBloqueio.UseVisualStyleBackColor = false;
             this.BtnBloqueio.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Moto,
-            this.Equipe});
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(71, 45);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(267, 57);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.VirtualListSize = 1;
-            // 
-            // Moto
-            // 
-            this.Moto.Text = "Motorista";
-            this.Moto.Width = 108;
-            // 
-            // Equipe
-            // 
-            this.Equipe.Text = "Equipe de Enfermagem";
-            this.Equipe.Width = 155;
             // 
             // BtnTroca
             // 
@@ -229,7 +201,7 @@
             this.Paineltrocar.Controls.Add(this.label3);
             this.Paineltrocar.Controls.Add(this.txtMoto);
             this.Paineltrocar.Controls.Add(this.label2);
-            this.Paineltrocar.Location = new System.Drawing.Point(13, 41);
+            this.Paineltrocar.Location = new System.Drawing.Point(7, 14);
             this.Paineltrocar.Name = "Paineltrocar";
             this.Paineltrocar.Size = new System.Drawing.Size(397, 217);
             this.Paineltrocar.TabIndex = 10;
@@ -665,49 +637,36 @@
             this.painelCentral.Controls.Add(this.BtnDesbloquear);
             this.painelCentral.Controls.Add(this.label8);
             this.painelCentral.Controls.Add(this.BtnTroca);
-            this.painelCentral.Controls.Add(this.listView1);
             this.painelCentral.Controls.Add(this.BtnBloqueio);
             this.painelCentral.Controls.Add(this.label1);
             this.painelCentral.Controls.Add(this.Origem);
             this.painelCentral.Controls.Add(this.label7);
             this.painelCentral.Controls.Add(this.BtnAddPaciente);
             this.painelCentral.Controls.Add(this.Destino);
+            this.painelCentral.Controls.Add(this.equipeView);
             this.painelCentral.Location = new System.Drawing.Point(12, 12);
             this.painelCentral.Name = "painelCentral";
             this.painelCentral.Size = new System.Drawing.Size(1223, 610);
             this.painelCentral.TabIndex = 20;
             // 
+            // equipeView
+            // 
+            this.equipeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.equipeView.Location = new System.Drawing.Point(71, 22);
+            this.equipeView.MultiSelect = false;
+            this.equipeView.Name = "equipeView";
+            this.equipeView.ReadOnly = true;
+            this.equipeView.Size = new System.Drawing.Size(289, 80);
+            this.equipeView.TabIndex = 20;
+            // 
             // ListadePacientes
             // 
-            this.ListadePacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListadePacientes.BackColor = System.Drawing.Color.Firebrick;
-            this.ListadePacientes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.ListadePacientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.ListadePacientes.ForeColor = System.Drawing.Color.White;
-            this.ListadePacientes.FullRowSelect = true;
-            this.ListadePacientes.Location = new System.Drawing.Point(410, 72);
-            this.ListadePacientes.MultiSelect = false;
+            this.ListadePacientes.BackgroundColor = System.Drawing.Color.DarkRed;
+            this.ListadePacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListadePacientes.Location = new System.Drawing.Point(410, 38);
             this.ListadePacientes.Name = "ListadePacientes";
-            this.ListadePacientes.Size = new System.Drawing.Size(411, 185);
-            this.ListadePacientes.TabIndex = 19;
-            this.ListadePacientes.UseCompatibleStateImageBehavior = false;
-            this.ListadePacientes.View = System.Windows.Forms.View.Details;
-            this.ListadePacientes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListadePacientes_MouseDoubleClick);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "1";
-            this.columnHeader1.Width = 1;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Pacientes";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 406;
+            this.ListadePacientes.Size = new System.Drawing.Size(416, 220);
+            this.ListadePacientes.TabIndex = 21;
             // 
             // Status
             // 
@@ -728,6 +687,8 @@
             this.PainelHistorico.ResumeLayout(false);
             this.PainelHistorico.PerformLayout();
             this.painelCentral.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.equipeView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -737,10 +698,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnAddPaciente;
         private System.Windows.Forms.Button BtnBloqueio;
-        private System.Windows.Forms.ColumnHeader Moto;
-        private System.Windows.Forms.ColumnHeader Equipe;
         private System.Windows.Forms.Button BtnTroca;
-        public System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button BtTrocar;
         public System.Windows.Forms.TextBox txtEquipe;
         private System.Windows.Forms.Label label2;
@@ -785,8 +743,7 @@
         private System.Windows.Forms.Panel painel2;
         private System.Windows.Forms.Panel painel1;
         private System.Windows.Forms.Panel painelCentral;
-        private System.Windows.Forms.ListView ListadePacientes;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.DataGridView equipeView;
+        private System.Windows.Forms.DataGridView ListadePacientes;
     }
 }

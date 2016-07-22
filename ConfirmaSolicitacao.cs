@@ -407,15 +407,15 @@ namespace WindowsFormsApplication2
                 CbTipoMotivoSelecionado.DataSource = db.referencias.ToList();
                 CbTipoMotivoSelecionado.ValueMember = pegamotivo;
                 CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
-
             }
+     
         }
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.DataSource = null;
-            CbTipoMotivoSelecionado.DisplayMember = "";
+            CbTipoMotivoSelecionado.DataSource = null; 
             CbTipoMotivoSelecionado.ValueMember = "";
+            CbTipoMotivoSelecionado.DisplayMember = "";
 
             if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA" || CbMotivoChamado.Text == "")
             {

@@ -43,24 +43,6 @@
             this.MotivoCancelar = new System.Windows.Forms.ComboBox();
             this.CbTipoMotivoSelecionado = new System.Windows.Forms.ComboBox();
             this.CbMotivoChamado = new System.Windows.Forms.ComboBox();
-            this.PainelAM2 = new System.Windows.Forms.Panel();
-            this.painelAM = new System.Windows.Forms.Panel();
-            this.BtnAM03 = new System.Windows.Forms.Button();
-            this.BtnAmRC = new System.Windows.Forms.Button();
-            this.BtnAm52 = new System.Windows.Forms.Button();
-            this.BtnAm08 = new System.Windows.Forms.Button();
-            this.BtnAm47 = new System.Windows.Forms.Button();
-            this.BtnAm12 = new System.Windows.Forms.Button();
-            this.BtnAm07 = new System.Windows.Forms.Button();
-            this.BtnAm46 = new System.Windows.Forms.Button();
-            this.BtnAm11 = new System.Windows.Forms.Button();
-            this.BtnAm06 = new System.Windows.Forms.Button();
-            this.BtnAm10 = new System.Windows.Forms.Button();
-            this.BtnAm05 = new System.Windows.Forms.Button();
-            this.BtnAm09 = new System.Windows.Forms.Button();
-            this.BtnAm04 = new System.Windows.Forms.Button();
-            this.BtnUTI02 = new System.Windows.Forms.Button();
-            this.BtnUTI01 = new System.Windows.Forms.Button();
             this.BtnAlterar = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.LabelIDPaciente = new System.Windows.Forms.Label();
@@ -109,10 +91,9 @@
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBasica = new System.Windows.Forms.Button();
+            this.PainelAM2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
-            this.PainelAM2.SuspendLayout();
-            this.painelAM.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -189,7 +170,7 @@
             this.painelCancelar.Controls.Add(this.txtResponsavel);
             this.painelCancelar.Controls.Add(this.DtHrCancelamento);
             this.painelCancelar.Controls.Add(this.MotivoCancelar);
-            this.painelCancelar.Location = new System.Drawing.Point(505, 238);
+            this.painelCancelar.Location = new System.Drawing.Point(508, 59);
             this.painelCancelar.Name = "painelCancelar";
             this.painelCancelar.Size = new System.Drawing.Size(558, 187);
             this.painelCancelar.TabIndex = 16;
@@ -382,203 +363,6 @@
             this.CbMotivoChamado.Size = new System.Drawing.Size(227, 23);
             this.CbMotivoChamado.TabIndex = 57;
             this.CbMotivoChamado.SelectedIndexChanged += new System.EventHandler(this.CbMotivoChamado_SelectedIndexChanged);
-            // 
-            // PainelAM2
-            // 
-            this.PainelAM2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.PainelAM2.Controls.Add(this.painelAM);
-            this.PainelAM2.Controls.Add(this.BtnUTI02);
-            this.PainelAM2.Controls.Add(this.BtnUTI01);
-            this.PainelAM2.Location = new System.Drawing.Point(508, 275);
-            this.PainelAM2.Name = "PainelAM2";
-            this.PainelAM2.Size = new System.Drawing.Size(545, 147);
-            this.PainelAM2.TabIndex = 48;
-            // 
-            // painelAM
-            // 
-            this.painelAM.BackColor = System.Drawing.Color.RoyalBlue;
-            this.painelAM.Controls.Add(this.BtnAM03);
-            this.painelAM.Controls.Add(this.BtnAmRC);
-            this.painelAM.Controls.Add(this.BtnAm52);
-            this.painelAM.Controls.Add(this.BtnAm08);
-            this.painelAM.Controls.Add(this.BtnAm47);
-            this.painelAM.Controls.Add(this.BtnAm12);
-            this.painelAM.Controls.Add(this.BtnAm07);
-            this.painelAM.Controls.Add(this.BtnAm46);
-            this.painelAM.Controls.Add(this.BtnAm11);
-            this.painelAM.Controls.Add(this.BtnAm06);
-            this.painelAM.Controls.Add(this.BtnAm10);
-            this.painelAM.Controls.Add(this.BtnAm05);
-            this.painelAM.Controls.Add(this.BtnAm09);
-            this.painelAM.Controls.Add(this.BtnAm04);
-            this.painelAM.Location = new System.Drawing.Point(10, 3);
-            this.painelAM.Name = "painelAM";
-            this.painelAM.Size = new System.Drawing.Size(519, 141);
-            this.painelAM.TabIndex = 1;
-            // 
-            // BtnAM03
-            // 
-            this.BtnAM03.Location = new System.Drawing.Point(34, 2);
-            this.BtnAM03.Name = "BtnAM03";
-            this.BtnAM03.Size = new System.Drawing.Size(75, 47);
-            this.BtnAM03.TabIndex = 16;
-            this.BtnAM03.Text = "AM 03";
-            this.BtnAM03.UseVisualStyleBackColor = true;
-            this.BtnAM03.Click += new System.EventHandler(this.BtnAM03_Click);
-            // 
-            // BtnAmRC
-            // 
-            this.BtnAmRC.Location = new System.Drawing.Point(404, 2);
-            this.BtnAmRC.Name = "BtnAmRC";
-            this.BtnAmRC.Size = new System.Drawing.Size(86, 139);
-            this.BtnAmRC.TabIndex = 15;
-            this.BtnAmRC.Text = "AM Rede Cegonha";
-            this.BtnAmRC.UseVisualStyleBackColor = true;
-            this.BtnAmRC.Click += new System.EventHandler(this.button20_Click);
-            // 
-            // BtnAm52
-            // 
-            this.BtnAm52.Location = new System.Drawing.Point(330, 94);
-            this.BtnAm52.Name = "BtnAm52";
-            this.BtnAm52.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm52.TabIndex = 14;
-            this.BtnAm52.Text = "AM 52";
-            this.BtnAm52.UseVisualStyleBackColor = true;
-            this.BtnAm52.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // BtnAm08
-            // 
-            this.BtnAm08.Location = new System.Drawing.Point(34, 48);
-            this.BtnAm08.Name = "BtnAm08";
-            this.BtnAm08.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm08.TabIndex = 12;
-            this.BtnAm08.Text = "AM 08";
-            this.BtnAm08.UseVisualStyleBackColor = true;
-            this.BtnAm08.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // BtnAm47
-            // 
-            this.BtnAm47.Location = new System.Drawing.Point(256, 94);
-            this.BtnAm47.Name = "BtnAm47";
-            this.BtnAm47.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm47.TabIndex = 11;
-            this.BtnAm47.Text = "AM 47";
-            this.BtnAm47.UseVisualStyleBackColor = true;
-            this.BtnAm47.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // BtnAm12
-            // 
-            this.BtnAm12.Location = new System.Drawing.Point(330, 48);
-            this.BtnAm12.Name = "BtnAm12";
-            this.BtnAm12.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm12.TabIndex = 10;
-            this.BtnAm12.Text = "AM 12";
-            this.BtnAm12.UseVisualStyleBackColor = true;
-            this.BtnAm12.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // BtnAm07
-            // 
-            this.BtnAm07.Location = new System.Drawing.Point(330, 2);
-            this.BtnAm07.Name = "BtnAm07";
-            this.BtnAm07.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm07.TabIndex = 9;
-            this.BtnAm07.Text = "AM 07";
-            this.BtnAm07.UseVisualStyleBackColor = true;
-            this.BtnAm07.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // BtnAm46
-            // 
-            this.BtnAm46.Location = new System.Drawing.Point(182, 94);
-            this.BtnAm46.Name = "BtnAm46";
-            this.BtnAm46.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm46.TabIndex = 8;
-            this.BtnAm46.Text = "AM 46";
-            this.BtnAm46.UseVisualStyleBackColor = true;
-            this.BtnAm46.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // BtnAm11
-            // 
-            this.BtnAm11.Location = new System.Drawing.Point(256, 48);
-            this.BtnAm11.Name = "BtnAm11";
-            this.BtnAm11.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm11.TabIndex = 7;
-            this.BtnAm11.Text = "AM 11";
-            this.BtnAm11.UseVisualStyleBackColor = true;
-            this.BtnAm11.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // BtnAm06
-            // 
-            this.BtnAm06.Location = new System.Drawing.Point(256, 3);
-            this.BtnAm06.Name = "BtnAm06";
-            this.BtnAm06.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm06.TabIndex = 6;
-            this.BtnAm06.Text = "AM 06";
-            this.BtnAm06.UseVisualStyleBackColor = true;
-            this.BtnAm06.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // BtnAm10
-            // 
-            this.BtnAm10.Location = new System.Drawing.Point(182, 48);
-            this.BtnAm10.Name = "BtnAm10";
-            this.BtnAm10.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm10.TabIndex = 4;
-            this.BtnAm10.Text = "AM 10";
-            this.BtnAm10.UseVisualStyleBackColor = true;
-            this.BtnAm10.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // BtnAm05
-            // 
-            this.BtnAm05.Location = new System.Drawing.Point(182, 3);
-            this.BtnAm05.Name = "BtnAm05";
-            this.BtnAm05.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm05.TabIndex = 3;
-            this.BtnAm05.Text = "AM 05";
-            this.BtnAm05.UseVisualStyleBackColor = true;
-            this.BtnAm05.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // BtnAm09
-            // 
-            this.BtnAm09.Location = new System.Drawing.Point(108, 48);
-            this.BtnAm09.Name = "BtnAm09";
-            this.BtnAm09.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm09.TabIndex = 1;
-            this.BtnAm09.Text = "AM 09";
-            this.BtnAm09.UseVisualStyleBackColor = true;
-            this.BtnAm09.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // BtnAm04
-            // 
-            this.BtnAm04.Location = new System.Drawing.Point(108, 2);
-            this.BtnAm04.Name = "BtnAm04";
-            this.BtnAm04.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm04.TabIndex = 0;
-            this.BtnAm04.Text = "AM 04";
-            this.BtnAm04.UseVisualStyleBackColor = true;
-            this.BtnAm04.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // BtnUTI02
-            // 
-            this.BtnUTI02.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.BtnUTI02.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUTI02.Location = new System.Drawing.Point(305, 38);
-            this.BtnUTI02.Name = "BtnUTI02";
-            this.BtnUTI02.Size = new System.Drawing.Size(121, 76);
-            this.BtnUTI02.TabIndex = 2;
-            this.BtnUTI02.Text = "AM UTI 2";
-            this.BtnUTI02.UseVisualStyleBackColor = false;
-            this.BtnUTI02.Click += new System.EventHandler(this.BtnUTI02_Click);
-            // 
-            // BtnUTI01
-            // 
-            this.BtnUTI01.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.BtnUTI01.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUTI01.Location = new System.Drawing.Point(133, 37);
-            this.BtnUTI01.Name = "BtnUTI01";
-            this.BtnUTI01.Size = new System.Drawing.Size(121, 76);
-            this.BtnUTI01.TabIndex = 1;
-            this.BtnUTI01.Text = "AM UTI 1";
-            this.BtnUTI01.UseVisualStyleBackColor = false;
-            this.BtnUTI01.Click += new System.EventHandler(this.BtnUTI01_Click);
             // 
             // BtnAlterar
             // 
@@ -1208,6 +992,14 @@
             this.BtnBasica.UseVisualStyleBackColor = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
             // 
+            // PainelAM2
+            // 
+            this.PainelAM2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.PainelAM2.Location = new System.Drawing.Point(511, 366);
+            this.PainelAM2.Name = "PainelAM2";
+            this.PainelAM2.Size = new System.Drawing.Size(545, 147);
+            this.PainelAM2.TabIndex = 48;
+            // 
             // SelecionaAM
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1223,8 +1015,6 @@
             this.panel1.PerformLayout();
             this.painelCancelar.ResumeLayout(false);
             this.painelCancelar.PerformLayout();
-            this.PainelAM2.ResumeLayout(false);
-            this.painelAM.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1232,23 +1022,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel PainelAM2;
-        private System.Windows.Forms.Panel painelAM;
-        private System.Windows.Forms.Button BtnAmRC;
-        private System.Windows.Forms.Button BtnAm52;
-        private System.Windows.Forms.Button BtnAm08;
-        private System.Windows.Forms.Button BtnAm47;
-        private System.Windows.Forms.Button BtnAm12;
-        private System.Windows.Forms.Button BtnAm07;
-        private System.Windows.Forms.Button BtnAm46;
-        private System.Windows.Forms.Button BtnAm11;
-        private System.Windows.Forms.Button BtnAm06;
-        private System.Windows.Forms.Button BtnAm10;
-        private System.Windows.Forms.Button BtnAm05;
-        private System.Windows.Forms.Button BtnAm09;
-        private System.Windows.Forms.Button BtnAm04;
-        private System.Windows.Forms.Button BtnUTI02;
-        private System.Windows.Forms.Button BtnUTI01;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnConfimar;
         private System.Windows.Forms.Label label22;
@@ -1310,6 +1083,6 @@
         private System.Windows.Forms.Button BtnAlterar;
         private System.Windows.Forms.ComboBox CbTipoMotivoSelecionado;
         private System.Windows.Forms.ComboBox CbMotivoChamado;
-        private System.Windows.Forms.Button BtnAM03;
+        private System.Windows.Forms.Panel PainelAM2;
     }
 }

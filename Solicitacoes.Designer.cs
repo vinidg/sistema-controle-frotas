@@ -28,41 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Solicitacoes));
             this.label1 = new System.Windows.Forms.Label();
-            this.ListaComPriori = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtTotal1 = new System.Windows.Forms.TextBox();
             this.txtTotal2 = new System.Windows.Forms.TextBox();
-            this.ListaSemPriori = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.txtTotal3 = new System.Windows.Forms.TextBox();
-            this.ListaAgenda = new System.Windows.Forms.ListView();
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.listaComPrioridade = new System.Windows.Forms.DataGridView();
+            this.ListaSemPrioridade = new System.Windows.Forms.DataGridView();
+            this.listaAgendadas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.listaComPrioridade)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaSemPrioridade)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaAgendadas)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -70,76 +64,18 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(64, -24);
+            this.label1.Location = new System.Drawing.Point(64, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1144, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "1. Solicitações com Prioriadade:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ListaComPriori
-            // 
-            this.ListaComPriori.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
-            this.ListaComPriori.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaComPriori.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader20,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.ListaComPriori.FullRowSelect = true;
-            this.ListaComPriori.GridLines = true;
-            this.ListaComPriori.Location = new System.Drawing.Point(68, 16);
-            this.ListaComPriori.MultiSelect = false;
-            this.ListaComPriori.Name = "ListaComPriori";
-            this.ListaComPriori.Size = new System.Drawing.Size(1140, 197);
-            this.ListaComPriori.TabIndex = 1;
-            this.ListaComPriori.UseCompatibleStateImageBehavior = false;
-            this.ListaComPriori.View = System.Windows.Forms.View.Details;
-            this.ListaComPriori.DoubleClick += new System.EventHandler(this.ListaComPriori_DoubleClick);
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Nº";
-            this.columnHeader3.Width = 41;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Nome";
-            this.columnHeader1.Width = 315;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Tipo";
-            this.columnHeader2.Width = 119;
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Text = "Data da Solicitação";
-            this.columnHeader20.Width = 172;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Motivo do Transporte";
-            this.columnHeader4.Width = 261;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Origem";
-            this.columnHeader5.Width = 201;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Destino";
-            this.columnHeader6.Width = 195;
-            // 
             // txtTotal1
             // 
             this.txtTotal1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal1.Enabled = false;
-            this.txtTotal1.Location = new System.Drawing.Point(1170, 219);
+            this.txtTotal1.Location = new System.Drawing.Point(1170, 254);
             this.txtTotal1.Name = "txtTotal1";
             this.txtTotal1.Size = new System.Drawing.Size(38, 20);
             this.txtTotal1.TabIndex = 2;
@@ -148,75 +84,17 @@
             // 
             this.txtTotal2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal2.Enabled = false;
-            this.txtTotal2.Location = new System.Drawing.Point(1170, 495);
+            this.txtTotal2.Location = new System.Drawing.Point(1170, 530);
             this.txtTotal2.Name = "txtTotal2";
             this.txtTotal2.Size = new System.Drawing.Size(38, 20);
             this.txtTotal2.TabIndex = 5;
-            // 
-            // ListaSemPriori
-            // 
-            this.ListaSemPriori.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
-            this.ListaSemPriori.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaSemPriori.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader21,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.ListaSemPriori.FullRowSelect = true;
-            this.ListaSemPriori.GridLines = true;
-            this.ListaSemPriori.Location = new System.Drawing.Point(68, 292);
-            this.ListaSemPriori.MultiSelect = false;
-            this.ListaSemPriori.Name = "ListaSemPriori";
-            this.ListaSemPriori.Size = new System.Drawing.Size(1140, 197);
-            this.ListaSemPriori.TabIndex = 4;
-            this.ListaSemPriori.UseCompatibleStateImageBehavior = false;
-            this.ListaSemPriori.View = System.Windows.Forms.View.Details;
-            this.ListaSemPriori.DoubleClick += new System.EventHandler(this.ListaSemPriori_DoubleClick);
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Nº";
-            this.columnHeader9.Width = 41;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Nome";
-            this.columnHeader7.Width = 315;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Tipo";
-            this.columnHeader8.Width = 119;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Text = "Data da Solicitação";
-            this.columnHeader21.Width = 171;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Motivo do Transporte";
-            this.columnHeader10.Width = 261;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Origem";
-            this.columnHeader11.Width = 201;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Destino";
-            this.columnHeader12.Width = 195;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(64, 252);
+            this.label2.Location = new System.Drawing.Point(64, 287);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(1144, 20);
             this.label2.TabIndex = 3;
@@ -227,82 +105,17 @@
             // 
             this.txtTotal3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal3.Enabled = false;
-            this.txtTotal3.Location = new System.Drawing.Point(1170, 762);
+            this.txtTotal3.Location = new System.Drawing.Point(1170, 797);
             this.txtTotal3.Name = "txtTotal3";
             this.txtTotal3.Size = new System.Drawing.Size(38, 20);
             this.txtTotal3.TabIndex = 8;
-            // 
-            // ListaAgenda
-            // 
-            this.ListaAgenda.Activation = System.Windows.Forms.ItemActivation.TwoClick;
-            this.ListaAgenda.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
-            this.ListaAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaAgenda.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader15,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader22,
-            this.columnHeader19,
-            this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18});
-            this.ListaAgenda.FullRowSelect = true;
-            this.ListaAgenda.GridLines = true;
-            this.ListaAgenda.Location = new System.Drawing.Point(68, 559);
-            this.ListaAgenda.MultiSelect = false;
-            this.ListaAgenda.Name = "ListaAgenda";
-            this.ListaAgenda.Size = new System.Drawing.Size(1140, 197);
-            this.ListaAgenda.TabIndex = 7;
-            this.ListaAgenda.UseCompatibleStateImageBehavior = false;
-            this.ListaAgenda.View = System.Windows.Forms.View.Details;
-            this.ListaAgenda.DoubleClick += new System.EventHandler(this.ListaAgenda_DoubleClick);
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Nº";
-            this.columnHeader15.Width = 41;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Nome";
-            this.columnHeader13.Width = 315;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "Tipo";
-            this.columnHeader14.Width = 119;
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Text = "Data da Solicitação";
-            this.columnHeader22.Width = 150;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Text = "Data do Agendamento";
-            this.columnHeader19.Width = 148;
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "Motivo do Transporte";
-            this.columnHeader16.Width = 261;
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "Origem";
-            this.columnHeader17.Width = 201;
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Text = "Destino";
-            this.columnHeader18.Width = 195;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(68, 520);
+            this.label3.Location = new System.Drawing.Point(68, 555);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(1140, 20);
             this.label3.TabIndex = 6;
@@ -314,7 +127,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(4, 16);
+            this.label4.Location = new System.Drawing.Point(4, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 197);
             this.label4.TabIndex = 9;
@@ -326,7 +139,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(4, 292);
+            this.label5.Location = new System.Drawing.Point(4, 327);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 197);
             this.label5.TabIndex = 10;
@@ -338,30 +151,177 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(4, 559);
+            this.label6.Location = new System.Drawing.Point(4, 594);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 197);
             this.label6.TabIndex = 11;
             this.label6.Text = "Antigo\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\nV\r\nRecente";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // listaComPrioridade
+            // 
+            this.listaComPrioridade.AllowUserToAddRows = false;
+            this.listaComPrioridade.AllowUserToDeleteRows = false;
+            this.listaComPrioridade.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listaComPrioridade.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.listaComPrioridade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaComPrioridade.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.listaComPrioridade.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.listaComPrioridade.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaComPrioridade.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.listaComPrioridade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaComPrioridade.DefaultCellStyle = dataGridViewCellStyle3;
+            this.listaComPrioridade.Location = new System.Drawing.Point(72, 34);
+            this.listaComPrioridade.MultiSelect = false;
+            this.listaComPrioridade.Name = "listaComPrioridade";
+            this.listaComPrioridade.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaComPrioridade.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.listaComPrioridade.RowHeadersVisible = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            this.listaComPrioridade.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.listaComPrioridade.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listaComPrioridade.Size = new System.Drawing.Size(1136, 214);
+            this.listaComPrioridade.TabIndex = 31;
+            this.listaComPrioridade.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaComPrioridade_CellContentDoubleClick);
+            this.listaComPrioridade.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaComPrioridade_CellFormatting);
+            // 
+            // ListaSemPrioridade
+            // 
+            this.ListaSemPrioridade.AllowUserToAddRows = false;
+            this.ListaSemPrioridade.AllowUserToDeleteRows = false;
+            this.ListaSemPrioridade.AllowUserToResizeRows = false;
+            this.ListaSemPrioridade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListaSemPrioridade.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.ListaSemPrioridade.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.ListaSemPrioridade.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListaSemPrioridade.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.ListaSemPrioridade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListaSemPrioridade.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ListaSemPrioridade.Location = new System.Drawing.Point(72, 310);
+            this.ListaSemPrioridade.MultiSelect = false;
+            this.ListaSemPrioridade.Name = "ListaSemPrioridade";
+            this.ListaSemPrioridade.ReadOnly = true;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListaSemPrioridade.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.ListaSemPrioridade.RowHeadersVisible = false;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            this.ListaSemPrioridade.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.ListaSemPrioridade.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ListaSemPrioridade.Size = new System.Drawing.Size(1136, 214);
+            this.ListaSemPrioridade.TabIndex = 32;
+            this.ListaSemPrioridade.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaSemPrioridade_CellContentDoubleClick);
+            this.ListaSemPrioridade.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ListaSemPrioridade_CellFormatting);
+            // 
+            // listaAgendadas
+            // 
+            this.listaAgendadas.AllowUserToAddRows = false;
+            this.listaAgendadas.AllowUserToDeleteRows = false;
+            this.listaAgendadas.AllowUserToResizeRows = false;
+            this.listaAgendadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaAgendadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.listaAgendadas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.listaAgendadas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaAgendadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.listaAgendadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaAgendadas.DefaultCellStyle = dataGridViewCellStyle11;
+            this.listaAgendadas.Location = new System.Drawing.Point(72, 577);
+            this.listaAgendadas.MultiSelect = false;
+            this.listaAgendadas.Name = "listaAgendadas";
+            this.listaAgendadas.ReadOnly = true;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaAgendadas.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.listaAgendadas.RowHeadersVisible = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.listaAgendadas.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.listaAgendadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listaAgendadas.Size = new System.Drawing.Size(1136, 214);
+            this.listaAgendadas.TabIndex = 33;
+            this.listaAgendadas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaAgendadas_CellContentDoubleClick);
+            this.listaAgendadas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaAgendadas_CellFormatting);
+            // 
             // Solicitacoes
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1220, 749);
+            this.ClientSize = new System.Drawing.Size(1220, 819);
+            this.Controls.Add(this.listaAgendadas);
+            this.Controls.Add(this.ListaSemPrioridade);
+            this.Controls.Add(this.listaComPrioridade);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTotal3);
-            this.Controls.Add(this.ListaAgenda);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtTotal2);
-            this.Controls.Add(this.ListaSemPriori);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTotal1);
-            this.Controls.Add(this.ListaComPriori);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -369,6 +329,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Solicitacoes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)(this.listaComPrioridade)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaSemPrioridade)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaAgendadas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,38 +340,16 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView ListaComPriori;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.TextBox txtTotal1;
         private System.Windows.Forms.TextBox txtTotal2;
-        private System.Windows.Forms.ListView ListaSemPriori;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTotal3;
-        private System.Windows.Forms.ListView ListaAgenda;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader15;
-        private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader18;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ColumnHeader columnHeader19;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ColumnHeader columnHeader20;
-        private System.Windows.Forms.ColumnHeader columnHeader21;
-        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.DataGridView listaComPrioridade;
+        private System.Windows.Forms.DataGridView ListaSemPrioridade;
+        private System.Windows.Forms.DataGridView listaAgendadas;
     }
 }
