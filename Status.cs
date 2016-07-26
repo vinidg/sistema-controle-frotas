@@ -193,11 +193,16 @@ namespace WindowsFormsApplication2
         //////////////////////////////////////////////////////VERIFICAR STATUS DA AMBULANCIA E ENCAIXAR AS INFORMACOES CORRESPONDENTES/////////////////////////////
         public void statusJanela()
         {
+            var queryStatus = (String)null;
             using(DAHUEEntities db = new DAHUEEntities())
             {
-
+                var query = from am in db.ambulancia
+                            where am.idAmbulancia == codigoDaAmbulancia
+                            select am.StatusAmbulancia;
+                queryStatus = query.First();
             }
-                if (d.AM011 == "BLOQUEADA")
+
+            if (queryStatus.ToString() == "BLOQUEADA")
                 {
                     painelCentral.BackColor = Color.RoyalBlue;
                     BtnAddPaciente.Visible = false;
@@ -206,34 +211,17 @@ namespace WindowsFormsApplication2
                     ListadePacientes.Visible = false;
                     this.Text = "Bloqueio";
                     label8.Visible = true;
-                    SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-                    string sqlQuery = "SELECT Motivo FROM bloqueio WHERE FkAM = '" + codigoDaAmbulancia + "'";
-
-
-                    try
+                    
+                    using(DAHUEEntities db = new DAHUEEntities())
                     {
-
-                        SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                        SqlDataReader MyReader2;
-
-                        MyReader2 = objComm.ExecuteReader();
-
-                        while (MyReader2.Read())
-                        {
-                            label8.Text = MyReader2["Motivo"].ToString();
-
-                        }
+                        var sqlQuery = from bloq in db.bloqueio
+                                       where bloq.FkAM == codigoDaAmbulancia
+                                       select bloq.Motivo;
+                        label8.Text = sqlQuery.First().ToString();
                     }
-                    finally
-                    {
-                        conexao.Close();
-
-                    }
-
                 }
 
-                if (d.AM011 == "OCUPADA")
+            if (queryStatus.ToString() == "OCUPADA")
                 {
                     painelCentral.BackColor = Color.Firebrick;
                     label7.Visible = true;
@@ -244,9 +232,13 @@ namespace WindowsFormsApplication2
                     BtnAddPaciente.Size = new Size(306, 146);
                     BtnBloqueio.Visible = false;
                     this.Text = "Ocupada";
-                    d.atualizarStatusOcupado("1");
+
+                    d.atualizarStatusOcupado(codigoDaAmbulancia);
+
                     d.atualizarStatusOcupadoPaciente();
+
                     atualizarStatusOcupadoReservado("1");
+
                     id = d.IdSolicitacoesPacientes;
 
                     Destino.Text = d.Destino1;
@@ -256,7 +248,7 @@ namespace WindowsFormsApplication2
                     label7.Text = id;
 
                 }
-                if (d.AM011 == "DISPONIVEL")
+            if (queryStatus.ToString() == "DISPONIVEL")
                 {
                     painelCentral.BackColor = Color.LimeGreen;
                     this.Text = "Disponível";

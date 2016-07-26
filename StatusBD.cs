@@ -229,46 +229,33 @@ namespace WindowsFormsApplication2
             }
         }
 
-        public void atualizarStatusOcupado(string CodAM)
+        public void atualizarStatusOcupado(int CodAM)
         {
-            //atualizar a AM dependendo do status no banco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-            string sqlQuery = "SELECT * FROM solicitacoes_ambulancias WHERE idAmbulanciaSol = '" + CodAM + "' AND SolicitacaoConcluida='0'";
-
-            try
+            int zero = 0;
+            using(DAHUEEntities db = new DAHUEEntities())
             {
+                var query = (from sa in db.solicitacoes_ambulancias
+                            where sa.idAmbulanciaSol == CodAM &&
+                            sa.SolicitacaoConcluida == zero
+                            select sa).FirstOrDefault();
 
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader2;
-
-                MyReader2 = objComm.ExecuteReader();
-
-                while (MyReader2.Read())
-                {
-                    idSolicitacoes_Ambulancias = MyReader2["idSolicitacoes_Ambulancias"].ToString();
-                    IdOutroPaciente = MyReader2["IdOutroPaciente"].ToString();
-                    idSolicitacoesPacientes = MyReader2["idSolicitacoesPacientes"].ToString();
-                    Cancelamento = MyReader2["Cancelamento"].ToString();
-                    DtHrCiencia = MyReader2["DtHrCiencia"].ToString();
-                    DtHrCienciaReg = MyReader2["DtHrCienciaReg"].ToString();
-                    DtHrChegadaOrigem = MyReader2["DtHrChegadaOrigem"].ToString();
-                    DtHrChegadaOrigemReg = MyReader2["DtHrChegadaOrigemReg"].ToString();
-                    DtHrSaidaOrigem = MyReader2["DtHrSaidaOrigem"].ToString();
-                    DtHrSaidaOrigemReg = MyReader2["DtHrSaidaOrigemReg"].ToString();
-                    DtHrChegadaDestino = MyReader2["DtHrChegadaDestino"].ToString();
-                    DtHrChegadaDestinoReg = MyReader2["DtHrChegadaDestinoReg"].ToString();
-                    DtHrLiberacaoEquipe = MyReader2["DtHrLiberacaoEquipe"].ToString();
-                    DtHrLiberacaoEquipeReg = MyReader2["DtHrLiberacaoEquipeReg"].ToString();
-                    DtHrEquipePatio = MyReader2["DtHrEquipePatio"].ToString();
-                    DtHrEquipePatioReg = MyReader2["DtHrEquipePatioReg"].ToString();
-                    idAmbulanciaSol = MyReader2["idAmbulanciaSol"].ToString();
-
-                }
-            }
-            finally
-            {
-                conexao.Close();
+                    idSolicitacoes_Ambulancias = query.idSolicitacoes_Ambulancias.ToString();
+                    IdOutroPaciente = query.IdOutroPaciente.ToString();
+                    idSolicitacoesPacientes = query.idSolicitacoesPacientes.ToString();
+                    Cancelamento = query.Cancelamento.ToString();
+                    DtHrCiencia = query.DtHrCiencia.ToString();
+                    DtHrCienciaReg = query.DtHrCienciaReg.ToString();
+                    DtHrChegadaOrigem = query.DtHrChegadaOrigem.ToString();
+                    DtHrChegadaOrigemReg = query.DtHrChegadaOrigemReg.ToString();
+                    DtHrSaidaOrigem = query.DtHrSaidaOrigem.ToString();
+                    DtHrSaidaOrigemReg = query.DtHrSaidaOrigemReg.ToString();
+                    DtHrChegadaDestino = query.DtHrChegadaDestino.ToString();
+                    DtHrChegadaDestinoReg = query.DtHrChegadaDestinoReg.ToString();
+                    DtHrLiberacaoEquipe = query.DtHrLiberacaoEquipe.ToString();
+                    DtHrLiberacaoEquipeReg = query.DtHrLiberacaoEquipeReg.ToString();
+                    DtHrEquipePatio = query.DtHrEquipePatio.ToString();
+                    DtHrEquipePatioReg = query.DtHrEquipePatioReg.ToString();
+                    idAmbulanciaSol = query.idAmbulanciaSol.ToString();
 
             }
         }
