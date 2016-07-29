@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Status));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAddPaciente = new System.Windows.Forms.Button();
@@ -77,14 +80,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
-            this.equipeView = new System.Windows.Forms.DataGridView();
             this.ListadePacientes = new System.Windows.Forms.DataGridView();
+            this.equipeView = new System.Windows.Forms.DataGridView();
             this.Paineltrocar.SuspendLayout();
             this.PainelBloqueio.SuspendLayout();
             this.PainelHistorico.SuspendLayout();
             this.painelCentral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.equipeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.equipeView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -132,7 +135,7 @@
             this.BtnTroca.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.BtnTroca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnTroca.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnTroca.Location = new System.Drawing.Point(71, 108);
+            this.BtnTroca.Location = new System.Drawing.Point(46, 155);
             this.BtnTroca.Name = "BtnTroca";
             this.BtnTroca.Size = new System.Drawing.Size(108, 29);
             this.BtnTroca.TabIndex = 4;
@@ -201,7 +204,7 @@
             this.Paineltrocar.Controls.Add(this.label3);
             this.Paineltrocar.Controls.Add(this.txtMoto);
             this.Paineltrocar.Controls.Add(this.label2);
-            this.Paineltrocar.Location = new System.Drawing.Point(7, 14);
+            this.Paineltrocar.Location = new System.Drawing.Point(7, 45);
             this.Paineltrocar.Name = "Paineltrocar";
             this.Paineltrocar.Size = new System.Drawing.Size(397, 217);
             this.Paineltrocar.TabIndex = 10;
@@ -649,24 +652,63 @@
             this.painelCentral.Size = new System.Drawing.Size(1223, 610);
             this.painelCentral.TabIndex = 20;
             // 
+            // ListadePacientes
+            // 
+            this.ListadePacientes.AllowUserToAddRows = false;
+            this.ListadePacientes.AllowUserToDeleteRows = false;
+            this.ListadePacientes.AllowUserToResizeRows = false;
+            this.ListadePacientes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ListadePacientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ListadePacientes.BackgroundColor = System.Drawing.Color.DarkRed;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListadePacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.ListadePacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListadePacientes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ListadePacientes.Location = new System.Drawing.Point(410, 69);
+            this.ListadePacientes.MultiSelect = false;
+            this.ListadePacientes.Name = "ListadePacientes";
+            this.ListadePacientes.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListadePacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.ListadePacientes.RowHeadersVisible = false;
+            this.ListadePacientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ListadePacientes.Size = new System.Drawing.Size(416, 189);
+            this.ListadePacientes.TabIndex = 21;
+            this.ListadePacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadePacientes_CellDoubleClick);
+            // 
             // equipeView
             // 
+            this.equipeView.AllowUserToAddRows = false;
+            this.equipeView.AllowUserToDeleteRows = false;
+            this.equipeView.AllowUserToResizeRows = false;
             this.equipeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.equipeView.Location = new System.Drawing.Point(71, 22);
+            this.equipeView.Location = new System.Drawing.Point(46, 69);
             this.equipeView.MultiSelect = false;
             this.equipeView.Name = "equipeView";
             this.equipeView.ReadOnly = true;
+            this.equipeView.RowHeadersVisible = false;
+            this.equipeView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.equipeView.Size = new System.Drawing.Size(289, 80);
             this.equipeView.TabIndex = 20;
-            // 
-            // ListadePacientes
-            // 
-            this.ListadePacientes.BackgroundColor = System.Drawing.Color.DarkRed;
-            this.ListadePacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListadePacientes.Location = new System.Drawing.Point(410, 38);
-            this.ListadePacientes.Name = "ListadePacientes";
-            this.ListadePacientes.Size = new System.Drawing.Size(416, 220);
-            this.ListadePacientes.TabIndex = 21;
             // 
             // Status
             // 
@@ -687,8 +729,8 @@
             this.PainelHistorico.ResumeLayout(false);
             this.PainelHistorico.PerformLayout();
             this.painelCentral.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.equipeView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.equipeView)).EndInit();
             this.ResumeLayout(false);
 
         }

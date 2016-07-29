@@ -66,7 +66,7 @@ namespace WindowsFormsApplication2
 
         private void txtSolicitacoes_Click(object sender, EventArgs e)
         {
-            Solicitacoes Sol = new Solicitacoes(null, null);
+            Solicitacoes Sol = new Solicitacoes(0, "");
             Sol.ShowDialog();
             timerAtualiza(1);
             if (txtSolicitacoes.Focus())
@@ -156,7 +156,7 @@ namespace WindowsFormsApplication2
 
         private void txtAgendadasHoje_Click(object sender, EventArgs e)
         {
-            Solicitacoes solicitacoes = new Solicitacoes("", "");
+            Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
             timerAtualiza(1);
             if (txtAgendadasHoje.Focus())
@@ -194,7 +194,9 @@ namespace WindowsFormsApplication2
                                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
                                equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
                                from sa in sa_join.DefaultIfEmpty()
-                               join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                               join sp in db.solicitacoes_paciente 
+                               on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } 
+                               equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
                                from sp in sp_join.DefaultIfEmpty()
                                where
                                am.TipoAM == "BASICO"
@@ -290,14 +292,14 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void listaUsb_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void listaUsa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string cellValue = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
             Status sta = new Status(Convert.ToInt32(cellValue));
             sta.ShowDialog();
         }
 
-        private void listaUsa_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string cellValue = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
             Status sta = new Status(Convert.ToInt32(cellValue));

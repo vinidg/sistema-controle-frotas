@@ -245,7 +245,7 @@
             this.listaUsb.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listaUsb.Size = new System.Drawing.Size(1149, 316);
             this.listaUsb.TabIndex = 30;
-            this.listaUsb.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsb_CellContentDoubleClick);
+            this.listaUsb.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsb_CellDoubleClick);
             this.listaUsb.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // groupBox1
@@ -304,7 +304,7 @@
             this.listaUsa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listaUsa.Size = new System.Drawing.Size(1149, 96);
             this.listaUsa.TabIndex = 31;
-            this.listaUsa.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsa_CellContentDoubleClick);
+            this.listaUsa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsa_CellDoubleClick);
             this.listaUsa.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaUsa_CellFormatting);
             // 
             // panel2

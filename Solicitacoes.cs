@@ -18,16 +18,17 @@ namespace WindowsFormsApplication2
 {
     public partial class Solicitacoes : Form
     {
-        string amocupada, sta;
+        int Id, idAm;
         string contarSemPrioridade, contarComPrioridade, contarAgendadas;
-        public Solicitacoes(string AMocup, string STAtus)
+        string tipo, statusAM;
+        public Solicitacoes(int AMocup, string StatusAM)
         {
             InitializeComponent();
             puxarComPrioridade();
             puxarSemPrioridade();
             puxarAgendadas();
-            amocupada = AMocup;
-            sta = STAtus;
+            idAm = AMocup;
+            statusAM = StatusAM;
             txtTotal1.Text = contarComPrioridade;
             txtTotal2.Text = contarSemPrioridade;
             txtTotal3.Text = contarAgendadas;
@@ -39,7 +40,7 @@ namespace WindowsFormsApplication2
 
             }
         }
-        string Id, tipo;
+        
 
         public void puxarSemPrioridade()
         {
@@ -151,14 +152,22 @@ namespace WindowsFormsApplication2
             listaAgendadas.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
         }
 
-        private void listaComPrioridade_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void listaComPrioridade_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Id = listaComPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString();
+            var querya = (String)null;
+            using(DAHUEEntities db = new DAHUEEntities())
+            {
+               var query = from am in db.ambulancia
+                            where am.idAmbulancia == idAm
+                            select am.TipoAM;
+               querya = query.FirstOrDefault();
+            }
+            Id = Convert.ToInt32(listaComPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString());
             tipo = listaComPrioridade.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-            if (amocupada == "")
+            if (querya == "")
             {
-                SelecionaAM ST = new SelecionaAM(Id, amocupada, null, sta);
+                SelecionaAM ST = new SelecionaAM(Id, idAm, null, statusAM);
                 this.Dispose();
                 ST.ShowDialog();
                 return;
@@ -172,59 +181,34 @@ namespace WindowsFormsApplication2
 
             if (tipo == "Basica")
             {
-                if (amocupada == "Avancada")
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
-                    return;
-                }
-            }
-           
-            SelecionaAM STi = new SelecionaAM(Id, amocupada, null, sta);
-            this.Dispose();
-            STi.ShowDialog();
-        }
-
-        private void ListaSemPrioridade_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Id = ListaSemPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString();
-            tipo = ListaSemPrioridade.Rows[e.RowIndex].Cells["TipoSolicitacao"].Value.ToString();
-
-            if (amocupada == "")
-            {
-                SelecionaAM ST = new SelecionaAM(Id, amocupada, null, sta);
-                this.Dispose();
-                ST.ShowDialog();
-                return;
-            }
-
-            if (tipo == "Avancada")
-            {
-                MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                return;
-            }
-
-            if (tipo == "Basica")
-            {
-                if (amocupada == "Avancada")
+                if (querya == "Avancada")
                 {
                     MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
                     return;
                 }
             }
 
-            SelecionaAM STi = new SelecionaAM(Id, amocupada, null, sta);
+            SelecionaAM STi = new SelecionaAM(Id, idAm, null, statusAM);
             this.Dispose();
             STi.ShowDialog();
         }
 
-        private void listaAgendadas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void listaAgendadas_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            Id = listaAgendadas.Rows[e.RowIndex].Cells[0].Value.ToString();
+            var querya = (String)null;
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from am in db.ambulancia
+                            where am.idAmbulancia == idAm
+                            select am.TipoAM;
+                querya = query.FirstOrDefault();
+            }
+            Id = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells[0].Value.ToString());
             tipo = listaAgendadas.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-            if (amocupada == "")
+            if (querya == "")
             {
-                SelecionaAM ST = new SelecionaAM(Id, amocupada, null, sta);
+                SelecionaAM ST = new SelecionaAM(Id, idAm, null, statusAM);
                 this.Dispose();
                 ST.ShowDialog();
                 return;
@@ -238,14 +222,55 @@ namespace WindowsFormsApplication2
 
             if (tipo == "Basica")
             {
-                if (amocupada == "Avancada")
+                if (querya == "Avancada")
                 {
                     MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
                     return;
                 }
             }
 
-            SelecionaAM STi = new SelecionaAM(Id, amocupada, null, sta);
+            SelecionaAM STi = new SelecionaAM(Id, idAm, null, statusAM);
+            this.Dispose();
+            STi.ShowDialog();
+        }
+
+        private void ListaSemPrioridade_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            var querya = (String)null;
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from am in db.ambulancia
+                            where am.idAmbulancia == idAm
+                            select am.TipoAM;
+                querya = query.FirstOrDefault();
+            }
+            Id = Convert.ToInt32(ListaSemPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString());
+            tipo = ListaSemPrioridade.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
+
+            if (querya == "")
+            {
+                SelecionaAM ST = new SelecionaAM(Id, idAm, null, statusAM);
+                this.Dispose();
+                ST.ShowDialog();
+                return;
+            }
+
+            if (tipo == "Avancada")
+            {
+                MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
+                return;
+            }
+
+            if (tipo == "Basica")
+            {
+                if (querya == "Avancada")
+                {
+                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
+                    return;
+                }
+            }
+
+            SelecionaAM STi = new SelecionaAM(Id, idAm, null, statusAM);
             this.Dispose();
             STi.ShowDialog();
         }

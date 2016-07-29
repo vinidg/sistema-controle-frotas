@@ -15,31 +15,32 @@ using System.Drawing.Printing;
 using System.Collections.Specialized;
 using System.Drawing.Imaging;
 using System.Data.SqlClient;
-
+using db_transporte_sanitario;
 
 namespace WindowsFormsApplication2
 {
     public partial class SelecionaAM : Form
     {
-        string Sexo, Agendamento, TipoAM;
-        string idequipe, AMocup, STatus;
-        string idAmbu, idPaciente, pegamotivo;
+        string Sexo, Agendamento, TipoAM, STatus, pegamotivo;
+        string statusAM, Id, NomeAM;
+        int idAmbu, idPaciente;
         string pegaUnidade;     //para pegar o telefone com o nome da unidade
         string pegaUnidadeEnd;  //para pegar o endereco com o nome da unidade
         string Endereco1;
 
-        public SelecionaAM(string Id, string AMocupada, string idEquipeStatus, string status)
+        public SelecionaAM(int Id, int AMocupada, string status, string nomeAM)
         {
             InitializeComponent();
-            LabelIDPaciente.Text = Id;
+            LabelIDPaciente.Text = Id.ToString();
             idPaciente = Id;
-            AMocup = AMocupada;
+            idAmbu = AMocupada;
             STatus = status;
-            idequipe = idEquipeStatus;
+            NomeAM = nomeAM;
             ConsultarSolicitacao();
             verificaSeAMEstaIncluida();
             VerificarPacienteJaestaInclusoNaMesma();
             PuxarEnderecos();
+            pegarDadosDasAmbulancias();
         }
 
 
@@ -52,33 +53,29 @@ namespace WindowsFormsApplication2
                 BtnOutraAM.Visible = true;
                 BtnConfimar.Visible = true;
                 label22.Visible = true;
-                label22.Text = AMocup;
+                label22.Text = NomeAM;
 
             }
-            else if (AMocup != "" && STatus == "Disponivel")
+            else if (NomeAM == "" && STatus == "Disponivel")
             {
                 PainelAM2.Visible = false;
                 label23.Visible = true;
                 BtnOutraAM.Visible = true;
                 BtnConfimar.Visible = true;
                 label22.Visible = true;
-                label22.Text = AMocup;
+                label22.Text = NomeAM;
             }
 
         }
 
         private void VerificarPacienteJaestaInclusoNaMesma()
         {
-
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "select COUNT(idSolicitacoes_Ambulancias) from solicitacoes_ambulancias WHERE idSolicitacoesPacientes='" + LabelIDPaciente.Text + "' AND idAmbulanciaSol = '" + AMocup + "'";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-
-                int newProdID = (Int32)objComm.ExecuteScalar();
-
+                var query = from sa in db.solicitacoes_ambulancias
+                            where sa.idSolicitacoesPacientes == idPaciente && sa.idAmbulanciaSol == idAmbu
+                                select sa;
+                int newProdID = query.Count();
                 if (newProdID >= 1)
                 {
                     PainelAM2.Visible = false;
@@ -86,42 +83,26 @@ namespace WindowsFormsApplication2
                     BtnOutraAM.Visible = false;
                     BtnConfimar.Visible = false;
                     label22.Visible = false;
-                    label22.Text = AMocup;
+                    label22.Text = NomeAM;
                 }
+            }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
         }
 
         private void ConsultarSolicitacao()
         {
             //buscar informacoes pelo id da tabela
 
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
             string sqlQuery = "select * from solicitacoes_paciente WHERE idPaciente_Solicitacoes='" + LabelIDPaciente.Text + "'";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader2;
-
-                MyReader2 = objComm.ExecuteReader();
-
-
-                while (MyReader2.Read())
-                {
-                    if (MyReader2["TipoSolicitacao"].ToString() == "Avancada")
+                var query = (from sp in db.solicitacoes_paciente
+                            where sp.idPaciente_Solicitacoes == idPaciente
+                            select sp).FirstOrDefault();
+            
+                    if (query.TipoSolicitacao == "Avancada")
                     {
                         BtnBasica.Visible = false;
-                      //  painelAM.Visible = false;
                         BtnAvancada.BackColor = Color.Teal;
                     }
                     else
@@ -129,7 +110,8 @@ namespace WindowsFormsApplication2
                         BtnAvancada.Visible = false;
                         BtnBasica.BackColor = Color.Teal;
                     }
-                    if (MyReader2["Agendamento"].ToString() == "Sim")
+
+                    if (query.Agendamento == "Sim")
                     {
                         Btnagendanao.Visible = false;
                         label3.Visible = true;
@@ -144,13 +126,13 @@ namespace WindowsFormsApplication2
                         txtAtendMarcado.Visible = false;
                     }
 
-                    txtAtendMarcado.Text = MyReader2["DtHrAgendamento"].ToString();
-                    txtNomeSolicitante.Text = MyReader2["NomeSolicitante"].ToString();
-                    CbLocalSolicita.Text = MyReader2["LocalSolicitacao"].ToString();
-                    txtTelefone.Text = MyReader2["Telefone"].ToString();
-                    txtNomePaciente.Text = MyReader2["Paciente"].ToString();
+                        txtAtendMarcado.Text = query.DtHrAgendamento;
+                        txtNomeSolicitante.Text = query.NomeSolicitante;
+                        CbLocalSolicita.Text = query.LocalSolicitacao;
+                        txtTelefone.Text = query.Telefone;
+                        txtNomePaciente.Text = query.Paciente;
 
-                    if (MyReader2["Genero"].ToString() == "F")
+                    if (query.Genero == "F")
                     {
                         RbFemenino.Checked = true;
                     }
@@ -158,11 +140,11 @@ namespace WindowsFormsApplication2
                     {
                         RbMasculino.Checked = true;
                     }
-                    txtIdade.Text = MyReader2["Idade"].ToString();
-                    txtDiagnostico.Text = MyReader2["Diagnostico"].ToString();
-                    CbMotivoChamado.Text = MyReader2["Motivo"].ToString();
-                    CbTipoMotivoSelecionado.Text = MyReader2["SubMotivo"].ToString();
-                    if (MyReader2["Prioridade"].ToString() == "False")
+                        txtIdade.Text = query.Idade;
+                        txtDiagnostico.Text = query.Diagnostico;
+                        CbMotivoChamado.Text = query.Motivo;
+                        CbTipoMotivoSelecionado.Text = query.SubMotivo;
+                    if (query.Prioridade == "False")
                     {
                         CbAtendimentoPrioridade.Checked = false;
                     }
@@ -170,25 +152,13 @@ namespace WindowsFormsApplication2
                     {
                         CbAtendimentoPrioridade.Checked = true;
                     }
-                    CbOrigem.Text = MyReader2["Origem"].ToString();
-                    txtEnderecoOrigem.Text = MyReader2["EnderecoOrigem"].ToString();
-                    CbDestino.Text = MyReader2["Destino"].ToString();
-                    txtEnderecoDestino.Text = MyReader2["EnderecoDestino"].ToString();
-                    richTextBox1.Text = MyReader2["ObsGerais"].ToString();
-
-                }
+                        CbOrigem.Text = query.Origem;
+                        txtEnderecoOrigem.Text = query.EnderecoOrigem;
+                        CbDestino.Text = query.Destino;
+                        txtEnderecoDestino.Text = query.EnderecoDestino;
+                        richTextBox1.Text = query.ObsGerais;
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
-
         }
 
         private void BtnOutraAM_Click(object sender, EventArgs e)
@@ -206,169 +176,73 @@ namespace WindowsFormsApplication2
         private void cancelar()
         {
             StatusBD d = new StatusBD();
-            d.atualizarStatusOcupado(AMocup);
+            d.atualizarStatusOcupado(idAmbu);
 
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "insert into cancelados_pacientes(idPaciente,idSolicitacaoAM,MotivoCancelamento,DtHrCancelamento,ResposavelCancelamento,ObsCancelamento) values " +
-            "('" + LabelIDPaciente.Text + "','" + d.IdSolicitacoes_Ambulancias + "','" + MotivoCancelar.Text + "','" + DtHrCancelamento.Text + "','" + txtResponsavel.Text + "','" + txtObsCancelamento.Text + "');" +
-            "UPDATE ambulancia SET Status = 'DISPONIVEL' WHERE idAmbulancia='" + AMocup + "';" +
-            "UPDATE solicitacoes_ambulancias SET SolicitacaoConcluida = '1' WHERE idSolicitacoes_Ambulancias = '" + d.IdSolicitacoes_Ambulancias + "';" +
-            "UPDATE solicitacoes_paciente SET AmSolicitada = '1' WHERE idPaciente_Solicitacoes = '" + LabelIDPaciente.Text + "'";
-            try
-            {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader;
-
-                MyReader = objComm.ExecuteReader();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
-
-        }
-
-         private void BtnAM03_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 03";
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 04";
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 05";
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 06";
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 07";
-        }
-
-        private void button19_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 08";
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 09";
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 10";
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 11";
-        }
-
-        private void button15_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 12";
-        }
-
-        private void button18_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 13";
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 14";
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 15";
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 46";
-        }
-
-        private void button14_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 47";
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 52";
-        }
-
-        private void button20_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = false;
-            label22.Text = "AM RC";
+            InsercoesDoBando ib = new InsercoesDoBando();
+            ib.cancelarSolicitacao(idPaciente, d.IdSolicitacoes_Ambulancias, MotivoCancelar.Text, DtHrCancelamento.Text,
+                txtResponsavel.Text, txtObsCancelamento.Text, idAmbu);
+           
         }
 
         private void BtnConfimar_Click(object sender, EventArgs e)
         {
             verificarAMstatus();
+            ConfirmaAM();
             PainelAM2.Visible = true;
 
         }
         private void BtnUTI01_Click(object sender, EventArgs e)
         {
+            //Clique duplo do datatable
             PainelAM2.Visible = false;
             label22.Text = "AM 01";
 
         }
-
-        private void BtnUTI02_Click(object sender, EventArgs e)
+        public void pegarDadosDasAmbulancias()
         {
-            PainelAM2.Visible = false;
-            label22.Text = "AM 02";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from am in db.ambulancia
+                               join sa in db.solicitacoes_ambulancias
+                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                               from sa in sa_join.DefaultIfEmpty()
+                               join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                               from sp in sp_join.DefaultIfEmpty()
+                               orderby am.idAmbulancia
+                               select new
+                               {
+                                   am.idAmbulancia,
+                                   am.NomeAmbulancia,
+                                   am.StatusAmbulancia,
+                                   Paciente = sp.Paciente,
+                                   Idade = sp.Idade,
+                                   Origem = sp.Origem,
+                                   Destino = sp.Destino
+                               };
+
+                var queryAmbulanciaUsb = query.ToList();
+
+                Lista.DataSource = queryAmbulanciaUsb;
+                Lista.ClearSelection();
+
+                Lista.Columns[0].Visible = false;
+                Lista.Columns[1].HeaderText = "Ambulancia";
+                Lista.Columns[2].HeaderText = "Status";
+            }
         }
         private void verificarAMstatus()
         {
             StatusBD statusBD = new StatusBD();
      
-
-            if (label22.Text == "AM 01")
-            {
-                if (statusBD.AM011 == "BLOQUEADA")
+                if (statusAM == "BLOQUEADA")
                 {
                     MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (statusBD.AM011 == "OCUPADA")
+                if (statusAM == "OCUPADA")
                 {
-                    statusBD.countparaMaxPacientes("1");
+                    statusBD.countparaMaxPacientes(1);
                     if (statusBD.ContadorMaxdePacientes1 >= 5)
                     {
                         MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -377,522 +251,8 @@ namespace WindowsFormsApplication2
                     if (statusBD.ContadorMaxdePacientes1 >= 1)
                     {
                         DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-                            idAmbu = "1";
-                            ConfirmaAM();
-                        }
                     }
-                }
-                if (statusBD.AM011 == "DISPONIVEL")
-                {
-                    idAmbu = "1";
-                    ConfirmaAM();
-                }
-
-            }
-            if (label22.Text == "AM 02")
-            {
-                if (statusBD.AM021 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (statusBD.AM021 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("2");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "2";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM021 == "DISPONIVEL")
-                {
-                    idAmbu = "2";
-                    ConfirmaAM();
-                }
-
-            }
-            if (label22.Text == "AM RC")
-            {
-                if (statusBD.AMRC1 == "DISPONIVEL")
-                {
-                    idAmbu = "3";
-                    ConfirmaAM();
-                }
-                if (statusBD.AMRC1 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("3");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "3";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AMRC1 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
-            if (label22.Text == "AM 03")
-            {
-                if (statusBD.AM031 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (statusBD.AM031 == "DISPONIVEL")
-                {
-                    idAmbu = "4";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM031 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("4");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "4";
-                            ConfirmaAM();
-                        }
-                    }
-
-                }
-            }
-
-            if (label22.Text == "AM 04")
-            {
-                if (statusBD.AM031 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (statusBD.AM031 == "DISPONIVEL")
-                {
-                    idAmbu = "5";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM031 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("5");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "5";
-                            ConfirmaAM();
-                        }
-                    }
-
-                }
-            }
-
-            if (label22.Text == "AM 05")
-            {
-                if (statusBD.AM051 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (statusBD.AM051 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("6");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "6";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM051 == "DISPONIVEL")
-                {
-                    idAmbu = "6";
-                    ConfirmaAM();
-                }
-
-            }
-            if (label22.Text == "AM 06")
-            {
-                if (statusBD.AM061 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-
-                }
-
-                if (statusBD.AM061 == "DISPONIVEL")
-                {
-                    idAmbu = "7";
-                    ConfirmaAM();
-                }
-
-                if (statusBD.AM061 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("7");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "7";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-
-            }
-            if (label22.Text == "AM 07")
-            {
-                if (statusBD.AM071 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (statusBD.AM071 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("8");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "8";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM071 == "DISPONIVEL")
-                {
-                    idAmbu = "8";
-                    ConfirmaAM();
-                }
-
-            }
-            if (label22.Text == "AM 08")
-            {
-                if (statusBD.AM081 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (statusBD.AM081 == "DISPONIVEL")
-                {
-                    idAmbu = "10";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM081 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("10");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "10";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-
-            }
-            if (label22.Text == "AM 09")
-            {
-                if (statusBD.AM091 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("12");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "12";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM091 == "DISPONIVEL")
-                {
-                    idAmbu = "12";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM091 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
-            if (label22.Text == "AM 10")
-            {
-                if (statusBD.AM101 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (statusBD.AM101 == "DISPONIVEL")
-                {
-                    idAmbu = "13";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM101 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("13");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "13";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-
-            }
-            if (label22.Text == "AM 11")
-            {
-                if (statusBD.AM111 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("14");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "14";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM111 == "DISPONIVEL")
-                {
-                    idAmbu = "14";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM111 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
-            if (label22.Text == "AM 12")
-            {
-                if (statusBD.AM121 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (statusBD.AM121 == "DISPONIVEL")
-                {
-                    idAmbu = "15";
-                    ConfirmaAM();
-                }
-                if (statusBD.AM121 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("15");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "15";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-            }
-           
-            if (label22.Text == "AM 46")
-            {
-                if (statusBD.AM461 == "DISPONIVEL")
-                {
-                    idAmbu = "16";
-                    ConfirmaAM();
-
-                }
-                if (statusBD.AM461 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("16");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "16";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM461 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
-            if (label22.Text == "AM 47")
-            {
-                if (statusBD.AM471 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("17");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-
-                            idAmbu = "17";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM471 == "DISPONIVEL")
-                {
-                    idAmbu = "17";
-                    ConfirmaAM();
-
-                }
-                if (statusBD.AM471 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-            }
-            if (label22.Text == "AM 52")
-            {
-                if (statusBD.AM521 == "DISPONIVEL")
-                {
-                    idAmbu = "18";
-                    ConfirmaAM();
-
-                }
-                if (statusBD.AM521 == "OCUPADA")
-                {
-                    statusBD.countparaMaxPacientes("18");
-                    if (statusBD.ContadorMaxdePacientes1 >= 5)
-                    {
-                        MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (statusBD.ContadorMaxdePacientes1 >= 1)
-                    {
-                        DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                        if (a == DialogResult.Yes)
-                        {
-                            idAmbu = "18";
-                            ConfirmaAM();
-                        }
-                    }
-                }
-                if (statusBD.AM521 == "BLOQUEADA")
-                {
-                    MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
             }
         }
         private void ConfirmaAM()
@@ -931,10 +291,10 @@ namespace WindowsFormsApplication2
             // ConsultarSolicitaoRelatorio();
 
             StatusBD d = new StatusBD();
-            Status am = new Status(AMocup);
+            Status am = new Status(idAmbu);
             string amSolicitada = am.NomeAM1;
-            d.atualizarStatusOcupado(AMocup);
-            d.selectEquipeBD(AMocup);
+            d.atualizarStatusOcupado(idAmbu);
+            d.selectEquipeBD(idAmbu);
 
             string tipoAM, Agendade, Sexo, priori, cancelado;
             if (MotivoCancelar.Text != "")
@@ -1518,6 +878,13 @@ namespace WindowsFormsApplication2
         private void CbTipoMotivoSelecionado_Click(object sender, EventArgs e)
         {
             Motivo();
+        }
+
+        private void Lista_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Id = Lista.Rows[e.RowIndex].Cells[0].Value.ToString();
+            statusAM = Lista.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+            NomeAM = Lista.Rows[e.RowIndex].Cells["Ambulancia"].Value.ToString();
         }
 
 

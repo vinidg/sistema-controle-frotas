@@ -222,7 +222,7 @@ namespace WindowsFormsApplication2
 
         private void RegistrarSolicitacao()
         {
-            InteracaoBanco IB = new InteracaoBanco();
+            InsercoesDoBando IB = new InsercoesDoBando();
 
             if (Agendamento == "Nao")
             {

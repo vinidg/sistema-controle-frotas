@@ -144,7 +144,7 @@
     <Compile Include="ConfirmaSolicitacao.Designer.cs">
       <DependentUpon>ConfirmaSolicitacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="InteracaoBanco.cs" />
+    <Compile Include="InsercoesDoBando.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solicitacoes.cs">

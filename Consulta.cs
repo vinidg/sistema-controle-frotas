@@ -33,14 +33,14 @@ namespace WindowsFormsApplication2
             pesquisar();
         }
 
-        string IDpesquisa;
+        int IDpesquisa;
         private void listaConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (listaConsulta.SelectedItems.Count > 0)
             {
-                IDpesquisa = listaConsulta.SelectedItems[0].Text;
+                IDpesquisa = Convert.ToInt32(listaConsulta.SelectedItems[0].Text);
             }
-            SelecionaAM sand = new SelecionaAM(IDpesquisa, "", "", this.Text);
+            SelecionaAM sand = new SelecionaAM(IDpesquisa, 0, this.Text, "");
             this.Dispose();
             sand.ShowDialog();
         }

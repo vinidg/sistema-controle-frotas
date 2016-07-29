@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
             this.painelCancelar = new System.Windows.Forms.Panel();
@@ -43,6 +47,8 @@
             this.MotivoCancelar = new System.Windows.Forms.ComboBox();
             this.CbTipoMotivoSelecionado = new System.Windows.Forms.ComboBox();
             this.CbMotivoChamado = new System.Windows.Forms.ComboBox();
+            this.PainelAM2 = new System.Windows.Forms.Panel();
+            this.Lista = new System.Windows.Forms.DataGridView();
             this.BtnAlterar = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.LabelIDPaciente = new System.Windows.Forms.Label();
@@ -91,9 +97,10 @@
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBasica = new System.Windows.Forms.Button();
-            this.PainelAM2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
+            this.PainelAM2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Lista)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -363,6 +370,61 @@
             this.CbMotivoChamado.Size = new System.Drawing.Size(227, 23);
             this.CbMotivoChamado.TabIndex = 57;
             this.CbMotivoChamado.SelectedIndexChanged += new System.EventHandler(this.CbMotivoChamado_SelectedIndexChanged);
+            // 
+            // PainelAM2
+            // 
+            this.PainelAM2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.PainelAM2.Controls.Add(this.Lista);
+            this.PainelAM2.Location = new System.Drawing.Point(508, 335);
+            this.PainelAM2.Name = "PainelAM2";
+            this.PainelAM2.Size = new System.Drawing.Size(545, 147);
+            this.PainelAM2.TabIndex = 48;
+            // 
+            // Lista
+            // 
+            this.Lista.AllowUserToAddRows = false;
+            this.Lista.AllowUserToDeleteRows = false;
+            this.Lista.AllowUserToResizeRows = false;
+            this.Lista.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Lista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.Lista.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Lista.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Lista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Lista.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Lista.Location = new System.Drawing.Point(11, 11);
+            this.Lista.MultiSelect = false;
+            this.Lista.Name = "Lista";
+            this.Lista.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Lista.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Lista.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.Lista.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.Lista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Lista.Size = new System.Drawing.Size(525, 127);
+            this.Lista.TabIndex = 32;
+            this.Lista.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Lista_CellContentDoubleClick);
             // 
             // BtnAlterar
             // 
@@ -992,14 +1054,6 @@
             this.BtnBasica.UseVisualStyleBackColor = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
             // 
-            // PainelAM2
-            // 
-            this.PainelAM2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.PainelAM2.Location = new System.Drawing.Point(511, 366);
-            this.PainelAM2.Name = "PainelAM2";
-            this.PainelAM2.Size = new System.Drawing.Size(545, 147);
-            this.PainelAM2.TabIndex = 48;
-            // 
             // SelecionaAM
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1015,6 +1069,8 @@
             this.panel1.PerformLayout();
             this.painelCancelar.ResumeLayout(false);
             this.painelCancelar.PerformLayout();
+            this.PainelAM2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Lista)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1084,5 +1140,6 @@
         private System.Windows.Forms.ComboBox CbTipoMotivoSelecionado;
         private System.Windows.Forms.ComboBox CbMotivoChamado;
         private System.Windows.Forms.Panel PainelAM2;
+        private System.Windows.Forms.DataGridView Lista;
     }
 }

@@ -208,7 +208,7 @@
             this.listaComPrioridade.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listaComPrioridade.Size = new System.Drawing.Size(1136, 214);
             this.listaComPrioridade.TabIndex = 31;
-            this.listaComPrioridade.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaComPrioridade_CellContentDoubleClick);
+            this.listaComPrioridade.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaComPrioridade_CellDoubleClick);
             this.listaComPrioridade.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaComPrioridade_CellFormatting);
             // 
             // ListaSemPrioridade
@@ -255,7 +255,7 @@
             this.ListaSemPrioridade.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ListaSemPrioridade.Size = new System.Drawing.Size(1136, 214);
             this.ListaSemPrioridade.TabIndex = 32;
-            this.ListaSemPrioridade.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaSemPrioridade_CellContentDoubleClick);
+            this.ListaSemPrioridade.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaSemPrioridade_CellDoubleClick_1);
             this.ListaSemPrioridade.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ListaSemPrioridade_CellFormatting);
             // 
             // listaAgendadas
@@ -302,7 +302,7 @@
             this.listaAgendadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listaAgendadas.Size = new System.Drawing.Size(1136, 214);
             this.listaAgendadas.TabIndex = 33;
-            this.listaAgendadas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaAgendadas_CellContentDoubleClick);
+            this.listaAgendadas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaAgendadas_CellDoubleClick_1);
             this.listaAgendadas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaAgendadas_CellFormatting);
             // 
             // Solicitacoes
