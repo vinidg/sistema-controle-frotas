@@ -162,14 +162,7 @@ namespace WindowsFormsApplication2
                         txtDiagnostico.Text = query.Diagnostico;
                         CbMotivoChamado.Text = query.Motivo;
                         CbTipoMotivoSelecionado.Text = query.SubMotivo;
-                    if (query.Prioridade == "False")
-                    {
-                        CbAtendimentoPrioridade.Checked = false;
-                    }
-                    else
-                    {
-                        CbAtendimentoPrioridade.Checked = true;
-                    }
+                        PrioridadeTxt.Text = query.Prioridade;
                         CbOrigem.Text = query.Origem;
                         txtEnderecoOrigem.Text = query.EnderecoOrigem;
                         CbDestino.Text = query.Destino;
@@ -545,6 +538,7 @@ namespace WindowsFormsApplication2
             txtEnderecoDestino.Enabled = true;
             txtEnderecoOrigem.Enabled = true;
             obsGerais.Enabled = true;
+            PrioridadeTxt.Enabled = true;
             
         }
         private void bloquearCampos()
@@ -574,6 +568,7 @@ namespace WindowsFormsApplication2
             txtEnderecoDestino.Enabled = false;
             txtEnderecoOrigem.Enabled = false;
             obsGerais.Enabled = false;
+            PrioridadeTxt.Enabled = false;
 
         }
 
@@ -604,7 +599,7 @@ namespace WindowsFormsApplication2
         private void BtnAvancada_Click(object sender, EventArgs e)
         {
             TipoAM = "Avancada";
-                        if (BtnBasica.BackColor == Color.PaleTurquoise)
+            if (BtnBasica.BackColor == Color.PaleTurquoise)
             {
                 BtnAvancada.BackColor = Color.PaleTurquoise;               
                 BtnAvancada.ForeColor = Color.Teal;
@@ -623,7 +618,7 @@ namespace WindowsFormsApplication2
             TipoAM = "Basica";  
             
             
-                if (BtnAvancada.BackColor == Color.PaleTurquoise)
+            if (BtnAvancada.BackColor == Color.PaleTurquoise)
             {
                 BtnBasica.BackColor = Color.PaleTurquoise;
                 BtnBasica.ForeColor = Color.Teal;

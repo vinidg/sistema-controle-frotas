@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAtendMarcado = new System.Windows.Forms.MaskedTextBox();
             this.RetirarAM = new System.Windows.Forms.Button();
             this.painelCancelar = new System.Windows.Forms.Panel();
             this.BtnConfirmando = new System.Windows.Forms.Button();
@@ -70,7 +71,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.CbOrigem = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.CbAtendimentoPrioridade = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txtDiagnostico = new System.Windows.Forms.TextBox();
@@ -90,7 +90,6 @@
             this.txtNomeSolicitante = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtAtendMarcado = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
@@ -98,6 +97,8 @@
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBasica = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.PrioridadeTxt = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
             this.PainelAM2.SuspendLayout();
@@ -108,6 +109,9 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.label28);
+            this.panel1.Controls.Add(this.PrioridadeTxt);
+            this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.RetirarAM);
             this.panel1.Controls.Add(this.painelCancelar);
             this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
@@ -133,7 +137,6 @@
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.CbOrigem);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.CbAtendimentoPrioridade);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.txtDiagnostico);
@@ -153,7 +156,6 @@
             this.panel1.Controls.Add(this.txtNomeSolicitante);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Btnagendasim);
             this.panel1.Controls.Add(this.Btnagendanao);
@@ -165,6 +167,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
+            // 
+            // txtAtendMarcado
+            // 
+            this.txtAtendMarcado.Location = new System.Drawing.Point(211, 82);
+            this.txtAtendMarcado.Mask = "00/00/0000 90:00";
+            this.txtAtendMarcado.Name = "txtAtendMarcado";
+            this.txtAtendMarcado.Size = new System.Drawing.Size(269, 20);
+            this.txtAtendMarcado.TabIndex = 60;
             // 
             // RetirarAM
             // 
@@ -345,6 +355,7 @@
             // CbTipoMotivoSelecionado
             // 
             this.CbTipoMotivoSelecionado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CbTipoMotivoSelecionado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbTipoMotivoSelecionado.Enabled = false;
             this.CbTipoMotivoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTipoMotivoSelecionado.FormattingEnabled = true;
@@ -358,6 +369,7 @@
             // CbMotivoChamado
             // 
             this.CbMotivoChamado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CbMotivoChamado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbMotivoChamado.Enabled = false;
             this.CbMotivoChamado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbMotivoChamado.FormattingEnabled = true;
@@ -534,9 +546,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.obsGerais.Enabled = false;
-            this.obsGerais.Location = new System.Drawing.Point(10, 568);
+            this.obsGerais.Location = new System.Drawing.Point(10, 598);
             this.obsGerais.Name = "obsGerais";
-            this.obsGerais.Size = new System.Drawing.Size(470, 92);
+            this.obsGerais.Size = new System.Drawing.Size(470, 62);
             this.obsGerais.TabIndex = 40;
             this.obsGerais.Text = "";
             // 
@@ -573,7 +585,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(6, 543);
+            this.label20.Location = new System.Drawing.Point(6, 571);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(93, 16);
             this.label20.TabIndex = 39;
@@ -586,7 +598,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEnderecoDestino.Enabled = false;
             this.txtEnderecoDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEnderecoDestino.Location = new System.Drawing.Point(265, 512);
+            this.txtEnderecoDestino.Location = new System.Drawing.Point(265, 540);
             this.txtEnderecoDestino.Name = "txtEnderecoDestino";
             this.txtEnderecoDestino.Size = new System.Drawing.Size(215, 21);
             this.txtEnderecoDestino.TabIndex = 38;
@@ -598,7 +610,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(262, 493);
+            this.label19.Location = new System.Drawing.Point(262, 521);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(138, 16);
             this.label19.TabIndex = 37;
@@ -611,7 +623,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEnderecoOrigem.Enabled = false;
             this.txtEnderecoOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEnderecoOrigem.Location = new System.Drawing.Point(265, 464);
+            this.txtEnderecoOrigem.Location = new System.Drawing.Point(265, 492);
             this.txtEnderecoOrigem.Name = "txtEnderecoOrigem";
             this.txtEnderecoOrigem.Size = new System.Drawing.Size(215, 21);
             this.txtEnderecoOrigem.TabIndex = 36;
@@ -623,7 +635,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(262, 445);
+            this.label18.Location = new System.Drawing.Point(262, 473);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(136, 16);
             this.label18.TabIndex = 35;
@@ -636,7 +648,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(8, 491);
+            this.label17.Location = new System.Drawing.Point(8, 519);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(132, 16);
             this.label17.TabIndex = 34;
@@ -647,10 +659,11 @@
             this.CbDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbDestino.Enabled = false;
             this.CbDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbDestino.FormattingEnabled = true;
-            this.CbDestino.Location = new System.Drawing.Point(11, 510);
+            this.CbDestino.Location = new System.Drawing.Point(11, 538);
             this.CbDestino.Name = "CbDestino";
             this.CbDestino.Size = new System.Drawing.Size(233, 23);
             this.CbDestino.TabIndex = 33;
@@ -663,7 +676,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(6, 443);
+            this.label16.Location = new System.Drawing.Point(6, 471);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(130, 16);
             this.label16.TabIndex = 32;
@@ -674,10 +687,11 @@
             this.CbOrigem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbOrigem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbOrigem.Enabled = false;
             this.CbOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbOrigem.FormattingEnabled = true;
-            this.CbOrigem.Location = new System.Drawing.Point(9, 462);
+            this.CbOrigem.Location = new System.Drawing.Point(9, 490);
             this.CbOrigem.Name = "CbOrigem";
             this.CbOrigem.Size = new System.Drawing.Size(235, 23);
             this.CbOrigem.TabIndex = 31;
@@ -690,26 +704,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 411);
+            this.label15.Location = new System.Drawing.Point(6, 439);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(192, 18);
             this.label15.TabIndex = 30;
             this.label15.Text = "5. Dados do Transporte:";
-            // 
-            // CbAtendimentoPrioridade
-            // 
-            this.CbAtendimentoPrioridade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CbAtendimentoPrioridade.AutoSize = true;
-            this.CbAtendimentoPrioridade.Enabled = false;
-            this.CbAtendimentoPrioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbAtendimentoPrioridade.Location = new System.Drawing.Point(7, 381);
-            this.CbAtendimentoPrioridade.Name = "CbAtendimentoPrioridade";
-            this.CbAtendimentoPrioridade.Size = new System.Drawing.Size(223, 20);
-            this.CbAtendimentoPrioridade.TabIndex = 29;
-            this.CbAtendimentoPrioridade.Text = "Atendimento com Prioridade";
-            this.CbAtendimentoPrioridade.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -769,6 +768,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdade.Enabled = false;
             this.txtIdade.Location = new System.Drawing.Point(437, 249);
+            this.txtIdade.MaxLength = 3;
             this.txtIdade.Name = "txtIdade";
             this.txtIdade.Size = new System.Drawing.Size(43, 20);
             this.txtIdade.TabIndex = 22;
@@ -909,6 +909,7 @@
             this.CbLocalSolicita.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbLocalSolicita.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbLocalSolicita.Enabled = false;
             this.CbLocalSolicita.FormattingEnabled = true;
             this.CbLocalSolicita.Location = new System.Drawing.Point(163, 159);
@@ -953,18 +954,6 @@
             this.label4.Size = new System.Drawing.Size(187, 18);
             this.label4.TabIndex = 8;
             this.label4.Text = "3. Dados do solicitante:";
-            // 
-            // txtAtendMarcado
-            // 
-            this.txtAtendMarcado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAtendMarcado.Enabled = false;
-            this.txtAtendMarcado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAtendMarcado.Location = new System.Drawing.Point(211, 82);
-            this.txtAtendMarcado.Name = "txtAtendMarcado";
-            this.txtAtendMarcado.Size = new System.Drawing.Size(269, 22);
-            this.txtAtendMarcado.TabIndex = 7;
             // 
             // label3
             // 
@@ -1069,6 +1058,34 @@
             this.BtnBasica.UseVisualStyleBackColor = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
             // 
+            // label28
+            // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(6, 386);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(74, 16);
+            this.label28.TabIndex = 62;
+            this.label28.Text = "Prioridade:";
+            // 
+            // PrioridadeTxt
+            // 
+            this.PrioridadeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PrioridadeTxt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PrioridadeTxt.Enabled = false;
+            this.PrioridadeTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrioridadeTxt.FormattingEnabled = true;
+            this.PrioridadeTxt.Items.AddRange(new object[] {
+            "P0_PRIORIDADE_ABSOLUTA_RESOLVER_EM_IMEDIATO",
+            "P1_PRIORIDADE_ALTA_RESOLVER_EM_2_HORAS",
+            "P2_PRIORIDADE_MODERADA_RESOLVER_EM_12_HORAS",
+            "P3_PRIORIDADE_BAIXA_RESOLVER_EM_24_HORAS"});
+            this.PrioridadeTxt.Location = new System.Drawing.Point(9, 404);
+            this.PrioridadeTxt.Name = "PrioridadeTxt";
+            this.PrioridadeTxt.Size = new System.Drawing.Size(227, 23);
+            this.PrioridadeTxt.TabIndex = 61;
+            // 
             // SelecionaAM
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1110,7 +1127,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox CbOrigem;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.CheckBox CbAtendimentoPrioridade;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtDiagnostico;
@@ -1130,7 +1146,6 @@
         private System.Windows.Forms.TextBox txtNomeSolicitante;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtAtendMarcado;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Btnagendasim;
         private System.Windows.Forms.Button Btnagendanao;
@@ -1157,5 +1172,8 @@
         private System.Windows.Forms.Panel PainelAM2;
         private System.Windows.Forms.DataGridView Lista;
         private System.Windows.Forms.Button RetirarAM;
+        private System.Windows.Forms.MaskedTextBox txtAtendMarcado;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox PrioridadeTxt;
     }
 }

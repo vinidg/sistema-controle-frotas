@@ -33,7 +33,6 @@
             this.BtnBasica = new System.Windows.Forms.Button();
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.PacienteNaoAcompanhante = new System.Windows.Forms.CheckBox();
             this.txtAtendMarcado = new System.Windows.Forms.MaskedTextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.BtnLimpar = new System.Windows.Forms.Button();
@@ -48,7 +47,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.CbOrigem = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.CbAtendimentoPrioridade = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.CbTipoMotivoSelecionado = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -74,6 +72,8 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Prioridade = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +123,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.panel1.Controls.Add(this.PacienteNaoAcompanhante);
+            this.panel1.Controls.Add(this.label21);
+            this.panel1.Controls.Add(this.Prioridade);
             this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.BtnSalvar);
             this.panel1.Controls.Add(this.BtnLimpar);
@@ -138,7 +139,6 @@
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.CbOrigem);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.CbAtendimentoPrioridade);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
             this.panel1.Controls.Add(this.label13);
@@ -171,18 +171,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1032, 570);
             this.panel1.TabIndex = 3;
-            // 
-            // PacienteNaoAcompanhante
-            // 
-            this.PacienteNaoAcompanhante.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PacienteNaoAcompanhante.AutoSize = true;
-            this.PacienteNaoAcompanhante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PacienteNaoAcompanhante.Location = new System.Drawing.Point(297, 450);
-            this.PacienteNaoAcompanhante.Name = "PacienteNaoAcompanhante";
-            this.PacienteNaoAcompanhante.Size = new System.Drawing.Size(242, 20);
-            this.PacienteNaoAcompanhante.TabIndex = 44;
-            this.PacienteNaoAcompanhante.Text = "Paciente não possui acompanhante";
-            this.PacienteNaoAcompanhante.UseVisualStyleBackColor = true;
             // 
             // txtAtendMarcado
             // 
@@ -338,24 +326,12 @@
             this.label15.TabIndex = 30;
             this.label15.Text = "5. Dados do Transporte:";
             // 
-            // CbAtendimentoPrioridade
-            // 
-            this.CbAtendimentoPrioridade.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.CbAtendimentoPrioridade.AutoSize = true;
-            this.CbAtendimentoPrioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbAtendimentoPrioridade.Location = new System.Drawing.Point(39, 450);
-            this.CbAtendimentoPrioridade.Name = "CbAtendimentoPrioridade";
-            this.CbAtendimentoPrioridade.Size = new System.Drawing.Size(197, 20);
-            this.CbAtendimentoPrioridade.TabIndex = 29;
-            this.CbAtendimentoPrioridade.Text = "Atendimento com Prioridade";
-            this.CbAtendimentoPrioridade.UseVisualStyleBackColor = true;
-            // 
             // label14
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(294, 402);
+            this.label14.Location = new System.Drawing.Point(294, 387);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(181, 16);
             this.label14.TabIndex = 28;
@@ -367,7 +343,7 @@
             this.CbTipoMotivoSelecionado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbTipoMotivoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTipoMotivoSelecionado.FormattingEnabled = true;
-            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(297, 421);
+            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(297, 406);
             this.CbTipoMotivoSelecionado.Name = "CbTipoMotivoSelecionado";
             this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(243, 23);
             this.CbTipoMotivoSelecionado.TabIndex = 27;
@@ -380,7 +356,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(38, 402);
+            this.label13.Location = new System.Drawing.Point(38, 387);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(132, 16);
             this.label13.TabIndex = 26;
@@ -410,7 +386,7 @@
             "SALA VERMELHA/EMERGÊNCIA",
             "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS",
             "TRANSPORTE DE PROFISSIONAIS"});
-            this.CbMotivoChamado.Location = new System.Drawing.Point(41, 421);
+            this.CbMotivoChamado.Location = new System.Drawing.Point(41, 406);
             this.CbMotivoChamado.Name = "CbMotivoChamado";
             this.CbMotivoChamado.Size = new System.Drawing.Size(243, 23);
             this.CbMotivoChamado.TabIndex = 25;
@@ -420,7 +396,7 @@
             // 
             this.txtDiagnostico.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiagnostico.Location = new System.Drawing.Point(39, 368);
+            this.txtDiagnostico.Location = new System.Drawing.Point(39, 353);
             this.txtDiagnostico.Name = "txtDiagnostico";
             this.txtDiagnostico.Size = new System.Drawing.Size(522, 21);
             this.txtDiagnostico.TabIndex = 24;
@@ -430,7 +406,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(36, 349);
+            this.label12.Location = new System.Drawing.Point(36, 334);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(183, 16);
             this.label12.TabIndex = 23;
@@ -439,7 +415,8 @@
             // txtIdade
             // 
             this.txtIdade.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIdade.Location = new System.Drawing.Point(496, 316);
+            this.txtIdade.Location = new System.Drawing.Point(496, 301);
+            this.txtIdade.MaxLength = 3;
             this.txtIdade.Name = "txtIdade";
             this.txtIdade.Size = new System.Drawing.Size(61, 20);
             this.txtIdade.TabIndex = 22;
@@ -449,7 +426,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(493, 297);
+            this.label11.Location = new System.Drawing.Point(493, 282);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 16);
             this.label11.TabIndex = 21;
@@ -460,7 +437,7 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(323, 297);
+            this.label10.Location = new System.Drawing.Point(323, 282);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 16);
             this.label10.TabIndex = 20;
@@ -470,7 +447,7 @@
             // 
             this.RbFemenino.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RbFemenino.AutoSize = true;
-            this.RbFemenino.Location = new System.Drawing.Point(405, 316);
+            this.RbFemenino.Location = new System.Drawing.Point(405, 301);
             this.RbFemenino.Name = "RbFemenino";
             this.RbFemenino.Size = new System.Drawing.Size(67, 17);
             this.RbFemenino.TabIndex = 19;
@@ -482,7 +459,7 @@
             // 
             this.RbMasculino.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RbMasculino.AutoSize = true;
-            this.RbMasculino.Location = new System.Drawing.Point(326, 316);
+            this.RbMasculino.Location = new System.Drawing.Point(326, 301);
             this.RbMasculino.Name = "RbMasculino";
             this.RbMasculino.Size = new System.Drawing.Size(73, 17);
             this.RbMasculino.TabIndex = 18;
@@ -496,7 +473,7 @@
             this.txtNomePaciente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtNomePaciente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtNomePaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomePaciente.Location = new System.Drawing.Point(39, 315);
+            this.txtNomePaciente.Location = new System.Drawing.Point(39, 300);
             this.txtNomePaciente.Name = "txtNomePaciente";
             this.txtNomePaciente.Size = new System.Drawing.Size(265, 21);
             this.txtNomePaciente.TabIndex = 17;
@@ -507,7 +484,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(36, 296);
+            this.label9.Location = new System.Drawing.Point(36, 281);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(123, 16);
             this.label9.TabIndex = 16;
@@ -518,7 +495,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(36, 263);
+            this.label8.Location = new System.Drawing.Point(36, 248);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(173, 18);
             this.label8.TabIndex = 15;
@@ -527,7 +504,7 @@
             // txtTelefone
             // 
             this.txtTelefone.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtTelefone.Location = new System.Drawing.Point(412, 220);
+            this.txtTelefone.Location = new System.Drawing.Point(412, 212);
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(127, 20);
             this.txtTelefone.TabIndex = 14;
@@ -537,7 +514,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(409, 200);
+            this.label7.Location = new System.Drawing.Point(409, 192);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 16);
             this.label7.TabIndex = 13;
@@ -548,7 +525,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(192, 200);
+            this.label6.Location = new System.Drawing.Point(192, 192);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 16);
             this.label6.TabIndex = 12;
@@ -559,7 +536,7 @@
             this.CbLocalSolicita.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CbLocalSolicita.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbLocalSolicita.FormattingEnabled = true;
-            this.CbLocalSolicita.Location = new System.Drawing.Point(195, 219);
+            this.CbLocalSolicita.Location = new System.Drawing.Point(195, 211);
             this.CbLocalSolicita.Name = "CbLocalSolicita";
             this.CbLocalSolicita.Size = new System.Drawing.Size(199, 21);
             this.CbLocalSolicita.TabIndex = 11;
@@ -568,7 +545,7 @@
             // txtNomeSolicitante
             // 
             this.txtNomeSolicitante.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtNomeSolicitante.Location = new System.Drawing.Point(39, 219);
+            this.txtNomeSolicitante.Location = new System.Drawing.Point(39, 211);
             this.txtNomeSolicitante.Name = "txtNomeSolicitante";
             this.txtNomeSolicitante.Size = new System.Drawing.Size(141, 20);
             this.txtNomeSolicitante.TabIndex = 10;
@@ -578,7 +555,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(36, 200);
+            this.label5.Location = new System.Drawing.Point(36, 192);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 9;
@@ -645,6 +622,33 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
+            // label21
+            // 
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(38, 441);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 16);
+            this.label21.TabIndex = 45;
+            this.label21.Text = "Prioridade:";
+            // 
+            // Prioridade
+            // 
+            this.Prioridade.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Prioridade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Prioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Prioridade.FormattingEnabled = true;
+            this.Prioridade.Items.AddRange(new object[] {
+            "P0_PRIORIDADE_ABSOLUTA_RESOLVER_EM_IMEDIATO",
+            "P1_PRIORIDADE_ALTA_RESOLVER_EM_2_HORAS",
+            "P2_PRIORIDADE_MODERADA_RESOLVER_EM_12_HORAS",
+            "P3_PRIORIDADE_BAIXA_RESOLVER_EM_24_HORAS"});
+            this.Prioridade.Location = new System.Drawing.Point(41, 460);
+            this.Prioridade.Name = "Prioridade";
+            this.Prioridade.Size = new System.Drawing.Size(243, 23);
+            this.Prioridade.TabIndex = 44;
+            // 
             // ConfirmaSolicitacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -688,7 +692,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CbLocalSolicita;
-        private System.Windows.Forms.CheckBox CbAtendimentoPrioridade;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox CbTipoMotivoSelecionado;
         private System.Windows.Forms.Label label13;
@@ -712,6 +715,7 @@
         private System.Windows.Forms.Button BtnSalvar;
         private System.Windows.Forms.Button BtnLimpar;
         private System.Windows.Forms.MaskedTextBox txtAtendMarcado;
-        private System.Windows.Forms.CheckBox PacienteNaoAcompanhante;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox Prioridade;
     }
 }

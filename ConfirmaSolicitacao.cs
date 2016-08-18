@@ -89,7 +89,7 @@ namespace WindowsFormsApplication2
             txtDiagnostico.Text = "";
             CbMotivoChamado.Text = "";
             CbTipoMotivoSelecionado.Text = "";
-            CbAtendimentoPrioridade.Checked = false;
+            Prioridade.Text = "";
             CbOrigem.Text = "";
             CbDestino.Text = "";
             txtEnderecoOrigem.Text = "";
@@ -162,16 +162,6 @@ namespace WindowsFormsApplication2
         private void CbTipoMotivoSelecionado_TextChanged(object sender, EventArgs e)
         {
             Motivo();
-
-            if (Agendamento == "Sim")
-            {
-                CbAtendimentoPrioridade.Visible = false;
-            }
-            else
-            {
-                CbAtendimentoPrioridade.Visible = true;
-            }
-
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
@@ -208,7 +198,6 @@ namespace WindowsFormsApplication2
             txtEnderecoOrigem.Text == "" ||
             txtEnderecoDestino.Text == "")
             {
-
                 MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -234,8 +223,8 @@ namespace WindowsFormsApplication2
             {
                 IB.inserirSolicitacaoDoPaciente(TipoAM, now.ToString(), Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
-                this.CbAtendimentoPrioridade.Checked.ToString(), this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
-                0, this.PacienteNaoAcompanhante.Checked.ToString(), System.Environment.UserName, now);
+                this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
+                0, System.Environment.UserName, now);
 
             }
             catch (Exception ex)
@@ -327,7 +316,6 @@ namespace WindowsFormsApplication2
             txtEnderecoDestino.Text = Endereco1;
 
         }
-
 
         private void Motivo()
         {
