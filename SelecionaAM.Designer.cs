@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.RetirarAM = new System.Windows.Forms.Button();
             this.painelCancelar = new System.Windows.Forms.Panel();
             this.BtnConfirmando = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             this.BtnConfimar = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.BtnOutraAM = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.obsGerais = new System.Windows.Forms.RichTextBox();
             this.BtnImprimir = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -106,7 +107,8 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.RetirarAM);
             this.panel1.Controls.Add(this.painelCancelar);
             this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
             this.panel1.Controls.Add(this.CbMotivoChamado);
@@ -118,7 +120,7 @@
             this.panel1.Controls.Add(this.BtnConfimar);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.BtnOutraAM);
-            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.obsGerais);
             this.panel1.Controls.Add(this.BtnImprimir);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label20);
@@ -164,9 +166,22 @@
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
             // 
+            // RetirarAM
+            // 
+            this.RetirarAM.BackColor = System.Drawing.Color.Maroon;
+            this.RetirarAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetirarAM.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.RetirarAM.Location = new System.Drawing.Point(601, 554);
+            this.RetirarAM.Name = "RetirarAM";
+            this.RetirarAM.Size = new System.Drawing.Size(376, 47);
+            this.RetirarAM.TabIndex = 59;
+            this.RetirarAM.Text = "Retirar Solicitação da Ambulância";
+            this.RetirarAM.UseVisualStyleBackColor = false;
+            this.RetirarAM.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // painelCancelar
             // 
-            this.painelCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.painelCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             this.painelCancelar.Controls.Add(this.BtnConfirmando);
             this.painelCancelar.Controls.Add(this.label27);
             this.painelCancelar.Controls.Add(this.label26);
@@ -177,7 +192,7 @@
             this.painelCancelar.Controls.Add(this.txtResponsavel);
             this.painelCancelar.Controls.Add(this.DtHrCancelamento);
             this.painelCancelar.Controls.Add(this.MotivoCancelar);
-            this.painelCancelar.Location = new System.Drawing.Point(508, 59);
+            this.painelCancelar.Location = new System.Drawing.Point(505, 240);
             this.painelCancelar.Name = "painelCancelar";
             this.painelCancelar.Size = new System.Drawing.Size(558, 187);
             this.painelCancelar.TabIndex = 16;
@@ -186,7 +201,7 @@
             // BtnConfirmando
             // 
             this.BtnConfirmando.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnConfirmando.BackColor = System.Drawing.Color.Red;
+            this.BtnConfirmando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.BtnConfirmando.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.BtnConfirmando.ForeColor = System.Drawing.Color.Snow;
             this.BtnConfirmando.Location = new System.Drawing.Point(103, 135);
@@ -338,7 +353,6 @@
             this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(227, 23);
             this.CbTipoMotivoSelecionado.TabIndex = 58;
             this.CbTipoMotivoSelecionado.SelectedIndexChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_SelectedIndexChanged);
-            this.CbTipoMotivoSelecionado.TextChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_TextChanged);
             this.CbTipoMotivoSelecionado.Click += new System.EventHandler(this.CbTipoMotivoSelecionado_Click);
             // 
             // CbMotivoChamado
@@ -373,9 +387,9 @@
             // 
             // PainelAM2
             // 
-            this.PainelAM2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.PainelAM2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(246)))), ((int)(((byte)(182)))));
             this.PainelAM2.Controls.Add(this.Lista);
-            this.PainelAM2.Location = new System.Drawing.Point(508, 335);
+            this.PainelAM2.Location = new System.Drawing.Point(506, 280);
             this.PainelAM2.Name = "PainelAM2";
             this.PainelAM2.Size = new System.Drawing.Size(545, 147);
             this.PainelAM2.TabIndex = 48;
@@ -388,7 +402,7 @@
             this.Lista.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Lista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.Lista.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.Lista.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Lista.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(159)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
@@ -425,10 +439,11 @@
             this.Lista.Size = new System.Drawing.Size(525, 127);
             this.Lista.TabIndex = 32;
             this.Lista.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Lista_CellContentDoubleClick);
+            this.Lista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.Lista_CellFormatting);
             // 
             // BtnAlterar
             // 
-            this.BtnAlterar.BackColor = System.Drawing.Color.LimeGreen;
+            this.BtnAlterar.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.BtnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAlterar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BtnAlterar.Location = new System.Drawing.Point(519, 66);
@@ -465,10 +480,10 @@
             // 
             // BtnCancelar
             // 
-            this.BtnCancelar.BackColor = System.Drawing.Color.Red;
+            this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnCancelar.Location = new System.Drawing.Point(550, 510);
+            this.BtnCancelar.Location = new System.Drawing.Point(551, 501);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(456, 47);
             this.BtnCancelar.TabIndex = 0;
@@ -513,17 +528,17 @@
             this.BtnOutraAM.UseVisualStyleBackColor = false;
             this.BtnOutraAM.Click += new System.EventHandler(this.BtnOutraAM_Click);
             // 
-            // richTextBox1
+            // obsGerais
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.obsGerais.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(10, 568);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(470, 92);
-            this.richTextBox1.TabIndex = 40;
-            this.richTextBox1.Text = "";
+            this.obsGerais.Enabled = false;
+            this.obsGerais.Location = new System.Drawing.Point(10, 568);
+            this.obsGerais.Name = "obsGerais";
+            this.obsGerais.Size = new System.Drawing.Size(470, 92);
+            this.obsGerais.TabIndex = 40;
+            this.obsGerais.Text = "";
             // 
             // BtnImprimir
             // 
@@ -1058,7 +1073,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.ClientSize = new System.Drawing.Size(1089, 695);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1084,7 +1099,7 @@
         private System.Windows.Forms.Button BtnOutraAM;
         private System.Windows.Forms.Button BtnImprimir;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox obsGerais;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtEnderecoDestino;
         private System.Windows.Forms.Label label19;
@@ -1141,5 +1156,6 @@
         private System.Windows.Forms.ComboBox CbMotivoChamado;
         private System.Windows.Forms.Panel PainelAM2;
         private System.Windows.Forms.DataGridView Lista;
+        private System.Windows.Forms.Button RetirarAM;
     }
 }

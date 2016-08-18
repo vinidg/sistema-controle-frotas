@@ -18,7 +18,7 @@ namespace WindowsFormsApplication2
 {
     public partial class Solicitacoes : Form
     {
-        int Id, idAm;
+        int idPaciente, idAm;
         string contarSemPrioridade, contarComPrioridade, contarAgendadas;
         string tipo, statusAM;
         public Solicitacoes(int AMocup, string StatusAM)
@@ -52,13 +52,13 @@ namespace WindowsFormsApplication2
                             solicitacoes_paciente.Agendamento == "Nao"
                             select new
                             {
-                                solicitacoes_paciente.idPaciente_Solicitacoes,
+                                ID = solicitacoes_paciente.idPaciente_Solicitacoes,
                                 solicitacoes_paciente.Paciente,
-                                solicitacoes_paciente.TipoSolicitacao,
+                                Tipo = solicitacoes_paciente.TipoSolicitacao,
                                 solicitacoes_paciente.DtHrdoInicio,
                                 solicitacoes_paciente.Motivo,
                                 solicitacoes_paciente.Origem,
-                                solicitacoes_paciente.Destino,
+                                solicitacoes_paciente.Destino
                             };
 
                 var contar = query.Count();
@@ -67,6 +67,8 @@ namespace WindowsFormsApplication2
                 var queryAmbu = query.ToList();
                 ListaSemPrioridade.DataSource = queryAmbu;
                 ListaSemPrioridade.ClearSelection();
+
+                ListaSemPrioridade.Columns[0].HeaderText = "ID";
            
             }
         }
@@ -82,13 +84,13 @@ namespace WindowsFormsApplication2
                             solicitacoes_paciente.Prioridade == "True"
                             select new
                             {
-                                solicitacoes_paciente.idPaciente_Solicitacoes,
+                                ID = solicitacoes_paciente.idPaciente_Solicitacoes,
                                 solicitacoes_paciente.Paciente,
-                                solicitacoes_paciente.TipoSolicitacao,
+                                Tipo = solicitacoes_paciente.TipoSolicitacao,
                                 solicitacoes_paciente.DtHrdoInicio,
                                 solicitacoes_paciente.Motivo,
                                 solicitacoes_paciente.Origem,
-                                solicitacoes_paciente.Destino,
+                                solicitacoes_paciente.Destino
                             };
 
                 var queryAmbu = query.ToList();
@@ -96,6 +98,8 @@ namespace WindowsFormsApplication2
                 contarComPrioridade = contar.ToString();
                 listaComPrioridade.DataSource = queryAmbu;
                 listaComPrioridade.ClearSelection();
+
+                listaComPrioridade.Columns[0].HeaderText = "ID";
 
             }
         }
@@ -114,15 +118,15 @@ namespace WindowsFormsApplication2
                             solicitacoes_paciente.DtHrAgendamento.Substring(0, 10) != dataagora
                             select new
                             {
-                                solicitacoes_paciente.idPaciente_Solicitacoes,
+                                ID = solicitacoes_paciente.idPaciente_Solicitacoes,
                                 solicitacoes_paciente.Paciente,
                                 solicitacoes_paciente.Agendamento,
                                 solicitacoes_paciente.DtHrAgendamento,
-                                solicitacoes_paciente.TipoSolicitacao,
+                                Tipo = solicitacoes_paciente.TipoSolicitacao,
                                 solicitacoes_paciente.DtHrdoInicio,
                                 solicitacoes_paciente.Motivo,
                                 solicitacoes_paciente.Origem,
-                                solicitacoes_paciente.Destino,
+                                solicitacoes_paciente.Destino
                             };
 
                 var queryAmbu = query.ToList();
@@ -130,6 +134,7 @@ namespace WindowsFormsApplication2
                 contarAgendadas = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
+
 
             }
         }
@@ -162,12 +167,12 @@ namespace WindowsFormsApplication2
                             select am.TipoAM;
                querya = query.FirstOrDefault();
             }
-            Id = Convert.ToInt32(listaComPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString());
-            tipo = listaComPrioridade.Rows[e.RowIndex].Cells[2].Value.ToString();
+            idPaciente = Convert.ToInt32(listaComPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString());
+            tipo = listaComPrioridade.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
 
-            if (querya == "")
+            if (querya == null)
             {
-                SelecionaAM ST = new SelecionaAM(Id, idAm, null, statusAM);
+                SelecionaAM ST = new SelecionaAM(idPaciente, idAm, 0);
                 this.Dispose();
                 ST.ShowDialog();
                 return;
@@ -175,20 +180,23 @@ namespace WindowsFormsApplication2
             
             if (tipo == "Avancada")
             {
-                MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                return;
-            }
-
-            if (tipo == "Basica")
-            {
-                if (querya == "Avancada")
+                if (querya == "BASICO")
                 {
                     MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
                     return;
                 }
             }
 
-            SelecionaAM STi = new SelecionaAM(Id, idAm, null, statusAM);
+            if (tipo == "Basica")
+            {
+                if (querya == "AVANCADO")
+                {
+                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
+                    return;
+                }
+            }
+
+            SelecionaAM STi = new SelecionaAM(idPaciente, idAm, 0);
             this.Dispose();
             STi.ShowDialog();
         }
@@ -203,12 +211,12 @@ namespace WindowsFormsApplication2
                             select am.TipoAM;
                 querya = query.FirstOrDefault();
             }
-            Id = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells[0].Value.ToString());
-            tipo = listaAgendadas.Rows[e.RowIndex].Cells[2].Value.ToString();
+            idPaciente = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells[0].Value.ToString());
+            tipo = listaAgendadas.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
 
             if (querya == "")
             {
-                SelecionaAM ST = new SelecionaAM(Id, idAm, null, statusAM);
+                SelecionaAM ST = new SelecionaAM(idPaciente, idAm, 0);
                 this.Dispose();
                 ST.ShowDialog();
                 return;
@@ -229,7 +237,7 @@ namespace WindowsFormsApplication2
                 }
             }
 
-            SelecionaAM STi = new SelecionaAM(Id, idAm, null, statusAM);
+            SelecionaAM STi = new SelecionaAM(idPaciente, idAm, 0);
             this.Dispose();
             STi.ShowDialog();
         }
@@ -244,12 +252,12 @@ namespace WindowsFormsApplication2
                             select am.TipoAM;
                 querya = query.FirstOrDefault();
             }
-            Id = Convert.ToInt32(ListaSemPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString());
+            idPaciente = Convert.ToInt32(ListaSemPrioridade.Rows[e.RowIndex].Cells[0].Value.ToString());
             tipo = ListaSemPrioridade.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
 
-            if (querya == "")
+            if (querya == null)
             {
-                SelecionaAM ST = new SelecionaAM(Id, idAm, null, statusAM);
+                SelecionaAM ST = new SelecionaAM(idPaciente, idAm, 0);
                 this.Dispose();
                 ST.ShowDialog();
                 return;
@@ -270,7 +278,7 @@ namespace WindowsFormsApplication2
                 }
             }
 
-            SelecionaAM STi = new SelecionaAM(Id, idAm, null, statusAM);
+            SelecionaAM STi = new SelecionaAM(idPaciente, idAm, 0);
             this.Dispose();
             STi.ShowDialog();
         }

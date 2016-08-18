@@ -19,7 +19,6 @@ namespace WindowsFormsApplication2
 {
     public partial class CONTROLE : Form
     {
-
         public CONTROLE()
         {
             InitializeComponent();
@@ -31,7 +30,8 @@ namespace WindowsFormsApplication2
             timerAtualiza(0);
             update();
 
-            this.Text = "Sistema de Controle de Ambulancias. Versão: " + appverion;
+            this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
+            label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
         public void update()
@@ -52,7 +52,6 @@ namespace WindowsFormsApplication2
                 t.Interval = 5000;
                 t.Tick += new EventHandler(timer1_Tick);
                 t.Start();
-
             }
             return;
         }
@@ -189,34 +188,32 @@ namespace WindowsFormsApplication2
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                var queryUsb = from am in db.ambulancia
+                var queryUsb = (from am in db.ambulancia
                                join sa in db.solicitacoes_ambulancias
                                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
-                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida} into sa_join
                                from sa in sa_join.DefaultIfEmpty()
                                join sp in db.solicitacoes_paciente 
                                on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } 
                                equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
                                from sp in sp_join.DefaultIfEmpty()
-                               where
-                               am.TipoAM == "BASICO"
+                               where am.TipoAM == "BASICO" && am.Desativado == 0
                                select new
                                {
                                    am.idAmbulancia,
-                                   am.NomeAmbulancia,
-                                   am.StatusAmbulancia,
+                                   Ambulancia =  am.NomeAmbulancia,
+                                   Status = am.StatusAmbulancia,
+                                   idPaciente = sa.idSolicitacoesPacientes, 
                                    Paciente = sp.Paciente,
                                    Idade = sp.Idade,
                                    Origem = sp.Origem,
                                    Destino = sp.Destino
-                               };
+                               }).ToList();
 
-                var queryAmbulanciaUsb = queryUsb.ToList();
-
-                listaUsb.DataSource = queryAmbulanciaUsb;
+                listaUsb.DataSource = queryUsb;
                 listaUsb.ClearSelection();
 
-                var queryUsa = from am in db.ambulancia
+                var queryUsa = (from am in db.ambulancia
                                join sa in db.solicitacoes_ambulancias
                                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
                                equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
@@ -224,51 +221,60 @@ namespace WindowsFormsApplication2
                                join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
                                from sp in sp_join.DefaultIfEmpty()
                                where
-                               am.TipoAM == "AVANCADO"
+                               am.TipoAM == "AVANCADO" && am.Desativado == 0
                                select new
                                {
                                    am.idAmbulancia,
-                                   am.NomeAmbulancia,
-                                   am.StatusAmbulancia,
+                                   Ambulancia = am.NomeAmbulancia,
+                                   Status = am.StatusAmbulancia,
+                                   idPaciente = sa.idSolicitacoesPacientes, 
                                    Paciente = sp.Paciente,
                                    Idade = sp.Idade,
                                    Origem = sp.Origem,
                                    Destino = sp.Destino
-                               };
+                               }).ToList();
 
-                var queryAmbulanciaUsa = queryUsa.ToList();
-
-                listaUsa.DataSource = queryAmbulanciaUsa;
+                listaUsa.DataSource = queryUsa;
                 listaUsa.ClearSelection();
-
-
+                
             }
             listaUsa.Columns[0].Visible = false;
-            listaUsa.Columns[1].HeaderText = "Ambulancia";
-            listaUsa.Columns[2].HeaderText = "Status";
-
             listaUsb.Columns[0].Visible = false;
-            listaUsb.Columns[1].HeaderText = "Ambulancia";
-            listaUsb.Columns[2].HeaderText = "Status";
+            listaUsa.Columns["idPaciente"].Visible = false;
+            listaUsb.Columns["idPaciente"].Visible = false;
 
+            this.listaUsa.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsa.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsa.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsa.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsa.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsa.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            this.listaUsb.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.Value != null && e.Value.Equals("BLOQUEADA"))
             {
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.RoyalBlue;
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
                 listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
             else if (e.Value != null && e.Value.Equals("OCUPADA"))
             {
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Firebrick;
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
                 listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
             else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
             {
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LimeGreen;
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
 
         }
@@ -277,33 +283,64 @@ namespace WindowsFormsApplication2
         {
             if (e.Value != null && e.Value.Equals("BLOQUEADA"))
             {
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.RoyalBlue;
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
                 listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
             else if (e.Value != null && e.Value.Equals("OCUPADA"))
             {
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Firebrick;
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
                 listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
             else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
             {
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LimeGreen;
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
-        }
-
-        private void listaUsa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string cellValue = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
-            Status sta = new Status(Convert.ToInt32(cellValue));
-            sta.ShowDialog();
         }
 
         private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string cellValue = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
-            Status sta = new Status(Convert.ToInt32(cellValue));
-            sta.ShowDialog();
+            if(e.RowIndex > -1)
+            {
+            string idAM = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
+            {
+                string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
+                sta.ShowDialog();
+            }
+            else
+            {
+                Status sta = new Status(Convert.ToInt32(idAM), 0);
+                sta.ShowDialog();
+            }
+            }
+        }
+
+        private void listaUsa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                string idAM = listaUsa.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
+                {
+                    string idPaciente = listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                    Status status = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
+                    status.ShowDialog();
+                }
+                else
+                {
+                    Status status = new Status(Convert.ToInt32(idAM), 0);
+                    status.ShowDialog();
+                }
+            }
+        }
+
+        private void Editar_Click(object sender, EventArgs e)
+        {
+            EditarAmbulancias ea = new EditarAmbulancias();
+            ea.ShowDialog();
+        
         }
 
     }

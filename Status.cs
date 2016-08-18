@@ -19,11 +19,10 @@ namespace WindowsFormsApplication2
         DateTime now = DateTime.Now;
         string resposavel = System.Environment.UserName;
         int idPaciente, codEquipe, SolicitaAM;
-        int codigoDaAmbulancia, idSolicitacoesPacientes;
+        int codigoDaAmbulancia;
         string NomeAM, statusAmbulancia;
-        StatusBD d = new StatusBD();
 
-        public Status(int Cod)
+        public Status(int codigoAM, int idPacientes)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -32,13 +31,15 @@ namespace WindowsFormsApplication2
             label7.Visible = false;
             label8.Visible = false;
             txtDtHorasBloqueio.Text = now.ToString();
-            codigoDaAmbulancia = Cod;
+            codigoDaAmbulancia = codigoAM;
+            idPaciente = idPacientes;
 
             selectEquipeBD();
             statusJanela();
             selectHorarios();
             selectHorarioVerificacao();
             NomeAM = label1.Text;
+
         }
         public string NomeAM1
         {
@@ -56,7 +57,7 @@ namespace WindowsFormsApplication2
         /////////////////////////////////////////////////////////////////////////////TROCAR EQUIPE////////////////////////////////////////////////////////////////////////////////////////
         private void BtTrocar_Click(object sender, EventArgs e)
         {
-            InsercoesDoBando ib = new InsercoesDoBando();
+            InsercoesDoBanco ib = new InsercoesDoBanco();
             DateTime now = DateTime.Now;
 
             ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now.ToString(), codigoDaAmbulancia);
@@ -72,7 +73,7 @@ namespace WindowsFormsApplication2
         {
             if (this.Text == "Ocupada")
             {
-                InsercoesDoBando ib = new InsercoesDoBando();
+                InsercoesDoBanco ib = new InsercoesDoBanco();
                 ib.inserirEquipeAmOcupada(codEquipe ,SolicitaAM);
                 
                 MessageBox.Show("Equipe trocada !");
@@ -104,7 +105,7 @@ namespace WindowsFormsApplication2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, this.Text);
+            Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
 
             this.Dispose();
             cs.ShowDialog();
@@ -120,7 +121,7 @@ namespace WindowsFormsApplication2
         /// ////////////////////////////////////////////////////////////BLOQUEIO////////////////////////////////////////////////////////////////////
         private void BtnBloquear_Click(object sender, EventArgs e)
         {
-            InsercoesDoBando IB = new InsercoesDoBando();
+            InsercoesDoBanco IB = new InsercoesDoBanco();
             IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
                      
             MessageBox.Show("Ambulância Bloqueada !");
@@ -138,45 +139,29 @@ namespace WindowsFormsApplication2
 
         private void BtnDesbloquear_Click(object sender, EventArgs e)
         {
-            InsercoesDoBando IB = new InsercoesDoBando();
+            InsercoesDoBanco IB = new InsercoesDoBanco();
             IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
 
             MessageBox.Show("Ambulância Desbloqueada !");
             BtnDesbloquear.Visible = false;
             BtnBloqueio.Visible = true;
-            painelCentral.BackColor = Color.Green;
+            painelCentral.BackColor = Color.LimeGreen;
             BtnAddPaciente.Visible = true;
-            label1.ForeColor = Color.Black;
+            label1.ForeColor = Color.White;
             label8.Visible = false;
+            Destino.Visible = true;
+            Origem.Visible = true;
         }
 
         /// ////////////////////////////////////////////////////////////FIM - BLOQUEIO////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////VERIFICAR QUAL PACIENTE ESTA NA AM E SE TEM MAIS DE 1/////////////////////////////
-        public void atualizarStatusOcupadoReservado(int CodAM)
-        {
-            int zero = 0;
-            //atualizar a AM dependendo do status no banco
-            using(DAHUEEntities db = new DAHUEEntities())
-            {
-                var query = (from sa in db.solicitacoes_ambulancias 
-                            where sa.idAmbulanciaSol == CodAM && 
-                            sa.SolicitacaoConcluida == zero 
-                            select new { sa.idSolicitacoesPacientes }).FirstOrDefault();
-
-                idSolicitacoesPacientes = Convert.ToInt32(query.idSolicitacoesPacientes);
-
-            }
-             
-            atualizarStatusOcupadoPacientePorCodigo();
-            
-        }
         public void atualizarStatusOcupadoPacientePorCodigo()
         {
             //atualizar a AM dependendo do status no banco
             using(DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from solicitacoes_paciente in db.solicitacoes_paciente
-                            where solicitacoes_paciente.idPaciente_Solicitacoes == idSolicitacoesPacientes
+                            where solicitacoes_paciente.idPaciente_Solicitacoes == idPaciente
                             select new
                             {
                                 solicitacoes_paciente.idPaciente_Solicitacoes,
@@ -194,6 +179,10 @@ namespace WindowsFormsApplication2
         {
             var queryStatus = (String)null;
             var nomeAM = (String)null;
+            string origem, destino;
+
+            StatusBD d = new StatusBD();
+
             using(DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from am in db.ambulancia
@@ -205,7 +194,8 @@ namespace WindowsFormsApplication2
 
             if (queryStatus.ToString() == "BLOQUEADA")
                 {
-                    painelCentral.BackColor = Color.RoyalBlue;
+                    painelCentral.BackColor = Color.FromArgb(0, 122, 181);
+                    this.BackColor = Color.FromArgb(204, 229, 255);
                     BtnAddPaciente.Visible = false;
                     BtnDesbloquear.Visible = true;
                     BtnBloqueio.Visible = false;
@@ -213,6 +203,8 @@ namespace WindowsFormsApplication2
                     this.Text = "BLOQUEADA";
                     statusAmbulancia = queryStatus;
                     label8.Visible = true;
+                    Destino.Visible = false;
+                    Origem.Visible = false;
                     
                     using(DAHUEEntities db = new DAHUEEntities())
                     {
@@ -221,11 +213,18 @@ namespace WindowsFormsApplication2
                                        select bloq.Motivo;
                         label8.Text = sqlQuery.First().ToString();
                     }
+                    Destino.Text = "";
+                    Origem.Text = "";
                 }
 
             if (queryStatus.ToString() == "OCUPADA")
                 {
-                    painelCentral.BackColor = Color.Firebrick;
+                    if(idPaciente == 0)
+                    {
+                        return;
+                    }
+                    painelCentral.BackColor = Color.FromArgb(224, 62, 54);
+                    this.BackColor = Color.FromArgb(255, 204, 204);
                     label7.Visible = true;
                     label8.Visible = true;
                     PainelHistorico.Visible = true;
@@ -236,16 +235,29 @@ namespace WindowsFormsApplication2
                     this.Text = "OCUPADA";
                     statusAmbulancia = queryStatus;
 
-                    d.atualizarStatusOcupado(codigoDaAmbulancia);
+                    d.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
+                    
+                    using (DAHUEEntities db = new DAHUEEntities())
+                    {
+                        var query = (from sa in db.solicitacoes_paciente
+                                     where sa.idPaciente_Solicitacoes == idPaciente
+                                     select new { sa.Origem, sa.Destino }).FirstOrDefault();
 
-                    d.atualizarStatusOcupadoPaciente();
+                        if(query.Origem != null || query.Destino != null){
+                        origem = query.Origem.ToString();
+                        destino = query.Destino.ToString();
+                        }
+                        else
+                        {
+                            destino = "";
+                            origem = "";
+                        }
+                    }
 
-                    atualizarStatusOcupadoReservado(1);
+                    atualizarStatusOcupadoPacientePorCodigo();
 
-                    idPaciente = d.IdSolicitacoesPacientes;
-
-                    Destino.Text = d.Destino1;
-                    Origem.Text = d.Origem1;
+                    Destino.Text = destino;
+                    Origem.Text = origem;
 
                     SolicitaAM = d.IdSolicitacoes_Ambulancias;
                     label7.Text = idPaciente.ToString();
@@ -253,10 +265,15 @@ namespace WindowsFormsApplication2
                 }
             if (queryStatus.ToString() == "DISPONIVEL")
                 {
-                    painelCentral.BackColor = Color.LimeGreen;
+                    painelCentral.BackColor = Color.FromArgb(46, 172, 109);
+                    this.BackColor = Color.FromArgb(229, 255, 204);
                     this.Text = "DISPONIVEL";
                     statusAmbulancia = queryStatus;
                     ListadePacientes.Visible = false;
+                    Destino.Text = "";
+                    Origem.Text = "";
+                    Destino.Visible = false;
+                    Origem.Visible = false;
                 }
             label1.Text = nomeAM;
             NomeAM = nomeAM;
@@ -282,7 +299,7 @@ namespace WindowsFormsApplication2
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
                 solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
 
@@ -313,7 +330,7 @@ namespace WindowsFormsApplication2
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
                 solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
 
@@ -340,7 +357,7 @@ namespace WindowsFormsApplication2
 
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
                     solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
 
@@ -364,7 +381,7 @@ namespace WindowsFormsApplication2
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
                 solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
 
@@ -389,7 +406,7 @@ namespace WindowsFormsApplication2
 
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
                     solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
 
@@ -412,7 +429,7 @@ namespace WindowsFormsApplication2
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
                 solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
 
@@ -437,7 +454,7 @@ namespace WindowsFormsApplication2
 
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
                     solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
 
@@ -461,7 +478,7 @@ namespace WindowsFormsApplication2
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
                 solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
 
@@ -486,7 +503,7 @@ namespace WindowsFormsApplication2
 
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
                     solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
 
@@ -509,7 +526,7 @@ namespace WindowsFormsApplication2
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
                 solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
 
@@ -525,40 +542,38 @@ namespace WindowsFormsApplication2
             BtnEquipeDestino.BackColor = Color.LightSkyBlue;
             txtHora6.Text = DateTime.Now.ToString();
             txtAlterador6.Text = resposavel;
-
+            var idSolicitacaAM = (String)null;
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0);
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrEquipePatio = txtHora6.Text;
                 solicitacoesAmbulancias.DtHrEquipePatioReg = txtAlterador6.Text;
+
+                var contemPaciente = (from soa in db.solicitacoes_ambulancias
+                                      where soa.idAmbulanciaSol == codigoDaAmbulancia && soa.SolicitacaoConcluida == 0
+                                      select soa).Count();
+                idSolicitacaAM = (from sa in db.solicitacoes_ambulancias
+                                          where sa.idSolicitacoesPacientes == idPaciente && sa.SolicitacaoConcluida == 0
+                                          select sa.idSolicitacoes_Ambulancias).FirstOrDefault().ToString();
+
+                if (contemPaciente == 1)
+                {
+                    ambulancia am = db.ambulancia.First(a => a.idAmbulancia == codigoDaAmbulancia);
+                    am.StatusAmbulancia = "DISPONIVEL";
+                }
+                solicitacoes_ambulancias sas = db.solicitacoes_ambulancias.First(s => s.idAmbulanciaSol == codigoDaAmbulancia && s.SolicitacaoConcluida == 0);
+                sas.SolicitacaoConcluida = 1;
 
                 db.SaveChanges();
                 MessageBox.Show("Solicitação salva com sucesso !!!");
                 MessageBox.Show("Equipe disponivel !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
 
-            using(DAHUEEntities db = new DAHUEEntities())
-            {
-                ambulancia am = db.ambulancia.First(a => a.idAmbulancia == codigoDaAmbulancia);
-                am.StatusAmbulancia = "DISPONIVEL";
-
-                db.SaveChanges();
-            }
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                string upSA = "UPDATE solicitacoes_ambulancias SET SolicitacaoConcluida = '1' WHERE idAmbulanciaSol = '" + codigoDaAmbulancia + "' AND SolicitacaoConcluida='0'";
-                solicitacoes_ambulancias sa = db.solicitacoes_ambulancias.First(s => s.idAmbulanciaSol == codigoDaAmbulancia && s.SolicitacaoConcluida == 0);
-                sa.SolicitacaoConcluida = 1;
-
-                db.SaveChanges();
-            }
-
             DialogResult rs = MessageBox.Show("Deseja imprimir a ficha completa da solicitação ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (rs == DialogResult.Yes)
             {
 
-                SelecionaAM samb = new SelecionaAM(idPaciente, codigoDaAmbulancia, this.Text, NomeAM);
+                SelecionaAM samb = new SelecionaAM(idPaciente, codigoDaAmbulancia, Convert.ToInt32(idSolicitacaAM));
                 samb.imprimirFicha();
                 this.Dispose();
             }
@@ -574,10 +589,13 @@ namespace WindowsFormsApplication2
         ///////////////////////////////////////////////////////LOGISTICA DA AM - FIM///////////////////////////////////////////////////////////////////////////////
         private void selectHorarios()
         {
+            if (statusAmbulancia == "OCUPADA")
+            {
+
             using (DAHUEEntities db = new DAHUEEntities())
             {
 
-                var query = from sa in db.solicitacoes_ambulancias
+                var query = (from sa in db.solicitacoes_ambulancias
                             where sa.idSolicitacoes_Ambulancias == SolicitaAM
                             select new 
                             { sa.DtHrCiencia, 
@@ -592,21 +610,56 @@ namespace WindowsFormsApplication2
                               sa.DtHrLiberacaoEquipeReg,
                               sa.DtHrEquipePatio,
                               sa.DtHrEquipePatioReg
-                            };
-                var querySA = query.FirstOrDefault();
+                            }).FirstOrDefault();
 
-                txtHora.Text = querySA.DtHrCiencia;
-                txtHora2.Text = querySA.DtHrChegadaOrigem;
-                txtHora3.Text = querySA.DtHrSaidaOrigem;
-                txtHora4.Text = querySA.DtHrChegadaDestino;
-                txtHora5.Text = querySA.DtHrLiberacaoEquipe;
-                txtHora6.Text = querySA.DtHrEquipePatio;
-                txtAlterador.Text = querySA.DtHrCienciaReg;
-                txtAlterador2.Text = querySA.DtHrChegadaOrigemReg;
-                txtAlterador3.Text = querySA.DtHrSaidaOrigemReg;
-                txtAlterador4.Text = querySA.DtHrChegadaDestinoReg;
-                txtAlterador5.Text = querySA.DtHrLiberacaoEquipeReg;
-                txtAlterador6.Text = querySA.DtHrEquipePatioReg;
+                if (query.DtHrCiencia != null)
+                {
+                    txtHora.Text = query.DtHrCiencia;
+                }
+                if(query.DtHrChegadaOrigem != null)
+                {
+                    txtHora2.Text = query.DtHrChegadaOrigem;
+                }
+                if(query.DtHrSaidaOrigem != null)
+                {
+                    txtHora3.Text = query.DtHrSaidaOrigem;
+                }
+                if(query.DtHrChegadaDestino != null){
+                    txtHora4.Text = query.DtHrChegadaDestino;
+                }
+                if(query.DtHrLiberacaoEquipe != null)
+                {
+                    txtHora5.Text = query.DtHrLiberacaoEquipe;
+                }
+                if (query.DtHrEquipePatio != null)
+                {
+                    txtHora6.Text = query.DtHrEquipePatio;
+                }
+                if (query.DtHrCienciaReg != null)
+                {
+                    txtAlterador.Text = query.DtHrCienciaReg;
+                }
+                if (query.DtHrChegadaOrigemReg != null)
+                {
+                    txtAlterador2.Text = query.DtHrChegadaOrigemReg;
+                }
+                if (query.DtHrSaidaOrigemReg != null)
+                {
+                    txtAlterador3.Text = query.DtHrSaidaOrigemReg;
+                }
+                if (query.DtHrChegadaDestinoReg != null)
+                {
+                    txtAlterador4.Text = query.DtHrChegadaDestinoReg;
+                }
+                if (query.DtHrLiberacaoEquipeReg != null)
+                {
+                    txtAlterador5.Text = query.DtHrLiberacaoEquipeReg;
+                }
+                if (query.DtHrEquipePatioReg != null)
+                {
+                    txtAlterador6.Text = query.DtHrEquipePatioReg;
+                }
+                }
             }
         }
 
@@ -669,7 +722,7 @@ namespace WindowsFormsApplication2
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, this.Text, NomeAM);
+            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
             this.Dispose();
             sand.ShowDialog();
         }
@@ -678,7 +731,7 @@ namespace WindowsFormsApplication2
         {
             int IDpesquisa;
             IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
-            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, this.Text, NomeAM);
+            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
             this.Dispose();
             sand.ShowDialog();
         }

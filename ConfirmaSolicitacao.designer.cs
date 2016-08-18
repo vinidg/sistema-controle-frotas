@@ -33,6 +33,7 @@
             this.BtnBasica = new System.Windows.Forms.Button();
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PacienteNaoAcompanhante = new System.Windows.Forms.CheckBox();
             this.txtAtendMarcado = new System.Windows.Forms.MaskedTextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.BtnLimpar = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.PacienteNaoAcompanhante = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,9 +91,9 @@
             // BtnBasica
             // 
             this.BtnBasica.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.BtnBasica.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BtnBasica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnBasica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBasica.ForeColor = System.Drawing.Color.DimGray;
+            this.BtnBasica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnBasica.Location = new System.Drawing.Point(423, 52);
             this.BtnBasica.Name = "BtnBasica";
             this.BtnBasica.Size = new System.Drawing.Size(75, 23);
@@ -105,9 +105,9 @@
             // BtnAvancada
             // 
             this.BtnAvancada.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.BtnAvancada.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnAvancada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAvancada.ForeColor = System.Drawing.Color.DimGray;
+            this.BtnAvancada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnAvancada.Location = new System.Drawing.Point(504, 52);
             this.BtnAvancada.Name = "BtnAvancada";
             this.BtnAvancada.Size = new System.Drawing.Size(82, 23);
@@ -122,7 +122,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.panel1.Controls.Add(this.PacienteNaoAcompanhante);
             this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.BtnSalvar);
@@ -172,6 +172,18 @@
             this.panel1.Size = new System.Drawing.Size(1032, 570);
             this.panel1.TabIndex = 3;
             // 
+            // PacienteNaoAcompanhante
+            // 
+            this.PacienteNaoAcompanhante.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PacienteNaoAcompanhante.AutoSize = true;
+            this.PacienteNaoAcompanhante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PacienteNaoAcompanhante.Location = new System.Drawing.Point(297, 450);
+            this.PacienteNaoAcompanhante.Name = "PacienteNaoAcompanhante";
+            this.PacienteNaoAcompanhante.Size = new System.Drawing.Size(242, 20);
+            this.PacienteNaoAcompanhante.TabIndex = 44;
+            this.PacienteNaoAcompanhante.Text = "Paciente não possui acompanhante";
+            this.PacienteNaoAcompanhante.UseVisualStyleBackColor = true;
+            // 
             // txtAtendMarcado
             // 
             this.txtAtendMarcado.Location = new System.Drawing.Point(297, 119);
@@ -184,9 +196,9 @@
             // BtnSalvar
             // 
             this.BtnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnSalvar.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BtnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSalvar.ForeColor = System.Drawing.Color.DimGray;
+            this.BtnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnSalvar.Location = new System.Drawing.Point(762, 494);
             this.BtnSalvar.Name = "BtnSalvar";
             this.BtnSalvar.Size = new System.Drawing.Size(129, 57);
@@ -198,9 +210,9 @@
             // BtnLimpar
             // 
             this.BtnLimpar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnLimpar.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BtnLimpar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.BtnLimpar.ForeColor = System.Drawing.Color.DimGray;
+            this.BtnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnLimpar.Location = new System.Drawing.Point(237, 494);
             this.BtnLimpar.Name = "BtnLimpar";
             this.BtnLimpar.Size = new System.Drawing.Size(129, 57);
@@ -597,9 +609,9 @@
             // Btnagendasim
             // 
             this.Btnagendasim.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Btnagendasim.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.Btnagendasim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Btnagendasim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btnagendasim.ForeColor = System.Drawing.Color.DimGray;
+            this.Btnagendasim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.Btnagendasim.Location = new System.Drawing.Point(504, 85);
             this.Btnagendasim.Name = "Btnagendasim";
             this.Btnagendasim.Size = new System.Drawing.Size(82, 23);
@@ -611,9 +623,9 @@
             // Btnagendanao
             // 
             this.Btnagendanao.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Btnagendanao.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.Btnagendanao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Btnagendanao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btnagendanao.ForeColor = System.Drawing.Color.DimGray;
+            this.Btnagendanao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.Btnagendanao.Location = new System.Drawing.Point(423, 85);
             this.Btnagendanao.Name = "Btnagendanao";
             this.Btnagendanao.Size = new System.Drawing.Size(75, 23);
@@ -633,25 +645,13 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
-            // PacienteNaoAcompanhante
-            // 
-            this.PacienteNaoAcompanhante.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PacienteNaoAcompanhante.AutoSize = true;
-            this.PacienteNaoAcompanhante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PacienteNaoAcompanhante.Location = new System.Drawing.Point(297, 450);
-            this.PacienteNaoAcompanhante.Name = "PacienteNaoAcompanhante";
-            this.PacienteNaoAcompanhante.Size = new System.Drawing.Size(242, 20);
-            this.PacienteNaoAcompanhante.TabIndex = 44;
-            this.PacienteNaoAcompanhante.Text = "Paciente não possui acompanhante";
-            this.PacienteNaoAcompanhante.UseVisualStyleBackColor = true;
-            // 
             // ConfirmaSolicitacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.ClientSize = new System.Drawing.Size(1050, 591);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

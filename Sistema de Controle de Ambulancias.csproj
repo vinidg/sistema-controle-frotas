@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <PublishUrl>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -32,8 +34,6 @@
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsUrl>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias</BootstrapperComponentsUrl>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,7 +61,7 @@
     <ManifestKeyFile>WindowsFormsApplication2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -144,9 +144,20 @@
     <Compile Include="ConfirmaSolicitacao.Designer.cs">
       <DependentUpon>ConfirmaSolicitacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="InsercoesDoBando.cs" />
+    <Compile Include="EditarAmbulancias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarAmbulancias.Designer.cs">
+      <DependentUpon>EditarAmbulancias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsercoesDoBanco.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Solicitacoes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,16 +190,14 @@
     <EmbeddedResource Include="ConfirmaSolicitacao.resx">
       <DependentUpon>ConfirmaSolicitacao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditarAmbulancias.resx">
+      <DependentUpon>EditarAmbulancias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Solicitacoes.resx">
       <DependentUpon>Solicitacoes.cs</DependentUpon>
@@ -211,13 +220,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\LOGO.png" />
     <None Include="WindowsFormsApplication2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Form.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -247,9 +254,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ajax-loader.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <PublishFile Include="MySql.Data">
       <Visible>False</Visible>
       <Group>
@@ -262,13 +266,12 @@
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LOGO.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="AtualizaçãoDiariaAgendamentos.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="Resources\FormA.png" />
+    <Content Include="Resources\logo1.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\db_transporte_sanitario\db_transporte_sanitario.csproj">

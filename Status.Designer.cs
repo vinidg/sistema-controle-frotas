@@ -75,13 +75,13 @@
             this.txtAlterador = new System.Windows.Forms.TextBox();
             this.txtHora = new System.Windows.Forms.TextBox();
             this.BtnEquipeCiente = new System.Windows.Forms.Button();
-            this.Origem = new System.Windows.Forms.Label();
-            this.Destino = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
+            this.Origem = new System.Windows.Forms.TextBox();
             this.ListadePacientes = new System.Windows.Forms.DataGridView();
             this.equipeView = new System.Windows.Forms.DataGridView();
+            this.Destino = new System.Windows.Forms.TextBox();
             this.Paineltrocar.SuspendLayout();
             this.PainelBloqueio.SuspendLayout();
             this.PainelHistorico.SuspendLayout();
@@ -95,7 +95,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 14);
+            this.label1.Location = new System.Drawing.Point(7, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1215, 55);
             this.label1.TabIndex = 0;
@@ -103,11 +103,11 @@
             // 
             // BtnAddPaciente
             // 
-            this.BtnAddPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAddPaciente.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BtnAddPaciente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAddPaciente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnAddPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddPaciente.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnAddPaciente.Location = new System.Drawing.Point(899, 338);
+            this.BtnAddPaciente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.BtnAddPaciente.Location = new System.Drawing.Point(904, 340);
             this.BtnAddPaciente.Name = "BtnAddPaciente";
             this.BtnAddPaciente.Size = new System.Drawing.Size(306, 214);
             this.BtnAddPaciente.TabIndex = 1;
@@ -118,10 +118,10 @@
             // BtnBloqueio
             // 
             this.BtnBloqueio.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnBloqueio.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BtnBloqueio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnBloqueio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBloqueio.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnBloqueio.Location = new System.Drawing.Point(899, 45);
+            this.BtnBloqueio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.BtnBloqueio.Location = new System.Drawing.Point(903, 46);
             this.BtnBloqueio.Name = "BtnBloqueio";
             this.BtnBloqueio.Size = new System.Drawing.Size(306, 214);
             this.BtnBloqueio.TabIndex = 2;
@@ -132,10 +132,10 @@
             // BtnTroca
             // 
             this.BtnTroca.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnTroca.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BtnTroca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnTroca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnTroca.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnTroca.Location = new System.Drawing.Point(46, 155);
+            this.BtnTroca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.BtnTroca.Location = new System.Drawing.Point(50, 156);
             this.BtnTroca.Name = "BtnTroca";
             this.BtnTroca.Size = new System.Drawing.Size(108, 29);
             this.BtnTroca.TabIndex = 4;
@@ -145,9 +145,9 @@
             // 
             // BtTrocar
             // 
-            this.BtTrocar.BackColor = System.Drawing.Color.Yellow;
+            this.BtTrocar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtTrocar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtTrocar.ForeColor = System.Drawing.Color.Black;
+            this.BtTrocar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(121)))), ((int)(((byte)(128)))));
             this.BtTrocar.Location = new System.Drawing.Point(14, 159);
             this.BtTrocar.Name = "BtTrocar";
             this.BtTrocar.Size = new System.Drawing.Size(358, 43);
@@ -198,13 +198,12 @@
             // 
             // Paineltrocar
             // 
-            this.Paineltrocar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Paineltrocar.Controls.Add(this.txtEquipe);
             this.Paineltrocar.Controls.Add(this.BtTrocar);
             this.Paineltrocar.Controls.Add(this.label3);
             this.Paineltrocar.Controls.Add(this.txtMoto);
             this.Paineltrocar.Controls.Add(this.label2);
-            this.Paineltrocar.Location = new System.Drawing.Point(7, 45);
+            this.Paineltrocar.Location = new System.Drawing.Point(3, 45);
             this.Paineltrocar.Name = "Paineltrocar";
             this.Paineltrocar.Size = new System.Drawing.Size(397, 217);
             this.Paineltrocar.TabIndex = 10;
@@ -212,7 +211,7 @@
             // 
             // PainelBloqueio
             // 
-            this.PainelBloqueio.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PainelBloqueio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PainelBloqueio.Controls.Add(this.CbMotivoBloqueio);
             this.PainelBloqueio.Controls.Add(this.label6);
             this.PainelBloqueio.Controls.Add(this.txtResposavel);
@@ -220,7 +219,7 @@
             this.PainelBloqueio.Controls.Add(this.label4);
             this.PainelBloqueio.Controls.Add(this.txtDtHorasBloqueio);
             this.PainelBloqueio.Controls.Add(this.label5);
-            this.PainelBloqueio.Location = new System.Drawing.Point(832, 45);
+            this.PainelBloqueio.Location = new System.Drawing.Point(837, 45);
             this.PainelBloqueio.Name = "PainelBloqueio";
             this.PainelBloqueio.Size = new System.Drawing.Size(382, 216);
             this.PainelBloqueio.TabIndex = 11;
@@ -268,9 +267,9 @@
             // 
             // BtnBloquear
             // 
-            this.BtnBloquear.BackColor = System.Drawing.Color.Yellow;
+            this.BtnBloquear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnBloquear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBloquear.ForeColor = System.Drawing.Color.Black;
+            this.BtnBloquear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(121)))), ((int)(((byte)(128)))));
             this.BtnBloquear.Location = new System.Drawing.Point(17, 158);
             this.BtnBloquear.Name = "BtnBloquear";
             this.BtnBloquear.Size = new System.Drawing.Size(358, 43);
@@ -313,13 +312,15 @@
             // 
             // BtnDesbloquear
             // 
-            this.BtnDesbloquear.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnDesbloquear.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BtnDesbloquear.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnDesbloquear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnDesbloquear.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDesbloquear.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnDesbloquear.Location = new System.Drawing.Point(383, 264);
+            this.BtnDesbloquear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.BtnDesbloquear.Location = new System.Drawing.Point(397, 264);
             this.BtnDesbloquear.Name = "BtnDesbloquear";
-            this.BtnDesbloquear.Size = new System.Drawing.Size(451, 109);
+            this.BtnDesbloquear.Size = new System.Drawing.Size(453, 111);
             this.BtnDesbloquear.TabIndex = 12;
             this.BtnDesbloquear.Text = "Desbloquear";
             this.BtnDesbloquear.UseVisualStyleBackColor = false;
@@ -328,8 +329,9 @@
             // 
             // PainelHistorico
             // 
-            this.PainelHistorico.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PainelHistorico.BackColor = System.Drawing.Color.White;
+            this.PainelHistorico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PainelHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.PainelHistorico.Controls.Add(this.painel5);
             this.PainelHistorico.Controls.Add(this.painel4);
             this.PainelHistorico.Controls.Add(this.painel3);
@@ -353,17 +355,17 @@
             this.PainelHistorico.Controls.Add(this.txtAlterador);
             this.PainelHistorico.Controls.Add(this.txtHora);
             this.PainelHistorico.Controls.Add(this.BtnEquipeCiente);
-            this.PainelHistorico.Location = new System.Drawing.Point(71, 444);
+            this.PainelHistorico.Location = new System.Drawing.Point(74, 446);
             this.PainelHistorico.Name = "PainelHistorico";
-            this.PainelHistorico.Size = new System.Drawing.Size(1064, 159);
+            this.PainelHistorico.Size = new System.Drawing.Size(1066, 159);
             this.PainelHistorico.TabIndex = 13;
             this.PainelHistorico.Visible = false;
             // 
             // painel5
             // 
             this.painel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel5.BackColor = System.Drawing.Color.White;
-            this.painel5.Location = new System.Drawing.Point(838, 4);
+            this.painel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel5.Location = new System.Drawing.Point(838, 3);
             this.painel5.Name = "painel5";
             this.painel5.Size = new System.Drawing.Size(144, 159);
             this.painel5.TabIndex = 22;
@@ -371,8 +373,8 @@
             // painel4
             // 
             this.painel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel4.BackColor = System.Drawing.Color.White;
-            this.painel4.Location = new System.Drawing.Point(689, 4);
+            this.painel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel4.Location = new System.Drawing.Point(689, 3);
             this.painel4.Name = "painel4";
             this.painel4.Size = new System.Drawing.Size(144, 159);
             this.painel4.TabIndex = 21;
@@ -380,8 +382,8 @@
             // painel3
             // 
             this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel3.BackColor = System.Drawing.Color.White;
-            this.painel3.Location = new System.Drawing.Point(539, 4);
+            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel3.Location = new System.Drawing.Point(539, 3);
             this.painel3.Name = "painel3";
             this.painel3.Size = new System.Drawing.Size(144, 159);
             this.painel3.TabIndex = 20;
@@ -389,8 +391,8 @@
             // painel2
             // 
             this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel2.BackColor = System.Drawing.Color.White;
-            this.painel2.Location = new System.Drawing.Point(391, 4);
+            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel2.Location = new System.Drawing.Point(391, 3);
             this.painel2.Name = "painel2";
             this.painel2.Size = new System.Drawing.Size(142, 159);
             this.painel2.TabIndex = 19;
@@ -398,15 +400,15 @@
             // painel1
             // 
             this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel1.BackColor = System.Drawing.Color.White;
-            this.painel1.Location = new System.Drawing.Point(242, 4);
+            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel1.Location = new System.Drawing.Point(242, 3);
             this.painel1.Name = "painel1";
             this.painel1.Size = new System.Drawing.Size(142, 159);
             this.painel1.TabIndex = 18;
             // 
             // BtnOrigem
             // 
-            this.BtnOrigem.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BtnOrigem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.BtnOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnOrigem.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.BtnOrigem.Location = new System.Drawing.Point(241, 23);
@@ -435,7 +437,7 @@
             // 
             // BtnPatio
             // 
-            this.BtnPatio.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BtnPatio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.BtnPatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPatio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.BtnPatio.Location = new System.Drawing.Point(837, 23);
@@ -464,7 +466,7 @@
             // 
             // EquipeLiberada
             // 
-            this.EquipeLiberada.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.EquipeLiberada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.EquipeLiberada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EquipeLiberada.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.EquipeLiberada.Location = new System.Drawing.Point(688, 23);
@@ -493,7 +495,7 @@
             // 
             // BtnEquipeDestino
             // 
-            this.BtnEquipeDestino.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BtnEquipeDestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.BtnEquipeDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEquipeDestino.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.BtnEquipeDestino.Location = new System.Drawing.Point(539, 23);
@@ -522,7 +524,7 @@
             // 
             // BtnSaiuOrigem
             // 
-            this.BtnSaiuOrigem.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BtnSaiuOrigem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.BtnSaiuOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaiuOrigem.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.BtnSaiuOrigem.Location = new System.Drawing.Point(390, 23);
@@ -567,7 +569,7 @@
             // 
             // BtnEquipeCiente
             // 
-            this.BtnEquipeCiente.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.BtnEquipeCiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.BtnEquipeCiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEquipeCiente.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.BtnEquipeCiente.Location = new System.Drawing.Point(93, 21);
@@ -578,41 +580,15 @@
             this.BtnEquipeCiente.UseVisualStyleBackColor = false;
             this.BtnEquipeCiente.Click += new System.EventHandler(this.BtnEquipeCiente_Click);
             // 
-            // Origem
-            // 
-            this.Origem.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Origem.BackColor = System.Drawing.Color.Transparent;
-            this.Origem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Origem.ForeColor = System.Drawing.Color.White;
-            this.Origem.Location = new System.Drawing.Point(61, 397);
-            this.Origem.Name = "Origem";
-            this.Origem.Size = new System.Drawing.Size(477, 37);
-            this.Origem.TabIndex = 14;
-            this.Origem.Text = "Origem";
-            this.Origem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Destino
-            // 
-            this.Destino.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Destino.BackColor = System.Drawing.Color.Transparent;
-            this.Destino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Destino.ForeColor = System.Drawing.Color.White;
-            this.Destino.Location = new System.Drawing.Point(650, 397);
-            this.Destino.Name = "Destino";
-            this.Destino.Size = new System.Drawing.Size(493, 37);
-            this.Destino.TabIndex = 16;
-            this.Destino.Text = "Destino";
-            this.Destino.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(431, 397);
+            this.label8.Location = new System.Drawing.Point(378, 398);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(354, 37);
+            this.label8.Size = new System.Drawing.Size(453, 37);
             this.label8.TabIndex = 17;
             this.label8.Text = "Para";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -622,7 +598,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(1104, 14);
+            this.label7.Location = new System.Drawing.Point(1108, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 55);
             this.label7.TabIndex = 18;
@@ -631,33 +607,46 @@
             // painelCentral
             // 
             this.painelCentral.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.painelCentral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painelCentral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.painelCentral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.painelCentral.Controls.Add(this.Origem);
             this.painelCentral.Controls.Add(this.ListadePacientes);
             this.painelCentral.Controls.Add(this.PainelHistorico);
             this.painelCentral.Controls.Add(this.PainelBloqueio);
             this.painelCentral.Controls.Add(this.Paineltrocar);
             this.painelCentral.Controls.Add(this.BtnDesbloquear);
-            this.painelCentral.Controls.Add(this.label8);
             this.painelCentral.Controls.Add(this.BtnTroca);
             this.painelCentral.Controls.Add(this.BtnBloqueio);
             this.painelCentral.Controls.Add(this.label1);
-            this.painelCentral.Controls.Add(this.Origem);
             this.painelCentral.Controls.Add(this.label7);
             this.painelCentral.Controls.Add(this.BtnAddPaciente);
-            this.painelCentral.Controls.Add(this.Destino);
             this.painelCentral.Controls.Add(this.equipeView);
+            this.painelCentral.Controls.Add(this.Destino);
+            this.painelCentral.Controls.Add(this.label8);
             this.painelCentral.Location = new System.Drawing.Point(12, 12);
             this.painelCentral.Name = "painelCentral";
-            this.painelCentral.Size = new System.Drawing.Size(1223, 610);
+            this.painelCentral.Size = new System.Drawing.Size(1229, 610);
             this.painelCentral.TabIndex = 20;
+            // 
+            // Origem
+            // 
+            this.Origem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Origem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Origem.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Origem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Origem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Origem.Location = new System.Drawing.Point(71, 408);
+            this.Origem.Name = "Origem";
+            this.Origem.ReadOnly = true;
+            this.Origem.Size = new System.Drawing.Size(490, 19);
+            this.Origem.TabIndex = 12;
+            this.Origem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ListadePacientes
             // 
             this.ListadePacientes.AllowUserToAddRows = false;
             this.ListadePacientes.AllowUserToDeleteRows = false;
             this.ListadePacientes.AllowUserToResizeRows = false;
-            this.ListadePacientes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ListadePacientes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ListadePacientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ListadePacientes.BackgroundColor = System.Drawing.Color.DarkRed;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -677,7 +666,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.ListadePacientes.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ListadePacientes.Location = new System.Drawing.Point(410, 69);
+            this.ListadePacientes.Location = new System.Drawing.Point(414, 69);
             this.ListadePacientes.MultiSelect = false;
             this.ListadePacientes.Name = "ListadePacientes";
             this.ListadePacientes.ReadOnly = true;
@@ -710,6 +699,20 @@
             this.equipeView.Size = new System.Drawing.Size(289, 80);
             this.equipeView.TabIndex = 20;
             // 
+            // Destino
+            // 
+            this.Destino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Destino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Destino.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Destino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Destino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Destino.Location = new System.Drawing.Point(647, 408);
+            this.Destino.Name = "Destino";
+            this.Destino.ReadOnly = true;
+            this.Destino.Size = new System.Drawing.Size(490, 19);
+            this.Destino.TabIndex = 22;
+            this.Destino.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Status
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,6 +732,7 @@
             this.PainelHistorico.ResumeLayout(false);
             this.PainelHistorico.PerformLayout();
             this.painelCentral.ResumeLayout(false);
+            this.painelCentral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.equipeView)).EndInit();
             this.ResumeLayout(false);
@@ -775,8 +779,6 @@
         private System.Windows.Forms.TextBox txtAlterador;
         private System.Windows.Forms.TextBox txtHora;
         private System.Windows.Forms.Button BtnEquipeCiente;
-        private System.Windows.Forms.Label Origem;
-        private System.Windows.Forms.Label Destino;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel painel5;
@@ -787,5 +789,7 @@
         private System.Windows.Forms.Panel painelCentral;
         private System.Windows.Forms.DataGridView equipeView;
         private System.Windows.Forms.DataGridView ListadePacientes;
+        public System.Windows.Forms.TextBox Destino;
+        public System.Windows.Forms.TextBox Origem;
     }
 }
