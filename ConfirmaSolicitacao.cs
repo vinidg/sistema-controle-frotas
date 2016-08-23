@@ -17,7 +17,6 @@ namespace WindowsFormsApplication2
     {
         string TipoAM = null;
         string Agendamento = null;
-        DateTime now = DateTime.Now;
         string pegaUnidade;     //para pegar o telefone com o nome da unidade
         string pegaUnidadeEnd;  //para pegar o endereco com o nome da unidade
         string Sexo, pegamotivo;
@@ -25,7 +24,7 @@ namespace WindowsFormsApplication2
         public ConfirmaSolicitacao()
         {
             InitializeComponent();
-            txtAtendMarcado.Text = now.ToString();
+            txtAtendMarcado.Text = DateTime.Now.ToShortDateString();
             StartPosition = FormStartPosition.CenterScreen;
             Endereco();
             label3.Visible = false;
@@ -204,6 +203,7 @@ namespace WindowsFormsApplication2
             else
             {
                 RegistrarSolicitacao();
+                Limpar();
             }
 
         }
@@ -221,10 +221,10 @@ namespace WindowsFormsApplication2
 
             try
             {
-                IB.inserirSolicitacaoDoPaciente(TipoAM, now.ToString(), Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
+                IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
                 this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
-                0, System.Environment.UserName, now);
+                0, System.Environment.UserName, DateTime.Now);
 
             }
             catch (Exception ex)
@@ -266,13 +266,13 @@ namespace WindowsFormsApplication2
         {
             using(DAHUEEntities db = new DAHUEEntities())
             {
-                CbLocalSolicita.DataSource = db.enderecos.ToList();
+                CbLocalSolicita.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
                 CbLocalSolicita.ValueMember = "NomeUnidade";
                 CbLocalSolicita.DisplayMember = "NomeUnidade";
-                CbDestino.DataSource = db.enderecos.ToList();
+                CbDestino.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
                 CbDestino.ValueMember = "NomeUnidade";
                 CbDestino.DisplayMember = "NomeUnidade";
-                CbOrigem.DataSource = db.enderecos.ToList();
+                CbOrigem.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
                 CbOrigem.ValueMember = "NomeUnidade";
                 CbOrigem.DisplayMember = "NomeUnidade";
             }
@@ -471,6 +471,16 @@ namespace WindowsFormsApplication2
 
                               txtIdade.Text = autoCompletarDadosPaciente.Idade;
                        }*/
+        }
+
+        private void txtIdade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
     }

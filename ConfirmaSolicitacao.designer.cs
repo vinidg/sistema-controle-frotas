@@ -33,6 +33,8 @@
             this.BtnBasica = new System.Windows.Forms.Button();
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Prioridade = new System.Windows.Forms.ComboBox();
             this.txtAtendMarcado = new System.Windows.Forms.MaskedTextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.BtnLimpar = new System.Windows.Forms.Button();
@@ -72,8 +74,6 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.Prioridade = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,6 +171,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1032, 570);
             this.panel1.TabIndex = 3;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(41, 441);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 16);
+            this.label21.TabIndex = 45;
+            this.label21.Text = "Prioridade:";
+            // 
+            // Prioridade
+            // 
+            this.Prioridade.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Prioridade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Prioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Prioridade.FormattingEnabled = true;
+            this.Prioridade.Items.AddRange(new object[] {
+            "P0 PRIORIDADE ABSOLUTA RESOLVER EM IMEDIATO",
+            "P1 PRIORIDADE ALTA RESOLVER EM 2 HORAS",
+            "P2 PRIORIDADE MODERADA RESOLVER EM 12 HORAS",
+            "P3 PRIORIDADE BAIXA RESOLVER EM 24 HORAS"});
+            this.Prioridade.Location = new System.Drawing.Point(41, 460);
+            this.Prioridade.Name = "Prioridade";
+            this.Prioridade.Size = new System.Drawing.Size(243, 23);
+            this.Prioridade.TabIndex = 44;
             // 
             // txtAtendMarcado
             // 
@@ -420,6 +447,7 @@
             this.txtIdade.Name = "txtIdade";
             this.txtIdade.Size = new System.Drawing.Size(61, 20);
             this.txtIdade.TabIndex = 22;
+            this.txtIdade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdade_KeyPress);
             // 
             // label11
             // 
@@ -508,6 +536,7 @@
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(127, 20);
             this.txtTelefone.TabIndex = 14;
+            this.txtTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefone_KeyPress);
             // 
             // label7
             // 
@@ -621,33 +650,6 @@
             this.label2.Size = new System.Drawing.Size(376, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
-            // 
-            // label21
-            // 
-            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(38, 441);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(74, 16);
-            this.label21.TabIndex = 45;
-            this.label21.Text = "Prioridade:";
-            // 
-            // Prioridade
-            // 
-            this.Prioridade.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Prioridade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Prioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Prioridade.FormattingEnabled = true;
-            this.Prioridade.Items.AddRange(new object[] {
-            "P0_PRIORIDADE_ABSOLUTA_RESOLVER_EM_IMEDIATO",
-            "P1_PRIORIDADE_ALTA_RESOLVER_EM_2_HORAS",
-            "P2_PRIORIDADE_MODERADA_RESOLVER_EM_12_HORAS",
-            "P3_PRIORIDADE_BAIXA_RESOLVER_EM_24_HORAS"});
-            this.Prioridade.Location = new System.Drawing.Point(41, 460);
-            this.Prioridade.Name = "Prioridade";
-            this.Prioridade.Size = new System.Drawing.Size(243, 23);
-            this.Prioridade.TabIndex = 44;
             // 
             // ConfirmaSolicitacao
             // 

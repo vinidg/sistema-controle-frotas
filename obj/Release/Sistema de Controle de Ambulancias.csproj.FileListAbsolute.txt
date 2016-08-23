@@ -100,7 +100,6 @@ D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Sistema de C
 D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\db_transporte_sanitario.dll
 D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\EntityFramework.dll
 D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\EntityFramework.SqlServer.dll
-D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Sistema de Controle de Ambulancias.exe.config
 D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Sistema de Controle de Ambulancias.pdb
 D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Microsoft.ReportViewer.Common.dll
 D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Microsoft.ReportViewer.DataVisualization.dll
@@ -125,3 +124,4 @@ D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\RdlCompile.c
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.exe
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.pdb
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.EditarAmbulancias.resources
+D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Release\Sistema de Controle de Ambulancias.exe.config

@@ -93,44 +93,31 @@ namespace WindowsFormsApplication2
           
             using (DAHUEEntities db = new DAHUEEntities())
                 {
-                    var query= from sp in db.solicitacoes_paciente
+                    var query= (from sp in db.solicitacoes_paciente
                                where sp.AmSolicitada == zero && sp.Agendamento == "Nao"
-                               select sp.idPaciente_Solicitacoes;
+                               select sp.idPaciente_Solicitacoes).Count();
 
-                    var countQuery = query.Count();
-                    txtSolicitacoes.Text = countQuery.ToString();
+                    txtSolicitacoes.Text = query.ToString();
                 }
 
         }
 
         private void countparaSolAgendadas()
         {
-            DateTime Data = DateTime.Now;
-            int i = 0;
             int zero = 0;
-            int contagem = 0;
-            string dataHoje = Data.ToString("dd/MM/yyyy");
 
             //CONTA AS solicitacoes agendadas
-            using(DAHUEEntities db = new DAHUEEntities()){
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
 
-                var query = from solicitacoes_paciente in db.solicitacoes_paciente
-                            where solicitacoes_paciente.Agendamento == "Sim" && 
-                            solicitacoes_paciente.AmSolicitada == zero
-                            select solicitacoes_paciente.DtHrAgendamento ;
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.Agendamento == "Sim" &&
+                             sp.AmSolicitada == zero &&
+                             sp.Registrado == "Sim"
+                             select sp.idPaciente_Solicitacoes).Count();
 
-                var queryPaciente = query.ToList();
-                foreach(var item in queryPaciente)
-                {
-                    string data = item.Substring(0, 10);
-                    if (data == dataHoje)
-                    {
-                        contagem++;
-                    }
-                  i++;
-                }
+                txtAgendadasHoje.Text = query.ToString();
             }
-                txtAgendadasHoje.Text = contagem.ToString();    
         }
 
         private void timer1_Tick(object sender, EventArgs e)

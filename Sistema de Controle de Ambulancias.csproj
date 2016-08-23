@@ -125,7 +125,6 @@
     <Compile Include="Atualizacao.Designer.cs">
       <DependentUpon>Atualizacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConexaoSqlServer.cs" />
     <Compile Include="Consulta.cs">
       <SubType>Form</SubType>
     </Compile>
