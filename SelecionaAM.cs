@@ -17,7 +17,7 @@ using System.Drawing.Imaging;
 using System.Data.SqlClient;
 using db_transporte_sanitario;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class SelecionaAM : Form
     {

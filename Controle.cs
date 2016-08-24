@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using Solicitacao_de_Ambulancias;
+using Sistema_Controle;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using System.Xml;
 using System.Xml.Linq;
 using db_transporte_sanitario;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class CONTROLE : Form
     {
@@ -26,23 +26,14 @@ namespace WindowsFormsApplication2
             pegarDadosDasAmbulancias();
             countparaSol();
             countparaSolAgendadas();
+            countparaSolAgendadasPendentes();
             Re.Text = System.Environment.UserName;
             timerAtualiza(0);
-            update();
 
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-        public void update()
-        {
-            Update updatando = new Update();
-            updatando.up();
-            if (updatando.Yn == true)
-            {
-                Environment.Exit(1);
-            }
-        }
 
         public void timerAtualiza(int foi)
         {
@@ -86,6 +77,7 @@ namespace WindowsFormsApplication2
         {
             countparaSol();
             countparaSolAgendadas();
+            countparaSolAgendadasPendentes();
         }
         private void countparaSol()
         {
@@ -120,10 +112,27 @@ namespace WindowsFormsApplication2
             }
         }
 
+        private void countparaSolAgendadasPendentes()
+        {
+            int zero = 0;
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.AmSolicitada == zero && sp.Agendamento == "Sim"
+                             && sp.Registrado != "Sim"
+                             select sp.idPaciente_Solicitacoes).Count();
+
+                txtAgendasPendentes.Text = query.ToString();
+            }
+
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             pegarDadosDasAmbulancias();
             countparaSol();
+            countparaSolAgendadasPendentes();
             atualizadorParaNotificador();
 
         }
@@ -328,6 +337,14 @@ namespace WindowsFormsApplication2
             EditarAmbulancias ea = new EditarAmbulancias();
             ea.ShowDialog();
         
+        }
+
+        private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtAgendasPendentes.Focus())
+            {
+                label1.Focus();
+            }
         }
 
     }

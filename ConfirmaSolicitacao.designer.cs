@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace Sistema_Controle
 {
     partial class ConfirmaSolicitacao
     {
@@ -35,7 +35,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
             this.Prioridade = new System.Windows.Forms.ComboBox();
-            this.txtAtendMarcado = new System.Windows.Forms.MaskedTextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.BtnLimpar = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -74,6 +73,7 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,9 +123,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.dataAgendamento);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.Prioridade);
-            this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.BtnSalvar);
             this.panel1.Controls.Add(this.BtnLimpar);
             this.panel1.Controls.Add(this.richTextBox1);
@@ -198,15 +198,6 @@
             this.Prioridade.Name = "Prioridade";
             this.Prioridade.Size = new System.Drawing.Size(243, 23);
             this.Prioridade.TabIndex = 44;
-            // 
-            // txtAtendMarcado
-            // 
-            this.txtAtendMarcado.Location = new System.Drawing.Point(297, 119);
-            this.txtAtendMarcado.Mask = "00/00/0000 90:00";
-            this.txtAtendMarcado.Name = "txtAtendMarcado";
-            this.txtAtendMarcado.Size = new System.Drawing.Size(178, 20);
-            this.txtAtendMarcado.TabIndex = 43;
-            this.txtAtendMarcado.ValidatingType = typeof(System.DateTime);
             // 
             // BtnSalvar
             // 
@@ -651,6 +642,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
+            // dataAgendamento
+            // 
+            this.dataAgendamento.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dataAgendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dataAgendamento.Location = new System.Drawing.Point(297, 120);
+            this.dataAgendamento.Name = "dataAgendamento";
+            this.dataAgendamento.Size = new System.Drawing.Size(200, 20);
+            this.dataAgendamento.TabIndex = 46;
+            // 
             // ConfirmaSolicitacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -716,8 +716,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button BtnSalvar;
         private System.Windows.Forms.Button BtnLimpar;
-        private System.Windows.Forms.MaskedTextBox txtAtendMarcado;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox Prioridade;
+        private System.Windows.Forms.DateTimePicker dataAgendamento;
     }
 }

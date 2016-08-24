@@ -14,7 +14,7 @@ using System.Xml;
 using System.Xml.Linq;
 using db_transporte_sanitario;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class Solicitacoes : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace Sistema_Controle
 {
     partial class Consulta
     {

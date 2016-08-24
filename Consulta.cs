@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using db_transporte_sanitario;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class Consulta : Form
     {

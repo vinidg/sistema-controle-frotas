@@ -7,7 +7,7 @@
     <ProjectGuid>{45FBE987-88E3-4200-BC38-492CC87E06B9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication2</RootNamespace>
+    <RootNamespace>Sistema_Controle</RootNamespace>
     <AssemblyName>Sistema de Controle de Ambulancias</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -157,6 +157,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RespostaDeAmbulancias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RespostaDeAmbulancias.Designer.cs">
+      <DependentUpon>RespostaDeAmbulancias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Solicitacoes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="RespostaDeAmbulancias.resx">
+      <DependentUpon>RespostaDeAmbulancias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Solicitacoes.resx">
       <DependentUpon>Solicitacoes.cs</DependentUpon>
     </EmbeddedResource>

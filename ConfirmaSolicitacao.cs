@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using db_transporte_sanitario;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class ConfirmaSolicitacao : Form
     {
@@ -24,11 +24,10 @@ namespace WindowsFormsApplication2
         public ConfirmaSolicitacao()
         {
             InitializeComponent();
-            txtAtendMarcado.Text = DateTime.Now.ToShortDateString();
             StartPosition = FormStartPosition.CenterScreen;
             Endereco();
             label3.Visible = false;
-            txtAtendMarcado.Visible = false;
+            dataAgendamento.Visible = false;
             Limpar();
             AutoCompletar();
         }
@@ -77,7 +76,6 @@ namespace WindowsFormsApplication2
         public void Limpar()
         {
 
-            txtAtendMarcado.Text = "";
             txtNomeSolicitante.Text = "";
             CbLocalSolicita.Text = "";
             txtTelefone.Text = "";
@@ -100,7 +98,7 @@ namespace WindowsFormsApplication2
         private void Btnagendanao_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
-            txtAtendMarcado.Visible = false;
+            dataAgendamento.Visible = false;
             label4.Visible = true;
             label5.Visible = true;
             txtNomeSolicitante.Visible = true;
@@ -127,9 +125,8 @@ namespace WindowsFormsApplication2
         private void Btnagendasim_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
-            txtAtendMarcado.Visible = true;
-            txtAtendMarcado.Focus();
-            txtAtendMarcado.Text = DateTime.Now.ToString();
+            dataAgendamento.Visible = true;
+            dataAgendamento.Focus();
             Agendamento = "Sim";
 
             if (Btnagendanao.BackColor == Color.PaleTurquoise)
@@ -213,15 +210,11 @@ namespace WindowsFormsApplication2
         {
             InsercoesDoBanco IB = new InsercoesDoBanco();
 
-            if (Agendamento == "Nao")
-            {
-                txtAtendMarcado.Text = " ";
-            }
             VerificarPontos(this);
 
             try
             {
-                IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.txtAtendMarcado.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
+                IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.dataAgendamento.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
                 this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
                 0, System.Environment.UserName, DateTime.Now);
@@ -231,11 +224,6 @@ namespace WindowsFormsApplication2
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-            finally
-            {
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                this.Dispose();
             }
 
         }

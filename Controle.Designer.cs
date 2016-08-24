@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace Sistema_Controle
 {
     partial class CONTROLE
     {
@@ -43,6 +43,9 @@
             this.txtSolicitacoes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtAgendasPendentes = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.Editar = new System.Windows.Forms.Button();
             this.Consultar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,7 +60,6 @@
             this.notificador = new System.Windows.Forms.NotifyIcon(this.components);
             this.avisandoAoControle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaUsb)).BeginInit();
@@ -72,7 +74,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(72, 9);
+            this.label1.Location = new System.Drawing.Point(99, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1148, 33);
             this.label1.TabIndex = 1;
@@ -86,7 +88,7 @@
             this.BtnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
             this.BtnNew.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNew.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnNew.Location = new System.Drawing.Point(1110, 25);
+            this.BtnNew.Location = new System.Drawing.Point(1164, 52);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(144, 46);
             this.BtnNew.TabIndex = 18;
@@ -97,7 +99,7 @@
             // txtSolicitacoes
             // 
             this.txtSolicitacoes.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSolicitacoes.Location = new System.Drawing.Point(276, 38);
+            this.txtSolicitacoes.Location = new System.Drawing.Point(319, 8);
             this.txtSolicitacoes.Name = "txtSolicitacoes";
             this.txtSolicitacoes.Size = new System.Drawing.Size(77, 25);
             this.txtSolicitacoes.TabIndex = 19;
@@ -110,7 +112,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.label2.Location = new System.Drawing.Point(50, 42);
+            this.label2.Location = new System.Drawing.Point(93, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(220, 18);
             this.label2.TabIndex = 20;
@@ -125,6 +127,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.txtAgendasPendentes);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Editar);
             this.panel1.Controls.Add(this.Consultar);
@@ -137,8 +141,41 @@
             this.panel1.Controls.Add(this.BtnNew);
             this.panel1.Location = new System.Drawing.Point(12, 147);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1268, 620);
+            this.panel1.Size = new System.Drawing.Size(1322, 620);
             this.panel1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(62)))), ((int)(((byte)(54)))));
+            this.label4.Location = new System.Drawing.Point(836, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(315, 18);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "SOLICITAÇÕES AGENDADAS PENDENTES:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtAgendasPendentes
+            // 
+            this.txtAgendasPendentes.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAgendasPendentes.Location = new System.Drawing.Point(1157, 8);
+            this.txtAgendasPendentes.Name = "txtAgendasPendentes";
+            this.txtAgendasPendentes.Size = new System.Drawing.Size(77, 25);
+            this.txtAgendasPendentes.TabIndex = 32;
+            this.txtAgendasPendentes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAgendasPendentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAgendasPendentes_KeyDown);
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(0, 595);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(1320, 23);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "© 2016 - Departamento de Atenção Hospitalar de Urgência e Emergência";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Editar
             // 
@@ -146,7 +183,7 @@
             this.Editar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.Editar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Editar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Editar.Location = new System.Drawing.Point(810, 26);
+            this.Editar.Location = new System.Drawing.Point(864, 52);
             this.Editar.Name = "Editar";
             this.Editar.Size = new System.Drawing.Size(144, 46);
             this.Editar.TabIndex = 30;
@@ -161,7 +198,7 @@
             this.Consultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Consultar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Consultar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Consultar.Location = new System.Drawing.Point(960, 25);
+            this.Consultar.Location = new System.Drawing.Point(1014, 52);
             this.Consultar.Name = "Consultar";
             this.Consultar.Size = new System.Drawing.Size(144, 46);
             this.Consultar.TabIndex = 29;
@@ -173,8 +210,8 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.label6.Location = new System.Drawing.Point(410, 41);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label6.Location = new System.Drawing.Point(460, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(263, 18);
             this.label6.TabIndex = 28;
@@ -184,7 +221,7 @@
             // txtAgendadasHoje
             // 
             this.txtAgendadasHoje.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendadasHoje.Location = new System.Drawing.Point(679, 38);
+            this.txtAgendadasHoje.Location = new System.Drawing.Point(729, 8);
             this.txtAgendadasHoje.Name = "txtAgendadasHoje";
             this.txtAgendadasHoje.Size = new System.Drawing.Size(77, 25);
             this.txtAgendadasHoje.TabIndex = 27;
@@ -200,9 +237,9 @@
             this.groupBox2.Controls.Add(this.listaUsb);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.groupBox2.Location = new System.Drawing.Point(47, 221);
+            this.groupBox2.Location = new System.Drawing.Point(47, 246);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1159, 345);
+            this.groupBox2.Size = new System.Drawing.Size(1213, 345);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "USB";
@@ -251,7 +288,7 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.listaUsb.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaUsb.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaUsb.Size = new System.Drawing.Size(1147, 314);
+            this.listaUsb.Size = new System.Drawing.Size(1201, 314);
             this.listaUsb.TabIndex = 30;
             this.listaUsb.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsb_CellDoubleClick);
             this.listaUsb.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
@@ -264,9 +301,9 @@
             this.groupBox1.Controls.Add(this.listaUsa);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.groupBox1.Location = new System.Drawing.Point(47, 72);
+            this.groupBox1.Location = new System.Drawing.Point(47, 97);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1159, 143);
+            this.groupBox1.Size = new System.Drawing.Size(1213, 143);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "USA";
@@ -315,7 +352,7 @@
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
             this.listaUsa.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.listaUsa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaUsa.Size = new System.Drawing.Size(1147, 107);
+            this.listaUsa.Size = new System.Drawing.Size(1201, 107);
             this.listaUsa.TabIndex = 31;
             this.listaUsa.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaUsa_CellFormatting);
             this.listaUsa.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.listaUsa_CellMouseDoubleClick);
@@ -326,7 +363,7 @@
             this.Re.AutoSize = true;
             this.Re.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Re.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Re.Location = new System.Drawing.Point(1175, 9);
+            this.Re.Location = new System.Drawing.Point(1229, 9);
             this.Re.Name = "Re";
             this.Re.Size = new System.Drawing.Size(29, 16);
             this.Re.TabIndex = 23;
@@ -354,7 +391,7 @@
             this.avisandoAoControle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.avisandoAoControle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.avisandoAoControle.ForeColor = System.Drawing.Color.Red;
-            this.avisandoAoControle.Location = new System.Drawing.Point(12, 90);
+            this.avisandoAoControle.Location = new System.Drawing.Point(66, 90);
             this.avisandoAoControle.Name = "avisandoAoControle";
             this.avisandoAoControle.Size = new System.Drawing.Size(1268, 16);
             this.avisandoAoControle.TabIndex = 27;
@@ -371,23 +408,12 @@
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 595);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1266, 23);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "© 2016 - Departamento de Atenção Hospitalar de Urgência e Emergência";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // CONTROLE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
-            this.ClientSize = new System.Drawing.Size(1292, 788);
+            this.ClientSize = new System.Drawing.Size(1346, 788);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Re);
@@ -432,6 +458,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView listaUsb;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtAgendasPendentes;
     }
 }
 

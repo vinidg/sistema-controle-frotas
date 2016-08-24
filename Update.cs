@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Solicitacao_de_Ambulancias
+namespace Sistema_Controle
 {
    class Update
     {
