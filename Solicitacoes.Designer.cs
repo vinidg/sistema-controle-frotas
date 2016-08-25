@@ -209,12 +209,13 @@
             this.OrdemPrioridade.AutoSize = true;
             this.OrdemPrioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPrioridade.Location = new System.Drawing.Point(304, 21);
+            this.OrdemPrioridade.Location = new System.Drawing.Point(353, 21);
             this.OrdemPrioridade.Name = "OrdemPrioridade";
             this.OrdemPrioridade.Size = new System.Drawing.Size(98, 24);
             this.OrdemPrioridade.TabIndex = 34;
             this.OrdemPrioridade.TabStop = true;
             this.OrdemPrioridade.Text = "Prioridade";
+            this.OrdemPrioridade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemPrioridade.UseVisualStyleBackColor = true;
             this.OrdemPrioridade.Click += new System.EventHandler(this.OrdemPrioridade_Click);
             // 
@@ -238,12 +239,13 @@
             this.OrdemPaciente.AutoSize = true;
             this.OrdemPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPaciente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPaciente.Location = new System.Drawing.Point(672, 21);
+            this.OrdemPaciente.Location = new System.Drawing.Point(721, 21);
             this.OrdemPaciente.Name = "OrdemPaciente";
             this.OrdemPaciente.Size = new System.Drawing.Size(157, 24);
             this.OrdemPaciente.TabIndex = 36;
             this.OrdemPaciente.TabStop = true;
             this.OrdemPaciente.Text = "Nome do Paciente";
+            this.OrdemPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemPaciente.UseVisualStyleBackColor = true;
             this.OrdemPaciente.Click += new System.EventHandler(this.OrdemPaciente_Click);
             // 
@@ -253,12 +255,13 @@
             this.OrdemData.AutoSize = true;
             this.OrdemData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemData.Location = new System.Drawing.Point(483, 21);
+            this.OrdemData.Location = new System.Drawing.Point(532, 21);
             this.OrdemData.Name = "OrdemData";
             this.OrdemData.Size = new System.Drawing.Size(150, 24);
             this.OrdemData.TabIndex = 35;
             this.OrdemData.TabStop = true;
             this.OrdemData.Text = "Data de Abertura";
+            this.OrdemData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemData.UseVisualStyleBackColor = true;
             this.OrdemData.Click += new System.EventHandler(this.OrdemData_Click);
             // 
@@ -284,12 +287,13 @@
             this.OrdemNomeAgenda.AutoSize = true;
             this.OrdemNomeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemNomeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemNomeAgenda.Location = new System.Drawing.Point(672, 21);
+            this.OrdemNomeAgenda.Location = new System.Drawing.Point(721, 21);
             this.OrdemNomeAgenda.Name = "OrdemNomeAgenda";
             this.OrdemNomeAgenda.Size = new System.Drawing.Size(157, 24);
             this.OrdemNomeAgenda.TabIndex = 36;
             this.OrdemNomeAgenda.TabStop = true;
             this.OrdemNomeAgenda.Text = "Nome do Paciente";
+            this.OrdemNomeAgenda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemNomeAgenda.UseVisualStyleBackColor = true;
             this.OrdemNomeAgenda.Click += new System.EventHandler(this.OrdemNomeAgenda_Click);
             // 
@@ -301,12 +305,13 @@
             this.OrdemDataAgenda.AutoSize = true;
             this.OrdemDataAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemDataAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemDataAgenda.Location = new System.Drawing.Point(483, 21);
+            this.OrdemDataAgenda.Location = new System.Drawing.Point(532, 21);
             this.OrdemDataAgenda.Name = "OrdemDataAgenda";
             this.OrdemDataAgenda.Size = new System.Drawing.Size(150, 24);
             this.OrdemDataAgenda.TabIndex = 35;
             this.OrdemDataAgenda.TabStop = true;
             this.OrdemDataAgenda.Text = "Data de Abertura";
+            this.OrdemDataAgenda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemDataAgenda.UseVisualStyleBackColor = true;
             this.OrdemDataAgenda.Click += new System.EventHandler(this.OrdemDataAgenda_Click);
             // 
@@ -318,12 +323,13 @@
             this.OrdemPrioridadeAgenda.AutoSize = true;
             this.OrdemPrioridadeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridadeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(304, 21);
+            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(353, 21);
             this.OrdemPrioridadeAgenda.Name = "OrdemPrioridadeAgenda";
             this.OrdemPrioridadeAgenda.Size = new System.Drawing.Size(98, 24);
             this.OrdemPrioridadeAgenda.TabIndex = 34;
             this.OrdemPrioridadeAgenda.TabStop = true;
             this.OrdemPrioridadeAgenda.Text = "Prioridade";
+            this.OrdemPrioridadeAgenda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemPrioridadeAgenda.UseVisualStyleBackColor = true;
             this.OrdemPrioridadeAgenda.Click += new System.EventHandler(this.OrdemPrioridadeAgenda_Click);
             // 

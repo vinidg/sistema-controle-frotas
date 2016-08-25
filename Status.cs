@@ -60,7 +60,7 @@ namespace Sistema_Controle
             InsercoesDoBanco ib = new InsercoesDoBanco();
             DateTime now = DateTime.Now;
 
-            ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now.ToString(), codigoDaAmbulancia);
+            ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now, codigoDaAmbulancia);
 
             MessageBox.Show("Equipe trocada !");
 

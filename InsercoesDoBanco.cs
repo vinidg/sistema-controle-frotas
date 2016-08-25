@@ -64,7 +64,7 @@ namespace Sistema_Controle
             MessageBox.Show("Solicitação salva com sucesso !!!");
         }
 
-        public void inserirEquipeNaAmbulancia(string condutor, string enfermeiros, string dtEscala, int idAM)
+        public void inserirEquipeNaAmbulancia(string condutor, string enfermeiros, DateTime dtEscala, int idAM)
         {
             using(DAHUEEntities db = new DAHUEEntities()){
                 equipe equ = new equipe();

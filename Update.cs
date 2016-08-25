@@ -83,6 +83,8 @@ namespace Sistema_Controle
             if (appverion.CompareTo(newVersion) < 0)
             {
                 avisar = true;
+                yn = true;
+                Process.Start(donwloadurl);
             }
             else
             {

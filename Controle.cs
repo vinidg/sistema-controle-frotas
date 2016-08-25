@@ -145,7 +145,7 @@ namespace Sistema_Controle
             {
                 avisandoAoControle.Visible = true;
                 avisandoAoControle.Text = "Nova atualização no sistema de Controle de Ambulancias. Reinicie o sistema !!!";
-
+                Atualizar.Visible = false;
             }
         }
 
@@ -341,6 +341,34 @@ namespace Sistema_Controle
 
         private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
         {
+            if (txtAgendasPendentes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Update updatando = new Update();
+            updatando.up();
+            if (updatando.Yn == true)
+            {
+                Environment.Exit(1);
+            }
+        }
+
+        private void txtAgendasPendentes_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAgendasPendentes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+
+        private void txtAgendasPendentes_Click(object sender, EventArgs e)
+        {
+            RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
+            ra.ShowDialog();
             if (txtAgendasPendentes.Focus())
             {
                 label1.Focus();
