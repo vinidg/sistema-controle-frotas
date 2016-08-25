@@ -281,6 +281,7 @@
             // CbDestino
             // 
             this.CbDestino.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.CbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbDestino.FormattingEnabled = true;
             this.CbDestino.Location = new System.Drawing.Point(605, 200);
@@ -303,6 +304,7 @@
             // CbOrigem
             // 
             this.CbOrigem.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.CbOrigem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbOrigem.FormattingEnabled = true;
             this.CbOrigem.Location = new System.Drawing.Point(605, 152);

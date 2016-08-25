@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using Solicitacao_de_Ambulancias;
+using WindowsFormsApplication2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,19 +29,10 @@ namespace WindowsFormsApplication2
             countparaSolAgendadas();
             Re.Text = System.Environment.UserName;
             timerAtualiza(0);
-            update();
+
             this.Text = "Sistema de Controle de Ambulancias. Versão: " + appverion;
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-        public void update()
-        {
-            Update updatando = new Update();
-            updatando.up();
-            if (updatando.Yn == true)
-            {
-                Environment.Exit(1);
-            }
-        }
 
         public void timerAtualiza(int foi)
         {

@@ -34,11 +34,6 @@ namespace WindowsFormsApplication2
             AutoCompletar();
         }
 
-        private void NovaSolicitacao_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnBasica_Click(object sender, EventArgs e)
         {
             label2.Visible = true;
