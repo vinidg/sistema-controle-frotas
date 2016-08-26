@@ -91,41 +91,6 @@ namespace Sistema_Controle
             }
         }
 
-        public void editarDadosDaSolicitacaoPaciente(int id, string TipoSolicitacao, DateTime DtHrdoInicio, string Agendamento, string DtHrAgendamento,
-            string NomeSolicitante, string LocalSolicitacao, string Telefone, string Paciente, string Genero, string Idade, string Diagnostico,
-            string Motivo, string SubMotivo, string Prioridade, string Origem, string EnderecoOrigem, string Destino, string EnderecoDestino,
-            string ObsGerais, int AmSolicitada)
-        {
-           using(DAHUEEntities dahue = new DAHUEEntities()){
-    
-            solicitacoes_paciente solicitacoesPaciente = dahue.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == id);
-
-            solicitacoesPaciente.TipoSolicitacao = TipoSolicitacao;
-            solicitacoesPaciente.DtHrdoInicio = DtHrdoInicio;
-            solicitacoesPaciente.Agendamento = Agendamento;
-            solicitacoesPaciente.DtHrAgendamento = DtHrAgendamento;
-            solicitacoesPaciente.NomeSolicitante = NomeSolicitante;
-            solicitacoesPaciente.LocalSolicitacao = LocalSolicitacao;
-            solicitacoesPaciente.Telefone = Telefone;
-            solicitacoesPaciente.Paciente = Paciente;
-            solicitacoesPaciente.Genero = Genero;
-            solicitacoesPaciente.Idade = Idade;
-            solicitacoesPaciente.Diagnostico = Diagnostico;
-            solicitacoesPaciente.Motivo = Motivo;
-            solicitacoesPaciente.SubMotivo = SubMotivo;
-            solicitacoesPaciente.Prioridade = Prioridade;
-            solicitacoesPaciente.Origem = Origem;
-            solicitacoesPaciente.EnderecoOrigem = EnderecoOrigem;
-            solicitacoesPaciente.Destino = Destino;
-            solicitacoesPaciente.EnderecoDestino = EnderecoDestino;
-            solicitacoesPaciente.ObsGerais = ObsGerais;
-            solicitacoesPaciente.AmSolicitada = AmSolicitada;
-
-            dahue.SaveChanges();
-
-            }
-        }
-
         public void inserirBloqueioDaAm(string DtHrStatus, string Registrado, string Motivo, int FkAM)
         {
             using(DAHUEEntities db = new DAHUEEntities())

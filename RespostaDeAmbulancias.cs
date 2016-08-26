@@ -152,10 +152,13 @@ namespace Sistema_Controle
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(id.Text == "")
+            if(id.Text != "")
             {
-                Reagendar re = new Reagendar(DataHrAgendamento.Text);
+                Reagendar re = new Reagendar(DataHrAgendamento.Text, idPaciente);
                 re.ShowDialog();
+            }else
+            {
+                MessageBox.Show("Selecione a solicitação que deseja reagendar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

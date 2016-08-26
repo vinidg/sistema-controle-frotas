@@ -73,7 +73,7 @@
             this.Enviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
             this.Enviar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Enviar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Enviar.Location = new System.Drawing.Point(50, 188);
+            this.Enviar.Location = new System.Drawing.Point(58, 188);
             this.Enviar.Name = "Enviar";
             this.Enviar.Size = new System.Drawing.Size(144, 46);
             this.Enviar.TabIndex = 98;
