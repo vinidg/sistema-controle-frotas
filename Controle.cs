@@ -218,6 +218,19 @@ namespace WindowsFormsApplication2
                 BtnAM11.BackColor = Color.Firebrick;
             }
 
+            if (d.AM121 == "BLOQUEADA")
+            {
+                BtnAM12.BackColor = Color.RoyalBlue;
+            }
+            if (d.AM121 == "DISPONIVEL")
+            {
+                BtnAM12.BackColor = Color.LimeGreen;
+            }
+            if (d.AM121 == "OCUPADA")
+            {
+                BtnAM12.BackColor = Color.Firebrick;
+            }
+
             if (d.AM101 == "BLOQUEADA")
             {
                 BtnAM10.BackColor = Color.RoyalBlue;
