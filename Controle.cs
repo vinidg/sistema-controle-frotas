@@ -375,6 +375,18 @@ namespace Sistema_Controle
             }
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Solicitacoes solicitacoes = new Solicitacoes(0, "");
+            solicitacoes.ShowDialog();
+        }
+
+        private void AgendaPendentes_Click(object sender, EventArgs e)
+        {
+            RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
+            ra.ShowDialog();
+        }
+
     }
 
 }

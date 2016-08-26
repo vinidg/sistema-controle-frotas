@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using db_transporte_sanitario;
-using System.Data.Objects.SqlClient;
+using System.Data.Entity.SqlServer;
 
 namespace Sistema_Controle
 {
@@ -18,19 +18,20 @@ namespace Sistema_Controle
         public RespostaDeAmbulancias()
         {
             InitializeComponent();
-            puxarAgendadas();
+            puxarAgendadasEspera();
+            id.Text = "";
         }
 
-        public void puxarAgendadas()
+        public void puxarAgendadasRespondidas()
         {
             int zero = 0;
-            var data = Calendario.SelectionRange.Start;
+            var data = Calendario.SelectionRange.End;
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            SqlFunctions.DateDiff("day",sp.DtHrdoAgendamento,"24/08/2016") == 0 &&
+                            SqlFunctions.DateDiff("day", data, sp.DtHrdoAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             select new
                             {
@@ -51,6 +52,38 @@ namespace Sistema_Controle
                 ListaAgendados.ClearSelection();
 
              }
+        }
+
+        public void puxarAgendadasEspera()
+        {
+            int zero = 0;
+            var data = Calendario.SelectionRange.End;
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            SqlFunctions.DateDiff("day", data, sp.DtHrdoAgendamento) == 0 &&
+                            sp.Registrado != "Sim"
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                sp.Agendamento,
+                                sp.DtHrAgendamento,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                ListaAgendados.DataSource = queryAmbu;
+                ListaAgendados.ClearSelection();
+
+            }
         }
 
         private void ListaAgendados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -92,15 +125,38 @@ namespace Sistema_Controle
 
                 }
                 
-
-
-                
             }
         }
 
         private void Calendario_DateChanged(object sender, DateRangeEventArgs e)
         {
-            puxarAgendadas();
+            if(Respondidos.Checked == true)
+            {
+                puxarAgendadasRespondidas();
+            }
+            else
+            {
+                puxarAgendadasEspera();
+            }
+        }
+
+        private void Encaminhados_Click(object sender, EventArgs e)
+        {
+            puxarAgendadasEspera();
+        }
+
+        private void Respondidos_Click(object sender, EventArgs e)
+        {
+            puxarAgendadasRespondidas();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(id.Text == "")
+            {
+                Reagendar re = new Reagendar(DataHrAgendamento.Text);
+                re.ShowDialog();
+            }
         }
 
 

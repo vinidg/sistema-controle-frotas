@@ -86,10 +86,10 @@ namespace Sistema_Controle
                             {
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
-                                sp.Agendamento,
-                                sp.DtHrAgendamento,
                                 Tipo = sp.TipoSolicitacao,
+                                sp.Agendamento,
                                 sp.DtHrdoInicio,
+                                sp.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
                                 sp.Origem,
