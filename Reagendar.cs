@@ -27,16 +27,18 @@ namespace Sistema_Controle
             {
                 solicitacoes_agendamentos sag = new solicitacoes_agendamentos();
                 sag.idSolicitacao_paciente = idPacient;
-                sag.DtHrAgendamento = Convert.ToDateTime(dataAgendar);
+                sag.DtHrAgendamento = dataAgendar.Value;
 
                 db.solicitacoes_agendamentos.Add(sag);
 
-                solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPacient);
-                sp.Registrado = "Aguardando resposta do Solicitante";
+                db.SaveChanges();
 
+                solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPacient);
+                sp.Registrado = "Aguardando resposta do solicitante";
+                sp.idReagendamento = sag.idSolicitacaoAgendamento;
                 db.SaveChanges();
             }
-            MessageBox.Show("Solicitação Reagendada com sucesso !");
+            MessageBox.Show("Solicitação reagendada com sucesso !");
             this.Close();
         }
     }

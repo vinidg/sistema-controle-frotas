@@ -120,7 +120,7 @@ namespace Sistema_Controle
             {
                 var query = (from sp in db.solicitacoes_paciente
                              where sp.AmSolicitada == zero && sp.Agendamento == "Sim"
-                             && sp.Registrado != "Sim"
+                             && sp.Registrado == "Aguardando resposta do controle"
                              select sp.idPaciente_Solicitacoes).Count();
 
                 txtAgendasPendentes.Text = query.ToString();

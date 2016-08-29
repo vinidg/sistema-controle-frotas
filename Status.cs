@@ -129,7 +129,8 @@ namespace Sistema_Controle
             BtnDesbloquear.Visible = true;
             BtnBloqueio.Visible = false;
             BtnAddPaciente.Visible = false;
-            painelCentral.BackColor = Color.Blue;
+            painelCentral.BackColor = Color.FromArgb(0, 122, 181);
+            this.BackColor = Color.FromArgb(204, 229, 255);
             label1.ForeColor = Color.White;
             /////
             label8.Visible = true;
@@ -145,8 +146,9 @@ namespace Sistema_Controle
             MessageBox.Show("Ambulância Desbloqueada !");
             BtnDesbloquear.Visible = false;
             BtnBloqueio.Visible = true;
-            painelCentral.BackColor = Color.LimeGreen;
             BtnAddPaciente.Visible = true;
+            painelCentral.BackColor = Color.FromArgb(46, 172, 109);
+            this.BackColor = Color.FromArgb(229, 255, 204);
             label1.ForeColor = Color.White;
             label8.Visible = false;
             Destino.Visible = true;

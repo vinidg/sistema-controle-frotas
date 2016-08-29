@@ -46,7 +46,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             where sp.AmSolicitada == zero &&
-                            sp.Registrado == "Sim"
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
@@ -73,14 +74,14 @@ namespace Sistema_Controle
         {
             int zero = 0;
             DateTime Data = DateTime.Now;
-            string dataagora = Data.ToString("dd/MM/yyyy");
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            sp.DtHrAgendamento.Substring(0, 10) != dataagora &&
                             sp.Registrado == "Sim"
                             select new
                             {
@@ -90,6 +91,7 @@ namespace Sistema_Controle
                                 sp.Agendamento,
                                 sp.DtHrdoInicio,
                                 sp.DtHrAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
                                 sp.Origem,
@@ -237,7 +239,6 @@ namespace Sistema_Controle
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
 
-                ListaSolicitacoes.Columns[0].HeaderText = "ID";
             }
         }
 
@@ -268,8 +269,6 @@ namespace Sistema_Controle
                 contarComPrioridade = contar.ToString();
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
-
-                ListaSolicitacoes.Columns[0].HeaderText = "ID";
             }
         }
 

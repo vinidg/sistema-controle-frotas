@@ -276,33 +276,30 @@ namespace Sistema_Controle
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                var query = from am in db.ambulancia
+                var query = (from am in db.ambulancia
                                join sa in db.solicitacoes_ambulancias
                                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
                                equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
                                from sa in sa_join.DefaultIfEmpty()
                                join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
                                from sp in sp_join.DefaultIfEmpty()
+                               where am.Desativado == 0
                                orderby am.idAmbulancia
                                select new
                                {
                                    am.idAmbulancia,
-                                   am.NomeAmbulancia,
-                                   am.StatusAmbulancia,
+                                   Ambulancia = am.NomeAmbulancia,
+                                   Status = am.StatusAmbulancia,
                                    Paciente = sp.Paciente,
                                    Idade = sp.Idade,
                                    Origem = sp.Origem,
                                    Destino = sp.Destino
-                               };
+                               }).ToList();
 
-                var queryAmbulanciaUsb = query.ToList();
-
-                Lista.DataSource = queryAmbulanciaUsb;
+                Lista.DataSource = query;
                 Lista.ClearSelection();
 
                 Lista.Columns[0].Visible = false;
-                Lista.Columns[1].HeaderText = "Ambulancia";
-                Lista.Columns[2].HeaderText = "Status";
                 Lista.ClearSelection();
             }
         }
@@ -840,8 +837,8 @@ namespace Sistema_Controle
         private void Lista_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             idAmbu = Convert.ToInt32(Lista.Rows[e.RowIndex].Cells[0].Value.ToString());
-            statusAMLista = Lista.Rows[e.RowIndex].Cells["StatusAmbulancia"].Value.ToString();
-            NomeAM = Lista.Rows[e.RowIndex].Cells["NomeAmbulancia"].Value.ToString();
+            statusAMLista = Lista.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+            NomeAM = Lista.Rows[e.RowIndex].Cells["Ambulancia"].Value.ToString();
             PainelAM2.Visible = false;
             label22.Text = NomeAM;
         }

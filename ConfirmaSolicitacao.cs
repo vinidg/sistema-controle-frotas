@@ -28,7 +28,6 @@ namespace Sistema_Controle
             Endereco();
             label3.Visible = false;
             dataAgendamento.Visible = false;
-            Limpar();
             AutoCompletar();
         }
 
@@ -40,17 +39,17 @@ namespace Sistema_Controle
             TipoAM = "Basica";
 
 
-            if (BtnAvancada.BackColor == Color.PaleTurquoise)
+            if (BtnAvancada.BackColor == Color.FromArgb(69, 173, 168))
             {
-                BtnBasica.BackColor = Color.PaleTurquoise;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnAvancada.BackColor = Color.PaleTurquoise;
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
             }
-            BtnAvancada.BackColor = Color.PaleTurquoise;
-            BtnBasica.BackColor = Color.Teal;
-            BtnBasica.ForeColor = Color.PaleTurquoise;
-            BtnAvancada.ForeColor = Color.Teal;
+            BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
         }
         private void BtnAvancada_Click(object sender, EventArgs e)
         {
@@ -59,40 +58,39 @@ namespace Sistema_Controle
             Btnagendasim.Visible = true;
             TipoAM = "Avancada";
 
-            if (BtnBasica.BackColor == Color.PaleTurquoise)
+            if (BtnBasica.BackColor == Color.FromArgb(69, 173, 168))
             {
-                BtnAvancada.BackColor = Color.PaleTurquoise;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnBasica.BackColor = Color.PaleTurquoise;
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
             }
-            BtnBasica.BackColor = Color.PaleTurquoise;
-            BtnAvancada.BackColor = Color.Teal;
-            BtnAvancada.ForeColor = Color.PaleTurquoise;
-            BtnBasica.ForeColor = Color.Teal;
+            BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
 
         public void Limpar()
         {
-
-            txtNomeSolicitante.Text = "";
-            CbLocalSolicita.Text = "";
-            txtTelefone.Text = "";
-            txtNomePaciente.Text = "";
             RbFemenino.Checked = false;
             RbMasculino.Checked = false;
-            txtIdade.Text = "";
-            txtDiagnostico.Text = "";
-            CbMotivoChamado.Text = "";
-            CbTipoMotivoSelecionado.Text = "";
-            Prioridade.Text = "";
-            CbOrigem.Text = "";
-            CbDestino.Text = "";
-            txtEnderecoOrigem.Text = "";
-            txtEnderecoDestino.Text = "";
-            richTextBox1.Text = "";
+            TipoAM = "";
+            Agendamento = "";
+            Obs.Text = "";
+            label3.Visible = false;
+            dataAgendamento.Visible = false;
 
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
+
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
         }
 
         private void Btnagendanao_Click(object sender, EventArgs e)
@@ -107,19 +105,19 @@ namespace Sistema_Controle
             label7.Visible = true;
             txtTelefone.Visible = true;
             Agendamento = "Nao";
-            if (Btnagendasim.BackColor == Color.PaleTurquoise)
+            if (Btnagendasim.BackColor == Color.FromArgb(69, 173, 168))
             {
-                Btnagendasim.BackColor = Color.PaleTurquoise;
-                Btnagendasim.ForeColor = Color.Teal;
-                Btnagendanao.ForeColor = Color.Teal;
-                Btnagendanao.BackColor = Color.PaleTurquoise;
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
 
             }
 
-            Btnagendasim.BackColor = Color.PaleTurquoise;
-            Btnagendanao.BackColor = Color.Teal;
-            Btnagendanao.ForeColor = Color.PaleTurquoise;
-            Btnagendasim.ForeColor = Color.Teal;
+            Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
         }
 
         private void Btnagendasim_Click(object sender, EventArgs e)
@@ -129,18 +127,18 @@ namespace Sistema_Controle
             dataAgendamento.Focus();
             Agendamento = "Sim";
 
-            if (Btnagendanao.BackColor == Color.PaleTurquoise)
+            if (Btnagendanao.BackColor == Color.FromArgb(69, 173, 168))
             {
-                Btnagendanao.BackColor = Color.PaleTurquoise;
-                Btnagendanao.ForeColor = Color.Teal;
-                Btnagendasim.ForeColor = Color.Teal;
-                Btnagendasim.BackColor = Color.PaleTurquoise;
+                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
 
             }
-            Btnagendanao.BackColor = Color.PaleTurquoise;
-            Btnagendasim.BackColor = Color.Teal;
-            Btnagendasim.ForeColor = Color.PaleTurquoise;
-            Btnagendanao.ForeColor = Color.Teal;
+            Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,7 +198,8 @@ namespace Sistema_Controle
             else
             {
                 RegistrarSolicitacao();
-                Limpar();
+                ClearTextBoxes();
+                ClearComboBox();
             }
 
         }
@@ -216,7 +215,7 @@ namespace Sistema_Controle
             {
                 IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.dataAgendamento.Text, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
-                this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.richTextBox1.Text,
+                this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.Obs.Text,
                 0, System.Environment.UserName, DateTime.Now);
 
             }
@@ -248,6 +247,8 @@ namespace Sistema_Controle
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
             Limpar();
+            ClearComboBox();
+            ClearTextBoxes();
         }
 
         public void Endereco()
@@ -393,7 +394,7 @@ namespace Sistema_Controle
             CbTipoMotivoSelecionado.ValueMember = "";
             CbTipoMotivoSelecionado.DisplayMember = "";
 
-            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA" || CbMotivoChamado.Text == "")
+            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
             {
                 BtnAvancada.PerformClick();
                 BtnAvancada.Enabled = false;
@@ -407,10 +408,10 @@ namespace Sistema_Controle
                 TipoAM = "";
                 BtnAvancada.Enabled = true;
                 BtnBasica.Enabled = true;
-                BtnAvancada.BackColor = Color.PaleTurquoise;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnBasica.BackColor = Color.PaleTurquoise;
+                BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
             }
 
         }
@@ -470,7 +471,36 @@ namespace Sistema_Controle
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
 
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+        private void ClearComboBox()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is ComboBox)
+                        (control as ComboBox).SelectedIndex = -1;
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
     }
 }
 

@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.PrioridadeTxt = new System.Windows.Forms.ComboBox();
             this.txtAtendMarcado = new System.Windows.Forms.MaskedTextBox();
             this.RetirarAM = new System.Windows.Forms.Button();
             this.painelCancelar = new System.Windows.Forms.Panel();
@@ -97,8 +99,6 @@
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBasica = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.PrioridadeTxt = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
             this.PainelAM2.SuspendLayout();
@@ -168,8 +168,37 @@
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
             // 
+            // label28
+            // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(6, 386);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(74, 16);
+            this.label28.TabIndex = 62;
+            this.label28.Text = "Prioridade:";
+            // 
+            // PrioridadeTxt
+            // 
+            this.PrioridadeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PrioridadeTxt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PrioridadeTxt.Enabled = false;
+            this.PrioridadeTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrioridadeTxt.FormattingEnabled = true;
+            this.PrioridadeTxt.Items.AddRange(new object[] {
+            "P0_PRIORIDADE_ABSOLUTA_RESOLVER_EM_IMEDIATO",
+            "P1_PRIORIDADE_ALTA_RESOLVER_EM_2_HORAS",
+            "P2_PRIORIDADE_MODERADA_RESOLVER_EM_12_HORAS",
+            "P3_PRIORIDADE_BAIXA_RESOLVER_EM_24_HORAS"});
+            this.PrioridadeTxt.Location = new System.Drawing.Point(9, 404);
+            this.PrioridadeTxt.Name = "PrioridadeTxt";
+            this.PrioridadeTxt.Size = new System.Drawing.Size(227, 23);
+            this.PrioridadeTxt.TabIndex = 61;
+            // 
             // txtAtendMarcado
             // 
+            this.txtAtendMarcado.Enabled = false;
             this.txtAtendMarcado.Location = new System.Drawing.Point(211, 82);
             this.txtAtendMarcado.Mask = "00/00/0000 90:00";
             this.txtAtendMarcado.Name = "txtAtendMarcado";
@@ -1057,34 +1086,6 @@
             this.BtnBasica.Text = "Básica";
             this.BtnBasica.UseVisualStyleBackColor = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
-            // 
-            // label28
-            // 
-            this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(6, 386);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(74, 16);
-            this.label28.TabIndex = 62;
-            this.label28.Text = "Prioridade:";
-            // 
-            // PrioridadeTxt
-            // 
-            this.PrioridadeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PrioridadeTxt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PrioridadeTxt.Enabled = false;
-            this.PrioridadeTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrioridadeTxt.FormattingEnabled = true;
-            this.PrioridadeTxt.Items.AddRange(new object[] {
-            "P0_PRIORIDADE_ABSOLUTA_RESOLVER_EM_IMEDIATO",
-            "P1_PRIORIDADE_ALTA_RESOLVER_EM_2_HORAS",
-            "P2_PRIORIDADE_MODERADA_RESOLVER_EM_12_HORAS",
-            "P3_PRIORIDADE_BAIXA_RESOLVER_EM_24_HORAS"});
-            this.PrioridadeTxt.Location = new System.Drawing.Point(9, 404);
-            this.PrioridadeTxt.Name = "PrioridadeTxt";
-            this.PrioridadeTxt.Size = new System.Drawing.Size(227, 23);
-            this.PrioridadeTxt.TabIndex = 61;
             // 
             // SelecionaAM
             // 

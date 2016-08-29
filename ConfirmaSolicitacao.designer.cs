@@ -33,11 +33,12 @@
             this.BtnBasica = new System.Windows.Forms.Button();
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
             this.Prioridade = new System.Windows.Forms.ComboBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.BtnLimpar = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.Obs = new System.Windows.Forms.RichTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.txtEnderecoDestino = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +128,7 @@
             this.panel1.Controls.Add(this.Prioridade);
             this.panel1.Controls.Add(this.BtnSalvar);
             this.panel1.Controls.Add(this.BtnLimpar);
-            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.Obs);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.txtEnderecoDestino);
             this.panel1.Controls.Add(this.label19);
@@ -171,6 +171,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1032, 570);
             this.panel1.TabIndex = 3;
+            // 
+            // dataAgendamento
+            // 
+            this.dataAgendamento.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dataAgendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dataAgendamento.Location = new System.Drawing.Point(297, 120);
+            this.dataAgendamento.Name = "dataAgendamento";
+            this.dataAgendamento.Size = new System.Drawing.Size(200, 20);
+            this.dataAgendamento.TabIndex = 46;
             // 
             // label21
             // 
@@ -227,14 +236,14 @@
             this.BtnLimpar.UseVisualStyleBackColor = false;
             this.BtnLimpar.Click += new System.EventHandler(this.BtnLimpar_Click);
             // 
-            // richTextBox1
+            // Obs
             // 
-            this.richTextBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.richTextBox1.Location = new System.Drawing.Point(605, 264);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(399, 109);
-            this.richTextBox1.TabIndex = 40;
-            this.richTextBox1.Text = "";
+            this.Obs.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Obs.Location = new System.Drawing.Point(605, 264);
+            this.Obs.Name = "Obs";
+            this.Obs.Size = new System.Drawing.Size(399, 109);
+            this.Obs.TabIndex = 40;
+            this.Obs.Text = "";
             // 
             // label20
             // 
@@ -642,15 +651,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
-            // dataAgendamento
-            // 
-            this.dataAgendamento.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dataAgendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dataAgendamento.Location = new System.Drawing.Point(297, 120);
-            this.dataAgendamento.Name = "dataAgendamento";
-            this.dataAgendamento.Size = new System.Drawing.Size(200, 20);
-            this.dataAgendamento.TabIndex = 46;
-            // 
             // ConfirmaSolicitacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -703,7 +703,7 @@
         private System.Windows.Forms.TextBox txtIdade;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox Obs;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtEnderecoDestino;
         private System.Windows.Forms.Label label19;

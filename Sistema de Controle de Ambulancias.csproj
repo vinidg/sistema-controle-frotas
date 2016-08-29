@@ -158,6 +158,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reagedamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reagedamentos.Designer.cs">
+      <DependentUpon>Reagedamentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reagendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reagedamentos.resx">
+      <DependentUpon>Reagedamentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reagendar.resx">
       <DependentUpon>Reagendar.cs</DependentUpon>

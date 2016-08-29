@@ -127,3 +127,4 @@ D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\RdlCompile.c
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.exe
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema de Controle de Ambulancias.pdb
 D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema_Controle.Reagendar.resources
+D:\source\Controle Ambulancias\WindowsFormsApplication2\obj\Release\Sistema_Controle.Reagedamentos.resources
