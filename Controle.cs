@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using db_transporte_sanitario;
+using System.Data.Entity.SqlServer;
 
 namespace Sistema_Controle
 {
@@ -103,9 +104,12 @@ namespace Sistema_Controle
             {
 
                 var query = (from sp in db.solicitacoes_paciente
+                             join saa in db.solicitacoes_agendamentos
+                             on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                              where sp.Agendamento == "Sim" &&
                              sp.AmSolicitada == zero &&
-                             sp.Registrado == "Sim"
+                             sp.Registrado == "Sim" &&
+                             SqlFunctions.DateDiff("day", DateTime.Now, saa.DtHrAgendamento) == 0
                              select sp.idPaciente_Solicitacoes).Count();
 
                 txtAgendadasHoje.Text = query.ToString();

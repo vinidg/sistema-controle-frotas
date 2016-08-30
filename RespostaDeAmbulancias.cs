@@ -18,6 +18,7 @@ namespace Sistema_Controle
         public RespostaDeAmbulancias()
         {
             InitializeComponent();
+            puxarAgendadasRespondidasPeloSolicitante();
             puxarAgendadasPendentes();
             id.Text = "";
             dtHrReagendamento.Text = "";
@@ -47,8 +48,9 @@ namespace Sistema_Controle
                                 sp.Origem,
                                 sp.Destino
                             };
-
+                var quertCont = query.Count();
                 var queryAmbu = query.ToList();
+                Respondidos.Text = "Respondidos (" + quertCont +")";
                 ListaAgendados.DataSource = queryAmbu;
                 ListaAgendados.ClearSelection();
 
@@ -82,6 +84,8 @@ namespace Sistema_Controle
                             };
 
                 var queryAmbu = query.ToList();
+                var querycont = query.Count();
+                Encaminhados.Text = "Encaminhados ("+querycont+")";
                 ListaAgendados.DataSource = queryAmbu;
                 ListaAgendados.ClearSelection();
 

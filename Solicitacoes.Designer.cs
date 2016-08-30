@@ -52,6 +52,7 @@
             this.OrdemNomeAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemDataAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemPrioridadeAgenda = new System.Windows.Forms.RadioButton();
+            this.dataFiltroAgenda = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaAgendadas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -109,7 +110,7 @@
             this.ListaSolicitacoes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -118,7 +119,7 @@
             this.ListaSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -130,7 +131,7 @@
             this.ListaSolicitacoes.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
@@ -167,7 +168,7 @@
             this.listaAgendadas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -176,7 +177,7 @@
             this.listaAgendadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -188,7 +189,7 @@
             this.listaAgendadas.ReadOnly = true;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -205,7 +206,7 @@
             // 
             // OrdemPrioridade
             // 
-            this.OrdemPrioridade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdemPrioridade.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrdemPrioridade.AutoSize = true;
             this.OrdemPrioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
@@ -235,7 +236,7 @@
             // 
             // OrdemPaciente
             // 
-            this.OrdemPaciente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdemPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrdemPaciente.AutoSize = true;
             this.OrdemPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPaciente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
@@ -251,7 +252,7 @@
             // 
             // OrdemData
             // 
-            this.OrdemData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdemData.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrdemData.AutoSize = true;
             this.OrdemData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
@@ -268,6 +269,7 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.dataFiltroAgenda);
             this.groupBox2.Controls.Add(this.OrdemNomeAgenda);
             this.groupBox2.Controls.Add(this.OrdemDataAgenda);
             this.groupBox2.Controls.Add(this.OrdemPrioridadeAgenda);
@@ -281,13 +283,11 @@
             // 
             // OrdemNomeAgenda
             // 
-            this.OrdemNomeAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdemNomeAgenda.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrdemNomeAgenda.AutoSize = true;
             this.OrdemNomeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemNomeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemNomeAgenda.Location = new System.Drawing.Point(721, 21);
+            this.OrdemNomeAgenda.Location = new System.Drawing.Point(568, 21);
             this.OrdemNomeAgenda.Name = "OrdemNomeAgenda";
             this.OrdemNomeAgenda.Size = new System.Drawing.Size(157, 24);
             this.OrdemNomeAgenda.TabIndex = 36;
@@ -299,13 +299,11 @@
             // 
             // OrdemDataAgenda
             // 
-            this.OrdemDataAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdemDataAgenda.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrdemDataAgenda.AutoSize = true;
             this.OrdemDataAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemDataAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemDataAgenda.Location = new System.Drawing.Point(532, 21);
+            this.OrdemDataAgenda.Location = new System.Drawing.Point(379, 21);
             this.OrdemDataAgenda.Name = "OrdemDataAgenda";
             this.OrdemDataAgenda.Size = new System.Drawing.Size(150, 24);
             this.OrdemDataAgenda.TabIndex = 35;
@@ -317,13 +315,11 @@
             // 
             // OrdemPrioridadeAgenda
             // 
-            this.OrdemPrioridadeAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdemPrioridadeAgenda.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrdemPrioridadeAgenda.AutoSize = true;
             this.OrdemPrioridadeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridadeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(353, 21);
+            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(200, 21);
             this.OrdemPrioridadeAgenda.Name = "OrdemPrioridadeAgenda";
             this.OrdemPrioridadeAgenda.Size = new System.Drawing.Size(98, 24);
             this.OrdemPrioridadeAgenda.TabIndex = 34;
@@ -332,6 +328,15 @@
             this.OrdemPrioridadeAgenda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrdemPrioridadeAgenda.UseVisualStyleBackColor = true;
             this.OrdemPrioridadeAgenda.Click += new System.EventHandler(this.OrdemPrioridadeAgenda_Click);
+            // 
+            // dataFiltroAgenda
+            // 
+            this.dataFiltroAgenda.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataFiltroAgenda.Location = new System.Drawing.Point(758, 22);
+            this.dataFiltroAgenda.Name = "dataFiltroAgenda";
+            this.dataFiltroAgenda.Size = new System.Drawing.Size(324, 22);
+            this.dataFiltroAgenda.TabIndex = 37;
+            this.dataFiltroAgenda.ValueChanged += new System.EventHandler(this.dataFiltroAgenda_ValueChanged);
             // 
             // Solicitacoes
             // 
@@ -380,5 +385,6 @@
         private System.Windows.Forms.RadioButton OrdemNomeAgenda;
         private System.Windows.Forms.RadioButton OrdemDataAgenda;
         private System.Windows.Forms.RadioButton OrdemPrioridadeAgenda;
+        private System.Windows.Forms.DateTimePicker dataFiltroAgenda;
     }
 }

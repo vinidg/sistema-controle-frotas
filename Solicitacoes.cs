@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using db_transporte_sanitario;
+using System.Data.Entity.SqlServer;
 
 namespace Sistema_Controle
 {
@@ -82,7 +83,8 @@ namespace Sistema_Controle
                             on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            sp.Registrado == "Sim"
+                            sp.Registrado == "Sim" &&
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
@@ -118,6 +120,8 @@ namespace Sistema_Controle
         {
             listaAgendadas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
             listaAgendadas.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+            listaAgendadas.Columns["Data_Reagendada"].DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            listaAgendadas.Columns["Data_Reagendada"].HeaderCell.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
         }
 
         private void listaComPrioridade_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -219,7 +223,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             where sp.AmSolicitada == zero &&
-                            sp.Registrado == "Sim"
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
                             orderby sp.Prioridade ascending
                             select new
                             {
@@ -250,7 +255,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             where sp.AmSolicitada == zero &&
-                            sp.Registrado == "Sim"
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
                             orderby sp.DtHrdoInicio descending
                             select new
                             {
@@ -280,7 +286,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             where sp.AmSolicitada == zero &&
-                            sp.Registrado == "Sim"
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
                             orderby sp.Paciente ascending
                             select new
                             {
@@ -313,19 +320,22 @@ namespace Sistema_Controle
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            sp.DtHrAgendamento.Substring(0, 10) != dataagora &&
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             orderby sp.Prioridade descending
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
-                                sp.Agendamento,
-                                sp.DtHrAgendamento,
                                 Tipo = sp.TipoSolicitacao,
+                                sp.Agendamento,
                                 sp.DtHrdoInicio,
+                                sp.DtHrAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
                                 sp.Origem,
@@ -352,19 +362,22 @@ namespace Sistema_Controle
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            sp.DtHrAgendamento.Substring(0, 10) != dataagora &&
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             orderby sp.DtHrdoInicio descending
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
-                                sp.Agendamento,
-                                sp.DtHrAgendamento,
                                 Tipo = sp.TipoSolicitacao,
+                                sp.Agendamento,
                                 sp.DtHrdoInicio,
+                                sp.DtHrAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
                                 sp.Origem,
@@ -390,19 +403,22 @@ namespace Sistema_Controle
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            sp.DtHrAgendamento.Substring(0, 10) != dataagora &&
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             orderby sp.Paciente ascending
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
-                                sp.Agendamento,
-                                sp.DtHrAgendamento,
                                 Tipo = sp.TipoSolicitacao,
+                                sp.Agendamento,
                                 sp.DtHrdoInicio,
+                                sp.DtHrAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
                                 sp.Origem,
@@ -417,6 +433,11 @@ namespace Sistema_Controle
 
 
             }
+        }
+
+        private void dataFiltroAgenda_ValueChanged(object sender, EventArgs e)
+        {
+            puxarAgendadas();
         }
 
      }

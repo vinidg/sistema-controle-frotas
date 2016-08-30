@@ -151,8 +151,8 @@ namespace Sistema_Controle
             this.BackColor = Color.FromArgb(229, 255, 204);
             label1.ForeColor = Color.White;
             label8.Visible = false;
-            Destino.Visible = true;
-            Origem.Visible = true;
+            Destino.Visible = false;
+            Origem.Visible = false;
         }
 
         /// ////////////////////////////////////////////////////////////FIM - BLOQUEIO////////////////////////////////////////////////////////////////////
