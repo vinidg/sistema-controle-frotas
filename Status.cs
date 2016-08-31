@@ -162,12 +162,12 @@ namespace Sistema_Controle
             //atualizar a AM dependendo do status no banco
             using(DAHUEEntities db = new DAHUEEntities())
             {
-                var query = from solicitacoes_paciente in db.solicitacoes_paciente
-                            where solicitacoes_paciente.idPaciente_Solicitacoes == idPaciente
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.idPaciente_Solicitacoes == idPaciente
                             select new
                             {
-                                solicitacoes_paciente.idPaciente_Solicitacoes,
-                                solicitacoes_paciente.Paciente
+                                sp.idPaciente_Solicitacoes,
+                                sp.Paciente
                             };
                 var querySP = query.ToList();
                 ListadePacientes.DataSource = querySP;
@@ -190,6 +190,7 @@ namespace Sistema_Controle
                 var query = from am in db.ambulancia
                             where am.idAmbulancia == codigoDaAmbulancia
                             select new {am.StatusAmbulancia, am.NomeAmbulancia };
+
                 queryStatus = query.FirstOrDefault().StatusAmbulancia;
                 nomeAM = query.FirstOrDefault().NomeAmbulancia;
             }
@@ -210,10 +211,11 @@ namespace Sistema_Controle
                     
                     using(DAHUEEntities db = new DAHUEEntities())
                     {
-                        var sqlQuery = from bloq in db.bloqueio
-                                       where bloq.FkAM == codigoDaAmbulancia
-                                       select bloq.Motivo;
-                        label8.Text = sqlQuery.First().ToString();
+                        var sqlQuery = (from bl in db.bloqueio
+                                        where bl.FkAM == codigoDaAmbulancia
+                                        orderby bl.idBloqueio descending
+                                        select bl.Motivo).Take(1).FirstOrDefault();
+                        label8.Text = sqlQuery;
                     }
                     Destino.Text = "";
                     Origem.Text = "";

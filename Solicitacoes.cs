@@ -37,8 +37,9 @@ namespace Sistema_Controle
                 puxarAgendadas();
 
             }
+            
         }
-        
+
         public void puxarSolicitacoes()
         {
             int zero = 0;
@@ -49,6 +50,7 @@ namespace Sistema_Controle
                             where sp.AmSolicitada == zero &&
                             sp.Registrado == "Sim" &&
                             sp.Agendamento == "Nao"
+                            orderby sp.DtHrdoInicio descending
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
@@ -63,12 +65,13 @@ namespace Sistema_Controle
 
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
+                txtTotal1.Text = contar.ToString();
                 contarComPrioridade = contar.ToString();
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
 
                 ListaSolicitacoes.Columns[0].HeaderText = "ID";
-             }
+            }
         }
 
         public void puxarAgendadas()
@@ -83,8 +86,8 @@ namespace Sistema_Controle
                             on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            sp.Registrado == "Sim" &&
-                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0
+                            sp.Registrado == "Sim"
+                            orderby sp.Paciente ascending
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
@@ -103,9 +106,9 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
-
 
             }
         }
@@ -241,10 +244,14 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarComPrioridade = contar.ToString();
+                txtTotal1.Text = contar.ToString();
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
 
             }
+            OrdemPrioridade.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            OrdemPaciente.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemData.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
         }
 
         private void OrdemData_Click(object sender, EventArgs e)
@@ -273,9 +280,13 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarComPrioridade = contar.ToString();
+                txtTotal1.Text = contar.ToString();
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
             }
+           OrdemData.Font = new Font(dtagenda.Font, FontStyle.Bold);
+           OrdemPaciente.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+           OrdemPrioridade.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
         }
 
         private void OrdemPaciente_Click(object sender, EventArgs e)
@@ -304,27 +315,30 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarComPrioridade = contar.ToString();
+                txtTotal1.Text = contar.ToString();
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
 
                 ListaSolicitacoes.Columns[0].HeaderText = "ID";
             }
+            OrdemPaciente.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            OrdemData.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridade.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+
         }
 
         private void OrdemPrioridadeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
-            DateTime Data = DateTime.Now;
-            string dataagora = Data.ToString("dd/MM/yyyy");
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
                             join saa in db.solicitacoes_agendamentos
-                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()                                                              
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             orderby sp.Prioridade descending
                             select new
@@ -345,28 +359,32 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
-
-
             }
-        
+
+            OrdemPrioridadeAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
 
         private void OrdemDataAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
-            DateTime Data = DateTime.Now;
-            string dataagora = Data.ToString("dd/MM/yyyy");
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
                             join saa in db.solicitacoes_agendamentos
-                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             orderby sp.DtHrdoInicio descending
                             select new
@@ -387,27 +405,33 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
 
 
             }
+            OrdemDataAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
 
         private void OrdemNomeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
-            DateTime Data = DateTime.Now;
-            string dataagora = Data.ToString("dd/MM/yyyy");
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
                             join saa in db.solicitacoes_agendamentos
-                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
-                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, saa.DtHrAgendamento) == 0 &&
                             sp.Registrado == "Sim"
                             orderby sp.Paciente ascending
                             select new
@@ -428,17 +452,117 @@ namespace Sistema_Controle
                 var queryAmbu = query.ToList();
                 var contar = query.Count();
                 contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
 
 
             }
+
+            OrdemNomeAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
 
         private void dataFiltroAgenda_ValueChanged(object sender, EventArgs e)
         {
-            puxarAgendadas();
+            int zero = 0;
+            DateTime Data = DateTime.Now;
+            
+            dtagenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Bold);
+            dtreagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim" &&
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, sp.DtHrAgendamento) == 0
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.Agendamento,
+                                sp.DtHrdoInicio,
+                                sp.DtHrAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
+
+            }
+
         }
 
-     }
+        private void dataReagendamento_ValueChanged(object sender, EventArgs e)
+        {
+            int zero = 0;
+            DateTime Data = DateTime.Now;
+          
+            dtreagenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim" &&
+                            SqlFunctions.DateDiff("day", dataReagendamento.Value, saa.DtHrAgendamento) == 0
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.Agendamento,
+                                sp.DtHrdoInicio,
+                                sp.DtHrAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
+
+            }
+        }
+
+    }
 }
