@@ -82,12 +82,11 @@ namespace Sistema_Controle
         }
         private void countparaSol()
         {
-            int zero = 0;
-          
+         
             using (DAHUEEntities db = new DAHUEEntities())
                 {
                     var query= (from sp in db.solicitacoes_paciente
-                               where sp.AmSolicitada == zero && sp.Agendamento == "Nao"
+                               where sp.AmSolicitada == 0 && sp.Agendamento == "Nao"
                                select sp.idPaciente_Solicitacoes).Count();
 
                     txtSolicitacoes.Text = query.ToString();
@@ -97,17 +96,14 @@ namespace Sistema_Controle
 
         private void countparaSolAgendadas()
         {
-            int zero = 0;
-
             //CONTA AS solicitacoes agendadas
             using (DAHUEEntities db = new DAHUEEntities())
             {
-
                 var query = (from sp in db.solicitacoes_paciente
                              join saa in db.solicitacoes_agendamentos
                              on sp.idReagendamento equals saa.idSolicitacaoAgendamento
                              where sp.Agendamento == "Sim" &&
-                             sp.AmSolicitada == zero &&
+                             sp.AmSolicitada == 0 &&
                              sp.Registrado == "Sim" &&
                              SqlFunctions.DateDiff("day", DateTime.Now, saa.DtHrAgendamento) == 0
                              select sp.idPaciente_Solicitacoes).Count();
@@ -118,12 +114,11 @@ namespace Sistema_Controle
 
         private void countparaSolAgendadasPendentes()
         {
-            int zero = 0;
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = (from sp in db.solicitacoes_paciente
-                             where sp.AmSolicitada == zero && sp.Agendamento == "Sim"
+                             where sp.AmSolicitada == 0 && sp.Agendamento == "Sim"
                              && sp.Registrado == "Aguardando resposta do controle"
                              select sp.idPaciente_Solicitacoes).Count();
 

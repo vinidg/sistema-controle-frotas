@@ -18,7 +18,6 @@ namespace Sistema_Controle
             get { return avisar; }
             set { avisar = value; }
         }
-
         public bool Yn
         {
             get { return yn; }

@@ -198,6 +198,7 @@ namespace Sistema_Controle
             else
             {
                 RegistrarSolicitacao();
+                Limpar();
                 ClearTextBoxes();
                 ClearComboBox();
             }

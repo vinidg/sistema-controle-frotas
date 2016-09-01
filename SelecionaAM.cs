@@ -48,7 +48,6 @@ namespace Sistema_Controle
             if (idAmbu == 0)
             {
                 RetirarAM.Visible = false;
-                BtnCancelar.Visible = false;
                 return;
             }
             using (DAHUEEntities db = new DAHUEEntities())
@@ -335,14 +334,20 @@ namespace Sistema_Controle
             StatusBD Horarios = new StatusBD();
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                    string Condutor, Enfermeiros;
+                   
+                string Condutor="", Enfermeiros="";
+
                     //pesquisar equipe
                     var Equipe = (from eq in db.equipe
                                  where eq.idAM == idAmbu
                                  orderby eq.idEquipe descending
                                  select eq).FirstOrDefault();
+                if(Equipe != null)
+                {
                     Condutor = Equipe.Condutor;
                     Enfermeiros = Equipe.Enfermeiros;
+                }
+                    
                     //pesquisar dados do paciente
                     var Solicitacao = (from sp in db.solicitacoes_paciente
                                    where sp.idPaciente_Solicitacoes == idPaciente
@@ -356,7 +361,7 @@ namespace Sistema_Controle
                     {
                         Horarios.puxarLogisticaDaSolicitacaNaAmbulanciaSelecionadaNaConsulta(idPaciente, idSolicitacaoAm);
 
-                        Equipe = (from eq in db.equipe
+                       Equipe = (from eq in db.equipe
                                  where eq.idAM == Horarios.IdAmbulanciaSol
                                  orderby eq.idEquipe descending
                                  select eq).FirstOrDefault();
