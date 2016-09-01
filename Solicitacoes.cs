@@ -42,13 +42,10 @@ namespace Sistema_Controle
 
         public void puxarSolicitacoes()
         {
-            int zero = 0;
-
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
-                            where sp.AmSolicitada == zero &&
-                            sp.Registrado == "Sim" &&
+                            where sp.AmSolicitada == 0 &&
                             sp.Agendamento == "Nao"
                             orderby sp.DtHrdoInicio descending
                             select new
@@ -93,9 +90,8 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
-                                sp.Agendamento,
                                 sp.DtHrdoInicio,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
@@ -346,9 +342,8 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
-                                sp.Agendamento,
                                 sp.DtHrdoInicio,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
@@ -392,9 +387,8 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
-                                sp.Agendamento,
                                 sp.DtHrdoInicio,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
@@ -439,9 +433,8 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
-                                sp.Agendamento,
                                 sp.DtHrdoInicio,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
@@ -496,9 +489,8 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
-                                sp.Agendamento,
                                 sp.DtHrdoInicio,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,
@@ -544,7 +536,6 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
-                                sp.Agendamento,
                                 sp.DtHrdoInicio,
                                 sp.DtHrAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
