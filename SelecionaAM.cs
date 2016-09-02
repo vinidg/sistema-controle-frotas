@@ -113,6 +113,9 @@ namespace Sistema_Controle
                              where sp.idPaciente_Solicitacoes == idPaciente
                              select sp).FirstOrDefault();
 
+                tipoSolicitacao = query.TipoSolicitacao;
+                Agendamento = query.Agendamento;
+
                 if (query.TipoSolicitacao == "Avancada")
                 {
                     BtnBasica.Visible = false;
@@ -167,7 +170,6 @@ namespace Sistema_Controle
                 CbDestino.Text = query.Destino;
                 txtEnderecoDestino.Text = query.EnderecoDestino;
                 obsGerais.Text = query.ObsGerais;
-                tipoSolicitacao = query.TipoSolicitacao;
 
             }
         }
@@ -182,7 +184,6 @@ namespace Sistema_Controle
             painelCancelar.Visible = true;
             DtHrCancelamento.Text = DateTime.Now.ToString();
             txtResponsavel.Text = System.Environment.UserName;
-
         }
         private void cancelar()
         {
@@ -594,7 +595,7 @@ namespace Sistema_Controle
             {
                 InsercoesDoBanco ib = new InsercoesDoBanco();
                 ib.alterarCamposDaSolicitacao(idPaciente, TipoAM, Agendamento, txtAtendMarcado.Text, txtNomeSolicitante.Text, CbLocalSolicita.Text, txtTelefone.Text,
-                                              txtNomePaciente.Text, Sexo, txtIdade.Text, txtDiagnostico.Text, CbMotivoChamado.Text, CbTipoMotivoSelecionado.Text, CbOrigem.Text,
+                                              txtNomePaciente.Text, Sexo, txtIdade.Text, txtDiagnostico.Text, CbMotivoChamado.Text, CbTipoMotivoSelecionado.Text, PrioridadeTxt.Text, CbOrigem.Text,
                                               txtEnderecoOrigem.Text, CbDestino.Text, txtEnderecoDestino.Text, System.Environment.UserName, DateTime.Now.ToString(), obsGerais.Text);
 
             }
@@ -730,12 +731,29 @@ namespace Sistema_Controle
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.Items.Clear();
-            CbTipoMotivoSelecionado.Text = "";
-        }
+            CbTipoMotivoSelecionado.DataSource = null;
+            CbTipoMotivoSelecionado.ValueMember = "";
+            CbTipoMotivoSelecionado.DisplayMember = "";
 
-        private void CbTipoMotivoSelecionado_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
+            {
+                BtnAvancada.PerformClick();
+                BtnAvancada.Enabled = false;
+                BtnBasica.Enabled = false;
+            }
+            else
+            {
+                label2.Visible = true;
+                Btnagendanao.Visible = true;
+                Btnagendasim.Visible = true;
+                TipoAM = "";
+                BtnAvancada.Enabled = true;
+                BtnBasica.Enabled = true;
+                BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            }
             Motivo();
         }
 
@@ -845,11 +863,6 @@ namespace Sistema_Controle
 
                 Endereco1 = enderecoDoEnderecos.FirstOrDefault();
             }
-        }
-
-        private void CbTipoMotivoSelecionado_Click(object sender, EventArgs e)
-        {
-            Motivo();
         }
 
         private void Lista_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

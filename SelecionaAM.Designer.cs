@@ -388,12 +388,10 @@
             this.CbTipoMotivoSelecionado.Enabled = false;
             this.CbTipoMotivoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTipoMotivoSelecionado.FormattingEnabled = true;
-            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(265, 352);
+            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(253, 352);
             this.CbTipoMotivoSelecionado.Name = "CbTipoMotivoSelecionado";
             this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(227, 23);
             this.CbTipoMotivoSelecionado.TabIndex = 58;
-            this.CbTipoMotivoSelecionado.SelectedIndexChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_SelectedIndexChanged);
-            this.CbTipoMotivoSelecionado.Click += new System.EventHandler(this.CbTipoMotivoSelecionado_Click);
             // 
             // CbMotivoChamado
             // 
@@ -746,7 +744,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(262, 333);
+            this.label14.Location = new System.Drawing.Point(250, 333);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(181, 16);
             this.label14.TabIndex = 28;

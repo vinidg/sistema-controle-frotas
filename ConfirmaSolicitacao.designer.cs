@@ -374,9 +374,6 @@
             this.CbTipoMotivoSelecionado.Name = "CbTipoMotivoSelecionado";
             this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(243, 23);
             this.CbTipoMotivoSelecionado.TabIndex = 27;
-            this.CbTipoMotivoSelecionado.SelectedIndexChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_SelectedIndexChanged);
-            this.CbTipoMotivoSelecionado.TextChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_TextChanged);
-            this.CbTipoMotivoSelecionado.Click += new System.EventHandler(this.CbTipoMotivoSelecionado_Click);
             // 
             // label13
             // 

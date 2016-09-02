@@ -195,7 +195,7 @@ namespace Sistema_Controle
         }
 
         public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, string dtHrAgendamento, string nomeSolicitante, string localSolicitante,
-            string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string origem, string enderecoOrigem,
+            string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string prioridade, string origem, string enderecoOrigem,
             string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais)
         {
 
@@ -214,6 +214,7 @@ namespace Sistema_Controle
                 sp.Diagnostico = diagnostico;
                 sp.Motivo = motivoChamado;
                 sp.SubMotivo = tipoMotivoChamado;
+                sp.Prioridade = prioridade;
                 sp.Origem = origem;
                 sp.EnderecoOrigem = enderecoOrigem;
                 sp.Destino = destino;

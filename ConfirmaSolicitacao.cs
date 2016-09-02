@@ -146,18 +146,6 @@ namespace Sistema_Controle
             pegaUnidade = CbLocalSolicita.Text;
             unidade_telefone();
         }
-
-
-        private void CbTipoMotivoSelecionado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Motivo();
-        }
-
-        private void CbTipoMotivoSelecionado_TextChanged(object sender, EventArgs e)
-        {
-            Motivo();
-        }
-
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
 
@@ -386,7 +374,6 @@ namespace Sistema_Controle
                 CbTipoMotivoSelecionado.ValueMember = pegamotivo;
                 CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
             }
-     
         }
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
@@ -414,11 +401,6 @@ namespace Sistema_Controle
                 BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
                 BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
             }
-
-        }
-
-        private void CbTipoMotivoSelecionado_Click(object sender, EventArgs e)
-        {
             Motivo();
         }
 
