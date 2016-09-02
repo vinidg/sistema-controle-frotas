@@ -201,12 +201,8 @@ namespace Sistema_Controle
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            finally
-            {
                 MessageBox.Show("Solicitação cancelada com sucesso !!!");
                 this.Dispose();
-            }
-
         }
 
         private void BtnConfimar_Click(object sender, EventArgs e)
@@ -342,12 +338,13 @@ namespace Sistema_Controle
                                  where eq.idAM == idAmbu
                                  orderby eq.idEquipe descending
                                  select eq).FirstOrDefault();
-                if(Equipe != null)
-                {
-                    Condutor = Equipe.Condutor;
-                    Enfermeiros = Equipe.Enfermeiros;
-                }
-                    
+                        if(Equipe != null)
+                        {
+                            Condutor = Equipe.Condutor;
+                            Enfermeiros = Equipe.Enfermeiros;
+                        }
+            
+
                     //pesquisar dados do paciente
                     var Solicitacao = (from sp in db.solicitacoes_paciente
                                    where sp.idPaciente_Solicitacoes == idPaciente
@@ -366,18 +363,25 @@ namespace Sistema_Controle
                                  orderby eq.idEquipe descending
                                  select eq).FirstOrDefault();
                     }
-                    
+            
                     //Verificar se esta sendo cancelado
-                    string cancelado;
-
-                    if (MotivoCancelar.Text != "")
-                    {
-                        cancelado = "Sim";
-                    }
-                    else
-                    {
-                        cancelado = "Não";
-                    }
+                    string cancelado = "", dataHoraCancelamento = "", MotivoCancelamento = "", nomeCancelante="";
+                        var query = (from can in db.cancelados_pacientes
+                                     where can.idPaciente == idPaciente
+                                     orderby can.DtHrCancelamento descending
+                                     select can).Take(1).FirstOrDefault();
+                        if(query != null)
+                        {
+                            cancelado = "Sim";
+                            dataHoraCancelamento = query.DtHrCancelamento;
+                            MotivoCancelamento = query.MotivoCancelamento;
+                            nomeCancelante = query.ResposavelCancelamento;
+                        }
+                        else
+                        {
+                           cancelado = "Não";
+                        }
+                    
                     
                     //Pesquisar nome da ambulancias
                     if (NomeAM == "" || NomeAM == null)
@@ -416,11 +420,11 @@ namespace Sistema_Controle
                     listReport[20] = new ReportParameter("AM", NomeAM);
                     listReport[21] = new ReportParameter("Condutor", Condutor);
                     listReport[22] = new ReportParameter("Equipe", Enfermeiros);
-                    listReport[23] = new ReportParameter("Prioridade", Solicitacao.Prioridade);
+                    listReport[23] = new ReportParameter("Prioridade", Solicitacao.Prioridade.Substring(0,2));
                     listReport[24] = new ReportParameter("Cancelamento", cancelado);
-                    listReport[25] = new ReportParameter("HrCancelamento", DtHrCancelamento.Text);
-                    listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelar.Text);
-                    listReport[27] = new ReportParameter("NomeCancelante", txtResponsavel.Text);
+                    listReport[25] = new ReportParameter("HrCancelamento", dataHoraCancelamento);
+                    listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelamento);
+                    listReport[27] = new ReportParameter("NomeCancelante", nomeCancelante);
                     listReport[28] = new ReportParameter("HrCiencia", Horarios.DtHrCiencia1);
                     listReport[29] = new ReportParameter("HrSaida", Horarios.DtHrSaidaOrigem1);
                     listReport[30] = new ReportParameter("HrLiberacao", Horarios.DtHrLiberacaoEquipe1);

@@ -143,7 +143,7 @@ namespace Sistema_Controle
 
                 db.cancelados_pacientes.Add(cancelados);
 
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -151,11 +151,14 @@ namespace Sistema_Controle
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                solicitacoes_ambulancias sa = db.solicitacoes_ambulancias.First(p => p.idSolicitacoes_Ambulancias == idSolicitacaoAM);
-                sa.SolicitacaoConcluida = 1;
+                if(idSolicitacaoAM != 0)
+                {
+                    solicitacoes_ambulancias sa = db.solicitacoes_ambulancias.First(p => p.idSolicitacoes_Ambulancias == idSolicitacaoAM);
+                    sa.SolicitacaoConcluida = 1;
+                }
 
-                solicitacoes_paciente sp = db.solicitacoes_paciente.First(s => s.idPaciente_Solicitacoes == idPaciente);
-                sp.AmSolicitada = 1;
+                    solicitacoes_paciente sp = db.solicitacoes_paciente.First(s => s.idPaciente_Solicitacoes == idPaciente);
+                    sp.AmSolicitada = 1;
 
                 var contemPaciente = (from soa in db.solicitacoes_ambulancias
                                       where soa.idAmbulanciaSol == AMocup && soa.SolicitacaoConcluida == 0

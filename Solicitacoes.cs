@@ -37,7 +37,6 @@ namespace Sistema_Controle
                 puxarAgendadas();
 
             }
-            
         }
 
         public void puxarSolicitacoes()
