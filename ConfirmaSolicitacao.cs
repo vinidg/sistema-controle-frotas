@@ -165,7 +165,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             else if (txtNomeSolicitante.Text == "" ||
             CbLocalSolicita.Text == "" ||
             txtTelefone.Text == "" ||
@@ -205,7 +204,7 @@ namespace Sistema_Controle
                 IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.dataAgendamento.Value, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
                 this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.Obs.Text,
-                0, System.Environment.UserName, DateTime.Now);
+                0, System.Environment.UserName);
 
             }
             catch (Exception ex)

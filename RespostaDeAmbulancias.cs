@@ -40,7 +40,7 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 sp.Agendamento,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Tipo = sp.TipoSolicitacao,
                                 sp.DtHrdoInicio,
                                 sp.Prioridade,
@@ -74,7 +74,7 @@ namespace Sistema_Controle
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
                                 sp.Agendamento,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Tipo = sp.TipoSolicitacao,
                                 sp.DtHrdoInicio,
                                 sp.Prioridade,
@@ -109,7 +109,7 @@ namespace Sistema_Controle
                     id.Text = query.sp.idPaciente_Solicitacoes.ToString();
                     Tipo.Text = query.sp.TipoSolicitacao;
                     DataInicio.Text = query.sp.DtHrdoInicio.ToString();
-                    DataHrAgendamento.Text = query.sp.DtHrAgendamento;
+                    DataHrAgendamento.Text = query.sp.DtHrdoAgendamento.ToString();
                     NomeSolicitante.Text = query.sp.NomeSolicitante;
                     LocalSolicitacao.Text = query.sp.LocalSolicitacao;
                     Telefone.Text = query.sp.Telefone;

@@ -45,7 +45,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             where sp.AmSolicitada == 0 &&
-                            sp.Agendamento == "Nao"
+                            sp.Agendamento == "Nao" &&
+                            sp.Registrado == "Sim"
                             orderby sp.DtHrdoInicio descending
                             select new
                             {
@@ -79,7 +80,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             join saa in db.solicitacoes_agendamentos
-                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
                             sp.Registrado == "Sim"
@@ -216,7 +218,7 @@ namespace Sistema_Controle
         private void OrdemPrioridade_Click(object sender, EventArgs e)
         {
             int zero = 0;
-
+            ListaSolicitacoes.DataSource = "";
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
@@ -252,7 +254,7 @@ namespace Sistema_Controle
         private void OrdemData_Click(object sender, EventArgs e)
         {
             int zero = 0;
-
+            ListaSolicitacoes.DataSource = "";
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
@@ -287,7 +289,7 @@ namespace Sistema_Controle
         private void OrdemPaciente_Click(object sender, EventArgs e)
         {
             int zero = 0;
-
+            ListaSolicitacoes.DataSource = "";
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
@@ -325,7 +327,7 @@ namespace Sistema_Controle
         private void OrdemPrioridadeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
-
+            listaAgendadas.DataSource = "";
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
@@ -370,7 +372,7 @@ namespace Sistema_Controle
         private void OrdemDataAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
-
+            listaAgendadas.DataSource = "";
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
@@ -416,7 +418,7 @@ namespace Sistema_Controle
         private void OrdemNomeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
-
+            listaAgendadas.DataSource = "";
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
@@ -478,11 +480,12 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             join saa in db.solicitacoes_agendamentos
-                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
                             sp.Registrado == "Sim" &&
-                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, sp.DtHrAgendamento) == 0
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, sp.DtHrdoAgendamento) == 0
                             select new
                             {
                                 ID = sp.idPaciente_Solicitacoes,
@@ -525,7 +528,8 @@ namespace Sistema_Controle
             {
                 var query = from sp in db.solicitacoes_paciente
                             join saa in db.solicitacoes_agendamentos
-                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
                             where sp.AmSolicitada == zero &&
                             sp.Agendamento == "Sim" &&
                             sp.Registrado == "Sim" &&
@@ -536,7 +540,7 @@ namespace Sistema_Controle
                                 sp.Paciente,
                                 Tipo = sp.TipoSolicitacao,
                                 sp.DtHrdoInicio,
-                                sp.DtHrAgendamento,
+                                sp.DtHrdoAgendamento,
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 sp.Prioridade,
                                 sp.Motivo,

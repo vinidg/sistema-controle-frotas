@@ -40,6 +40,10 @@ namespace Sistema_Controle
             verificaSeAMEstaIncluida();
             VerificarPacienteJaestaInclusoNaMesma();
             pegarDadosDasAmbulancias();
+            if(idSoAm == 0)
+            {
+                IncluirSolicitacaoPendentes.Visible = true;
+            }
         }
 
 
@@ -146,7 +150,7 @@ namespace Sistema_Controle
                     Btnagendanao.ForeColor = Color.PaleTurquoise;
                 }
 
-                txtAtendMarcado.Text = query.DtHrAgendamento;
+                txtAtendMarcado.Text = query.DtHrdoAgendamento.ToString();
                 txtNomeSolicitante.Text = query.NomeSolicitante;
                 CbLocalSolicita.Text = query.LocalSolicitacao;
                 txtTelefone.Text = query.Telefone;
@@ -401,7 +405,7 @@ namespace Sistema_Controle
                     listReport[0] = new ReportParameter("Nome", Solicitacao.Paciente);
                     listReport[1] = new ReportParameter("Tipo", Solicitacao.TipoSolicitacao);
                     listReport[2] = new ReportParameter("Agendado", Solicitacao.Agendamento);
-                    listReport[3] = new ReportParameter("DtHrAgendado", Solicitacao.DtHrAgendamento);
+                    listReport[3] = new ReportParameter("DtHrAgendado", Solicitacao.DtHrdoAgendamento.ToString());
                     listReport[4] = new ReportParameter("ID", Convert.ToString(Solicitacao.idPaciente_Solicitacoes));
                     listReport[5] = new ReportParameter("Sexo", Solicitacao.Genero);
                     listReport[6] = new ReportParameter("Idade", Solicitacao.Idade);
@@ -923,6 +927,35 @@ namespace Sistema_Controle
                     db.SaveChanges();
                 }
                 this.Dispose();
+            }
+        }
+
+        private void IncluirSolicitacaoPendentes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Atualize os dados do paciente !", "Atenção !", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+            BtnAlterar.PerformClick();
+
+            DialogResult result1 = MessageBox.Show("Deseja inserir a solicitação na lista de pendêcias ?",
+            "Atenção !",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result1 == DialogResult.Yes)
+            {
+                if(txtNomePaciente.Enabled == true)
+                {
+                    MessageBox.Show("É obrigatório atualizar os dados do paciente !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }else
+                {
+                using(DAHUEEntities db = new DAHUEEntities())
+                {
+                    solicitacoes_paciente sp = db.solicitacoes_paciente.First(s => s.idPaciente_Solicitacoes == idPaciente);
+                    sp.AmSolicitada = 0;
+                    db.SaveChanges();
+
+                    MessageBox.Show("Solicitação em pendência !");
+                    this.Dispose();
+                }
+                }
             }
         }
 

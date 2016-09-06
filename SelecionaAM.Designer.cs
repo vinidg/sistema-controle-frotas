@@ -99,6 +99,7 @@
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBasica = new System.Windows.Forms.Button();
+            this.IncluirSolicitacaoPendentes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
             this.PainelAM2.SuspendLayout();
@@ -109,6 +110,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.IncluirSolicitacaoPendentes);
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.PrioridadeTxt);
             this.panel1.Controls.Add(this.txtAtendMarcado);
@@ -1000,9 +1002,9 @@
             this.Btnagendasim.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btnagendasim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Btnagendasim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Btnagendasim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btnagendasim.ForeColor = System.Drawing.Color.Black;
+            this.Btnagendasim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.Btnagendasim.Location = new System.Drawing.Point(405, 40);
             this.Btnagendasim.Name = "Btnagendasim";
             this.Btnagendasim.Size = new System.Drawing.Size(75, 22);
@@ -1045,9 +1047,9 @@
             this.BtnAvancada.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnAvancada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAvancada.ForeColor = System.Drawing.Color.Black;
+            this.BtnAvancada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnAvancada.Location = new System.Drawing.Point(383, 9);
             this.BtnAvancada.Name = "BtnAvancada";
             this.BtnAvancada.Size = new System.Drawing.Size(97, 23);
@@ -1084,6 +1086,20 @@
             this.BtnBasica.Text = "Básica";
             this.BtnBasica.UseVisualStyleBackColor = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
+            // 
+            // IncluirSolicitacaoPendentes
+            // 
+            this.IncluirSolicitacaoPendentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(133)))), ((int)(((byte)(54)))));
+            this.IncluirSolicitacaoPendentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IncluirSolicitacaoPendentes.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.IncluirSolicitacaoPendentes.Location = new System.Drawing.Point(601, 123);
+            this.IncluirSolicitacaoPendentes.Name = "IncluirSolicitacaoPendentes";
+            this.IncluirSolicitacaoPendentes.Size = new System.Drawing.Size(376, 47);
+            this.IncluirSolicitacaoPendentes.TabIndex = 63;
+            this.IncluirSolicitacaoPendentes.Text = "Incluir Solicitação em Pendentes";
+            this.IncluirSolicitacaoPendentes.UseVisualStyleBackColor = false;
+            this.IncluirSolicitacaoPendentes.Visible = false;
+            this.IncluirSolicitacaoPendentes.Click += new System.EventHandler(this.IncluirSolicitacaoPendentes_Click);
             // 
             // SelecionaAM
             // 
@@ -1174,5 +1190,6 @@
         private System.Windows.Forms.MaskedTextBox txtAtendMarcado;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox PrioridadeTxt;
+        private System.Windows.Forms.Button IncluirSolicitacaoPendentes;
     }
 }

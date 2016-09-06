@@ -86,8 +86,9 @@ namespace Sistema_Controle
             using (DAHUEEntities db = new DAHUEEntities())
                 {
                     var query= (from sp in db.solicitacoes_paciente
-                               where sp.AmSolicitada == 0 && sp.Agendamento == "Nao"
-                               select sp.idPaciente_Solicitacoes).Count();
+                                where sp.AmSolicitada == 0 && sp.Agendamento == "Nao" &&
+                                sp.Registrado == "Sim"
+                                select sp.idPaciente_Solicitacoes).Count();
 
                     txtSolicitacoes.Text = query.ToString();
                 }

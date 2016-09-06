@@ -11,10 +11,10 @@ namespace Sistema_Controle
     public class InsercoesDoBanco
     {
 
-        public void inserirSolicitacaoDoPaciente(string TipoSolicitacao, DateTime DtHrdoInicio, string Agendamento, DateTime DtHrAgendamento,
+        public void inserirSolicitacaoDoPaciente(string TipoSolicitacao, DateTime DtHrdoInicio, string Agendamento, DateTime DtHrdoAgendamento,
             string NomeSolicitante, string LocalSolicitacao, string Telefone, string Paciente, string Genero, string Idade,string Diagnostico, 
             string Motivo, string SubMotivo, string Prioridade, string Origem, string EnderecoOrigem, string Destino, string EnderecoDestino, 
-            string ObsGerais, int AmSolicitada, string usuario, DateTime DtHrRegistro)
+            string ObsGerais, int AmSolicitada, string usuario)
         {
 
             using (DAHUEEntities dahue = new DAHUEEntities())
@@ -25,7 +25,7 @@ namespace Sistema_Controle
                 solicitacoesPaciente.TipoSolicitacao = TipoSolicitacao;
                 solicitacoesPaciente.DtHrdoInicio = DtHrdoInicio;
                 solicitacoesPaciente.Agendamento = Agendamento;
-                solicitacoesPaciente.DtHrdoAgendamento = DtHrAgendamento;
+                solicitacoesPaciente.DtHrdoAgendamento = DtHrdoAgendamento;
                 solicitacoesPaciente.NomeSolicitante = NomeSolicitante;
                 solicitacoesPaciente.LocalSolicitacao = LocalSolicitacao;
                 solicitacoesPaciente.Telefone = Telefone;
@@ -54,7 +54,7 @@ namespace Sistema_Controle
 
                 historico hi = new historico();
                 hi.Usuario = usuario;
-                hi.DtHrRegistro = DtHrRegistro;
+                hi.DtHrRegistro = DtHrdoInicio;
 
                 dahue.solicitacoes_paciente.Add(solicitacoesPaciente);
                 dahue.historico.Add(hi);
@@ -194,7 +194,7 @@ namespace Sistema_Controle
             }
         }
 
-        public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, string dtHrAgendamento, string nomeSolicitante, string localSolicitante,
+        public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, string DtHrdoAgendamento, string nomeSolicitante, string localSolicitante,
             string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string prioridade, string origem, string enderecoOrigem,
             string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais)
         {
@@ -204,7 +204,7 @@ namespace Sistema_Controle
                 solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPaciente);
                 sp.TipoSolicitacao = tipoAM;
                 sp.Agendamento = agendamento;
-                sp.DtHrAgendamento = dtHrAgendamento;
+                sp.DtHrdoAgendamento = Convert.ToDateTime(DtHrdoAgendamento);
                 sp.NomeSolicitante = nomeSolicitante;
                 sp.LocalSolicitacao = localSolicitante;
                 sp.Telefone = telefone;

@@ -144,6 +144,13 @@ namespace Sistema_Controle
                 ListaSolicitacaoPaciente.Columns["IDpaciente"].Visible = false;
                 ListaSolicitacaoPaciente.Columns["idSolicitacaoAm"].Visible = false;
             }
+
+            if(ListaSolicitacaoPaciente.Rows.Count == 0)
+            {
+                SelecionaAM sand = new SelecionaAM(IDpesquisa, 0, 0);
+                this.Dispose();
+                sand.ShowDialog();
+            }
         }
 
         private void opcaoNumero_CheckedChanged(object sender, EventArgs e)
