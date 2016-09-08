@@ -50,7 +50,7 @@ namespace Sistema_Controle
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            ConfirmaSolicitacao frm = new ConfirmaSolicitacao();
+            ConfirmaSolicitacao frm = new ConfirmaSolicitacao(0);
             frm.ShowDialog();
             timerAtualiza(1);
         }

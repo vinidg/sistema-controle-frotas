@@ -40,7 +40,7 @@ namespace Sistema_Controle
             verificaSeAMEstaIncluida();
             VerificarPacienteJaestaInclusoNaMesma();
             pegarDadosDasAmbulancias();
-            if(idSoAm == 0)
+            if(AMocupada == 0)
             {
                 IncluirSolicitacaoPendentes.Visible = true;
             }
@@ -122,35 +122,35 @@ namespace Sistema_Controle
 
                 if (query.TipoSolicitacao == "Avancada")
                 {
-                    BtnBasica.Visible = false;
-                    BtnAvancada.BackColor = Color.Teal;
-                    BtnAvancada.ForeColor = Color.PaleTurquoise;
+                    BtnAvancada.Visible = true;
+                    BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+                    BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
                 }
                 else
                 {
-                    BtnAvancada.Visible = false;
-                    BtnBasica.BackColor = Color.Teal;
-                    BtnBasica.ForeColor = Color.PaleTurquoise;
+                    BtnBasica.Visible = true;
+                    BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+                    BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
                 }
 
                 if (query.Agendamento == "Sim")
                 {
-                    Btnagendanao.Visible = false;
+                    Btnagendasim.Visible = true;
                     label3.Visible = true;
-                    txtAtendMarcado.Visible = true;
-                    Btnagendasim.BackColor = Color.Teal;
-                    Btnagendasim.ForeColor = Color.PaleTurquoise;
+                    dataAgendamento.Visible = true;
+                    Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+                    Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
                 }
                 else
                 {
-                    Btnagendasim.Visible = false;
+                    Btnagendanao.Visible = true;
                     label3.Visible = false;
-                    txtAtendMarcado.Visible = false;
-                    Btnagendanao.BackColor = Color.Teal;
-                    Btnagendanao.ForeColor = Color.PaleTurquoise;
+                    dataAgendamento.Visible = false;
+                    Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+                    Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
                 }
 
-                txtAtendMarcado.Text = query.DtHrdoAgendamento.ToString();
+                dataAgendamento.Text = query.DtHrdoAgendamento.ToString();
                 txtNomeSolicitante.Text = query.NomeSolicitante;
                 CbLocalSolicita.Text = query.LocalSolicitacao;
                 txtTelefone.Text = query.Telefone;
@@ -486,7 +486,7 @@ namespace Sistema_Controle
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
 
-            if (txtAtendMarcado.Enabled == false)
+            if (dataAgendamento.Enabled == false)
             {
                 DesbloquarCampos();
             }
@@ -542,7 +542,7 @@ namespace Sistema_Controle
             Btnagendanao.Location = new Point(470, 40);
             Btnagendasim.Location = new Point(390, 40);
 
-            txtAtendMarcado.Enabled = true;
+            dataAgendamento.Enabled = true;
             txtNomeSolicitante.Enabled = true;
             CbLocalSolicita.Enabled = true;
             txtTelefone.Enabled = true;
@@ -572,7 +572,7 @@ namespace Sistema_Controle
             Btnagendanao.Location = new Point(405, 40);
             Btnagendasim.Location = new Point(405, 40);
 
-            txtAtendMarcado.Enabled = false;
+            dataAgendamento.Enabled = false;
             txtNomeSolicitante.Enabled = false;
             CbLocalSolicita.Enabled = false;
             txtTelefone.Enabled = false;
@@ -598,7 +598,7 @@ namespace Sistema_Controle
             try
             {
                 InsercoesDoBanco ib = new InsercoesDoBanco();
-                ib.alterarCamposDaSolicitacao(idPaciente, TipoAM, Agendamento, txtAtendMarcado.Text, txtNomeSolicitante.Text, CbLocalSolicita.Text, txtTelefone.Text,
+                ib.alterarCamposDaSolicitacao(idPaciente, TipoAM, Agendamento, dataAgendamento.Value, txtNomeSolicitante.Text, CbLocalSolicita.Text, txtTelefone.Text,
                                               txtNomePaciente.Text, Sexo, txtIdade.Text, txtDiagnostico.Text, CbMotivoChamado.Text, CbTipoMotivoSelecionado.Text, PrioridadeTxt.Text, CbOrigem.Text,
                                               txtEnderecoOrigem.Text, CbDestino.Text, txtEnderecoDestino.Text, System.Environment.UserName, DateTime.Now.ToString(), obsGerais.Text);
 
@@ -607,12 +607,6 @@ namespace Sistema_Controle
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                MessageBox.Show("Solicitação alterada com sucesso !!!");
-            }
-
-
 
         }
 
@@ -621,15 +615,15 @@ namespace Sistema_Controle
             TipoAM = "Avancada";
             if (BtnBasica.BackColor == Color.PaleTurquoise)
             {
-                BtnAvancada.BackColor = Color.PaleTurquoise;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnBasica.BackColor = Color.PaleTurquoise;
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
             }
-            BtnBasica.BackColor = Color.PaleTurquoise;
-            BtnAvancada.BackColor = Color.Teal;
-            BtnAvancada.ForeColor = Color.PaleTurquoise;
-            BtnBasica.ForeColor = Color.Teal;
+            BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
 
         }
 
@@ -640,55 +634,55 @@ namespace Sistema_Controle
 
             if (BtnAvancada.BackColor == Color.PaleTurquoise)
             {
-                BtnBasica.BackColor = Color.PaleTurquoise;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnAvancada.BackColor = Color.PaleTurquoise;
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
             }
-            BtnAvancada.BackColor = Color.PaleTurquoise;
-            BtnBasica.BackColor = Color.Teal;
-            BtnBasica.ForeColor = Color.PaleTurquoise;
-            BtnAvancada.ForeColor = Color.Teal;
+            BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
         private void Btnagendasim_Click(object sender, EventArgs e)
         {
-
-            txtAtendMarcado.Focus();
-            txtAtendMarcado.Text = DateTime.Now.ToString();
+            dataAgendamento.Visible = true;
+            dataAgendamento.Focus();
             Agendamento = "Sim";
 
             if (Btnagendanao.BackColor == Color.PaleTurquoise)
             {
-                Btnagendanao.BackColor = Color.PaleTurquoise;
-                Btnagendanao.ForeColor = Color.Teal;
-                Btnagendasim.ForeColor = Color.Teal;
-                Btnagendasim.BackColor = Color.PaleTurquoise;
+                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
 
             }
 
-            Btnagendanao.BackColor = Color.PaleTurquoise;
-            Btnagendasim.BackColor = Color.Teal;
-            Btnagendasim.ForeColor = Color.PaleTurquoise;
-            Btnagendanao.ForeColor = Color.Teal;
+            Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
         private void Btnagendanao_Click(object sender, EventArgs e)
         {
             Agendamento = "Nao";
+            dataAgendamento.Visible = false;
             if (Btnagendasim.BackColor == Color.PaleTurquoise)
             {
-                Btnagendasim.BackColor = Color.PaleTurquoise;
-                Btnagendasim.ForeColor = Color.Teal;
-                Btnagendanao.ForeColor = Color.Teal;
-                Btnagendanao.BackColor = Color.PaleTurquoise;
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
 
             }
 
-            Btnagendasim.BackColor = Color.PaleTurquoise;
-            Btnagendanao.BackColor = Color.Teal;
-            Btnagendanao.ForeColor = Color.PaleTurquoise;
-            Btnagendasim.ForeColor = Color.Teal;
+            Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
@@ -931,31 +925,14 @@ namespace Sistema_Controle
         }
 
         private void IncluirSolicitacaoPendentes_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Atualize os dados do paciente !", "Atenção !", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
-            BtnAlterar.PerformClick();
-
+        {           
             DialogResult result1 = MessageBox.Show("Deseja inserir a solicitação na lista de pendêcias ?",
-            "Atenção !",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
             {
-                if(txtNomePaciente.Enabled == true)
-                {
-                    MessageBox.Show("É obrigatório atualizar os dados do paciente !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }else
-                {
-                using(DAHUEEntities db = new DAHUEEntities())
-                {
-                    solicitacoes_paciente sp = db.solicitacoes_paciente.First(s => s.idPaciente_Solicitacoes == idPaciente);
-                    sp.AmSolicitada = 0;
-                    db.SaveChanges();
-
-                    MessageBox.Show("Solicitação em pendência !");
-                    this.Dispose();
-                }
-                }
+                ConfirmaSolicitacao cs = new ConfirmaSolicitacao(idPaciente);
+                this.Dispose();
+                cs.ShowDialog();
             }
         }
 

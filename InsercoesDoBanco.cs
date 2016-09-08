@@ -194,7 +194,7 @@ namespace Sistema_Controle
             }
         }
 
-        public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, string DtHrdoAgendamento, string nomeSolicitante, string localSolicitante,
+        public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, DateTime DtHrdoAgendamento, string nomeSolicitante, string localSolicitante,
             string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string prioridade, string origem, string enderecoOrigem,
             string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais)
         {
@@ -204,7 +204,7 @@ namespace Sistema_Controle
                 solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPaciente);
                 sp.TipoSolicitacao = tipoAM;
                 sp.Agendamento = agendamento;
-                sp.DtHrdoAgendamento = Convert.ToDateTime(DtHrdoAgendamento);
+                sp.DtHrdoAgendamento = DtHrdoAgendamento;
                 sp.NomeSolicitante = nomeSolicitante;
                 sp.LocalSolicitacao = localSolicitante;
                 sp.Telefone = telefone;
@@ -225,6 +225,7 @@ namespace Sistema_Controle
 
                 db.SaveChanges();
             }
+            MessageBox.Show("Solicitação alterada com sucesso !!!");
         }
 
    

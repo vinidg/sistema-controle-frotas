@@ -21,7 +21,7 @@ namespace Sistema_Controle
         string pegaUnidadeEnd;  //para pegar o endereco com o nome da unidade
         string Sexo, pegamotivo;
         string Endereco1;
-        public ConfirmaSolicitacao()
+        public ConfirmaSolicitacao(int idPaciente)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -29,6 +29,41 @@ namespace Sistema_Controle
             label3.Visible = false;
             dataAgendamento.Visible = false;
             AutoCompletar();
+            if(idPaciente != 0)
+            {
+                PreencherCampos(idPaciente);
+            }
+        }
+        private void PreencherCampos(int id)
+        {
+            using(DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.idPaciente_Solicitacoes == id
+                             select sp).FirstOrDefault();
+
+                CbLocalSolicita.Text = query.LocalSolicitacao;
+                txtTelefone.Text = query.Telefone;
+                txtNomePaciente.Text = query.Paciente;
+                if(query.Genero == "M")
+                {
+                    RbMasculino.Checked = false;
+                }
+                else
+                {
+                    RbFemenino.Checked = true;
+                }
+                txtIdade.Text = query.Idade;
+                txtDiagnostico.Text = query.Diagnostico;
+                CbMotivoChamado.Text = query.Motivo;
+                CbTipoMotivoSelecionado.Text = query.SubMotivo;
+                Prioridade.Text = query.Prioridade;
+                CbOrigem.Text = query.Origem;
+                txtEnderecoOrigem.Text = query.EnderecoOrigem;
+                CbDestino.Text = query.Destino;
+                txtEnderecoDestino.Text = query.EnderecoDestino;
+                Obs.Text = query.ObsGerais;
+            }
         }
 
         private void BtnBasica_Click(object sender, EventArgs e)
