@@ -7,6 +7,13 @@
 
 O sistema é utilizado para controle de frota de ambulâncias do transporte sanitário para uso do Transporte Sanitário de São Bernardo do Campo. 
 
+<img src="http://oi67.tinypic.com/rr35uh.jpg">
+<img src="http://oi64.tinypic.com/mcf3oj.jpg">
+<img src="http://oi64.tinypic.com/2ch8fu9.jpg">
+<img src="http://oi64.tinypic.com/339owoz.jpg">
+<img src="http://oi65.tinypic.com/14xijqq.jpg">
+<img src="http://oi66.tinypic.com/2nqea2g.jpg">
+<img src="http://oi66.tinypic.com/w83zts.jpg">
 
 __________________________________________________________________________________________
 Desenvolvido por Vinicius Duarte Galdino, Auxiliar de Escritório.
