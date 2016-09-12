@@ -59,10 +59,11 @@ namespace Sistema_Controle
             set { DtHrEquipePatio = value; }
         }
 
-        int idSolicitacoesPacientes, idSolicitacoes_Ambulancias, IdOutroPaciente;
+        int? idSolicitacoes_Ambulancias;
+        int idSolicitacoesPacientes, IdOutroPaciente;
 
 
-        public int IdSolicitacoes_Ambulancias
+        public int? IdSolicitacoes_Ambulancias
         {
             get { return idSolicitacoes_Ambulancias; }
             set { idSolicitacoes_Ambulancias = value; }

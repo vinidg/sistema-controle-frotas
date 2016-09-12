@@ -219,8 +219,6 @@ namespace Sistema_Controle
                 sp.EnderecoOrigem = enderecoOrigem;
                 sp.Destino = destino;
                 sp.EnderecoDestino = enderecoDestino;
-                sp.Registrado = registrado;
-                sp.HrRegistro = horaRegistrado;
                 sp.ObsGerais = obsGerais;
 
                 db.SaveChanges();

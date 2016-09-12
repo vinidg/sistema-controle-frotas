@@ -197,9 +197,9 @@ namespace Sistema_Controle
                 d.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
 
                 InsercoesDoBanco ib = new InsercoesDoBanco();
-                ib.cancelarSolicitacao(idPaciente, d.IdSolicitacoes_Ambulancias, MotivoCancelar.Text, DtHrCancelamento.Text,
+                ib.cancelarSolicitacao(idPaciente, Convert.ToInt32(d.IdSolicitacoes_Ambulancias), MotivoCancelar.Text, DtHrCancelamento.Text,
                     txtResponsavel.Text, txtObsCancelamento.Text);
-                ib.updateNasTabelasParaCancelar(idPaciente, idAmbu, d.IdSolicitacoes_Ambulancias);
+                ib.updateNasTabelasParaCancelar(idPaciente, idAmbu, Convert.ToInt32(d.IdSolicitacoes_Ambulancias));
             }
             catch (Exception ex)
             {
@@ -513,6 +513,7 @@ namespace Sistema_Controle
                 txtDiagnostico.Text == "" ||
                 CbMotivoChamado.Text == "" ||
                 Sexo == "" ||
+                PrioridadeTxt.Text == "" ||
                 CbTipoMotivoSelecionado.Text == "" ||
                 CbOrigem.Text == "" ||
                 CbDestino.Text == "" ||
@@ -613,7 +614,7 @@ namespace Sistema_Controle
         private void BtnAvancada_Click(object sender, EventArgs e)
         {
             TipoAM = "Avancada";
-            if (BtnBasica.BackColor == Color.PaleTurquoise)
+            if (BtnBasica.BackColor == Color.FromArgb(229, 252, 194))
             {
                 BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
                 BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
@@ -632,7 +633,7 @@ namespace Sistema_Controle
             TipoAM = "Basica";
 
 
-            if (BtnAvancada.BackColor == Color.PaleTurquoise)
+            if (BtnAvancada.BackColor == Color.FromArgb(229, 252, 194))
             {
                 BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
                 BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
@@ -651,7 +652,7 @@ namespace Sistema_Controle
             dataAgendamento.Focus();
             Agendamento = "Sim";
 
-            if (Btnagendanao.BackColor == Color.PaleTurquoise)
+            if (Btnagendanao.BackColor == Color.FromArgb(229, 252, 194))
             {
                 Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
                 Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
@@ -670,7 +671,7 @@ namespace Sistema_Controle
         {
             Agendamento = "Nao";
             dataAgendamento.Visible = false;
-            if (Btnagendasim.BackColor == Color.PaleTurquoise)
+            if (Btnagendasim.BackColor == Color.FromArgb(229, 252, 194))
             {
                 Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
                 Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);

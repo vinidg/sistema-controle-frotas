@@ -29,11 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtHrReagendamento = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Encaminhados = new System.Windows.Forms.RadioButton();
+            this.ListaAgendados = new System.Windows.Forms.DataGridView();
+            this.Respondidos = new System.Windows.Forms.RadioButton();
+            this.Calendario = new System.Windows.Forms.MonthCalendar();
             this.Reagendamentos = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.Aceitar = new System.Windows.Forms.Button();
-            this.Encaminhados = new System.Windows.Forms.RadioButton();
-            this.Respondidos = new System.Windows.Forms.RadioButton();
             this.DataInicio = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -76,14 +81,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ListaAgendados = new System.Windows.Forms.DataGridView();
-            this.Calendario = new System.Windows.Forms.MonthCalendar();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtHrReagendamento = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListaAgendados)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaAgendados)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -145,50 +145,42 @@
             this.panel1.Size = new System.Drawing.Size(1067, 646);
             this.panel1.TabIndex = 0;
             // 
-            // Reagendamentos
+            // dtHrReagendamento
             // 
-            this.Reagendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dtHrReagendamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.dtHrReagendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtHrReagendamento.ForeColor = System.Drawing.Color.Red;
+            this.dtHrReagendamento.Location = new System.Drawing.Point(830, 519);
+            this.dtHrReagendamento.Name = "dtHrReagendamento";
+            this.dtHrReagendamento.Size = new System.Drawing.Size(225, 16);
+            this.dtHrReagendamento.TabIndex = 102;
+            this.dtHrReagendamento.Text = "DataAgendamento";
+            this.dtHrReagendamento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(634, 519);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(190, 16);
+            this.label3.TabIndex = 101;
+            this.label3.Text = "Proposta de Reagendamento:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Reagendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(124)))), ((int)(((byte)(102)))));
-            this.Reagendamentos.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Reagendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Reagendamentos.Location = new System.Drawing.Point(787, 591);
-            this.Reagendamentos.Name = "Reagendamentos";
-            this.Reagendamentos.Size = new System.Drawing.Size(121, 44);
-            this.Reagendamentos.TabIndex = 99;
-            this.Reagendamentos.Text = "Todos reagendamentos";
-            this.Reagendamentos.UseVisualStyleBackColor = false;
-            this.Reagendamentos.Click += new System.EventHandler(this.Reagendamentos_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(143)))));
-            this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(637, 588);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 46);
-            this.button1.TabIndex = 98;
-            this.button1.Text = "Reagendar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Aceitar
-            // 
-            this.Aceitar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Aceitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
-            this.Aceitar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Aceitar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Aceitar.Location = new System.Drawing.Point(914, 588);
-            this.Aceitar.Name = "Aceitar";
-            this.Aceitar.Size = new System.Drawing.Size(144, 46);
-            this.Aceitar.TabIndex = 97;
-            this.Aceitar.Text = "Aceitar";
-            this.Aceitar.UseVisualStyleBackColor = false;
-            this.Aceitar.Click += new System.EventHandler(this.Aceitar_Click);
+            this.groupBox1.Controls.Add(this.Encaminhados);
+            this.groupBox1.Controls.Add(this.ListaAgendados);
+            this.groupBox1.Controls.Add(this.Respondidos);
+            this.groupBox1.Controls.Add(this.Calendario);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1061, 213);
+            this.groupBox1.TabIndex = 100;
+            this.groupBox1.TabStop = false;
             // 
             // Encaminhados
             // 
@@ -205,6 +197,24 @@
             this.Encaminhados.UseVisualStyleBackColor = true;
             this.Encaminhados.Click += new System.EventHandler(this.Encaminhados_Click);
             // 
+            // ListaAgendados
+            // 
+            this.ListaAgendados.AllowUserToAddRows = false;
+            this.ListaAgendados.AllowUserToDeleteRows = false;
+            this.ListaAgendados.AllowUserToResizeRows = false;
+            this.ListaAgendados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListaAgendados.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.ListaAgendados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaAgendados.Location = new System.Drawing.Point(6, 34);
+            this.ListaAgendados.MultiSelect = false;
+            this.ListaAgendados.Name = "ListaAgendados";
+            this.ListaAgendados.ReadOnly = true;
+            this.ListaAgendados.RowHeadersVisible = false;
+            this.ListaAgendados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ListaAgendados.Size = new System.Drawing.Size(813, 162);
+            this.ListaAgendados.TabIndex = 1;
+            this.ListaAgendados.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaAgendados_CellContentDoubleClick);
+            // 
             // Respondidos
             // 
             this.Respondidos.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -217,6 +227,56 @@
             this.Respondidos.Text = "Respondidos";
             this.Respondidos.UseVisualStyleBackColor = true;
             this.Respondidos.Click += new System.EventHandler(this.Respondidos_Click);
+            // 
+            // Calendario
+            // 
+            this.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Calendario.Location = new System.Drawing.Point(831, 34);
+            this.Calendario.Name = "Calendario";
+            this.Calendario.TabIndex = 0;
+            this.Calendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calendario_DateChanged);
+            // 
+            // Reagendamentos
+            // 
+            this.Reagendamentos.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Reagendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(124)))), ((int)(((byte)(102)))));
+            this.Reagendamentos.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.Reagendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Reagendamentos.Location = new System.Drawing.Point(787, 591);
+            this.Reagendamentos.Name = "Reagendamentos";
+            this.Reagendamentos.Size = new System.Drawing.Size(121, 44);
+            this.Reagendamentos.TabIndex = 99;
+            this.Reagendamentos.Text = "Todos reagendamentos";
+            this.Reagendamentos.UseVisualStyleBackColor = false;
+            this.Reagendamentos.Click += new System.EventHandler(this.Reagendamentos_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(143)))));
+            this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Location = new System.Drawing.Point(637, 588);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 46);
+            this.button1.TabIndex = 98;
+            this.button1.Text = "Reagendar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Aceitar
+            // 
+            this.Aceitar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Aceitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.Aceitar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Aceitar.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Aceitar.Location = new System.Drawing.Point(914, 588);
+            this.Aceitar.Name = "Aceitar";
+            this.Aceitar.Size = new System.Drawing.Size(144, 46);
+            this.Aceitar.TabIndex = 97;
+            this.Aceitar.Text = "Aceitar";
+            this.Aceitar.UseVisualStyleBackColor = false;
+            this.Aceitar.Click += new System.EventHandler(this.Aceitar_Click);
             // 
             // DataInicio
             // 
@@ -665,67 +725,6 @@
             this.label1.TabIndex = 46;
             this.label1.Text = "Tipo da Ambulância";
             // 
-            // ListaAgendados
-            // 
-            this.ListaAgendados.AllowUserToAddRows = false;
-            this.ListaAgendados.AllowUserToDeleteRows = false;
-            this.ListaAgendados.AllowUserToResizeRows = false;
-            this.ListaAgendados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaAgendados.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.ListaAgendados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaAgendados.Location = new System.Drawing.Point(6, 34);
-            this.ListaAgendados.MultiSelect = false;
-            this.ListaAgendados.Name = "ListaAgendados";
-            this.ListaAgendados.ReadOnly = true;
-            this.ListaAgendados.RowHeadersVisible = false;
-            this.ListaAgendados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListaAgendados.Size = new System.Drawing.Size(813, 162);
-            this.ListaAgendados.TabIndex = 1;
-            this.ListaAgendados.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaAgendados_CellContentDoubleClick);
-            // 
-            // Calendario
-            // 
-            this.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Calendario.Location = new System.Drawing.Point(831, 34);
-            this.Calendario.Name = "Calendario";
-            this.Calendario.TabIndex = 0;
-            this.Calendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calendario_DateChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.Encaminhados);
-            this.groupBox1.Controls.Add(this.ListaAgendados);
-            this.groupBox1.Controls.Add(this.Respondidos);
-            this.groupBox1.Controls.Add(this.Calendario);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1061, 213);
-            this.groupBox1.TabIndex = 100;
-            this.groupBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(634, 519);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(190, 16);
-            this.label3.TabIndex = 101;
-            this.label3.Text = "Proposta de Reagendamento:";
-            // 
-            // dtHrReagendamento
-            // 
-            this.dtHrReagendamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dtHrReagendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtHrReagendamento.ForeColor = System.Drawing.Color.Red;
-            this.dtHrReagendamento.Location = new System.Drawing.Point(830, 519);
-            this.dtHrReagendamento.Name = "dtHrReagendamento";
-            this.dtHrReagendamento.Size = new System.Drawing.Size(225, 16);
-            this.dtHrReagendamento.TabIndex = 102;
-            this.dtHrReagendamento.Text = "DataAgendamento";
-            this.dtHrReagendamento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // RespostaDeAmbulancias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -740,9 +739,9 @@
             this.Activated += new System.EventHandler(this.RespostaDeAmbulancias_Activated);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListaAgendados)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaAgendados)).EndInit();
             this.ResumeLayout(false);
 
         }

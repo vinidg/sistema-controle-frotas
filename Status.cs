@@ -263,7 +263,7 @@ namespace Sistema_Controle
                     Destino.Text = destino;
                     Origem.Text = origem;
 
-                    SolicitaAM = d.IdSolicitacoes_Ambulancias;
+                    SolicitaAM = Convert.ToInt32(d.IdSolicitacoes_Ambulancias);
                     label7.Text = idPaciente.ToString();
 
                 }

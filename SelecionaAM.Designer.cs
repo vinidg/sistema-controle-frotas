@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
             this.IncluirSolicitacaoPendentes = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
             this.PrioridadeTxt = new System.Windows.Forms.ComboBox();
@@ -99,7 +100,6 @@
             this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBasica = new System.Windows.Forms.Button();
-            this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
             this.PainelAM2.SuspendLayout();
@@ -170,6 +170,17 @@
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
             // 
+            // dataAgendamento
+            // 
+            this.dataAgendamento.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dataAgendamento.Enabled = false;
+            this.dataAgendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dataAgendamento.Location = new System.Drawing.Point(211, 82);
+            this.dataAgendamento.Name = "dataAgendamento";
+            this.dataAgendamento.Size = new System.Drawing.Size(231, 20);
+            this.dataAgendamento.TabIndex = 64;
+            this.dataAgendamento.Visible = false;
+            // 
             // IncluirSolicitacaoPendentes
             // 
             this.IncluirSolicitacaoPendentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(133)))), ((int)(((byte)(54)))));
@@ -203,10 +214,11 @@
             this.PrioridadeTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PrioridadeTxt.FormattingEnabled = true;
             this.PrioridadeTxt.Items.AddRange(new object[] {
-            "P0_PRIORIDADE_ABSOLUTA_RESOLVER_EM_IMEDIATO",
-            "P1_PRIORIDADE_ALTA_RESOLVER_EM_2_HORAS",
-            "P2_PRIORIDADE_MODERADA_RESOLVER_EM_12_HORAS",
-            "P3_PRIORIDADE_BAIXA_RESOLVER_EM_24_HORAS"});
+            "SEM PRIORIDADE",
+            "P0 PRIORIDADE ABSOLUTA RESOLVER EM IMEDIATO",
+            "P1 PRIORIDADE ALTA RESOLVER EM 2 HORAS",
+            "P2 PRIORIDADE MODERADA RESOLVER EM 12 HORAS",
+            "P3 PRIORIDADE BAIXA RESOLVER EM 24 HORAS"});
             this.PrioridadeTxt.Location = new System.Drawing.Point(9, 404);
             this.PrioridadeTxt.Name = "PrioridadeTxt";
             this.PrioridadeTxt.Size = new System.Drawing.Size(237, 23);
@@ -1010,7 +1022,7 @@
             this.Btnagendasim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Btnagendasim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btnagendasim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.Btnagendasim.Location = new System.Drawing.Point(486, 40);
+            this.Btnagendasim.Location = new System.Drawing.Point(405, 40);
             this.Btnagendasim.Name = "Btnagendasim";
             this.Btnagendasim.Size = new System.Drawing.Size(75, 22);
             this.Btnagendasim.TabIndex = 5;
@@ -1095,17 +1107,6 @@
             this.BtnBasica.UseVisualStyleBackColor = false;
             this.BtnBasica.Visible = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
-            // 
-            // dataAgendamento
-            // 
-            this.dataAgendamento.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dataAgendamento.Enabled = false;
-            this.dataAgendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dataAgendamento.Location = new System.Drawing.Point(211, 82);
-            this.dataAgendamento.Name = "dataAgendamento";
-            this.dataAgendamento.Size = new System.Drawing.Size(231, 20);
-            this.dataAgendamento.TabIndex = 64;
-            this.dataAgendamento.Visible = false;
             // 
             // SelecionaAM
             // 

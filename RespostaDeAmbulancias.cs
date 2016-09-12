@@ -39,6 +39,7 @@ namespace Sistema_Controle
                             {
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
+                                sp.LocalSolicitacao,
                                 sp.Agendamento,
                                 sp.DtHrdoAgendamento,
                                 Tipo = sp.TipoSolicitacao,
@@ -73,6 +74,7 @@ namespace Sistema_Controle
                             {
                                 ID = sp.idPaciente_Solicitacoes,
                                 sp.Paciente,
+                                sp.LocalSolicitacao,
                                 sp.Agendamento,
                                 sp.DtHrdoAgendamento,
                                 Tipo = sp.TipoSolicitacao,

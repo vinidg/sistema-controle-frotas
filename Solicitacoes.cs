@@ -193,16 +193,19 @@ namespace Sistema_Controle
                     ST.ShowDialog();
                     return;
                 }
-
                 if (tipo == "Avancada")
                 {
-                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                    return;
+
+                    if (querya == "BASICO")
+                    {
+                        MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
+                        return;
+                    }
                 }
 
                 if (tipo == "Basica")
                 {
-                    if (querya == "Avancada")
+                    if (querya == "AVANCADO")
                     {
                         MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
                         return;
