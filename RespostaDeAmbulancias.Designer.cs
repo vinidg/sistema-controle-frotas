@@ -232,6 +232,7 @@
             // 
             this.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Calendario.Location = new System.Drawing.Point(831, 34);
+            this.Calendario.MaxSelectionCount = 31;
             this.Calendario.Name = "Calendario";
             this.Calendario.TabIndex = 0;
             this.Calendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calendario_DateChanged);

@@ -140,6 +140,7 @@ namespace Sistema_Controle
                     dataAgendamento.Visible = true;
                     Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
                     Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+                    Reagendar.Visible = true;
                 }
                 else
                 {
@@ -934,6 +935,24 @@ namespace Sistema_Controle
                 ConfirmaSolicitacao cs = new ConfirmaSolicitacao(idPaciente);
                 this.Dispose();
                 cs.ShowDialog();
+            }
+        }
+
+        private void Reagendar_Click(object sender, EventArgs e)
+        {
+            DialogResult result1 = MessageBox.Show("Deseja reagendar a solicitação ?",
+            "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result1 == DialogResult.Yes)
+            {
+                using(DAHUEEntities db = new DAHUEEntities())
+                {
+                    solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPaciente);
+                    sp.Registrado = "Aguardando resposta do controle";
+                    db.SaveChanges(); 
+                }
+                RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
+                this.Dispose();
+                ra.ShowDialog();
             }
         }
 

@@ -26,14 +26,14 @@ namespace Sistema_Controle
 
         public void puxarAgendadasRespondidasPeloSolicitante()
         {
-            int zero = 0;
-            var data = Calendario.SelectionRange.End;
+            var final = Calendario.SelectionRange.End.AddHours(23).AddMinutes(59).AddSeconds(59);
+            var comeco = Calendario.SelectionRange.Start;
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
-                            where sp.AmSolicitada == zero &&
+                            where sp.AmSolicitada == 0 &&
                             sp.Agendamento == "Sim" &&
-                            SqlFunctions.DateDiff("day", data, sp.DtHrdoAgendamento) == 0 &&
+                            (sp.DtHrdoAgendamento >= comeco && sp.DtHrdoAgendamento <= final) &&
                             sp.Registrado == "Aguardando resposta do solicitante"
                             select new
                             {
@@ -61,14 +61,14 @@ namespace Sistema_Controle
         public void puxarAgendadasPendentes()
         {
 
-            int zero = 0;
-            var data = Calendario.SelectionRange.End;
+            var final = Calendario.SelectionRange.End.AddHours(23).AddMinutes(59).AddSeconds(59);
+            var comeco = Calendario.SelectionRange.Start;
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = from sp in db.solicitacoes_paciente
-                            where sp.AmSolicitada == zero &&
+                            where sp.AmSolicitada == 0 &&
                             sp.Agendamento == "Sim" &&
-                            SqlFunctions.DateDiff("day", data, sp.DtHrdoAgendamento) == 0 &&
+                            (sp.DtHrdoAgendamento >= comeco && sp.DtHrdoAgendamento <= final) &&
                             sp.Registrado == "Aguardando resposta do controle"
                             select new
                             {

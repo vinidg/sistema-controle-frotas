@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Reagendar = new System.Windows.Forms.Button();
             this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
             this.IncluirSolicitacaoPendentes = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
@@ -110,6 +111,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.Reagendar);
             this.panel1.Controls.Add(this.dataAgendamento);
             this.panel1.Controls.Add(this.IncluirSolicitacaoPendentes);
             this.panel1.Controls.Add(this.label28);
@@ -169,6 +171,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
+            // 
+            // Reagendar
+            // 
+            this.Reagendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(165)))), ((int)(((byte)(95)))));
+            this.Reagendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reagendar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(223)))), ((int)(((byte)(70)))));
+            this.Reagendar.Location = new System.Drawing.Point(647, 607);
+            this.Reagendar.Name = "Reagendar";
+            this.Reagendar.Size = new System.Drawing.Size(287, 47);
+            this.Reagendar.TabIndex = 65;
+            this.Reagendar.Text = "Reagendar";
+            this.Reagendar.UseVisualStyleBackColor = false;
+            this.Reagendar.Visible = false;
+            this.Reagendar.Click += new System.EventHandler(this.Reagendar_Click);
             // 
             // dataAgendamento
             // 
@@ -1198,5 +1214,6 @@
         private System.Windows.Forms.ComboBox PrioridadeTxt;
         private System.Windows.Forms.Button IncluirSolicitacaoPendentes;
         private System.Windows.Forms.DateTimePicker dataAgendamento;
+        private System.Windows.Forms.Button Reagendar;
     }
 }

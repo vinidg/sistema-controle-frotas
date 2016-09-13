@@ -43,6 +43,7 @@
             this.txtSolicitacoes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Editar = new System.Windows.Forms.Button();
             this.AgendaPendentes = new System.Windows.Forms.Button();
             this.solicitacoes = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -52,7 +53,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtAgendasPendentes = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Editar = new System.Windows.Forms.Button();
             this.Consultar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtAgendadasHoje = new System.Windows.Forms.TextBox();
@@ -77,7 +77,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(99, 9);
+            this.label1.Location = new System.Drawing.Point(70, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1148, 33);
             this.label1.TabIndex = 1;
@@ -91,7 +91,7 @@
             this.BtnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
             this.BtnNew.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNew.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnNew.Location = new System.Drawing.Point(1164, 52);
+            this.BtnNew.Location = new System.Drawing.Point(1106, 52);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(144, 46);
             this.BtnNew.TabIndex = 18;
@@ -146,8 +146,23 @@
             this.panel1.Controls.Add(this.BtnNew);
             this.panel1.Location = new System.Drawing.Point(12, 147);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1322, 620);
+            this.panel1.Size = new System.Drawing.Size(1264, 620);
             this.panel1.TabIndex = 0;
+            // 
+            // Editar
+            // 
+            this.Editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Editar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
+            this.Editar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Editar.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Editar.Location = new System.Drawing.Point(420, 51);
+            this.Editar.Name = "Editar";
+            this.Editar.Size = new System.Drawing.Size(144, 46);
+            this.Editar.TabIndex = 30;
+            this.Editar.Text = "EDITAR";
+            this.Editar.UseVisualStyleBackColor = false;
+            this.Editar.Visible = false;
+            this.Editar.Click += new System.EventHandler(this.Editar_Click);
             // 
             // AgendaPendentes
             // 
@@ -155,7 +170,7 @@
             this.AgendaPendentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.AgendaPendentes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AgendaPendentes.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.AgendaPendentes.Location = new System.Drawing.Point(628, 52);
+            this.AgendaPendentes.Location = new System.Drawing.Point(570, 52);
             this.AgendaPendentes.Name = "AgendaPendentes";
             this.AgendaPendentes.Size = new System.Drawing.Size(196, 46);
             this.AgendaPendentes.TabIndex = 35;
@@ -169,7 +184,7 @@
             this.solicitacoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.solicitacoes.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.solicitacoes.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.solicitacoes.Location = new System.Drawing.Point(830, 52);
+            this.solicitacoes.Location = new System.Drawing.Point(772, 52);
             this.solicitacoes.Name = "solicitacoes";
             this.solicitacoes.Size = new System.Drawing.Size(178, 46);
             this.solicitacoes.TabIndex = 34;
@@ -187,7 +202,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.groupBox2.Location = new System.Drawing.Point(47, 246);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1213, 345);
+            this.groupBox2.Size = new System.Drawing.Size(1155, 345);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "USB";
@@ -236,7 +251,7 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.listaUsb.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaUsb.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaUsb.Size = new System.Drawing.Size(1201, 314);
+            this.listaUsb.Size = new System.Drawing.Size(1143, 314);
             this.listaUsb.TabIndex = 30;
             this.listaUsb.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsb_CellDoubleClick);
             this.listaUsb.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
@@ -251,7 +266,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.groupBox1.Location = new System.Drawing.Point(47, 97);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1213, 143);
+            this.groupBox1.Size = new System.Drawing.Size(1155, 143);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "USA";
@@ -300,7 +315,7 @@
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
             this.listaUsa.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.listaUsa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaUsa.Size = new System.Drawing.Size(1201, 107);
+            this.listaUsa.Size = new System.Drawing.Size(1143, 107);
             this.listaUsa.TabIndex = 31;
             this.listaUsa.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaUsa_CellFormatting);
             this.listaUsa.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.listaUsa_CellMouseDoubleClick);
@@ -335,25 +350,10 @@
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(0, 595);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1320, 23);
+            this.label3.Size = new System.Drawing.Size(1262, 23);
             this.label3.TabIndex = 31;
             this.label3.Text = "© 2016 - Departamento de Atenção Hospitalar de Urgência e Emergência";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Editar
-            // 
-            this.Editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Editar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.Editar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Editar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Editar.Location = new System.Drawing.Point(478, 51);
-            this.Editar.Name = "Editar";
-            this.Editar.Size = new System.Drawing.Size(144, 46);
-            this.Editar.TabIndex = 30;
-            this.Editar.Text = "EDITAR";
-            this.Editar.UseVisualStyleBackColor = false;
-            this.Editar.Visible = false;
-            this.Editar.Click += new System.EventHandler(this.Editar_Click);
             // 
             // Consultar
             // 
@@ -361,7 +361,7 @@
             this.Consultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Consultar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Consultar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Consultar.Location = new System.Drawing.Point(1014, 52);
+            this.Consultar.Location = new System.Drawing.Point(956, 52);
             this.Consultar.Name = "Consultar";
             this.Consultar.Size = new System.Drawing.Size(144, 46);
             this.Consultar.TabIndex = 29;
@@ -398,7 +398,7 @@
             this.Re.AutoSize = true;
             this.Re.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Re.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Re.Location = new System.Drawing.Point(1229, 9);
+            this.Re.Location = new System.Drawing.Point(1171, 9);
             this.Re.Name = "Re";
             this.Re.Size = new System.Drawing.Size(29, 16);
             this.Re.TabIndex = 23;
@@ -426,7 +426,7 @@
             this.avisandoAoControle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.avisandoAoControle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.avisandoAoControle.ForeColor = System.Drawing.Color.Red;
-            this.avisandoAoControle.Location = new System.Drawing.Point(66, 90);
+            this.avisandoAoControle.Location = new System.Drawing.Point(8, 90);
             this.avisandoAoControle.Name = "avisandoAoControle";
             this.avisandoAoControle.Size = new System.Drawing.Size(1268, 16);
             this.avisandoAoControle.TabIndex = 27;
@@ -449,7 +449,7 @@
             this.Atualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(143)))));
             this.Atualizar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Atualizar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Atualizar.Location = new System.Drawing.Point(1205, 109);
+            this.Atualizar.Location = new System.Drawing.Point(1147, 109);
             this.Atualizar.Name = "Atualizar";
             this.Atualizar.Size = new System.Drawing.Size(129, 35);
             this.Atualizar.TabIndex = 34;
@@ -463,7 +463,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
-            this.ClientSize = new System.Drawing.Size(1346, 788);
+            this.ClientSize = new System.Drawing.Size(1288, 788);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Atualizar);
             this.Controls.Add(this.linkLabel1);

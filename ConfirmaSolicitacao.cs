@@ -518,6 +518,7 @@ namespace Sistema_Controle
 
             func(Controls);
         }
+
     }
 }
 
