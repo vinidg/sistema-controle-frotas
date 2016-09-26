@@ -17,15 +17,5 @@ namespace Sistema_Controle
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            //TODO VAIIIIII
-        }
-
-        private void Atualizacao_Load(object sender, EventArgs e)
-        {
-            //TODO alguma coisa
-        }
-
     }
 }

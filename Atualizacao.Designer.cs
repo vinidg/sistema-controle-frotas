@@ -51,7 +51,6 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "Atualizacao";
             this.Text = "Atualizacao";
-            this.Load += new System.EventHandler(this.Atualizacao_Load);
             this.ResumeLayout(false);
 
         }

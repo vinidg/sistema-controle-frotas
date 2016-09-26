@@ -144,11 +144,22 @@
     <Compile Include="ConfirmaSolicitacao.Designer.cs">
       <DependentUpon>ConfirmaSolicitacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAHUEDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAHUEDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EditarAmbulancias.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditarAmbulancias.Designer.cs">
       <DependentUpon>EditarAmbulancias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enderecos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Enderecos.Designer.cs">
+      <DependentUpon>Enderecos.cs</DependentUpon>
     </Compile>
     <Compile Include="InsercoesDoBanco.cs" />
     <Compile Include="Program.cs" />
@@ -211,6 +222,9 @@
     <EmbeddedResource Include="EditarAmbulancias.resx">
       <DependentUpon>EditarAmbulancias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Enderecos.resx">
+      <DependentUpon>Enderecos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -236,6 +250,17 @@
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config" />
+    <None Include="DAHUEDataSet.xsc">
+      <DependentUpon>DAHUEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DAHUEDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DAHUEDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DAHUEDataSet.xss">
+      <DependentUpon>DAHUEDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

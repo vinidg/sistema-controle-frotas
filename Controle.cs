@@ -29,37 +29,34 @@ namespace Sistema_Controle
             countparaSolAgendadas();
             countparaSolAgendadasPendentes();
             Re.Text = System.Environment.UserName;
-            timerAtualiza(0);
+            timerAtualiza();
+            
+            timer1.Enabled = true;
 
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
-        public void timerAtualiza(int foi)
+        public void timerAtualiza()
         {
-            if (foi != 1)
-            {
-                Timer t = new Timer();
-                t.Interval = 5000;
-                t.Tick += new EventHandler(timer1_Tick);
-                t.Start();
-            }
-            return;
+            timer1.Interval = 5000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Start();
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             ConfirmaSolicitacao frm = new ConfirmaSolicitacao(0);
             frm.ShowDialog();
-            timerAtualiza(1);
         }
 
         private void txtSolicitacoes_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             Solicitacoes Sol = new Solicitacoes(0, "");
             Sol.ShowDialog();
-            timerAtualiza(1);
             if (txtSolicitacoes.Focus())
             {
                 label1.Focus();
@@ -145,7 +142,7 @@ namespace Sistema_Controle
             {
                 avisandoAoControle.Visible = true;
                 avisandoAoControle.Text = "Nova atualização no sistema de Controle de Ambulancias. Reinicie o sistema !!!";
-                Atualizar.Visible = false;
+                Atualizar.Visible = true;
             }
         }
 
@@ -153,7 +150,6 @@ namespace Sistema_Controle
         {
             Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
-            timerAtualiza(1);
             if (txtAgendadasHoje.Focus())
             {
                 label1.Focus();
@@ -170,12 +166,14 @@ namespace Sistema_Controle
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            timer1.Enabled = false;
             Atualizacao atualizacao = new Atualizacao();
             atualizacao.ShowDialog();
         }
 
         private void Consultar_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             Consulta consulta = new Consulta();
             consulta.ShowDialog();
         }
@@ -302,11 +300,13 @@ namespace Sistema_Controle
             if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
             {
                 string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                timer1.Enabled = false;
                 Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
                 sta.ShowDialog();
             }
             else
             {
+                timer1.Enabled = false;
                 Status sta = new Status(Convert.ToInt32(idAM), 0);
                 sta.ShowDialog();
             }
@@ -321,11 +321,13 @@ namespace Sistema_Controle
                 if (listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
                 {
                     string idPaciente = listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                    timer1.Enabled = false;
                     Status status = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
                     status.ShowDialog();
                 }
                 else
                 {
+                    timer1.Enabled = false;
                     Status status = new Status(Convert.ToInt32(idAM), 0);
                     status.ShowDialog();
                 }
@@ -334,6 +336,7 @@ namespace Sistema_Controle
 
         private void Editar_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             EditarAmbulancias ea = new EditarAmbulancias();
             ea.ShowDialog();
         
@@ -367,6 +370,7 @@ namespace Sistema_Controle
 
         private void txtAgendasPendentes_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
             ra.ShowDialog();
             if (txtAgendasPendentes.Focus())
@@ -377,14 +381,29 @@ namespace Sistema_Controle
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
         }
 
         private void AgendaPendentes_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
             ra.ShowDialog();
+        }
+
+        private void EnderecosEditar_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            Enderecos en = new Enderecos();
+            en.ShowDialog();
+        }
+
+        private void CONTROLE_Activated(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+            timerAtualiza();
         }
 
     }
