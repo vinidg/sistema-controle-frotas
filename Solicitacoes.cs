@@ -12,240 +12,553 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using db_transporte_sanitario;
+using System.Data.Entity.SqlServer;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class Solicitacoes : Form
     {
-        string amocupada, sta;
-        public Solicitacoes(string AMocup, string STAtus)
+        int idPaciente, idAm;
+        string contarComPrioridade, contarAgendadas;
+        string tipo, statusAM;
+        public Solicitacoes(int AMocup, string StatusAM)
         {
             InitializeComponent();
-            puxarAmbu();
-            amocupada = AMocup;
-            sta = STAtus;
-            txtTotal1.Text = ListaComPriori.Items.Count.ToString();
-            txtTotal2.Text = ListaSemPriori.Items.Count.ToString();
-            txtTotal3.Text = ListaAgenda.Items.Count.ToString();
+            puxarSolicitacoes();
+            puxarAgendadas();
+            idAm = AMocup;
+            statusAM = StatusAM;
+            txtTotal1.Text = contarComPrioridade;
+            txtTotal3.Text = contarAgendadas;
             if (this.Focus())
             {
-                puxarAmbu();
+                puxarSolicitacoes();
+                puxarAgendadas();
 
             }
         }
-        string Id, tipo;
 
-        public void puxarAmbu()
+        public void puxarSolicitacoes()
         {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.AmSolicitada == 0 &&
+                            sp.Agendamento == "Nao" &&
+                            sp.Registrado == "Sim"
+                            orderby sp.DtHrdoInicio descending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                txtTotal1.Text = contar.ToString();
+                contarComPrioridade = contar.ToString();
+                ListaSolicitacoes.DataSource = queryAmbu;
+                ListaSolicitacoes.ClearSelection();
+
+                ListaSolicitacoes.Columns[0].HeaderText = "ID";
+            }
+        }
+
+        public void puxarAgendadas()
+        {
+            int zero = 0;
             DateTime Data = DateTime.Now;
-            string dataagora = Data.ToString("dd/MM/yyyy");
-            string dataAgenda, dataformatada = "", Agenda = "", Priori = "";
-            ListViewItem IT2 = null, IT = null;
 
-            //Consultar no banco de dados o status da ambulancia
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim"
+                            orderby sp.Paciente ascending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.DtHrdoAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
 
-            string sqlQuery = "SELECT Paciente,TipoSolicitacao,DtHrdoInicio,idPaciente_Solicitacoes,Motivo,Origem,Destino,Agendamento,DtHrAgendamento,Prioridade from solicitacoes_paciente WHERE AmSolicitada = '0'";
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
+
+            }
+        }
+
+        private void listaComPrioridade_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            ListaSolicitacoes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            ListaSolicitacoes.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+        }
+
+        private void listaAgendadas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            listaAgendadas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            listaAgendadas.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+            listaAgendadas.Columns["Data_Reagendada"].DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            listaAgendadas.Columns["Data_Reagendada"].HeaderCell.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+        }
+
+        private void listaComPrioridade_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var querya = (String)null;
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from am in db.ambulancia
+                                where am.idAmbulancia == idAm
+                                select am.TipoAM;
+                    querya = query.FirstOrDefault();
+                }
+                idPaciente = Convert.ToInt32(ListaSolicitacoes.Rows[e.RowIndex].Cells[0].Value.ToString());
+                tipo = ListaSolicitacoes.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
+
+                if (querya == null)
+                {
+                    SelecionaAM ST = new SelecionaAM(idPaciente, idAm, 0);
+                    this.Dispose();
+                    ST.ShowDialog();
+                    return;
+                }
+
+                if (tipo == "Avancada")
+                {
+                    if (querya == "BASICO")
+                    {
+                        MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
+                        return;
+                    }
+                }
+
+                if (tipo == "Basica")
+                {
+                    if (querya == "AVANCADO")
+                    {
+                        MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
+                        return;
+                    }
+                }
+
+                SelecionaAM STi = new SelecionaAM(idPaciente, idAm, 0);
+                this.Dispose();
+                STi.ShowDialog();
+            }
+        }
+
+        private void listaAgendadas_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var querya = (String)null;
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from am in db.ambulancia
+                                where am.idAmbulancia == idAm
+                                select am.TipoAM;
+                    querya = query.FirstOrDefault();
+                }
+                idPaciente = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells[0].Value.ToString());
+                tipo = listaAgendadas.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
+
+                if (querya == "")
+                {
+                    SelecionaAM ST = new SelecionaAM(idPaciente, idAm, 0);
+                    this.Dispose();
+                    ST.ShowDialog();
+                    return;
+                }
+                if (tipo == "Avancada")
+                {
+
+                    if (querya == "BASICO")
+                    {
+                        MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
+                        return;
+                    }
+                }
+
+                if (tipo == "Basica")
+                {
+                    if (querya == "AVANCADO")
+                    {
+                        MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
+                        return;
+                    }
+                }
+
+                SelecionaAM STi = new SelecionaAM(idPaciente, idAm, 0);
+                this.Dispose();
+                STi.ShowDialog();
+            }
+        }
+
+        private void OrdemPrioridade_Click(object sender, EventArgs e)
+        {
+            int zero = 0;
+            ListaSolicitacoes.DataSource = "";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.AmSolicitada == zero &&
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
+                            orderby sp.Prioridade ascending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarComPrioridade = contar.ToString();
+                txtTotal1.Text = contar.ToString();
+                ListaSolicitacoes.DataSource = queryAmbu;
+                ListaSolicitacoes.ClearSelection();
+
+            }
+            OrdemPrioridade.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            OrdemPaciente.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemData.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+        }
+
+        private void OrdemData_Click(object sender, EventArgs e)
+        {
+            int zero = 0;
+            ListaSolicitacoes.DataSource = "";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.AmSolicitada == zero &&
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
+                            orderby sp.DtHrdoInicio descending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarComPrioridade = contar.ToString();
+                txtTotal1.Text = contar.ToString();
+                ListaSolicitacoes.DataSource = queryAmbu;
+                ListaSolicitacoes.ClearSelection();
+            }
+           OrdemData.Font = new Font(dtagenda.Font, FontStyle.Bold);
+           OrdemPaciente.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+           OrdemPrioridade.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+        }
+
+        private void OrdemPaciente_Click(object sender, EventArgs e)
+        {
+            int zero = 0;
+            ListaSolicitacoes.DataSource = "";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.AmSolicitada == zero &&
+                            sp.Registrado == "Sim" &&
+                            sp.Agendamento == "Nao"
+                            orderby sp.Paciente ascending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarComPrioridade = contar.ToString();
+                txtTotal1.Text = contar.ToString();
+                ListaSolicitacoes.DataSource = queryAmbu;
+                ListaSolicitacoes.ClearSelection();
+
+                ListaSolicitacoes.Columns[0].HeaderText = "ID";
+            }
+            OrdemPaciente.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            OrdemData.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridade.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+
+        }
+
+        private void OrdemPrioridadeAgenda_Click(object sender, EventArgs e)
+        {
+            int zero = 0;
+            listaAgendadas.DataSource = "";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()                                                              
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim"
+                            orderby sp.Prioridade descending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.DtHrdoAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
+            }
+
+            OrdemPrioridadeAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+        }
+
+        private void OrdemDataAgenda_Click(object sender, EventArgs e)
+        {
+            int zero = 0;
+            listaAgendadas.DataSource = "";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim"
+                            orderby sp.DtHrdoInicio descending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.DtHrdoAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
+
+
+            }
+            OrdemDataAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+        }
+
+        private void OrdemNomeAgenda_Click(object sender, EventArgs e)
+        {
+            int zero = 0;
+            listaAgendadas.DataSource = "";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim"
+                            orderby sp.Paciente ascending
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.DtHrdoAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
+
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
+
+
+            }
+
+            OrdemNomeAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+        }
+
+        private void dataFiltroAgenda_ValueChanged(object sender, EventArgs e)
+        {
+            int zero = 0;
+            DateTime Data = DateTime.Now;
             
-            SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-            SqlDataReader MyReader2;
+            dtagenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Bold);
+            dtreagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
 
-            MyReader2 = objComm.ExecuteReader();
 
-            while (MyReader2.Read())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim" &&
+                            SqlFunctions.DateDiff("day", dataFiltroAgenda.Value, sp.DtHrdoAgendamento) == 0
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.DtHrdoAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
 
-                Priori = MyReader2["Prioridade"].ToString();
-                IT = new ListViewItem(MyReader2["idPaciente_Solicitacoes"].ToString());
-                IT.SubItems.Add(MyReader2["Paciente"].ToString());
-                IT.SubItems.Add(MyReader2["TipoSolicitacao"].ToString());
-                IT.SubItems.Add(MyReader2["DtHrdoInicio"].ToString());
-                IT.SubItems.Add(MyReader2["Motivo"].ToString());
-                IT.SubItems.Add(MyReader2["Origem"].ToString());
-                IT.SubItems.Add(MyReader2["Destino"].ToString());
-                IT.SubItems.Add(MyReader2["Agendamento"].ToString());
-                IT.SubItems.Add(MyReader2["DtHrAgendamento"].ToString());
-                Agenda = MyReader2["Agendamento"].ToString();
-                dataAgenda = MyReader2["DtHrAgendamento"].ToString();
-                IT2 = new ListViewItem(MyReader2["idPaciente_Solicitacoes"].ToString());
-                IT2.SubItems.Add(MyReader2["Paciente"].ToString());
-                IT2.SubItems.Add(MyReader2["TipoSolicitacao"].ToString());
-                IT2.SubItems.Add(MyReader2["DtHrdoInicio"].ToString());
-                IT2.SubItems.Add(MyReader2["DtHrAgendamento"].ToString());
-                IT2.SubItems.Add(MyReader2["Motivo"].ToString());
-                IT2.SubItems.Add(MyReader2["Origem"].ToString());
-                IT2.SubItems.Add(MyReader2["Destino"].ToString());
-
-                // if (dataAgenda != " " || dataAgenda != null)
-                //    {
-                //        dataformatada = dataAgenda.Substring(0, 10);
-                //     }
-
-                if (Priori == "False" && Agenda == "Nao")
-                {
-                    ListaSemPriori.Items.Add(IT);
-                }
-                if (Priori == "True")
-                {
-                    ListaComPriori.Items.Add(IT);
-                }
-
-                if (Agenda == "Sim" && dataformatada != dataagora)
-                {
-                    ListaAgenda.Items.Add(IT2);
-                }
-                // if (Agenda == "Sim" && dataformatada == dataagora)
-                //    {
-                //         ListaSemPriori.Items.Add(IT2);
-                //   }
-                dataAgenda = "";
-                dataformatada = "";
-                Agenda = "";
-                Priori = "";
-
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
 
             }
-            conexao.Close();
+
         }
 
-        private void ListaComPriori_DoubleClick(object sender, EventArgs e)
+        private void dataReagendamento_ValueChanged(object sender, EventArgs e)
         {
-            if (amocupada == "")
-            {
-                if (ListaComPriori.SelectedItems.Count > 0)
-                {
-                    Id = ListaComPriori.SelectedItems[0].Text;
-                }
-                SelecionaAM ST = new SelecionaAM(Id, amocupada, null, sta);
-                this.Dispose();
-                ST.ShowDialog();
-                return;
-            }
-            tipo = ListaComPriori.SelectedItems[0].SubItems[2].Text;
-            if (tipo == "Avancada")
-            {
+            int zero = 0;
+            DateTime Data = DateTime.Now;
+          
+            dtreagenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
+            dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Bold);
+            dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
+            dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+            OrdemDataAgenda.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
+            OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
+            OrdemNomeAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
 
-                if (amocupada == "AM 01" || amocupada == "AM 02")
-                {
-           
-                }
-                else {
-                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                    return;
-                }
-
-            }
-            if (tipo == "Basica")
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                if (amocupada == "AM 01" || amocupada == "AM 02")
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
-                    return;
-                }
+                var query = from sp in db.solicitacoes_paciente
+                            join saa in db.solicitacoes_agendamentos
+                            on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                            from saa in spsaaajoin.DefaultIfEmpty()
+                            where sp.AmSolicitada == zero &&
+                            sp.Agendamento == "Sim" &&
+                            sp.Registrado == "Sim" &&
+                            SqlFunctions.DateDiff("day", dataReagendamento.Value, saa.DtHrAgendamento) == 0
+                            select new
+                            {
+                                ID = sp.idPaciente_Solicitacoes,
+                                sp.Paciente,
+                                Tipo = sp.TipoSolicitacao,
+                                sp.DtHrdoInicio,
+                                sp.DtHrdoAgendamento,
+                                Data_Reagendada = saa.DtHrAgendamento,
+                                sp.Prioridade,
+                                sp.Motivo,
+                                sp.Origem,
+                                sp.Destino
+                            };
 
-            }
-            if (ListaComPriori.SelectedItems.Count > 0)
-            {
-                Id = ListaComPriori.SelectedItems[0].Text;
-            }
-            SelecionaAM STi = new SelecionaAM(Id, amocupada, null, sta);
-            this.Dispose();
-            STi.ShowDialog();
-            
-        }
-
-        private void ListaSemPriori_DoubleClick(object sender, EventArgs e)
-        {
-            if (amocupada == "")
-            {
-                if (ListaSemPriori.SelectedItems.Count > 0)
-                {
-                    Id = ListaSemPriori.SelectedItems[0].Text;
-                }
-                SelecionaAM ST = new SelecionaAM(Id, amocupada, null, sta);
-                this.Dispose();
-                ST.ShowDialog();
-           
-                return;
-            }
-            tipo = ListaSemPriori.SelectedItems[0].SubItems[2].Text;
-            if (tipo == "Avancada")
-            {
-
-                if (amocupada == "AM 01" || amocupada == "AM 02")
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                    return;
-                }
+                var queryAmbu = query.ToList();
+                var contar = query.Count();
+                contarAgendadas = contar.ToString();
+                txtTotal3.Text = contar.ToString();
+                listaAgendadas.DataSource = queryAmbu;
+                listaAgendadas.ClearSelection();
 
             }
-            if (tipo == "Basica")
-            {
-                if (amocupada == "AM 01" || amocupada == "AM 02")
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
-                    return;
-                }
-
-            }
-            if (ListaSemPriori.SelectedItems.Count > 0)
-            {
-                Id = ListaSemPriori.SelectedItems[0].Text;
-            }
-            SelecionaAM STa = new SelecionaAM(Id, amocupada, null, sta);
-            this.Dispose();
-            STa.ShowDialog();
-        }
-
-        private void ListaAgenda_DoubleClick(object sender, EventArgs e)
-        {
-            if (amocupada == "")
-            {
-                if (ListaAgenda.SelectedItems.Count > 0)
-                {
-                    Id = ListaAgenda.SelectedItems[0].Text;
-                }
-                SelecionaAM ST = new SelecionaAM(Id, amocupada, null, sta);
-                this.Dispose();
-                ST.ShowDialog();
-  
-                return;
-            }
-            tipo = ListaAgenda.SelectedItems[0].SubItems[2].Text;
-            if (tipo == "Avancada")
-            {
-
-                if (amocupada == "AM 01" || amocupada == "AM 02")
-                {
-           
-                }
-                else {
-                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                    return;
-                }
-
-            }
-            if (tipo == "Basica")
-            {
-                if (amocupada == "AM 01" || amocupada == "AM 02")
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
-                    return;
-                }
-
-            }
-            if (ListaAgenda.SelectedItems.Count > 0)
-            {
-                Id = ListaAgenda.SelectedItems[0].Text;
-            }
-
-            SelecionaAM STb = new SelecionaAM(Id, amocupada, null, sta);
-            this.Dispose();
-            STb.ShowDialog();
         }
 
     }

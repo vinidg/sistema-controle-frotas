@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace Sistema_Controle
 {
     partial class SelecionaAM
     {
@@ -28,8 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Reagendar = new System.Windows.Forms.Button();
+            this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
+            this.IncluirSolicitacaoPendentes = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.PrioridadeTxt = new System.Windows.Forms.ComboBox();
+            this.RetirarAM = new System.Windows.Forms.Button();
             this.painelCancelar = new System.Windows.Forms.Panel();
             this.BtnConfirmando = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -44,23 +54,7 @@
             this.CbTipoMotivoSelecionado = new System.Windows.Forms.ComboBox();
             this.CbMotivoChamado = new System.Windows.Forms.ComboBox();
             this.PainelAM2 = new System.Windows.Forms.Panel();
-            this.painelAM = new System.Windows.Forms.Panel();
-            this.BtnAM03 = new System.Windows.Forms.Button();
-            this.BtnAmRC = new System.Windows.Forms.Button();
-            this.BtnAm52 = new System.Windows.Forms.Button();
-            this.BtnAm08 = new System.Windows.Forms.Button();
-            this.BtnAm47 = new System.Windows.Forms.Button();
-            this.BtnAm12 = new System.Windows.Forms.Button();
-            this.BtnAm07 = new System.Windows.Forms.Button();
-            this.BtnAm46 = new System.Windows.Forms.Button();
-            this.BtnAm11 = new System.Windows.Forms.Button();
-            this.BtnAm06 = new System.Windows.Forms.Button();
-            this.BtnAm10 = new System.Windows.Forms.Button();
-            this.BtnAm05 = new System.Windows.Forms.Button();
-            this.BtnAm09 = new System.Windows.Forms.Button();
-            this.BtnAm04 = new System.Windows.Forms.Button();
-            this.BtnUTI02 = new System.Windows.Forms.Button();
-            this.BtnUTI01 = new System.Windows.Forms.Button();
+            this.Lista = new System.Windows.Forms.DataGridView();
             this.BtnAlterar = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.LabelIDPaciente = new System.Windows.Forms.Label();
@@ -68,7 +62,7 @@
             this.BtnConfimar = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.BtnOutraAM = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.obsGerais = new System.Windows.Forms.RichTextBox();
             this.BtnImprimir = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -81,7 +75,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.CbOrigem = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.CbAtendimentoPrioridade = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txtDiagnostico = new System.Windows.Forms.TextBox();
@@ -101,7 +94,6 @@
             this.txtNomeSolicitante = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtAtendMarcado = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
@@ -112,13 +104,19 @@
             this.panel1.SuspendLayout();
             this.painelCancelar.SuspendLayout();
             this.PainelAM2.SuspendLayout();
-            this.painelAM.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Lista)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.Reagendar);
+            this.panel1.Controls.Add(this.dataAgendamento);
+            this.panel1.Controls.Add(this.IncluirSolicitacaoPendentes);
+            this.panel1.Controls.Add(this.label28);
+            this.panel1.Controls.Add(this.PrioridadeTxt);
+            this.panel1.Controls.Add(this.RetirarAM);
             this.panel1.Controls.Add(this.painelCancelar);
             this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
             this.panel1.Controls.Add(this.CbMotivoChamado);
@@ -130,7 +128,7 @@
             this.panel1.Controls.Add(this.BtnConfimar);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.BtnOutraAM);
-            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.obsGerais);
             this.panel1.Controls.Add(this.BtnImprimir);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label20);
@@ -143,7 +141,6 @@
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.CbOrigem);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.CbAtendimentoPrioridade);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.txtDiagnostico);
@@ -163,7 +160,6 @@
             this.panel1.Controls.Add(this.txtNomeSolicitante);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.txtAtendMarcado);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Btnagendasim);
             this.panel1.Controls.Add(this.Btnagendanao);
@@ -176,9 +172,90 @@
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
             // 
+            // Reagendar
+            // 
+            this.Reagendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(165)))), ((int)(((byte)(95)))));
+            this.Reagendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reagendar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(223)))), ((int)(((byte)(70)))));
+            this.Reagendar.Location = new System.Drawing.Point(647, 607);
+            this.Reagendar.Name = "Reagendar";
+            this.Reagendar.Size = new System.Drawing.Size(287, 47);
+            this.Reagendar.TabIndex = 65;
+            this.Reagendar.Text = "Reagendar";
+            this.Reagendar.UseVisualStyleBackColor = false;
+            this.Reagendar.Visible = false;
+            this.Reagendar.Click += new System.EventHandler(this.Reagendar_Click);
+            // 
+            // dataAgendamento
+            // 
+            this.dataAgendamento.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dataAgendamento.Enabled = false;
+            this.dataAgendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dataAgendamento.Location = new System.Drawing.Point(211, 82);
+            this.dataAgendamento.Name = "dataAgendamento";
+            this.dataAgendamento.Size = new System.Drawing.Size(231, 20);
+            this.dataAgendamento.TabIndex = 64;
+            this.dataAgendamento.Visible = false;
+            // 
+            // IncluirSolicitacaoPendentes
+            // 
+            this.IncluirSolicitacaoPendentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(133)))), ((int)(((byte)(54)))));
+            this.IncluirSolicitacaoPendentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IncluirSolicitacaoPendentes.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.IncluirSolicitacaoPendentes.Location = new System.Drawing.Point(601, 123);
+            this.IncluirSolicitacaoPendentes.Name = "IncluirSolicitacaoPendentes";
+            this.IncluirSolicitacaoPendentes.Size = new System.Drawing.Size(376, 47);
+            this.IncluirSolicitacaoPendentes.TabIndex = 63;
+            this.IncluirSolicitacaoPendentes.Text = "Incluir Solicitação em Pendentes";
+            this.IncluirSolicitacaoPendentes.UseVisualStyleBackColor = false;
+            this.IncluirSolicitacaoPendentes.Visible = false;
+            this.IncluirSolicitacaoPendentes.Click += new System.EventHandler(this.IncluirSolicitacaoPendentes_Click);
+            // 
+            // label28
+            // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(6, 386);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(74, 16);
+            this.label28.TabIndex = 62;
+            this.label28.Text = "Prioridade:";
+            // 
+            // PrioridadeTxt
+            // 
+            this.PrioridadeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PrioridadeTxt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PrioridadeTxt.Enabled = false;
+            this.PrioridadeTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrioridadeTxt.FormattingEnabled = true;
+            this.PrioridadeTxt.Items.AddRange(new object[] {
+            "SEM PRIORIDADE",
+            "P0 PRIORIDADE ABSOLUTA RESOLVER EM IMEDIATO",
+            "P1 PRIORIDADE ALTA RESOLVER EM 2 HORAS",
+            "P2 PRIORIDADE MODERADA RESOLVER EM 12 HORAS",
+            "P3 PRIORIDADE BAIXA RESOLVER EM 24 HORAS"});
+            this.PrioridadeTxt.Location = new System.Drawing.Point(9, 404);
+            this.PrioridadeTxt.Name = "PrioridadeTxt";
+            this.PrioridadeTxt.Size = new System.Drawing.Size(237, 23);
+            this.PrioridadeTxt.TabIndex = 61;
+            // 
+            // RetirarAM
+            // 
+            this.RetirarAM.BackColor = System.Drawing.Color.Maroon;
+            this.RetirarAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RetirarAM.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.RetirarAM.Location = new System.Drawing.Point(601, 554);
+            this.RetirarAM.Name = "RetirarAM";
+            this.RetirarAM.Size = new System.Drawing.Size(376, 47);
+            this.RetirarAM.TabIndex = 59;
+            this.RetirarAM.Text = "Retirar Solicitação da Ambulância";
+            this.RetirarAM.UseVisualStyleBackColor = false;
+            this.RetirarAM.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // painelCancelar
             // 
-            this.painelCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.painelCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             this.painelCancelar.Controls.Add(this.BtnConfirmando);
             this.painelCancelar.Controls.Add(this.label27);
             this.painelCancelar.Controls.Add(this.label26);
@@ -189,7 +266,7 @@
             this.painelCancelar.Controls.Add(this.txtResponsavel);
             this.painelCancelar.Controls.Add(this.DtHrCancelamento);
             this.painelCancelar.Controls.Add(this.MotivoCancelar);
-            this.painelCancelar.Location = new System.Drawing.Point(505, 238);
+            this.painelCancelar.Location = new System.Drawing.Point(505, 240);
             this.painelCancelar.Name = "painelCancelar";
             this.painelCancelar.Size = new System.Drawing.Size(558, 187);
             this.painelCancelar.TabIndex = 16;
@@ -198,7 +275,7 @@
             // BtnConfirmando
             // 
             this.BtnConfirmando.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnConfirmando.BackColor = System.Drawing.Color.Red;
+            this.BtnConfirmando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.BtnConfirmando.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.BtnConfirmando.ForeColor = System.Drawing.Color.Snow;
             this.BtnConfirmando.Location = new System.Drawing.Point(103, 135);
@@ -342,20 +419,19 @@
             // CbTipoMotivoSelecionado
             // 
             this.CbTipoMotivoSelecionado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CbTipoMotivoSelecionado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbTipoMotivoSelecionado.Enabled = false;
             this.CbTipoMotivoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTipoMotivoSelecionado.FormattingEnabled = true;
-            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(265, 352);
+            this.CbTipoMotivoSelecionado.Location = new System.Drawing.Point(253, 352);
             this.CbTipoMotivoSelecionado.Name = "CbTipoMotivoSelecionado";
             this.CbTipoMotivoSelecionado.Size = new System.Drawing.Size(227, 23);
             this.CbTipoMotivoSelecionado.TabIndex = 58;
-            this.CbTipoMotivoSelecionado.SelectedIndexChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_SelectedIndexChanged);
-            this.CbTipoMotivoSelecionado.TextChanged += new System.EventHandler(this.CbTipoMotivoSelecionado_TextChanged);
-            this.CbTipoMotivoSelecionado.Click += new System.EventHandler(this.CbTipoMotivoSelecionado_Click);
             // 
             // CbMotivoChamado
             // 
             this.CbMotivoChamado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CbMotivoChamado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbMotivoChamado.Enabled = false;
             this.CbMotivoChamado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbMotivoChamado.FormattingEnabled = true;
@@ -379,210 +455,69 @@
             "TRANSPORTE DE PROFISSIONAIS"});
             this.CbMotivoChamado.Location = new System.Drawing.Point(9, 352);
             this.CbMotivoChamado.Name = "CbMotivoChamado";
-            this.CbMotivoChamado.Size = new System.Drawing.Size(227, 23);
+            this.CbMotivoChamado.Size = new System.Drawing.Size(237, 23);
             this.CbMotivoChamado.TabIndex = 57;
             this.CbMotivoChamado.SelectedIndexChanged += new System.EventHandler(this.CbMotivoChamado_SelectedIndexChanged);
             // 
             // PainelAM2
             // 
-            this.PainelAM2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.PainelAM2.Controls.Add(this.painelAM);
-            this.PainelAM2.Controls.Add(this.BtnUTI02);
-            this.PainelAM2.Controls.Add(this.BtnUTI01);
-            this.PainelAM2.Location = new System.Drawing.Point(508, 275);
+            this.PainelAM2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(246)))), ((int)(((byte)(182)))));
+            this.PainelAM2.Controls.Add(this.Lista);
+            this.PainelAM2.Location = new System.Drawing.Point(506, 280);
             this.PainelAM2.Name = "PainelAM2";
             this.PainelAM2.Size = new System.Drawing.Size(545, 147);
             this.PainelAM2.TabIndex = 48;
             // 
-            // painelAM
+            // Lista
             // 
-            this.painelAM.BackColor = System.Drawing.Color.RoyalBlue;
-            this.painelAM.Controls.Add(this.BtnAM03);
-            this.painelAM.Controls.Add(this.BtnAmRC);
-            this.painelAM.Controls.Add(this.BtnAm52);
-            this.painelAM.Controls.Add(this.BtnAm08);
-            this.painelAM.Controls.Add(this.BtnAm47);
-            this.painelAM.Controls.Add(this.BtnAm12);
-            this.painelAM.Controls.Add(this.BtnAm07);
-            this.painelAM.Controls.Add(this.BtnAm46);
-            this.painelAM.Controls.Add(this.BtnAm11);
-            this.painelAM.Controls.Add(this.BtnAm06);
-            this.painelAM.Controls.Add(this.BtnAm10);
-            this.painelAM.Controls.Add(this.BtnAm05);
-            this.painelAM.Controls.Add(this.BtnAm09);
-            this.painelAM.Controls.Add(this.BtnAm04);
-            this.painelAM.Location = new System.Drawing.Point(10, 3);
-            this.painelAM.Name = "painelAM";
-            this.painelAM.Size = new System.Drawing.Size(519, 141);
-            this.painelAM.TabIndex = 1;
-            // 
-            // BtnAM03
-            // 
-            this.BtnAM03.Location = new System.Drawing.Point(34, 2);
-            this.BtnAM03.Name = "BtnAM03";
-            this.BtnAM03.Size = new System.Drawing.Size(75, 47);
-            this.BtnAM03.TabIndex = 16;
-            this.BtnAM03.Text = "AM 03";
-            this.BtnAM03.UseVisualStyleBackColor = true;
-            this.BtnAM03.Click += new System.EventHandler(this.BtnAM03_Click);
-            // 
-            // BtnAmRC
-            // 
-            this.BtnAmRC.Location = new System.Drawing.Point(404, 2);
-            this.BtnAmRC.Name = "BtnAmRC";
-            this.BtnAmRC.Size = new System.Drawing.Size(86, 139);
-            this.BtnAmRC.TabIndex = 15;
-            this.BtnAmRC.Text = "AM Rede Cegonha";
-            this.BtnAmRC.UseVisualStyleBackColor = true;
-            this.BtnAmRC.Click += new System.EventHandler(this.button20_Click);
-            // 
-            // BtnAm52
-            // 
-            this.BtnAm52.Location = new System.Drawing.Point(330, 94);
-            this.BtnAm52.Name = "BtnAm52";
-            this.BtnAm52.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm52.TabIndex = 14;
-            this.BtnAm52.Text = "AM 52";
-            this.BtnAm52.UseVisualStyleBackColor = true;
-            this.BtnAm52.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // BtnAm08
-            // 
-            this.BtnAm08.Location = new System.Drawing.Point(34, 48);
-            this.BtnAm08.Name = "BtnAm08";
-            this.BtnAm08.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm08.TabIndex = 12;
-            this.BtnAm08.Text = "AM 08";
-            this.BtnAm08.UseVisualStyleBackColor = true;
-            this.BtnAm08.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // BtnAm47
-            // 
-            this.BtnAm47.Location = new System.Drawing.Point(256, 94);
-            this.BtnAm47.Name = "BtnAm47";
-            this.BtnAm47.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm47.TabIndex = 11;
-            this.BtnAm47.Text = "AM 47";
-            this.BtnAm47.UseVisualStyleBackColor = true;
-            this.BtnAm47.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // BtnAm12
-            // 
-            this.BtnAm12.Location = new System.Drawing.Point(330, 48);
-            this.BtnAm12.Name = "BtnAm12";
-            this.BtnAm12.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm12.TabIndex = 10;
-            this.BtnAm12.Text = "AM 12";
-            this.BtnAm12.UseVisualStyleBackColor = true;
-            this.BtnAm12.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // BtnAm07
-            // 
-            this.BtnAm07.Location = new System.Drawing.Point(330, 2);
-            this.BtnAm07.Name = "BtnAm07";
-            this.BtnAm07.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm07.TabIndex = 9;
-            this.BtnAm07.Text = "AM 07";
-            this.BtnAm07.UseVisualStyleBackColor = true;
-            this.BtnAm07.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // BtnAm46
-            // 
-            this.BtnAm46.Location = new System.Drawing.Point(182, 94);
-            this.BtnAm46.Name = "BtnAm46";
-            this.BtnAm46.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm46.TabIndex = 8;
-            this.BtnAm46.Text = "AM 46";
-            this.BtnAm46.UseVisualStyleBackColor = true;
-            this.BtnAm46.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // BtnAm11
-            // 
-            this.BtnAm11.Location = new System.Drawing.Point(256, 48);
-            this.BtnAm11.Name = "BtnAm11";
-            this.BtnAm11.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm11.TabIndex = 7;
-            this.BtnAm11.Text = "AM 11";
-            this.BtnAm11.UseVisualStyleBackColor = true;
-            this.BtnAm11.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // BtnAm06
-            // 
-            this.BtnAm06.Location = new System.Drawing.Point(256, 3);
-            this.BtnAm06.Name = "BtnAm06";
-            this.BtnAm06.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm06.TabIndex = 6;
-            this.BtnAm06.Text = "AM 06";
-            this.BtnAm06.UseVisualStyleBackColor = true;
-            this.BtnAm06.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // BtnAm10
-            // 
-            this.BtnAm10.Location = new System.Drawing.Point(182, 48);
-            this.BtnAm10.Name = "BtnAm10";
-            this.BtnAm10.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm10.TabIndex = 4;
-            this.BtnAm10.Text = "AM 10";
-            this.BtnAm10.UseVisualStyleBackColor = true;
-            this.BtnAm10.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // BtnAm05
-            // 
-            this.BtnAm05.Location = new System.Drawing.Point(182, 3);
-            this.BtnAm05.Name = "BtnAm05";
-            this.BtnAm05.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm05.TabIndex = 3;
-            this.BtnAm05.Text = "AM 05";
-            this.BtnAm05.UseVisualStyleBackColor = true;
-            this.BtnAm05.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // BtnAm09
-            // 
-            this.BtnAm09.Location = new System.Drawing.Point(108, 48);
-            this.BtnAm09.Name = "BtnAm09";
-            this.BtnAm09.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm09.TabIndex = 1;
-            this.BtnAm09.Text = "AM 09";
-            this.BtnAm09.UseVisualStyleBackColor = true;
-            this.BtnAm09.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // BtnAm04
-            // 
-            this.BtnAm04.Location = new System.Drawing.Point(108, 2);
-            this.BtnAm04.Name = "BtnAm04";
-            this.BtnAm04.Size = new System.Drawing.Size(75, 47);
-            this.BtnAm04.TabIndex = 0;
-            this.BtnAm04.Text = "AM 04";
-            this.BtnAm04.UseVisualStyleBackColor = true;
-            this.BtnAm04.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // BtnUTI02
-            // 
-            this.BtnUTI02.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.BtnUTI02.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUTI02.Location = new System.Drawing.Point(305, 38);
-            this.BtnUTI02.Name = "BtnUTI02";
-            this.BtnUTI02.Size = new System.Drawing.Size(121, 76);
-            this.BtnUTI02.TabIndex = 2;
-            this.BtnUTI02.Text = "AM UTI 2";
-            this.BtnUTI02.UseVisualStyleBackColor = false;
-            this.BtnUTI02.Click += new System.EventHandler(this.BtnUTI02_Click);
-            // 
-            // BtnUTI01
-            // 
-            this.BtnUTI01.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.BtnUTI01.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUTI01.Location = new System.Drawing.Point(133, 37);
-            this.BtnUTI01.Name = "BtnUTI01";
-            this.BtnUTI01.Size = new System.Drawing.Size(121, 76);
-            this.BtnUTI01.TabIndex = 1;
-            this.BtnUTI01.Text = "AM UTI 1";
-            this.BtnUTI01.UseVisualStyleBackColor = false;
-            this.BtnUTI01.Click += new System.EventHandler(this.BtnUTI01_Click);
+            this.Lista.AllowUserToAddRows = false;
+            this.Lista.AllowUserToDeleteRows = false;
+            this.Lista.AllowUserToResizeRows = false;
+            this.Lista.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Lista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.Lista.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Lista.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(159)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Lista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Lista.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Lista.Location = new System.Drawing.Point(11, 11);
+            this.Lista.MultiSelect = false;
+            this.Lista.Name = "Lista";
+            this.Lista.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Lista.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Lista.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.Lista.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.Lista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Lista.Size = new System.Drawing.Size(525, 127);
+            this.Lista.TabIndex = 32;
+            this.Lista.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Lista_CellContentDoubleClick);
+            this.Lista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.Lista_CellFormatting);
             // 
             // BtnAlterar
             // 
-            this.BtnAlterar.BackColor = System.Drawing.Color.LimeGreen;
+            this.BtnAlterar.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.BtnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAlterar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BtnAlterar.Location = new System.Drawing.Point(519, 66);
@@ -619,10 +554,10 @@
             // 
             // BtnCancelar
             // 
-            this.BtnCancelar.BackColor = System.Drawing.Color.Red;
+            this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnCancelar.Location = new System.Drawing.Point(550, 510);
+            this.BtnCancelar.Location = new System.Drawing.Point(551, 501);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(456, 47);
             this.BtnCancelar.TabIndex = 0;
@@ -667,17 +602,17 @@
             this.BtnOutraAM.UseVisualStyleBackColor = false;
             this.BtnOutraAM.Click += new System.EventHandler(this.BtnOutraAM_Click);
             // 
-            // richTextBox1
+            // obsGerais
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.obsGerais.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(10, 568);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(470, 92);
-            this.richTextBox1.TabIndex = 40;
-            this.richTextBox1.Text = "";
+            this.obsGerais.Enabled = false;
+            this.obsGerais.Location = new System.Drawing.Point(10, 598);
+            this.obsGerais.Name = "obsGerais";
+            this.obsGerais.Size = new System.Drawing.Size(470, 62);
+            this.obsGerais.TabIndex = 40;
+            this.obsGerais.Text = "";
             // 
             // BtnImprimir
             // 
@@ -712,7 +647,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(6, 543);
+            this.label20.Location = new System.Drawing.Point(6, 571);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(93, 16);
             this.label20.TabIndex = 39;
@@ -725,7 +660,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEnderecoDestino.Enabled = false;
             this.txtEnderecoDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEnderecoDestino.Location = new System.Drawing.Point(265, 512);
+            this.txtEnderecoDestino.Location = new System.Drawing.Point(265, 540);
             this.txtEnderecoDestino.Name = "txtEnderecoDestino";
             this.txtEnderecoDestino.Size = new System.Drawing.Size(215, 21);
             this.txtEnderecoDestino.TabIndex = 38;
@@ -737,7 +672,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(262, 493);
+            this.label19.Location = new System.Drawing.Point(262, 521);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(138, 16);
             this.label19.TabIndex = 37;
@@ -750,7 +685,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEnderecoOrigem.Enabled = false;
             this.txtEnderecoOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEnderecoOrigem.Location = new System.Drawing.Point(265, 464);
+            this.txtEnderecoOrigem.Location = new System.Drawing.Point(265, 492);
             this.txtEnderecoOrigem.Name = "txtEnderecoOrigem";
             this.txtEnderecoOrigem.Size = new System.Drawing.Size(215, 21);
             this.txtEnderecoOrigem.TabIndex = 36;
@@ -762,7 +697,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(262, 445);
+            this.label18.Location = new System.Drawing.Point(262, 473);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(136, 16);
             this.label18.TabIndex = 35;
@@ -775,7 +710,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(8, 491);
+            this.label17.Location = new System.Drawing.Point(8, 519);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(132, 16);
             this.label17.TabIndex = 34;
@@ -786,12 +721,13 @@
             this.CbDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbDestino.Enabled = false;
             this.CbDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbDestino.FormattingEnabled = true;
-            this.CbDestino.Location = new System.Drawing.Point(11, 510);
+            this.CbDestino.Location = new System.Drawing.Point(11, 538);
             this.CbDestino.Name = "CbDestino";
-            this.CbDestino.Size = new System.Drawing.Size(233, 23);
+            this.CbDestino.Size = new System.Drawing.Size(248, 23);
             this.CbDestino.TabIndex = 33;
             this.CbDestino.SelectedIndexChanged += new System.EventHandler(this.CbDestino_SelectedIndexChanged);
             // 
@@ -802,7 +738,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(6, 443);
+            this.label16.Location = new System.Drawing.Point(6, 471);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(130, 16);
             this.label16.TabIndex = 32;
@@ -813,12 +749,13 @@
             this.CbOrigem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbOrigem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbOrigem.Enabled = false;
             this.CbOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbOrigem.FormattingEnabled = true;
-            this.CbOrigem.Location = new System.Drawing.Point(9, 462);
+            this.CbOrigem.Location = new System.Drawing.Point(9, 490);
             this.CbOrigem.Name = "CbOrigem";
-            this.CbOrigem.Size = new System.Drawing.Size(235, 23);
+            this.CbOrigem.Size = new System.Drawing.Size(250, 23);
             this.CbOrigem.TabIndex = 31;
             this.CbOrigem.SelectedIndexChanged += new System.EventHandler(this.CbOrigem_SelectedIndexChanged);
             // 
@@ -829,26 +766,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 411);
+            this.label15.Location = new System.Drawing.Point(6, 439);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(192, 18);
             this.label15.TabIndex = 30;
             this.label15.Text = "5. Dados do Transporte:";
-            // 
-            // CbAtendimentoPrioridade
-            // 
-            this.CbAtendimentoPrioridade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CbAtendimentoPrioridade.AutoSize = true;
-            this.CbAtendimentoPrioridade.Enabled = false;
-            this.CbAtendimentoPrioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbAtendimentoPrioridade.Location = new System.Drawing.Point(7, 381);
-            this.CbAtendimentoPrioridade.Name = "CbAtendimentoPrioridade";
-            this.CbAtendimentoPrioridade.Size = new System.Drawing.Size(223, 20);
-            this.CbAtendimentoPrioridade.TabIndex = 29;
-            this.CbAtendimentoPrioridade.Text = "Atendimento com Prioridade";
-            this.CbAtendimentoPrioridade.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -857,7 +779,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(262, 333);
+            this.label14.Location = new System.Drawing.Point(250, 333);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(181, 16);
             this.label14.TabIndex = 28;
@@ -908,6 +830,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdade.Enabled = false;
             this.txtIdade.Location = new System.Drawing.Point(437, 249);
+            this.txtIdade.MaxLength = 3;
             this.txtIdade.Name = "txtIdade";
             this.txtIdade.Size = new System.Drawing.Size(43, 20);
             this.txtIdade.TabIndex = 22;
@@ -1048,6 +971,7 @@
             this.CbLocalSolicita.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbLocalSolicita.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbLocalSolicita.Enabled = false;
             this.CbLocalSolicita.FormattingEnabled = true;
             this.CbLocalSolicita.Location = new System.Drawing.Point(163, 159);
@@ -1093,18 +1017,6 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "3. Dados do solicitante:";
             // 
-            // txtAtendMarcado
-            // 
-            this.txtAtendMarcado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAtendMarcado.Enabled = false;
-            this.txtAtendMarcado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAtendMarcado.Location = new System.Drawing.Point(211, 82);
-            this.txtAtendMarcado.Name = "txtAtendMarcado";
-            this.txtAtendMarcado.Size = new System.Drawing.Size(269, 22);
-            this.txtAtendMarcado.TabIndex = 7;
-            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1123,15 +1035,16 @@
             this.Btnagendasim.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btnagendasim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Btnagendasim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Btnagendasim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btnagendasim.ForeColor = System.Drawing.Color.Black;
+            this.Btnagendasim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.Btnagendasim.Location = new System.Drawing.Point(405, 40);
             this.Btnagendasim.Name = "Btnagendasim";
             this.Btnagendasim.Size = new System.Drawing.Size(75, 22);
             this.Btnagendasim.TabIndex = 5;
             this.Btnagendasim.Text = "Sim";
             this.Btnagendasim.UseVisualStyleBackColor = false;
+            this.Btnagendasim.Visible = false;
             this.Btnagendasim.Click += new System.EventHandler(this.Btnagendasim_Click);
             // 
             // Btnagendanao
@@ -1139,15 +1052,16 @@
             this.Btnagendanao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btnagendanao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Btnagendanao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.Btnagendanao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btnagendanao.ForeColor = System.Drawing.Color.Black;
+            this.Btnagendanao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.Btnagendanao.Location = new System.Drawing.Point(405, 40);
             this.Btnagendanao.Name = "Btnagendanao";
             this.Btnagendanao.Size = new System.Drawing.Size(75, 22);
             this.Btnagendanao.TabIndex = 4;
             this.Btnagendanao.Text = "Não";
             this.Btnagendanao.UseVisualStyleBackColor = false;
+            this.Btnagendanao.Visible = false;
             this.Btnagendanao.Click += new System.EventHandler(this.Btnagendanao_Click);
             // 
             // label2
@@ -1168,15 +1082,16 @@
             this.BtnAvancada.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnAvancada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAvancada.ForeColor = System.Drawing.Color.Black;
+            this.BtnAvancada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnAvancada.Location = new System.Drawing.Point(383, 9);
             this.BtnAvancada.Name = "BtnAvancada";
             this.BtnAvancada.Size = new System.Drawing.Size(97, 23);
             this.BtnAvancada.TabIndex = 2;
             this.BtnAvancada.Text = "Avançada";
             this.BtnAvancada.UseVisualStyleBackColor = false;
+            this.BtnAvancada.Visible = false;
             this.BtnAvancada.Click += new System.EventHandler(this.BtnAvancada_Click);
             // 
             // label1
@@ -1197,22 +1112,23 @@
             this.BtnBasica.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnBasica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BtnBasica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnBasica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBasica.ForeColor = System.Drawing.Color.Black;
+            this.BtnBasica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.BtnBasica.Location = new System.Drawing.Point(383, 10);
             this.BtnBasica.Name = "BtnBasica";
             this.BtnBasica.Size = new System.Drawing.Size(97, 23);
             this.BtnBasica.TabIndex = 1;
             this.BtnBasica.Text = "Básica";
             this.BtnBasica.UseVisualStyleBackColor = false;
+            this.BtnBasica.Visible = false;
             this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
             // 
             // SelecionaAM
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.ClientSize = new System.Drawing.Size(1089, 695);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1224,7 +1140,7 @@
             this.painelCancelar.ResumeLayout(false);
             this.painelCancelar.PerformLayout();
             this.PainelAM2.ResumeLayout(false);
-            this.painelAM.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Lista)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1232,30 +1148,13 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel PainelAM2;
-        private System.Windows.Forms.Panel painelAM;
-        private System.Windows.Forms.Button BtnAmRC;
-        private System.Windows.Forms.Button BtnAm52;
-        private System.Windows.Forms.Button BtnAm08;
-        private System.Windows.Forms.Button BtnAm47;
-        private System.Windows.Forms.Button BtnAm12;
-        private System.Windows.Forms.Button BtnAm07;
-        private System.Windows.Forms.Button BtnAm46;
-        private System.Windows.Forms.Button BtnAm11;
-        private System.Windows.Forms.Button BtnAm06;
-        private System.Windows.Forms.Button BtnAm10;
-        private System.Windows.Forms.Button BtnAm05;
-        private System.Windows.Forms.Button BtnAm09;
-        private System.Windows.Forms.Button BtnAm04;
-        private System.Windows.Forms.Button BtnUTI02;
-        private System.Windows.Forms.Button BtnUTI01;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnConfimar;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button BtnOutraAM;
         private System.Windows.Forms.Button BtnImprimir;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox obsGerais;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtEnderecoDestino;
         private System.Windows.Forms.Label label19;
@@ -1266,7 +1165,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox CbOrigem;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.CheckBox CbAtendimentoPrioridade;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtDiagnostico;
@@ -1286,7 +1184,6 @@
         private System.Windows.Forms.TextBox txtNomeSolicitante;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtAtendMarcado;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Btnagendasim;
         private System.Windows.Forms.Button Btnagendanao;
@@ -1310,6 +1207,13 @@
         private System.Windows.Forms.Button BtnAlterar;
         private System.Windows.Forms.ComboBox CbTipoMotivoSelecionado;
         private System.Windows.Forms.ComboBox CbMotivoChamado;
-        private System.Windows.Forms.Button BtnAM03;
+        private System.Windows.Forms.Panel PainelAM2;
+        private System.Windows.Forms.DataGridView Lista;
+        private System.Windows.Forms.Button RetirarAM;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox PrioridadeTxt;
+        private System.Windows.Forms.Button IncluirSolicitacaoPendentes;
+        private System.Windows.Forms.DateTimePicker dataAgendamento;
+        private System.Windows.Forms.Button Reagendar;
     }
 }

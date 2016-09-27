@@ -9,30 +9,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using db_transporte_sanitario;
 
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class ConfirmaSolicitacao : Form
     {
         string TipoAM = null;
         string Agendamento = null;
-        DateTime now = DateTime.Now;
         string pegaUnidade;     //para pegar o telefone com o nome da unidade
         string pegaUnidadeEnd;  //para pegar o endereco com o nome da unidade
         string Sexo, pegamotivo;
         string Endereco1;
-        string linha;
-        public ConfirmaSolicitacao()
+        public ConfirmaSolicitacao(int idPaciente)
         {
             InitializeComponent();
-            txtAtendMarcado.Text = now.ToString();
             StartPosition = FormStartPosition.CenterScreen;
             Endereco();
             label3.Visible = false;
-            txtAtendMarcado.Visible = false;
-            Limpar();
+            dataAgendamento.Visible = false;
             AutoCompletar();
+            if(idPaciente != 0)
+            {
+                PreencherCampos(idPaciente);
+            }
         }
+<<<<<<< HEAD
+=======
+        private void PreencherCampos(int id)
+        {
+            using(DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.idPaciente_Solicitacoes == id
+                             select sp).FirstOrDefault();
+
+                CbLocalSolicita.Text = query.LocalSolicitacao;
+                txtTelefone.Text = query.Telefone;
+                txtNomePaciente.Text = query.Paciente;
+                if(query.Genero == "M")
+                {
+                    RbMasculino.Checked = false;
+                }
+                else
+                {
+                    RbFemenino.Checked = true;
+                }
+                txtIdade.Text = query.Idade;
+                txtDiagnostico.Text = query.Diagnostico;
+                CbMotivoChamado.Text = query.Motivo;
+                CbTipoMotivoSelecionado.Text = query.SubMotivo;
+                Prioridade.Text = query.Prioridade;
+                CbOrigem.Text = query.Origem;
+                txtEnderecoOrigem.Text = query.EnderecoOrigem;
+                CbDestino.Text = query.Destino;
+                txtEnderecoDestino.Text = query.EnderecoDestino;
+                Obs.Text = query.ObsGerais;
+            }
+        }
+>>>>>>> EntityInsert
 
         private void BtnBasica_Click(object sender, EventArgs e)
         {
@@ -42,17 +77,17 @@ namespace WindowsFormsApplication2
             TipoAM = "Basica";
 
 
-            if (BtnAvancada.BackColor == Color.PaleTurquoise)
+            if (BtnAvancada.BackColor == Color.FromArgb(69, 173, 168))
             {
-                BtnBasica.BackColor = Color.PaleTurquoise;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnAvancada.BackColor = Color.PaleTurquoise;
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
             }
-            BtnAvancada.BackColor = Color.PaleTurquoise;
-            BtnBasica.BackColor = Color.Teal;
-            BtnBasica.ForeColor = Color.PaleTurquoise;
-            BtnAvancada.ForeColor = Color.Teal;
+            BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
         }
         private void BtnAvancada_Click(object sender, EventArgs e)
         {
@@ -61,47 +96,45 @@ namespace WindowsFormsApplication2
             Btnagendasim.Visible = true;
             TipoAM = "Avancada";
 
-            if (BtnBasica.BackColor == Color.PaleTurquoise)
+            if (BtnBasica.BackColor == Color.FromArgb(69, 173, 168))
             {
-                BtnAvancada.BackColor = Color.PaleTurquoise;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnBasica.BackColor = Color.PaleTurquoise;
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
             }
-            BtnBasica.BackColor = Color.PaleTurquoise;
-            BtnAvancada.BackColor = Color.Teal;
-            BtnAvancada.ForeColor = Color.PaleTurquoise;
-            BtnBasica.ForeColor = Color.Teal;
+            BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
 
         public void Limpar()
         {
-
-            txtAtendMarcado.Text = "";
-            txtNomeSolicitante.Text = "";
-            CbLocalSolicita.Text = "";
-            txtTelefone.Text = "";
-            txtNomePaciente.Text = "";
             RbFemenino.Checked = false;
             RbMasculino.Checked = false;
-            txtIdade.Text = "";
-            txtDiagnostico.Text = "";
-            CbMotivoChamado.Text = "";
-            CbTipoMotivoSelecionado.Text = "";
-            CbAtendimentoPrioridade.Checked = false;
-            CbOrigem.Text = "";
-            CbDestino.Text = "";
-            txtEnderecoOrigem.Text = "";
-            txtEnderecoDestino.Text = "";
-            richTextBox1.Text = "";
+            TipoAM = "";
+            Agendamento = "";
+            Obs.Text = "";
+            label3.Visible = false;
+            dataAgendamento.Visible = false;
 
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
+
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
         }
 
         private void Btnagendanao_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
-            txtAtendMarcado.Visible = false;
+            dataAgendamento.Visible = false;
             label4.Visible = true;
             label5.Visible = true;
             txtNomeSolicitante.Visible = true;
@@ -110,41 +143,40 @@ namespace WindowsFormsApplication2
             label7.Visible = true;
             txtTelefone.Visible = true;
             Agendamento = "Nao";
-            if (Btnagendasim.BackColor == Color.PaleTurquoise)
+            if (Btnagendasim.BackColor == Color.FromArgb(69, 173, 168))
             {
-                Btnagendasim.BackColor = Color.PaleTurquoise;
-                Btnagendasim.ForeColor = Color.Teal;
-                Btnagendanao.ForeColor = Color.Teal;
-                Btnagendanao.BackColor = Color.PaleTurquoise;
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
 
             }
 
-            Btnagendasim.BackColor = Color.PaleTurquoise;
-            Btnagendanao.BackColor = Color.Teal;
-            Btnagendanao.ForeColor = Color.PaleTurquoise;
-            Btnagendasim.ForeColor = Color.Teal;
+            Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
         }
 
         private void Btnagendasim_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
-            txtAtendMarcado.Visible = true;
-            txtAtendMarcado.Focus();
-            txtAtendMarcado.Text = DateTime.Now.ToString();
+            dataAgendamento.Visible = true;
+            dataAgendamento.Focus();
             Agendamento = "Sim";
 
-            if (Btnagendanao.BackColor == Color.PaleTurquoise)
+            if (Btnagendanao.BackColor == Color.FromArgb(69, 173, 168))
             {
-                Btnagendanao.BackColor = Color.PaleTurquoise;
-                Btnagendanao.ForeColor = Color.Teal;
-                Btnagendasim.ForeColor = Color.Teal;
-                Btnagendasim.BackColor = Color.PaleTurquoise;
+                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
 
             }
-            Btnagendanao.BackColor = Color.PaleTurquoise;
-            Btnagendasim.BackColor = Color.Teal;
-            Btnagendasim.ForeColor = Color.PaleTurquoise;
-            Btnagendanao.ForeColor = Color.Teal;
+            Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
         }
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,28 +184,6 @@ namespace WindowsFormsApplication2
             pegaUnidade = CbLocalSolicita.Text;
             unidade_telefone();
         }
-
-
-        private void CbTipoMotivoSelecionado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Motivo();
-        }
-
-        private void CbTipoMotivoSelecionado_TextChanged(object sender, EventArgs e)
-        {
-            Motivo();
-
-            if (Agendamento == "Sim")
-            {
-                CbAtendimentoPrioridade.Visible = false;
-            }
-            else
-            {
-                CbAtendimentoPrioridade.Visible = true;
-            }
-
-        }
-
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
 
@@ -186,13 +196,13 @@ namespace WindowsFormsApplication2
                 Sexo = "M";
             }
 
+
             if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
             {
 
                 MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             else if (txtNomeSolicitante.Text == "" ||
             CbLocalSolicita.Text == "" ||
             txtTelefone.Text == "" ||
@@ -207,13 +217,15 @@ namespace WindowsFormsApplication2
             txtEnderecoOrigem.Text == "" ||
             txtEnderecoDestino.Text == "")
             {
-
                 MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
             {
                 RegistrarSolicitacao();
+                Limpar();
+                ClearTextBoxes();
+                ClearComboBox();
             }
 
         }
@@ -221,40 +233,22 @@ namespace WindowsFormsApplication2
 
         private void RegistrarSolicitacao()
         {
-            //registrar a solicitacao de vaga
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
+            InsercoesDoBanco IB = new InsercoesDoBanco();
 
-            if (Agendamento == "Nao")
-            {
-                txtAtendMarcado.Text = " ";
-            }
             VerificarPontos(this);
-            string sqlQuery = "insert into solicitacoes_paciente(TipoSolicitacao,DtHrdoInicio,Agendamento,DtHrAgendamento," +
-            "NomeSolicitante,LocalSolicitacao,Telefone,Paciente,Genero,Idade,Diagnostico,Motivo,SubMotivo,Prioridade,Origem," +
-            "EnderecoOrigem,Destino,EnderecoDestino,ObsGerais,AmSolicitada) VALUES " +
-            "('" + TipoAM + "','" + now + "','" + Agendamento + "','" + this.txtAtendMarcado.Text + "','" + this.txtNomeSolicitante.Text + "','" +
-            this.CbLocalSolicita.Text + "','" + this.txtTelefone.Text + "','" + this.txtNomePaciente.Text + "','" + Sexo + "','" + this.txtIdade.Text + "','" + this.txtDiagnostico.Text + "','" +
-            this.CbMotivoChamado.Text + "','" + this.CbTipoMotivoSelecionado.Text + "','" + this.CbAtendimentoPrioridade.Checked + "','" + this.CbOrigem.Text + "','" +
-            this.txtEnderecoOrigem.Text + "','" + this.CbDestino.Text + "','" + this.txtEnderecoDestino.Text + "','" + this.richTextBox1.Text + "','" + 0 + "')";
 
             try
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                // MySqlDataReader MyReader2;
-
-                objComm.ExecuteNonQuery();
+                IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.dataAgendamento.Value, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
+                this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
+                this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.Obs.Text,
+                0, System.Environment.UserName);
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                this.Dispose();
+                return;
             }
 
         }
@@ -279,90 +273,47 @@ namespace WindowsFormsApplication2
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
             Limpar();
+            ClearComboBox();
+            ClearTextBoxes();
         }
 
         public void Endereco()
         {
-            //Consultar na tabela de enderecos
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "select NomeUnidade from enderecos";
-
-
-            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conexao);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow row in dt.Rows)
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-                linha = string.Format("{0}", row.ItemArray[0]);
-                CbLocalSolicita.Items.Add(linha);
-                CbDestino.Items.Add(linha);
-                CbOrigem.Items.Add(linha);
+                CbLocalSolicita.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
+                CbLocalSolicita.ValueMember = "NomeUnidade";
+                CbLocalSolicita.DisplayMember = "NomeUnidade";
+                CbDestino.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
+                CbDestino.ValueMember = "NomeUnidade";
+                CbDestino.DisplayMember = "NomeUnidade";
+                CbOrigem.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
+                CbOrigem.ValueMember = "NomeUnidade";
+                CbOrigem.DisplayMember = "NomeUnidade";
             }
-
-            // MessageBox.Show("Solicitação salva com sucesso !!!");
-
-            conexao.Close();
         }
         public void unidade_telefone()
         {
-            //consulta para mostrar o telefone quando clicar no enderenco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery2 = "select Telefone from enderecos where NomeUnidade = '" + pegaUnidade + "'";
-            try
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                SqlCommand objComm = new SqlCommand(sqlQuery2, conexao);
-                SqlDataReader MyReader2;
+                var telefoneDoEndereco = db.enderecos
+                    .Where(e => e.NomeUnidade == pegaUnidade)
+                    .Select(e => e.Telefone);
 
-                MyReader2 = objComm.ExecuteReader();
-
-                //MessageBox.Show("Alterado com sucesso !!!");
-                while (MyReader2.Read())
-                {
-                    txtTelefone.Text = MyReader2.GetString(0);
-                }
-                conexao.Close();
+                txtTelefone.Text = telefoneDoEndereco.FirstOrDefault();
+             
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-
         }
         private void unidade_Endereco()
         {
-            //consulta para mostrar o telefone quando clicar no enderenco
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery2 = "select Endereco from enderecos where NomeUnidade = '" + pegaUnidadeEnd + "'";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-                SqlCommand objComm = new SqlCommand(sqlQuery2, conexao);
-                SqlDataReader MyReader2;
+                var enderecoDoEnderecos = db.enderecos
+                    .Where(e => e.NomeUnidade == pegaUnidadeEnd)
+                    .Select(e => e.Endereco);
 
-                MyReader2 = objComm.ExecuteReader();
-
-                //MessageBox.Show("Alterado com sucesso !!!");
-                while (MyReader2.Read())
-                {
-                    Endereco1 = MyReader2.GetString(0);
-
-                }
-
-                conexao.Close();
+                Endereco1 = enderecoDoEnderecos.FirstOrDefault();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void CbOrigem_SelectedIndexChanged(object sender, EventArgs e)
@@ -381,7 +332,6 @@ namespace WindowsFormsApplication2
 
         }
 
-
         private void Motivo()
         {
 
@@ -392,11 +342,11 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "AVALIAÇÃO DE MÉDICO ESPECIALISTA")
             {
-                pegamotivo = "AVALIAÇÃO_DE_MÉDICO_ESPECIALISTA";
+                pegamotivo = "AVALIACAO_DE_MEDICO_ESPECIALISTA";
             }
             else if (CbMotivoChamado.Text == "AVALIAÇÃO DE PROFISSIONAL NÃO MÉDICO")
             {
-                pegamotivo = "AVALIAÇÃO_DE_PROFISSIONAL_NÃO_MÉDICO";
+                pegamotivo = "AVALIACAO_DE_PROFISSIONAL_NAO_MEDICO";
             }
             else if (CbMotivoChamado.Text == "CONSULTA AGENDADA")
             {
@@ -408,11 +358,11 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "EVENTO COMEMORATIVO")
             {
-                pegamotivo = "EVENTO_COMEMORATIVO_DO_MUNICÍPIO";
+                pegamotivo = "EVENTO_COMEMORATIVO_DO_MUNICIPIO";
             }
             else if (CbMotivoChamado.Text == "EVENTO DE CULTURA, LAZER OU RELIGIÃO")
             {
-                pegamotivo = "EVENTO_DE_CULTURA,_LAZER_OU_RELIGIÃO";
+                pegamotivo = "EVENTO_DE_CULTURA_LAZER_OU_RELIGIAO";
             }
             else if (CbMotivoChamado.Text == "EVENTO ESPORTIVO")
             {
@@ -424,19 +374,19 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "EXAME DE URGÊNCIA")
             {
-                pegamotivo = "EXAME_DE_URGÊNCIA";
+                pegamotivo = "EXAME_DE_URGENCIA";
             }
             else if (CbMotivoChamado.Text == "INTERNAÇÃO EM ENFERMARIA")
             {
-                pegamotivo = "[INTERNAÇÃO_EM_ENFERMARIA]";
+                pegamotivo = "INTERNACAO_EM_ENFERMARIA";
             }
             else if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI")
             {
-                pegamotivo = "[INTERNAÇÃO_EM_UTI]";
+                pegamotivo = "INTERNACAO_EM_UTI";
             }
             else if (CbMotivoChamado.Text == "PROCEDIMENTO")
             {
-                pegamotivo = "[PROCEDIMENTO]";
+                pegamotivo = "PROCEDIMENTO";
             }
             else if (CbMotivoChamado.Text == "RETORNO")
             {
@@ -444,51 +394,32 @@ namespace WindowsFormsApplication2
             }
             else if (CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
             {
-                pegamotivo = "[SALA_VERMELHA/EMERGÊNCIA]";
+                pegamotivo = "SALA_VERMELHA_EMERGENCIA";
             }
             else if (CbMotivoChamado.Text == "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS")
             {
-                pegamotivo = "[TRANSPORTE_DE_INSUMOS/PRODUTOS/MATERIAIS]";
+                pegamotivo = "TRANSPORTE_DE_INSUMOS_PRODUTOS_MATERIAIS";
             }
             else if (CbMotivoChamado.Text == "TRANSPORTE DE PROFISSIONAIS")
             {
                 pegamotivo = "TRANSPORTE_DE_PROFISSIONAIS";
             }
 
-
-            //Consultar na tabela de enderecos
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "select " + pegamotivo + " from referencias";
-            try
+            using(DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conexao);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    string fila = string.Format("{0}", row.ItemArray[0]);
-                    CbTipoMotivoSelecionado.Items.Add(fila);
-
-                }
-
-                // MessageBox.Show("Solicitação salva com sucesso !!!");
-                conexao.Close();
+                CbTipoMotivoSelecionado.DataSource = db.referencias.ToList();
+                CbTipoMotivoSelecionado.ValueMember = pegamotivo;
+                CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.Items.Clear();
-            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA" || CbMotivoChamado.Text == "")
+            CbTipoMotivoSelecionado.DataSource = null; 
+            CbTipoMotivoSelecionado.ValueMember = "";
+            CbTipoMotivoSelecionado.DisplayMember = "";
+
+            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
             {
                 BtnAvancada.PerformClick();
                 BtnAvancada.Enabled = false;
@@ -502,16 +433,11 @@ namespace WindowsFormsApplication2
                 TipoAM = "";
                 BtnAvancada.Enabled = true;
                 BtnBasica.Enabled = true;
-                BtnAvancada.BackColor = Color.PaleTurquoise;
-                BtnAvancada.ForeColor = Color.Teal;
-                BtnBasica.ForeColor = Color.Teal;
-                BtnBasica.BackColor = Color.PaleTurquoise;
+                BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
             }
-
-        }
-
-        private void CbTipoMotivoSelecionado_Click(object sender, EventArgs e)
-        {
             Motivo();
         }
 
@@ -521,81 +447,80 @@ namespace WindowsFormsApplication2
             RbMasculino.Checked = false;
             txtIdade.Text = "";
 
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "SELECT Paciente, Genero, Idade FROM solicitacoes_paciente";
-            try
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader;
-
-                MyReader = objComm.ExecuteReader();
-
-
-                while (MyReader.Read())
-                {
-                   txtNomePaciente.AutoCompleteCustomSource.Add(MyReader["Paciente"].ToString());
-   
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
+                var autoCompletar = db.solicitacoes_paciente
+                    .Select(a => a.Paciente).Distinct().ToArray();
+                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+                source.AddRange(autoCompletar);
+                txtNomePaciente.AutoCompleteCustomSource = source;
 
             }
         }
 
         private void txtNomePaciente_KeyUp(object sender, KeyEventArgs e)
         {
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-            string sqlQuery = "SELECT Genero, Idade FROM solicitacoes_paciente WHERE Paciente = '" + txtNomePaciente.Text + "'";
-            try
-            {
-
-                SqlCommand objComm = new SqlCommand(sqlQuery, conexao);
-                SqlDataReader MyReader;
-
-                MyReader = objComm.ExecuteReader();
-
-
-                while (MyReader.Read())
-                {
-
-                    if (MyReader["Genero"].ToString() == "M")
-                    {
-                        RbFemenino.Checked = false;
-                        RbMasculino.Checked = true;
-                    }
-                    else
-                    {
-                        RbMasculino.Checked = false;
-                        RbFemenino.Checked = true;
-                    }
+            /*          using (DAHUEEntities db = new DAHUEEntities())
+                      {
+                          var autoCompletarDadosPaciente = db.solicitacoes_paciente
+                              .Where(a => a.Paciente == txtNomePaciente.Text)
+                              .Select(a => new {a.Genero, a.Idade}).FirstOrDefault();
+                               
+                              if (autoCompletarDadosPaciente.Genero == "M")
+                              {
+                                  RbFemenino.Checked = false;
+                                  RbMasculino.Checked = true;
+                              }
+                              else
+                              {
+                                  RbMasculino.Checked = false;
+                                  RbFemenino.Checked = true;
+                              }
 
 
-                    txtIdade.Text = MyReader["Idade"].ToString();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
+                              txtIdade.Text = autoCompletarDadosPaciente.Idade;
+                       }*/
         }
 
+        private void txtIdade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
 
+        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
 
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else
+                        func(control.Controls);
+            };
 
+            func(Controls);
+        }
+        private void ClearComboBox()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is ComboBox)
+                        (control as ComboBox).SelectedIndex = -1;
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
 
     }
 }

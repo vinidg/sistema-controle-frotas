@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
+<<<<<<< HEAD
 namespace WindowsFormsApplication2
+=======
+namespace Sistema_Controle
+>>>>>>> EntityInsert
 {
    class Update
     {
@@ -18,7 +22,6 @@ namespace WindowsFormsApplication2
             get { return avisar; }
             set { avisar = value; }
         }
-
         public bool Yn
         {
             get { return yn; }
@@ -83,6 +86,8 @@ namespace WindowsFormsApplication2
             if (appverion.CompareTo(newVersion) < 0)
             {
                 avisar = true;
+                yn = true;
+                Process.Start(donwloadurl);
             }
             else
             {

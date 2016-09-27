@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="richTextBox1.Text" xml:space="preserve">
     <value>ChangeLog:
 
 Versão 2.0.1.6
 
 15/06/2015
 
-* Vizualizador de pendencias: Agora separado por agendadas do dia e pendentes;
+* Visualizador de pendencias: Agora separado por agendadas do dia e pendentes;
 * Defeitos: Erro na impressão da ambulancias;
 * Data da solicitações nas solicitações pendentes;
 * Link para verificar atualizações novas;
@@ -139,7 +139,22 @@ Versão 2.0.1.6
 
 08/12/2015
 
-* Correção dos números das ambulâncias
-* Bloqueio de ambulância ao solicitar o motivo da solicitação como UTI e Sala Vermelha</value>
+* Correção dos números das ambulâncias;
+* Bloqueio de ambulância ao solicitar o motivo da solicitação como UTI e Sala Vermelha;
+
+31/05/2016
+
+* Inserção de pesquisa de solicitações passadas;
+* Correção de bugs e atualização de dll;
+
+25/08/2016
+
+* Refatoração do Sistema;
+* Ganho de desempenho com o banco;
+* Opção de existência  de acompanhante da solicitação;
+* Layout das ambulâncias para lista;
+* Edição das ambulâncias para personalização;
+* Verificar solicitações que o paciente teve na consulta de informações;
+* Alterar cor de fundo do Controle;</value>
   </data>
 </root>

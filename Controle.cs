@@ -1,5 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
+<<<<<<< HEAD
 using WindowsFormsApplication2;
+=======
+using Sistema_Controle;
+>>>>>>> EntityInsert
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,55 +17,59 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using db_transporte_sanitario;
+using System.Data.Entity.SqlServer;
 
-
-namespace WindowsFormsApplication2
+namespace Sistema_Controle
 {
     public partial class CONTROLE : Form
     {
-
         public CONTROLE()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            Status();
+            pegarDadosDasAmbulancias();
             countparaSol();
             countparaSolAgendadas();
+            countparaSolAgendadasPendentes();
             Re.Text = System.Environment.UserName;
+<<<<<<< HEAD
             timerAtualiza(0);
 
             this.Text = "Sistema de Controle de Ambulancias. Versão: " + appverion;
+=======
+            timerAtualiza();
+            
+            timer1.Enabled = true;
+
+            this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
+            label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
+>>>>>>> EntityInsert
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
-        public void timerAtualiza(int foi)
+        public void timerAtualiza()
         {
-            if (foi != 1)
-            {
-                Timer t = new Timer();
-                t.Interval = 5000;
-                t.Tick += new EventHandler(timer1_Tick);
-                t.Start();
-
-            }
-            return;
+            timer1.Interval = 5000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Start();
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            ConfirmaSolicitacao frm = new ConfirmaSolicitacao();
+            timer1.Enabled = false;
+            ConfirmaSolicitacao frm = new ConfirmaSolicitacao(0);
             frm.ShowDialog();
-            timerAtualiza(1);
         }
 
         private void txtSolicitacoes_Click(object sender, EventArgs e)
         {
-            Solicitacoes Sol = new Solicitacoes(null, null);
+            timer1.Enabled = false;
+            Solicitacoes Sol = new Solicitacoes(0, "");
             Sol.ShowDialog();
-            timerAtualiza(1);
             if (txtSolicitacoes.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
 
@@ -69,155 +77,50 @@ namespace WindowsFormsApplication2
         {
             if (txtSolicitacoes.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
-        public void Status()
+
+        private void label1_Click(object sender, EventArgs e)
         {
-            StatusBD d = new StatusBD();
-            d.puxarStatus();
+            countparaSol();
+            countparaSolAgendadas();
+            countparaSolAgendadasPendentes();
+        }
+        private void countparaSol()
+        {
+         
+            using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query= (from sp in db.solicitacoes_paciente
+                                where sp.AmSolicitada == 0 && sp.Agendamento == "Nao" &&
+                                sp.Registrado == "Sim"
+                                select sp.idPaciente_Solicitacoes).Count();
 
-            if (d.AM011 == "BLOQUEADA")
-            {
-                BtnAM01.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM011 == "DISPONIVEL")
-            {
-                BtnAM01.BackColor = Color.LimeGreen;
-            }
-            if (d.AM011 == "OCUPADA")
-            {
-                BtnAM01.BackColor = Color.Firebrick;
-            }
-            if (d.AM021 == "BLOQUEADA")
-            {
-                BtnAM02.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM021 == "OCUPADA")
-            {
-                BtnAM02.BackColor = Color.Firebrick;
-            }
-            if (d.AM021 == "DISPONIVEL")
-            {
-                BtnAM02.BackColor = Color.LimeGreen;
-            }
-            if (d.AMRC1 == "DISPONIVEL")
-            {
-                BtnAMRC.BackColor = Color.LimeGreen;
-            }
-            if (d.AMRC1 == "OCUPADA")
-            {
-                BtnAMRC.BackColor = Color.Firebrick;
-            }
-            if (d.AMRC1 == "BLOQUEADA")
-            {
-                BtnAMRC.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM031 == "BLOQUEADA")
-            {
-                BtnAM03.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM031 == "DISPONIVEL")
-            {
-                BtnAM03.BackColor = Color.LimeGreen;
-            }
-            if (d.AM031 == "OCUPADA")
-            {
-                BtnAM03.BackColor = Color.Firebrick;
-            }
-            if (d.AM041 == "BLOQUEADA")
-            {
-                BtnAM04.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM041 == "OCUPADA")
-            {
-                BtnAM04.BackColor = Color.Firebrick;
-            }
-            if (d.AM041 == "DISPONIVEL")
-            {
-                BtnAM04.BackColor = Color.LimeGreen;
-            }
+                    txtSolicitacoes.Text = query.ToString();
+                }
 
-            if (d.AM051 == "BLOQUEADA")
-            {
-                BtnAM05.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM051 == "OCUPADA")
-            {
-                BtnAM05.BackColor = Color.Firebrick;
-            }
-            if (d.AM051 == "DISPONIVEL")
-            {
-                BtnAM05.BackColor = Color.LimeGreen;
-            }
+        }
 
-            if (d.AM061 == "BLOQUEADA")
+        private void countparaSolAgendadas()
+        {
+            //CONTA AS solicitacoes agendadas
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                BtnAM06.BackColor = Color.RoyalBlue;
-            }
+                var query = (from sp in db.solicitacoes_paciente
+                             join saa in db.solicitacoes_agendamentos
+                             on sp.idReagendamento equals saa.idSolicitacaoAgendamento
+                             where sp.Agendamento == "Sim" &&
+                             sp.AmSolicitada == 0 &&
+                             sp.Registrado == "Sim" &&
+                             SqlFunctions.DateDiff("day", DateTime.Now, saa.DtHrAgendamento) == 0
+                             select sp.idPaciente_Solicitacoes).Count();
 
-            if (d.AM061 == "DISPONIVEL")
-            {
-                BtnAM06.BackColor = Color.LimeGreen;
+                txtAgendadasHoje.Text = query.ToString();
             }
+        }
 
-            if (d.AM061 == "OCUPADA")
-            {
-                BtnAM06.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM071 == "BLOQUEADA")
-            {
-                BtnAM07.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM071 == "OCUPADA")
-            {
-                BtnAM07.BackColor = Color.Firebrick;
-            }
-            if (d.AM071 == "DISPONIVEL")
-            {
-                BtnAM07.BackColor = Color.LimeGreen;
-            }
-
-            if (d.AM081 == "BLOQUEADA")
-            {
-                BtnAM08.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM081 == "DISPONIVEL")
-            {
-                BtnAM08.BackColor = Color.LimeGreen;
-            }
-            if (d.AM081 == "OCUPADA")
-            {
-                BtnAM08.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM091 == "BLOQUEADA")
-            {
-                BtnAM09.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM091 == "DISPONIVEL")
-            {
-                BtnAM09.BackColor = Color.LimeGreen;
-            }
-            if (d.AM091 == "OCUPADA")
-            {
-                BtnAM09.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM111 == "BLOQUEADA")
-            {
-                BtnAM11.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM111 == "DISPONIVEL")
-            {
-                BtnAM11.BackColor = Color.LimeGreen;
-            }
-            if (d.AM111 == "OCUPADA")
-            {
-                BtnAM11.BackColor = Color.Firebrick;
-            }
-
+<<<<<<< HEAD
             if (d.AM121 == "BLOQUEADA")
             {
                 BtnAM12.BackColor = Color.RoyalBlue;
@@ -243,221 +146,28 @@ namespace WindowsFormsApplication2
             {
                 BtnAM10.BackColor = Color.Firebrick;
             }
+=======
+        private void countparaSolAgendadasPendentes()
+        {
+>>>>>>> EntityInsert
 
-            if (d.AM461 == "DISPONIVEL")
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                BtnAM46.BackColor = Color.LimeGreen;
-            }
-            if (d.AM461 == "OCUPADA")
-            {
-                BtnAM46.BackColor = Color.Firebrick;
-            }
-            if (d.AM461 == "BLOQUEADA")
-            {
-                BtnAM46.BackColor = Color.RoyalBlue;
-            }
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.AmSolicitada == 0 && sp.Agendamento == "Sim"
+                             && sp.Registrado == "Aguardando resposta do controle"
+                             select sp.idPaciente_Solicitacoes).Count();
 
-            if (d.AM471 == "OCUPADA")
-            {
-                BtnAM47.BackColor = Color.Firebrick;
-            }
-            if (d.AM471 == "DISPONIVEL")
-            {
-                BtnAM47.BackColor = Color.LimeGreen;
-            }
-            if (d.AM471 == "BLOQUEADA")
-            {
-                BtnAM47.BackColor = Color.RoyalBlue;
+                txtAgendasPendentes.Text = query.ToString();
             }
 
-            if (d.AM521 == "DISPONIVEL")
-            {
-                BtnAM52.BackColor = Color.LimeGreen;
-            }
-            if (d.AM521 == "OCUPADA")
-            {
-                BtnAM52.BackColor = Color.Firebrick;
-            }
-            if (d.AM521 == "BLOQUEADA")
-            {
-                BtnAM52.BackColor = Color.RoyalBlue;
-            }
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("3");
-            sta.ShowDialog();
-
-        }
-        private void BtnAM01_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("1");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM02_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("2");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM03_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("4");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM04_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("5");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM05_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("6");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM06_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("7");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM07_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("8");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM09_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("9");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM08_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("10");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM11_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("11");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM10_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("13");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM15_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("15");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM46_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("16");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM47_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("17");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM52_Click(object sender, EventArgs e)
-        {
-            Status sta = new Status("18");
-            sta.ShowDialog();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            Status();
-            countparaSol();
-            countparaSolAgendadas();
-        }
-        private void countparaSol()
-        {
-            //CONTA AS solicitacoes
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "SELECT COUNT(idPaciente_Solicitacoes) FROM [dbo].[solicitacoes_paciente] WHERE AmSolicitada = '0' and Agendamento = 'Nao'";
-            try
-            {
-
-                using (SqlCommand objComm = new SqlCommand(sqlQuery, conexao))
-                {
-                    int count = (int)objComm.ExecuteScalar();
-                    txtSolicitacoes.Text = count.ToString();
-                }
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
-        }
-
-        private void countparaSolAgendadas()
-        {
-            DateTime Data = DateTime.Now;
-            int i = 0;
-            string str = "";
-            string data = "";
-            int contagem = 0;
-            string dataHoje = Data.ToString("dd/MM/yyyy");
-            //CONTA AS solicitacoes agendadas
-            SqlConnection conexao = ConexaoSqlServer.GetConexao();
-
-
-            string sqlQuery = "SELECT DtHrAgendamento FROM [dbo].[solicitacoes_paciente] WHERE Agendamento = 'Sim' and AmSolicitada = '0'";
-
-            try
-            {
-
-                SqlDataAdapter objComm = new SqlDataAdapter(sqlQuery, conexao);
-
-
-                DataSet CD = new DataSet();
-                objComm.Fill(CD);
-
-                //verificar se é igual a data de 'hoje'
-                while (i < CD.Tables[0].Rows.Count)
-                {
-
-                    str = CD.Tables[0].Rows[i][0].ToString();
-                    data = str.Substring(0, 10);
-
-                    if (data == dataHoje)
-                    {
-                        contagem++;
-                    }
-                    i++;
-                }
-
-                txtAgendadasHoje.Text = contagem.ToString();
-            }
-            finally
-            {
-                conexao.Close();
-
-            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Status();
+            pegarDadosDasAmbulancias();
             countparaSol();
+            countparaSolAgendadasPendentes();
             atualizadorParaNotificador();
 
         }
@@ -470,18 +180,17 @@ namespace WindowsFormsApplication2
             {
                 avisandoAoControle.Visible = true;
                 avisandoAoControle.Text = "Nova atualização no sistema de Controle de Ambulancias. Reinicie o sistema !!!";
-
+                Atualizar.Visible = true;
             }
         }
 
         private void txtAgendadasHoje_Click(object sender, EventArgs e)
         {
-            Solicitacoes solicitacoes = new Solicitacoes("", "");
+            Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
-            timerAtualiza(1);
             if (txtAgendadasHoje.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
 
@@ -489,36 +198,256 @@ namespace WindowsFormsApplication2
         {
             if (txtAgendadasHoje.Focus())
             {
-                BtnAM01.Focus();
+                label1.Focus();
             }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            timer1.Enabled = false;
             Atualizacao atualizacao = new Atualizacao();
             atualizacao.ShowDialog();
         }
 
-        private void BtnAM09_Click_1(object sender, EventArgs e)
-        {
-            Status sta = new Status("12");
-            sta.ShowDialog();
-        }
-
-        private void BtnAM11_Click_1(object sender, EventArgs e)
-        {
-            Status sta = new Status("14");
-            sta.ShowDialog();
-        }
-
         private void Consultar_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             Consulta consulta = new Consulta();
             consulta.ShowDialog();
         }
 
+        public void pegarDadosDasAmbulancias()
+        {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var queryUsb = (from am in db.ambulancia
+                               join sa in db.solicitacoes_ambulancias
+                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida} into sa_join
+                               from sa in sa_join.DefaultIfEmpty()
+                               join sp in db.solicitacoes_paciente 
+                               on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } 
+                               equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                               from sp in sp_join.DefaultIfEmpty()
+                               where am.TipoAM == "BASICO" && am.Desativado == 0
+                               select new
+                               {
+                                   am.idAmbulancia,
+                                   Ambulancia =  am.NomeAmbulancia,
+                                   Status = am.StatusAmbulancia,
+                                   idPaciente = sa.idSolicitacoesPacientes, 
+                                   Paciente = sp.Paciente,
+                                   Idade = sp.Idade,
+                                   Origem = sp.Origem,
+                                   Destino = sp.Destino
+                               }).ToList();
+
+                listaUsb.DataSource = queryUsb;
+                listaUsb.ClearSelection();
+
+                var queryUsa = (from am in db.ambulancia
+                               join sa in db.solicitacoes_ambulancias
+                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                               from sa in sa_join.DefaultIfEmpty()
+                               join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                               from sp in sp_join.DefaultIfEmpty()
+                               where
+                               am.TipoAM == "AVANCADO" && am.Desativado == 0
+                               select new
+                               {
+                                   am.idAmbulancia,
+                                   Ambulancia = am.NomeAmbulancia,
+                                   Status = am.StatusAmbulancia,
+                                   idPaciente = sa.idSolicitacoesPacientes, 
+                                   Paciente = sp.Paciente,
+                                   Idade = sp.Idade,
+                                   Origem = sp.Origem,
+                                   Destino = sp.Destino
+                               }).ToList();
+
+                listaUsa.DataSource = queryUsa;
+                listaUsa.ClearSelection();
+                
+            }
+            listaUsa.Columns[0].Visible = false;
+            listaUsb.Columns[0].Visible = false;
+            listaUsa.Columns["idPaciente"].Visible = false;
+            listaUsb.Columns["idPaciente"].Visible = false;
+
+            this.listaUsa.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsa.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsa.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsa.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsa.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsa.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            this.listaUsb.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+            {
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+            else if (e.Value != null && e.Value.Equals("OCUPADA"))
+            {
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+            else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
+            {
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+
+        }
+
+        private void listaUsa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+            {
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+            else if (e.Value != null && e.Value.Equals("OCUPADA"))
+            {
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+            else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
+            {
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+        }
+
+        private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex > -1)
+            {
+            string idAM = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
+            {
+                string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                timer1.Enabled = false;
+                Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
+                sta.ShowDialog();
+            }
+            else
+            {
+                timer1.Enabled = false;
+                Status sta = new Status(Convert.ToInt32(idAM), 0);
+                sta.ShowDialog();
+            }
+            }
+        }
+
+        private void listaUsa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                string idAM = listaUsa.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
+                {
+                    string idPaciente = listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                    timer1.Enabled = false;
+                    Status status = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
+                    status.ShowDialog();
+                }
+                else
+                {
+                    timer1.Enabled = false;
+                    Status status = new Status(Convert.ToInt32(idAM), 0);
+                    status.ShowDialog();
+                }
+            }
+        }
+
+        private void Editar_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            EditarAmbulancias ea = new EditarAmbulancias();
+            ea.ShowDialog();
+        
+        }
+
+        private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtAgendasPendentes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Update updatando = new Update();
+            updatando.up();
+            if (updatando.Yn == true)
+            {
+                Environment.Exit(1);
+            }
+        }
+
+        private void txtAgendasPendentes_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAgendasPendentes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+
+        private void txtAgendasPendentes_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
+            ra.ShowDialog();
+            if (txtAgendasPendentes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            Solicitacoes solicitacoes = new Solicitacoes(0, "");
+            solicitacoes.ShowDialog();
+        }
+
+        private void AgendaPendentes_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
+            ra.ShowDialog();
+        }
+
+        private void EnderecosEditar_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            Enderecos en = new Enderecos();
+            en.ShowDialog();
+        }
+
+        private void CONTROLE_Activated(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+            timerAtualiza();
+        }
+
     }
 
-
 }
+
+
+
 
