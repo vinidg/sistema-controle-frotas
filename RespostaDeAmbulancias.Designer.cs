@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.negativa = new System.Windows.Forms.Button();
             this.dtHrReagendamento = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -37,7 +38,6 @@
             this.Respondidos = new System.Windows.Forms.RadioButton();
             this.Calendario = new System.Windows.Forms.MonthCalendar();
             this.Reagendamentos = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.Aceitar = new System.Windows.Forms.Button();
             this.DataInicio = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -92,11 +92,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.negativa);
             this.panel1.Controls.Add(this.dtHrReagendamento);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.Reagendamentos);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.Aceitar);
             this.panel1.Controls.Add(this.DataInicio);
             this.panel1.Controls.Add(this.label23);
@@ -145,6 +145,20 @@
             this.panel1.Size = new System.Drawing.Size(1067, 646);
             this.panel1.TabIndex = 0;
             // 
+            // negativa
+            // 
+            this.negativa.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.negativa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.negativa.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.negativa.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.negativa.Location = new System.Drawing.Point(620, 589);
+            this.negativa.Name = "negativa";
+            this.negativa.Size = new System.Drawing.Size(144, 46);
+            this.negativa.TabIndex = 103;
+            this.negativa.Text = "Negar";
+            this.negativa.UseVisualStyleBackColor = false;
+            this.negativa.Click += new System.EventHandler(this.negativa_Click);
+            // 
             // dtHrReagendamento
             // 
             this.dtHrReagendamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -190,10 +204,10 @@
             this.Encaminhados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Encaminhados.Location = new System.Drawing.Point(19, 10);
             this.Encaminhados.Name = "Encaminhados";
-            this.Encaminhados.Size = new System.Drawing.Size(104, 24);
+            this.Encaminhados.Size = new System.Drawing.Size(219, 24);
             this.Encaminhados.TabIndex = 96;
             this.Encaminhados.TabStop = true;
-            this.Encaminhados.Text = "Pendentes";
+            this.Encaminhados.Text = "Solicitações agendadas (0)";
             this.Encaminhados.UseVisualStyleBackColor = true;
             this.Encaminhados.Click += new System.EventHandler(this.Encaminhados_Click);
             // 
@@ -220,11 +234,11 @@
             this.Respondidos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Respondidos.AutoSize = true;
             this.Respondidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Respondidos.Location = new System.Drawing.Point(698, 10);
+            this.Respondidos.Location = new System.Drawing.Point(626, 10);
             this.Respondidos.Name = "Respondidos";
-            this.Respondidos.Size = new System.Drawing.Size(121, 24);
+            this.Respondidos.Size = new System.Drawing.Size(193, 24);
             this.Respondidos.TabIndex = 95;
-            this.Respondidos.Text = "Respondidos";
+            this.Respondidos.Text = "Respostas negadas (0)";
             this.Respondidos.UseVisualStyleBackColor = true;
             this.Respondidos.Click += new System.EventHandler(this.Respondidos_Click);
             // 
@@ -243,32 +257,18 @@
             this.Reagendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(124)))), ((int)(((byte)(102)))));
             this.Reagendamentos.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Reagendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Reagendamentos.Location = new System.Drawing.Point(787, 591);
+            this.Reagendamentos.Location = new System.Drawing.Point(767, 589);
             this.Reagendamentos.Name = "Reagendamentos";
-            this.Reagendamentos.Size = new System.Drawing.Size(121, 44);
+            this.Reagendamentos.Size = new System.Drawing.Size(144, 46);
             this.Reagendamentos.TabIndex = 99;
             this.Reagendamentos.Text = "Todos reagendamentos";
             this.Reagendamentos.UseVisualStyleBackColor = false;
             this.Reagendamentos.Click += new System.EventHandler(this.Reagendamentos_Click);
             // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(143)))));
-            this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(637, 588);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 46);
-            this.button1.TabIndex = 98;
-            this.button1.Text = "Reagendar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Aceitar
             // 
             this.Aceitar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Aceitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.Aceitar.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Aceitar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Aceitar.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.Aceitar.Location = new System.Drawing.Point(914, 588);
@@ -796,11 +796,11 @@
         private System.Windows.Forms.Label id;
         private System.Windows.Forms.RadioButton Encaminhados;
         private System.Windows.Forms.RadioButton Respondidos;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Aceitar;
         private System.Windows.Forms.Button Reagendamentos;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label dtHrReagendamento;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button negativa;
     }
 }

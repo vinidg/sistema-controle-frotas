@@ -46,14 +46,8 @@
             this.telefoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.distanciaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minutosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enderecosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dAHUEDataSet = new Sistema_Controle.DAHUEDataSet();
-            this.enderecosTableAdapter = new Sistema_Controle.DAHUEDataSetTableAdapters.enderecosTableAdapter();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TabelaEnderecos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enderecosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dAHUEDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -179,7 +173,6 @@
             this.telefoneDataGridViewTextBoxColumn,
             this.distanciaDataGridViewTextBoxColumn,
             this.minutosDataGridViewTextBoxColumn});
-            this.TabelaEnderecos.DataSource = this.enderecosBindingSource;
             this.TabelaEnderecos.Location = new System.Drawing.Point(3, 195);
             this.TabelaEnderecos.MultiSelect = false;
             this.TabelaEnderecos.Name = "TabelaEnderecos";
@@ -239,20 +232,6 @@
             this.minutosDataGridViewTextBoxColumn.ReadOnly = true;
             this.minutosDataGridViewTextBoxColumn.Width = 142;
             // 
-            // enderecosBindingSource
-            // 
-            this.enderecosBindingSource.DataMember = "enderecos";
-            this.enderecosBindingSource.DataSource = this.dAHUEDataSet;
-            // 
-            // dAHUEDataSet
-            // 
-            this.dAHUEDataSet.DataSetName = "DAHUEDataSet";
-            this.dAHUEDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // enderecosTableAdapter
-            // 
-            this.enderecosTableAdapter.ClearBeforeFill = true;
-            // 
             // Enderecos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,9 +247,6 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TabelaEnderecos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enderecosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dAHUEDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,9 +255,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView TabelaEnderecos;
-        private DAHUEDataSet dAHUEDataSet;
-        private System.Windows.Forms.BindingSource enderecosBindingSource;
-        private DAHUEDataSetTableAdapters.enderecosTableAdapter enderecosTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idControleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeUnidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn enderecoDataGridViewTextBoxColumn;

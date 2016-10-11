@@ -21,15 +21,26 @@ namespace Sistema_Controle
 
         private void Enderecos_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dAHUEDataSet.enderecos' table. You can move, or remove it, as needed.
-            this.enderecosTableAdapter.Fill(this.dAHUEDataSet.enderecos);
+            puxarEnderecos();
+
             TabelaEnderecos.Columns[4].Visible = false;
             TabelaEnderecos.Columns[5].Visible = false;
-            this.TabelaEnderecos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.TabelaEnderecos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            this.TabelaEnderecos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            TabelaEnderecos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            TabelaEnderecos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            TabelaEnderecos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
+        private void puxarEnderecos()
+        {
+            using(DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = (from en in db.enderecos
+                             select new { en.idControle, en.NomeUnidade, en.Endereco, en.Telefone }).ToList();
+
+                TabelaEnderecos.DataSource = query;
+                TabelaEnderecos.Refresh();
+            }
+        }
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             idControleEndereco = Convert.ToInt32(TabelaEnderecos.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -64,7 +75,7 @@ namespace Sistema_Controle
                     db.SaveChanges();
                     MessageBox.Show("Endereço salva com sucesso !", "Sucesso");
                 }
-                enderecosTableAdapter.Fill(this.dAHUEDataSet.enderecos);
+                puxarEnderecos();
             }
         }
 
@@ -82,7 +93,7 @@ namespace Sistema_Controle
                     db.SaveChanges();
                     MessageBox.Show("Endereço atualizado com sucesso !", "Sucesso");
                 }
-                enderecosTableAdapter.Fill(this.dAHUEDataSet.enderecos);
+                puxarEnderecos();
 
             }
         }
@@ -115,7 +126,7 @@ namespace Sistema_Controle
                         MessageBox.Show("Deletado !", "Sys");
                     }
                 }
-                enderecosTableAdapter.Fill(this.dAHUEDataSet.enderecos);
+                puxarEnderecos();
             }
         }
 

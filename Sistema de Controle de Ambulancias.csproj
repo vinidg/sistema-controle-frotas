@@ -29,15 +29,11 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>12</ApplicationRevision>
-    <ApplicationVersion>2.0.0.12</ApplicationVersion>
+    <ApplicationVersion>3.0.0.12</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsUrl>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias</BootstrapperComponentsUrl>
-<<<<<<< HEAD
-=======
-    <TargetFrameworkProfile />
->>>>>>> EntityInsert
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,9 +66,7 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
@@ -80,7 +74,12 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>WindowsFormsApplication2.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -150,11 +149,6 @@
     <Compile Include="ConfirmaSolicitacao.Designer.cs">
       <DependentUpon>ConfirmaSolicitacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAHUEDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DAHUEDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="EditarAmbulancias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +162,12 @@
       <DependentUpon>Enderecos.cs</DependentUpon>
     </Compile>
     <Compile Include="InsercoesDoBanco.cs" />
+    <Compile Include="NegarReagendamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NegarReagendamento.Designer.cs">
+      <DependentUpon>NegarReagendamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -231,6 +231,9 @@
     <EmbeddedResource Include="Enderecos.resx">
       <DependentUpon>Enderecos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NegarReagendamento.resx">
+      <DependentUpon>NegarReagendamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -255,17 +258,8 @@
     <EmbeddedResource Include="Status.resx">
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.Config" />
-    <None Include="DAHUEDataSet.xsc">
-      <DependentUpon>DAHUEDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DAHUEDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DAHUEDataSet.Designer.cs</LastGenOutput>
+    <None Include="App.Config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="DAHUEDataSet.xss">
-      <DependentUpon>DAHUEDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -314,12 +308,12 @@
   <ItemGroup>
     <PublishFile Include="MySql.Data">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

@@ -18,13 +18,13 @@ namespace Sistema_Controle
         public RespostaDeAmbulancias()
         {
             InitializeComponent();
-            puxarAgendadasRespondidasPeloSolicitante();
+            puxarAgendadasNegadas();
             puxarAgendadasPendentes();
             id.Text = "";
             dtHrReagendamento.Text = "";
         }
 
-        public void puxarAgendadasRespondidasPeloSolicitante()
+        public void puxarAgendadasNegadas()
         {
             var final = Calendario.SelectionRange.End.AddHours(23).AddMinutes(59).AddSeconds(59);
             var comeco = Calendario.SelectionRange.Start;
@@ -51,7 +51,7 @@ namespace Sistema_Controle
                             };
                 var quertCont = query.Count();
                 var queryAmbu = query.ToList();
-                Respondidos.Text = "Respondidos (" + quertCont +")";
+                Respondidos.Text = "Respostas negadas (" + quertCont + ")";
                 ListaAgendados.DataSource = queryAmbu;
                 ListaAgendados.ClearSelection();
 
@@ -87,7 +87,7 @@ namespace Sistema_Controle
 
                 var queryAmbu = query.ToList();
                 var querycont = query.Count();
-                Encaminhados.Text = "Encaminhados ("+querycont+")";
+                Encaminhados.Text = "Solicitações agendadas (" + querycont + ")";
                 ListaAgendados.DataSource = queryAmbu;
                 ListaAgendados.ClearSelection();
 
@@ -148,7 +148,7 @@ namespace Sistema_Controle
         {
             if (Respondidos.Checked == true)
             {
-                puxarAgendadasRespondidasPeloSolicitante();
+                puxarAgendadasNegadas();
             }
             else if (Encaminhados.Checked == true)
             {
@@ -163,7 +163,7 @@ namespace Sistema_Controle
 
         private void Respondidos_Click(object sender, EventArgs e)
         {
-            puxarAgendadasRespondidasPeloSolicitante();
+            puxarAgendadasNegadas();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -191,7 +191,7 @@ namespace Sistema_Controle
         {
             if (Respondidos.Checked == true)
             {
-                puxarAgendadasRespondidasPeloSolicitante();
+                puxarAgendadasNegadas();
                 Respondidos.Checked = true;
             }
             else
@@ -276,6 +276,12 @@ namespace Sistema_Controle
             };
 
             func(Controls);
+        }
+
+        private void negativa_Click(object sender, EventArgs e)
+        {
+            NegarReagendamento nr = new NegarReagendamento(idPaciente);
+            nr.ShowDialog();
         }
 
     }

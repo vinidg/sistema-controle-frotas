@@ -34,8 +34,7 @@ namespace Sistema_Controle
                 PreencherCampos(idPaciente);
             }
         }
-<<<<<<< HEAD
-=======
+
         private void PreencherCampos(int id)
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -67,7 +66,6 @@ namespace Sistema_Controle
                 Obs.Text = query.ObsGerais;
             }
         }
->>>>>>> EntityInsert
 
         private void BtnBasica_Click(object sender, EventArgs e)
         {

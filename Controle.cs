@@ -1,9 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-<<<<<<< HEAD
-using WindowsFormsApplication2;
-=======
-using Sistema_Controle;
->>>>>>> EntityInsert
+﻿using Sistema_Controle;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,23 +28,18 @@ namespace Sistema_Controle
             countparaSolAgendadas();
             countparaSolAgendadasPendentes();
             Re.Text = System.Environment.UserName;
-<<<<<<< HEAD
-            timerAtualiza(0);
 
-            this.Text = "Sistema de Controle de Ambulancias. Versão: " + appverion;
-=======
             timerAtualiza();
             
-            timer1.Enabled = true;
-
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
->>>>>>> EntityInsert
+
         }
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
         public void timerAtualiza()
         {
+            timer1.Stop();
             timer1.Interval = 5000;
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Start();
@@ -57,14 +47,13 @@ namespace Sistema_Controle
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
             ConfirmaSolicitacao frm = new ConfirmaSolicitacao(0);
             frm.ShowDialog();
         }
 
         private void txtSolicitacoes_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             Solicitacoes Sol = new Solicitacoes(0, "");
             Sol.ShowDialog();
             if (txtSolicitacoes.Focus())
@@ -96,7 +85,7 @@ namespace Sistema_Controle
                                 where sp.AmSolicitada == 0 && sp.Agendamento == "Nao" &&
                                 sp.Registrado == "Sim"
                                 select sp.idPaciente_Solicitacoes).Count();
-
+                    
                     txtSolicitacoes.Text = query.ToString();
                 }
 
@@ -120,37 +109,8 @@ namespace Sistema_Controle
             }
         }
 
-<<<<<<< HEAD
-            if (d.AM121 == "BLOQUEADA")
-            {
-                BtnAM12.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM121 == "DISPONIVEL")
-            {
-                BtnAM12.BackColor = Color.LimeGreen;
-            }
-            if (d.AM121 == "OCUPADA")
-            {
-                BtnAM12.BackColor = Color.Firebrick;
-            }
-
-            if (d.AM101 == "BLOQUEADA")
-            {
-                BtnAM10.BackColor = Color.RoyalBlue;
-            }
-            if (d.AM101 == "DISPONIVEL")
-            {
-                BtnAM10.BackColor = Color.LimeGreen;
-            }
-            if (d.AM101 == "OCUPADA")
-            {
-                BtnAM10.BackColor = Color.Firebrick;
-            }
-=======
         private void countparaSolAgendadasPendentes()
         {
->>>>>>> EntityInsert
-
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = (from sp in db.solicitacoes_paciente
@@ -204,14 +164,14 @@ namespace Sistema_Controle
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            timer1.Enabled = false;
+
             Atualizacao atualizacao = new Atualizacao();
             atualizacao.ShowDialog();
         }
 
         private void Consultar_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             Consulta consulta = new Consulta();
             consulta.ShowDialog();
         }
@@ -293,40 +253,45 @@ namespace Sistema_Controle
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+            if (this.listaUsb.Columns[e.ColumnIndex].Name == "Status")
             {
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+                {
+                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (e.Value != null && e.Value.Equals("OCUPADA"))
+                {
+                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
+                {
+                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
             }
-            else if (e.Value != null && e.Value.Equals("OCUPADA"))
-            {
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-            }
-            else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
-            {
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
-                listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-            }
-
         }
 
         private void listaUsa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+            if (this.listaUsa.Columns[e.ColumnIndex].Name == "Status")
             {
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-            }
-            else if (e.Value != null && e.Value.Equals("OCUPADA"))
-            {
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-            }
-            else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
-            {
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
-                listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+                {
+                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (e.Value != null && e.Value.Equals("OCUPADA"))
+                {
+                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
+                {
+                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
             }
         }
 
@@ -338,13 +303,13 @@ namespace Sistema_Controle
             if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
             {
                 string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
-                timer1.Enabled = false;
+
                 Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
                 sta.ShowDialog();
             }
             else
             {
-                timer1.Enabled = false;
+
                 Status sta = new Status(Convert.ToInt32(idAM), 0);
                 sta.ShowDialog();
             }
@@ -359,13 +324,13 @@ namespace Sistema_Controle
                 if (listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
                 {
                     string idPaciente = listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
-                    timer1.Enabled = false;
+
                     Status status = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
                     status.ShowDialog();
                 }
                 else
                 {
-                    timer1.Enabled = false;
+
                     Status status = new Status(Convert.ToInt32(idAM), 0);
                     status.ShowDialog();
                 }
@@ -374,7 +339,7 @@ namespace Sistema_Controle
 
         private void Editar_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             EditarAmbulancias ea = new EditarAmbulancias();
             ea.ShowDialog();
         
@@ -408,7 +373,7 @@ namespace Sistema_Controle
 
         private void txtAgendasPendentes_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
             ra.ShowDialog();
             if (txtAgendasPendentes.Focus())
@@ -419,29 +384,23 @@ namespace Sistema_Controle
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
         }
 
         private void AgendaPendentes_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
             ra.ShowDialog();
         }
 
         private void EnderecosEditar_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+
             Enderecos en = new Enderecos();
             en.ShowDialog();
-        }
-
-        private void CONTROLE_Activated(object sender, EventArgs e)
-        {
-            timer1.Enabled = true;
-            timerAtualiza();
         }
 
     }

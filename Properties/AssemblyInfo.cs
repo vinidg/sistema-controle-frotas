@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("2.0.3.1")]
-[assembly: AssemblyDescription("Sistema para controle de solicitação e status da ambulancia")]
+[assembly: AssemblyTitle("Sistema para controle de Ambulancia")]
+[assembly: AssemblyDescription("Sistema para controle de Ambulancia")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("São Bernardo do Campo")]
 [assembly: AssemblyProduct("Sistema de Controle de Ambulancias")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,10 +32,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-<<<<<<< HEAD
-[assembly: AssemblyVersion("2.0.3.3")]
-[assembly: AssemblyFileVersion("2.0.3.3")]
-=======
-[assembly: AssemblyVersion("3.0.0.12")]
-[assembly: AssemblyFileVersion("3.0.0.12")]
->>>>>>> EntityInsert
+
+[assembly: AssemblyVersionAttribute("3.0.0.13")]
+[assembly: AssemblyFileVersionAttribute("3.0.0.13")]

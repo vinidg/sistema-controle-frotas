@@ -8,11 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-namespace WindowsFormsApplication2.Properties {
-=======
 namespace Sistema_Controle.Properties {
->>>>>>> EntityInsert
     using System;
     
     
@@ -43,11 +39,7 @@ namespace Sistema_Controle.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-<<<<<<< HEAD
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WindowsFormsApplication2.Properties.Resources", typeof(Resources).Assembly);
-=======
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sistema_Controle.Properties.Resources", typeof(Resources).Assembly);
->>>>>>> EntityInsert
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -71,19 +63,6 @@ namespace Sistema_Controle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-<<<<<<< HEAD
-        internal static System.Drawing.Bitmap Form {
-            get {
-                object obj = ResourceManager.GetObject("Form", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-=======
->>>>>>> EntityInsert
         internal static System.Drawing.Bitmap LOGO {
             get {
                 object obj = ResourceManager.GetObject("LOGO", resourceCulture);

@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-<<<<<<< HEAD
-namespace WindowsFormsApplication2
-=======
 namespace Sistema_Controle
->>>>>>> EntityInsert
+
 {
    class Update
     {
@@ -80,7 +77,6 @@ namespace Sistema_Controle
                 if(reader != null)
                 
                     reader.Close();
-                
             }
             Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             if (appverion.CompareTo(newVersion) < 0)
