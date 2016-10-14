@@ -17,17 +17,33 @@ namespace Sistema_Controle
         {
             InitializeComponent();
 
-            using(DAHUEEntities db = new DAHUEEntities())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                var query = (from sad in db.solicitacoes_agendamentos
-                             join sp in db.solicitacoes_paciente
-                             on sad.idSolicitacao_paciente equals sp.idPaciente_Solicitacoes into sad_join from sp in sad_join.DefaultIfEmpty() 
-                             where sad.idSolicitacao_paciente == IdPaciente
-                             select new { 
-                                ID = sad.idSolicitacaoAgendamento, 
-                                 sad.DtHrAgendamento }).ToList();
-                ListaReagementos.DataSource = query;
+                var reagendamentos = (from sad in db.solicitacoes_agendamentos
+                                      join sp in db.solicitacoes_paciente
+                                      on sad.idSolicitacao_paciente equals sp.idPaciente_Solicitacoes into sad_join
+                                      from sp in sad_join.DefaultIfEmpty()
+                                      where sad.idSolicitacao_paciente == IdPaciente
+                                      select new
+                                      {
+                                          ID = sad.idSolicitacaoAgendamento,
+                                          sad.DtHrAgendamento
+                                      }).ToList();
+
+                ListaReagementos.DataSource = reagendamentos;
                 ListaReagementos.Refresh();
+
+                var negativas = (from h in db.historico
+                                 where h.Obs != "" && h.Obs != null && h.idPaciente_Solicitacao == IdPaciente
+                                 select new
+                                 {
+                                     h.IdHistorico,
+                                     h.DtHrRegistro,
+                                     h.Obs
+                                 }).ToList();
+
+                Negadas.DataSource = negativas;
+                Negadas.Refresh();
             }
         }
     }

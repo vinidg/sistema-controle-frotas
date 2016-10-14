@@ -159,11 +159,13 @@ namespace Sistema_Controle
         private void Encaminhados_Click(object sender, EventArgs e)
         {
             puxarAgendadasPendentes();
+            negativa.Visible = true;
         }
 
         private void Respondidos_Click(object sender, EventArgs e)
         {
             puxarAgendadasNegadas();
+            negativa.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

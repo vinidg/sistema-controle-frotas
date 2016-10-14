@@ -245,6 +245,7 @@
             this.Obs.Size = new System.Drawing.Size(399, 109);
             this.Obs.TabIndex = 40;
             this.Obs.Text = "";
+            this.Obs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Obs_KeyPress);
             // 
             // label20
             // 
@@ -260,6 +261,7 @@
             // txtEnderecoDestino
             // 
             this.txtEnderecoDestino.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtEnderecoDestino.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEnderecoDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEnderecoDestino.Location = new System.Drawing.Point(835, 200);
             this.txtEnderecoDestino.Name = "txtEnderecoDestino";
@@ -280,6 +282,7 @@
             // txtEnderecoOrigem
             // 
             this.txtEnderecoOrigem.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtEnderecoOrigem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEnderecoOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEnderecoOrigem.Location = new System.Drawing.Point(834, 153);
             this.txtEnderecoOrigem.Name = "txtEnderecoOrigem";
@@ -420,6 +423,7 @@
             // txtDiagnostico
             // 
             this.txtDiagnostico.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtDiagnostico.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiagnostico.Location = new System.Drawing.Point(39, 353);
             this.txtDiagnostico.Name = "txtDiagnostico";
@@ -498,6 +502,7 @@
             this.txtNomePaciente.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtNomePaciente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtNomePaciente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtNomePaciente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomePaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomePaciente.Location = new System.Drawing.Point(39, 300);
             this.txtNomePaciente.Name = "txtNomePaciente";
@@ -572,6 +577,7 @@
             // txtNomeSolicitante
             // 
             this.txtNomeSolicitante.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtNomeSolicitante.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomeSolicitante.Location = new System.Drawing.Point(39, 211);
             this.txtNomeSolicitante.Name = "txtNomeSolicitante";
             this.txtNomeSolicitante.Size = new System.Drawing.Size(141, 20);

@@ -33,6 +33,7 @@ namespace Sistema_Controle
             {
                 PreencherCampos(idPaciente);
             }
+            Obs.SelectedText.ToUpper();
         }
 
         private void PreencherCampos(int id)
@@ -518,6 +519,11 @@ namespace Sistema_Controle
             };
 
             func(Controls);
+        }
+
+        private void Obs_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Char.ToUpper(e.KeyChar);
         }
 
     }
