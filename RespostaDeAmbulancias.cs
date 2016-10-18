@@ -282,8 +282,27 @@ namespace Sistema_Controle
 
         private void negativa_Click(object sender, EventArgs e)
         {
-            NegarReagendamento nr = new NegarReagendamento(idPaciente);
-            nr.ShowDialog();
+            if (idPaciente != 0 && idPaciente != null) { 
+                NegarReagendamento nr = new NegarReagendamento(idPaciente);
+                nr.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione a solicitação que deseja cancelar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cancelarReagendamento_Click(object sender, EventArgs e)
+        {
+            if (idPaciente != 0 && idPaciente != null)
+            {
+                SelecionaAM ST = new SelecionaAM(idPaciente, 0, 0);
+                ST.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione a solicitação que deseja cancelar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

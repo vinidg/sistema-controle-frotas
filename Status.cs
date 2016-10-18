@@ -284,12 +284,12 @@ namespace Sistema_Controle
         }
         ///////////////////////////////////////////////////////FIM STATUS AM///////////////////////////////////////////////////////////////////////////////
 
-
-        ///////////////////////////////////////////////////////LOGISTICA DA AM - INICIO///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////LOGISTICA DA AM - INICIO///////////////////////////////////////////////////////////////////
 
 
         private void BtnEquipeCiente_Click(object sender, EventArgs e)
         {
+
             if (txtHora.Enabled == false && txtHora.Text != "")
             {
                 txtHora.Enabled = true;
@@ -299,6 +299,15 @@ namespace Sistema_Controle
             }
             if (txtHora.Enabled == true && txtHora.Text != "")
             {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if(Convert.ToDateTime(txtHora.Text) >= Convert.ToDateTime(txtHora2.Text) && txtHora2.Text != ""){
+                    MessageBox.Show("A data e hora esta superior à seguinte", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 BtnEquipeCiente.Text = "Equipe Ciente";
 
             using (DAHUEEntities db = new DAHUEEntities())
@@ -342,6 +351,7 @@ namespace Sistema_Controle
                 MessageBox.Show("Solicitação salva com sucesso !!!");
                 MessageBox.Show("Avise a equipe que é necessario informar a chegada na origem !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
+            
 
         }
 
@@ -357,6 +367,16 @@ namespace Sistema_Controle
             }
             if (txtHora2.Enabled == true && txtHora2.Text != "")
             {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (Convert.ToDateTime(txtHora2.Text) >= Convert.ToDateTime(txtHora3.Text) || Convert.ToDateTime(txtHora2.Text) <= Convert.ToDateTime(txtHora.Text) && txtHora3.Text != "")
+                {
+                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 BtnOrigem.Text = "Equipe na Origem";
 
                 using (DAHUEEntities db = new DAHUEEntities())
@@ -406,6 +426,17 @@ namespace Sistema_Controle
             }
             if (txtHora3.Enabled == true && txtHora3.Text != "")
             {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (Convert.ToDateTime(txtHora3.Text) >= Convert.ToDateTime(txtHora4.Text) || Convert.ToDateTime(txtHora3.Text) <= Convert.ToDateTime(txtHora2.Text) && txtHora4.Text != "")
+                {
+                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 BtnSaiuOrigem.Text = "Equipe Saiu da Origem";
 
                 using (DAHUEEntities db = new DAHUEEntities())
@@ -454,6 +485,16 @@ namespace Sistema_Controle
             }
             if (txtHora4.Enabled == true && txtHora4.Text != "")
             {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (Convert.ToDateTime (txtHora4.Text) >= Convert.ToDateTime(txtHora5.Text) || Convert.ToDateTime(txtHora4.Text) <= Convert.ToDateTime(txtHora3.Text) && txtHora5.Text != "")
+                {
+                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 BtnEquipeDestino.Text = "Equipe no Destino";
 
                 using (DAHUEEntities db = new DAHUEEntities())
@@ -503,6 +544,16 @@ namespace Sistema_Controle
             }
             if (txtHora5.Enabled == true && txtHora5.Text != "")
             {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (Convert.ToDateTime(txtHora5.Text) >= Convert.ToDateTime(txtHora6.Text) || Convert.ToDateTime(txtHora5.Text) <= Convert.ToDateTime(txtHora4.Text) && txtHora6.Text != "")
+                {
+                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 EquipeLiberada.Text = "Equipe Liberada do Destino";
 
                 using (DAHUEEntities db = new DAHUEEntities())
@@ -628,7 +679,8 @@ namespace Sistema_Controle
                 {
                     txtHora3.Text = query.DtHrSaidaOrigem;
                 }
-                if(query.DtHrChegadaDestino != null){
+                if(query.DtHrChegadaDestino != null)
+                {
                     txtHora4.Text = query.DtHrChegadaDestino;
                 }
                 if(query.DtHrLiberacaoEquipe != null)
@@ -669,6 +721,12 @@ namespace Sistema_Controle
 
         private void selectHorarioVerificacao()
         {
+            txtHora.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora2.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora3.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora4.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora6.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
             if (txtHora.Text == "")
             {
@@ -721,11 +779,17 @@ namespace Sistema_Controle
                 BtnPatio.BackColor = Color.MediumTurquoise;
                 EquipeLiberada.BackColor = Color.LightSkyBlue;
             }
+
+            txtHora.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora2.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora3.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora4.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora5.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora6.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
             SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
             this.Dispose();
             sand.ShowDialog();
@@ -740,8 +804,18 @@ namespace Sistema_Controle
             sand.ShowDialog();
         }
 
-
-
+        private bool validarData(string sData)
+        {
+            try
+            {
+                DateTime.Parse(sData);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
     }
 }

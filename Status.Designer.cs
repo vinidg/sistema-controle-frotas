@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Status));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAddPaciente = new System.Windows.Forms.Button();
@@ -52,29 +53,29 @@
             this.label5 = new System.Windows.Forms.Label();
             this.BtnDesbloquear = new System.Windows.Forms.Button();
             this.PainelHistorico = new System.Windows.Forms.Panel();
+            this.txtHora = new System.Windows.Forms.MaskedTextBox();
+            this.BtnOrigem = new System.Windows.Forms.Button();
+            this.txtAlterador6 = new System.Windows.Forms.TextBox();
+            this.BtnPatio = new System.Windows.Forms.Button();
+            this.txtAlterador5 = new System.Windows.Forms.TextBox();
+            this.EquipeLiberada = new System.Windows.Forms.Button();
+            this.txtAlterador4 = new System.Windows.Forms.TextBox();
+            this.BtnEquipeDestino = new System.Windows.Forms.Button();
+            this.txtAlterador3 = new System.Windows.Forms.TextBox();
+            this.BtnSaiuOrigem = new System.Windows.Forms.Button();
+            this.txtAlterador2 = new System.Windows.Forms.TextBox();
+            this.txtAlterador = new System.Windows.Forms.TextBox();
+            this.BtnEquipeCiente = new System.Windows.Forms.Button();
+            this.txtHora6 = new System.Windows.Forms.MaskedTextBox();
+            this.txtHora5 = new System.Windows.Forms.MaskedTextBox();
+            this.txtHora4 = new System.Windows.Forms.MaskedTextBox();
+            this.txtHora3 = new System.Windows.Forms.MaskedTextBox();
+            this.txtHora2 = new System.Windows.Forms.MaskedTextBox();
             this.painel5 = new System.Windows.Forms.Panel();
             this.painel4 = new System.Windows.Forms.Panel();
             this.painel3 = new System.Windows.Forms.Panel();
             this.painel2 = new System.Windows.Forms.Panel();
             this.painel1 = new System.Windows.Forms.Panel();
-            this.BtnOrigem = new System.Windows.Forms.Button();
-            this.txtAlterador6 = new System.Windows.Forms.TextBox();
-            this.txtHora6 = new System.Windows.Forms.TextBox();
-            this.BtnPatio = new System.Windows.Forms.Button();
-            this.txtAlterador5 = new System.Windows.Forms.TextBox();
-            this.txtHora5 = new System.Windows.Forms.TextBox();
-            this.EquipeLiberada = new System.Windows.Forms.Button();
-            this.txtAlterador4 = new System.Windows.Forms.TextBox();
-            this.txtHora4 = new System.Windows.Forms.TextBox();
-            this.BtnEquipeDestino = new System.Windows.Forms.Button();
-            this.txtAlterador3 = new System.Windows.Forms.TextBox();
-            this.txtHora3 = new System.Windows.Forms.TextBox();
-            this.BtnSaiuOrigem = new System.Windows.Forms.Button();
-            this.txtAlterador2 = new System.Windows.Forms.TextBox();
-            this.txtHora2 = new System.Windows.Forms.TextBox();
-            this.txtAlterador = new System.Windows.Forms.TextBox();
-            this.txtHora = new System.Windows.Forms.TextBox();
-            this.BtnEquipeCiente = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
@@ -82,12 +83,14 @@
             this.ListadePacientes = new System.Windows.Forms.DataGridView();
             this.equipeView = new System.Windows.Forms.DataGridView();
             this.Destino = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.Paineltrocar.SuspendLayout();
             this.PainelBloqueio.SuspendLayout();
             this.PainelHistorico.SuspendLayout();
             this.painelCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.equipeView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -318,7 +321,7 @@
             this.BtnDesbloquear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
             this.BtnDesbloquear.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDesbloquear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.BtnDesbloquear.Location = new System.Drawing.Point(397, 264);
+            this.BtnDesbloquear.Location = new System.Drawing.Point(394, 264);
             this.BtnDesbloquear.Name = "BtnDesbloquear";
             this.BtnDesbloquear.Size = new System.Drawing.Size(453, 111);
             this.BtnDesbloquear.TabIndex = 12;
@@ -332,79 +335,38 @@
             this.PainelHistorico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PainelHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.PainelHistorico.Controls.Add(this.painel5);
-            this.PainelHistorico.Controls.Add(this.painel4);
-            this.PainelHistorico.Controls.Add(this.painel3);
-            this.PainelHistorico.Controls.Add(this.painel2);
-            this.PainelHistorico.Controls.Add(this.painel1);
+            this.PainelHistorico.Controls.Add(this.txtHora);
             this.PainelHistorico.Controls.Add(this.BtnOrigem);
             this.PainelHistorico.Controls.Add(this.txtAlterador6);
-            this.PainelHistorico.Controls.Add(this.txtHora6);
             this.PainelHistorico.Controls.Add(this.BtnPatio);
             this.PainelHistorico.Controls.Add(this.txtAlterador5);
-            this.PainelHistorico.Controls.Add(this.txtHora5);
             this.PainelHistorico.Controls.Add(this.EquipeLiberada);
             this.PainelHistorico.Controls.Add(this.txtAlterador4);
-            this.PainelHistorico.Controls.Add(this.txtHora4);
             this.PainelHistorico.Controls.Add(this.BtnEquipeDestino);
             this.PainelHistorico.Controls.Add(this.txtAlterador3);
-            this.PainelHistorico.Controls.Add(this.txtHora3);
             this.PainelHistorico.Controls.Add(this.BtnSaiuOrigem);
             this.PainelHistorico.Controls.Add(this.txtAlterador2);
-            this.PainelHistorico.Controls.Add(this.txtHora2);
             this.PainelHistorico.Controls.Add(this.txtAlterador);
-            this.PainelHistorico.Controls.Add(this.txtHora);
             this.PainelHistorico.Controls.Add(this.BtnEquipeCiente);
+            this.PainelHistorico.Controls.Add(this.txtHora6);
+            this.PainelHistorico.Controls.Add(this.txtHora5);
+            this.PainelHistorico.Controls.Add(this.txtHora4);
+            this.PainelHistorico.Controls.Add(this.txtHora3);
+            this.PainelHistorico.Controls.Add(this.txtHora2);
             this.PainelHistorico.Location = new System.Drawing.Point(74, 446);
             this.PainelHistorico.Name = "PainelHistorico";
             this.PainelHistorico.Size = new System.Drawing.Size(1066, 159);
             this.PainelHistorico.TabIndex = 13;
             this.PainelHistorico.Visible = false;
             // 
-            // painel5
+            // txtHora
             // 
-            this.painel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel5.Location = new System.Drawing.Point(838, 3);
-            this.painel5.Name = "painel5";
-            this.painel5.Size = new System.Drawing.Size(144, 159);
-            this.painel5.TabIndex = 22;
-            // 
-            // painel4
-            // 
-            this.painel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel4.Location = new System.Drawing.Point(689, 3);
-            this.painel4.Name = "painel4";
-            this.painel4.Size = new System.Drawing.Size(144, 159);
-            this.painel4.TabIndex = 21;
-            // 
-            // painel3
-            // 
-            this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel3.Location = new System.Drawing.Point(539, 3);
-            this.painel3.Name = "painel3";
-            this.painel3.Size = new System.Drawing.Size(144, 159);
-            this.painel3.TabIndex = 20;
-            // 
-            // painel2
-            // 
-            this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel2.Location = new System.Drawing.Point(391, 3);
-            this.painel2.Name = "painel2";
-            this.painel2.Size = new System.Drawing.Size(142, 159);
-            this.painel2.TabIndex = 19;
-            // 
-            // painel1
-            // 
-            this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel1.Location = new System.Drawing.Point(242, 3);
-            this.painel1.Name = "painel1";
-            this.painel1.Size = new System.Drawing.Size(142, 159);
-            this.painel1.TabIndex = 18;
+            this.txtHora.Enabled = false;
+            this.txtHora.Location = new System.Drawing.Point(93, 95);
+            this.txtHora.Mask = "00/00/0000 90:00";
+            this.txtHora.Name = "txtHora";
+            this.txtHora.Size = new System.Drawing.Size(143, 20);
+            this.txtHora.TabIndex = 23;
             // 
             // BtnOrigem
             // 
@@ -427,14 +389,6 @@
             this.txtAlterador6.Size = new System.Drawing.Size(142, 20);
             this.txtAlterador6.TabIndex = 17;
             // 
-            // txtHora6
-            // 
-            this.txtHora6.Enabled = false;
-            this.txtHora6.Location = new System.Drawing.Point(838, 97);
-            this.txtHora6.Name = "txtHora6";
-            this.txtHora6.Size = new System.Drawing.Size(142, 20);
-            this.txtHora6.TabIndex = 16;
-            // 
             // BtnPatio
             // 
             this.BtnPatio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
@@ -455,14 +409,6 @@
             this.txtAlterador5.Name = "txtAlterador5";
             this.txtAlterador5.Size = new System.Drawing.Size(142, 20);
             this.txtAlterador5.TabIndex = 14;
-            // 
-            // txtHora5
-            // 
-            this.txtHora5.Enabled = false;
-            this.txtHora5.Location = new System.Drawing.Point(689, 97);
-            this.txtHora5.Name = "txtHora5";
-            this.txtHora5.Size = new System.Drawing.Size(142, 20);
-            this.txtHora5.TabIndex = 13;
             // 
             // EquipeLiberada
             // 
@@ -485,14 +431,6 @@
             this.txtAlterador4.Size = new System.Drawing.Size(142, 20);
             this.txtAlterador4.TabIndex = 11;
             // 
-            // txtHora4
-            // 
-            this.txtHora4.Enabled = false;
-            this.txtHora4.Location = new System.Drawing.Point(540, 97);
-            this.txtHora4.Name = "txtHora4";
-            this.txtHora4.Size = new System.Drawing.Size(142, 20);
-            this.txtHora4.TabIndex = 10;
-            // 
             // BtnEquipeDestino
             // 
             this.BtnEquipeDestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
@@ -513,14 +451,6 @@
             this.txtAlterador3.Name = "txtAlterador3";
             this.txtAlterador3.Size = new System.Drawing.Size(142, 20);
             this.txtAlterador3.TabIndex = 8;
-            // 
-            // txtHora3
-            // 
-            this.txtHora3.Enabled = false;
-            this.txtHora3.Location = new System.Drawing.Point(391, 97);
-            this.txtHora3.Name = "txtHora3";
-            this.txtHora3.Size = new System.Drawing.Size(142, 20);
-            this.txtHora3.TabIndex = 7;
             // 
             // BtnSaiuOrigem
             // 
@@ -543,14 +473,6 @@
             this.txtAlterador2.Size = new System.Drawing.Size(142, 20);
             this.txtAlterador2.TabIndex = 5;
             // 
-            // txtHora2
-            // 
-            this.txtHora2.Enabled = false;
-            this.txtHora2.Location = new System.Drawing.Point(242, 97);
-            this.txtHora2.Name = "txtHora2";
-            this.txtHora2.Size = new System.Drawing.Size(142, 20);
-            this.txtHora2.TabIndex = 4;
-            // 
             // txtAlterador
             // 
             this.txtAlterador.Enabled = false;
@@ -558,14 +480,6 @@
             this.txtAlterador.Name = "txtAlterador";
             this.txtAlterador.Size = new System.Drawing.Size(142, 20);
             this.txtAlterador.TabIndex = 2;
-            // 
-            // txtHora
-            // 
-            this.txtHora.Enabled = false;
-            this.txtHora.Location = new System.Drawing.Point(93, 95);
-            this.txtHora.Name = "txtHora";
-            this.txtHora.Size = new System.Drawing.Size(142, 20);
-            this.txtHora.TabIndex = 1;
             // 
             // BtnEquipeCiente
             // 
@@ -579,6 +493,101 @@
             this.BtnEquipeCiente.Text = "Equipe Ciente";
             this.BtnEquipeCiente.UseVisualStyleBackColor = false;
             this.BtnEquipeCiente.Click += new System.EventHandler(this.BtnEquipeCiente_Click);
+            // 
+            // txtHora6
+            // 
+            this.txtHora6.Enabled = false;
+            this.txtHora6.Location = new System.Drawing.Point(839, 97);
+            this.txtHora6.Mask = "00/00/0000 90:00";
+            this.txtHora6.Name = "txtHora6";
+            this.txtHora6.Size = new System.Drawing.Size(143, 20);
+            this.txtHora6.TabIndex = 28;
+            // 
+            // txtHora5
+            // 
+            this.txtHora5.Enabled = false;
+            this.txtHora5.Location = new System.Drawing.Point(688, 97);
+            this.txtHora5.Mask = "00/00/0000 90:00";
+            this.txtHora5.Name = "txtHora5";
+            this.txtHora5.Size = new System.Drawing.Size(143, 20);
+            this.txtHora5.TabIndex = 27;
+            // 
+            // txtHora4
+            // 
+            this.txtHora4.Enabled = false;
+            this.txtHora4.Location = new System.Drawing.Point(539, 97);
+            this.txtHora4.Mask = "00/00/0000 90:00";
+            this.txtHora4.Name = "txtHora4";
+            this.txtHora4.Size = new System.Drawing.Size(143, 20);
+            this.txtHora4.TabIndex = 26;
+            // 
+            // txtHora3
+            // 
+            this.txtHora3.Enabled = false;
+            this.txtHora3.Location = new System.Drawing.Point(390, 97);
+            this.txtHora3.Mask = "00/00/0000 90:00";
+            this.txtHora3.Name = "txtHora3";
+            this.txtHora3.Size = new System.Drawing.Size(143, 20);
+            this.txtHora3.TabIndex = 25;
+            // 
+            // txtHora2
+            // 
+            this.txtHora2.Enabled = false;
+            this.txtHora2.Location = new System.Drawing.Point(242, 97);
+            this.txtHora2.Mask = "00/00/0000 90:00";
+            this.txtHora2.Name = "txtHora2";
+            this.txtHora2.Size = new System.Drawing.Size(143, 20);
+            this.txtHora2.TabIndex = 24;
+            // 
+            // painel5
+            // 
+            this.painel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel5.Location = new System.Drawing.Point(912, 446);
+            this.painel5.Name = "painel5";
+            this.painel5.Size = new System.Drawing.Size(144, 159);
+            this.painel5.TabIndex = 22;
+            // 
+            // painel4
+            // 
+            this.painel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel4.Location = new System.Drawing.Point(762, 446);
+            this.painel4.Name = "painel4";
+            this.painel4.Size = new System.Drawing.Size(144, 159);
+            this.painel4.TabIndex = 21;
+            // 
+            // painel3
+            // 
+            this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel3.Location = new System.Drawing.Point(613, 446);
+            this.painel3.Name = "painel3";
+            this.painel3.Size = new System.Drawing.Size(144, 159);
+            this.painel3.TabIndex = 20;
+            // 
+            // painel2
+            // 
+            this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel2.Location = new System.Drawing.Point(464, 446);
+            this.painel2.Name = "painel2";
+            this.painel2.Size = new System.Drawing.Size(144, 159);
+            this.painel2.TabIndex = 19;
+            // 
+            // painel1
+            // 
+            this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel1.Location = new System.Drawing.Point(316, 446);
+            this.painel1.Name = "painel1";
+            this.painel1.Size = new System.Drawing.Size(143, 159);
+            this.painel1.TabIndex = 18;
             // 
             // label8
             // 
@@ -608,6 +617,11 @@
             // 
             this.painelCentral.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.painelCentral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.painelCentral.Controls.Add(this.painel5);
+            this.painelCentral.Controls.Add(this.painel4);
+            this.painelCentral.Controls.Add(this.painel3);
+            this.painelCentral.Controls.Add(this.painel2);
+            this.painelCentral.Controls.Add(this.painel1);
             this.painelCentral.Controls.Add(this.Origem);
             this.painelCentral.Controls.Add(this.ListadePacientes);
             this.painelCentral.Controls.Add(this.PainelHistorico);
@@ -649,35 +663,35 @@
             this.ListadePacientes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ListadePacientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ListadePacientes.BackgroundColor = System.Drawing.Color.DarkRed;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListadePacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListadePacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.ListadePacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ListadePacientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListadePacientes.DefaultCellStyle = dataGridViewCellStyle5;
             this.ListadePacientes.Location = new System.Drawing.Point(414, 69);
             this.ListadePacientes.MultiSelect = false;
             this.ListadePacientes.Name = "ListadePacientes";
             this.ListadePacientes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListadePacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListadePacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.ListadePacientes.RowHeadersVisible = false;
             this.ListadePacientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ListadePacientes.Size = new System.Drawing.Size(416, 189);
@@ -713,6 +727,11 @@
             this.Destino.TabIndex = 22;
             this.Destino.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.RightToLeft = true;
+            // 
             // Status
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -735,6 +754,7 @@
             this.painelCentral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListadePacientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.equipeView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -762,22 +782,16 @@
         private System.Windows.Forms.Button BtnDesbloquear;
         private System.Windows.Forms.Panel PainelHistorico;
         private System.Windows.Forms.TextBox txtAlterador6;
-        private System.Windows.Forms.TextBox txtHora6;
         private System.Windows.Forms.Button BtnPatio;
         private System.Windows.Forms.TextBox txtAlterador5;
-        private System.Windows.Forms.TextBox txtHora5;
         private System.Windows.Forms.Button EquipeLiberada;
         private System.Windows.Forms.TextBox txtAlterador4;
-        private System.Windows.Forms.TextBox txtHora4;
         private System.Windows.Forms.Button BtnEquipeDestino;
         private System.Windows.Forms.TextBox txtAlterador3;
-        private System.Windows.Forms.TextBox txtHora3;
         private System.Windows.Forms.Button BtnSaiuOrigem;
         private System.Windows.Forms.TextBox txtAlterador2;
-        private System.Windows.Forms.TextBox txtHora2;
         private System.Windows.Forms.Button BtnOrigem;
         private System.Windows.Forms.TextBox txtAlterador;
-        private System.Windows.Forms.TextBox txtHora;
         private System.Windows.Forms.Button BtnEquipeCiente;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -791,5 +805,12 @@
         private System.Windows.Forms.DataGridView ListadePacientes;
         public System.Windows.Forms.TextBox Destino;
         public System.Windows.Forms.TextBox Origem;
+        private System.Windows.Forms.MaskedTextBox txtHora6;
+        private System.Windows.Forms.MaskedTextBox txtHora5;
+        private System.Windows.Forms.MaskedTextBox txtHora4;
+        private System.Windows.Forms.MaskedTextBox txtHora3;
+        private System.Windows.Forms.MaskedTextBox txtHora2;
+        private System.Windows.Forms.MaskedTextBox txtHora;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

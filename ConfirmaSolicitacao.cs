@@ -43,7 +43,16 @@ namespace Sistema_Controle
                 var query = (from sp in db.solicitacoes_paciente
                              where sp.idPaciente_Solicitacoes == id
                              select sp).FirstOrDefault();
-
+                if(query.Agendamento == "Sim"){
+                    Btnagendasim.PerformClick();
+                }else{
+                    Btnagendanao.PerformClick();
+                }
+                if(query.TipoSolicitacao == "BÁSICA"){
+                    BtnBasica.PerformClick();
+                }else{
+                    BtnAvancada.PerformClick();
+                }
                 CbLocalSolicita.Text = query.LocalSolicitacao;
                 txtTelefone.Text = query.Telefone;
                 txtNomePaciente.Text = query.Paciente;

@@ -42,7 +42,7 @@ namespace Sistema_Controle
             pegarDadosDasAmbulancias();
             if(AMocupada == 0)
             {
-                IncluirSolicitacaoPendentes.Visible = true;
+                //IncluirSolicitacaoPendentes.Visible = true;
             }
         }
 
