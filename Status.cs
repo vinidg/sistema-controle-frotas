@@ -54,7 +54,7 @@ namespace Sistema_Controle
             Paineltrocar.Visible = true;
 
         }
-        /////////////////////////////////////////////////////////////////////////////TROCAR EQUIPE////////////////////////////////////////////////////////////////////////////////////////
+
         private void BtTrocar_Click(object sender, EventArgs e)
         {
             InsercoesDoBanco ib = new InsercoesDoBanco();
@@ -79,7 +79,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Equipe trocada !");
             }
         }
-        ///////////////////////////////////////////////////////SELECT EQUIPE////////////////////////////////////////////////////////////////////////////////////////
         private void selectEquipeBD()
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -117,8 +116,8 @@ namespace Sistema_Controle
             PainelBloqueio.Visible = true;
             txtResposavel.Text = resposavel;
         }
-        
-        /// ////////////////////////////////////////////////////////////BLOQUEIO////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////BLOQUEIO////////////////////////////////////////////////////////////////////
+        #region
         private void BtnBloquear_Click(object sender, EventArgs e)
         {
             InsercoesDoBanco IB = new InsercoesDoBanco();
@@ -154,8 +153,7 @@ namespace Sistema_Controle
             Destino.Visible = false;
             Origem.Visible = false;
         }
-
-        /// ////////////////////////////////////////////////////////////FIM - BLOQUEIO////////////////////////////////////////////////////////////////////
+        #endregion
         //////////////////////////////////////////////////////VERIFICAR QUAL PACIENTE ESTA NA AM E SE TEM MAIS DE 1/////////////////////////////
         public void atualizarStatusOcupadoPacientePorCodigo()
         {
@@ -175,7 +173,7 @@ namespace Sistema_Controle
             }
 
         }
-        //////////////////////////////////////////////////////VERIFICAR QUAL PACIENTE ESTA NA AM E SE TEM MAIS DE 1 ---  FIM/////////////////////////////
+
         //////////////////////////////////////////////////////VERIFICAR STATUS DA AMBULANCIA E ENCAIXAR AS INFORMACOES CORRESPONDENTES/////////////////////////////
         public void statusJanela()
         {
@@ -282,14 +280,12 @@ namespace Sistema_Controle
             label1.Text = nomeAM;
             NomeAM = nomeAM;
         }
-        ///////////////////////////////////////////////////////FIM STATUS AM///////////////////////////////////////////////////////////////////////////////
 
         ///////////////////////////////////////////////////////LOGISTICA DA AM - INICIO///////////////////////////////////////////////////////////////////
-
-
+        #region
         private void BtnEquipeCiente_Click(object sender, EventArgs e)
         {
-
+            txtHora.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             if (txtHora.Enabled == false && txtHora.Text != "")
             {
                 txtHora.Enabled = true;
@@ -309,7 +305,7 @@ namespace Sistema_Controle
                     return;
                 }
                 BtnEquipeCiente.Text = "Equipe Ciente";
-
+                txtHora.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
@@ -358,6 +354,7 @@ namespace Sistema_Controle
 
         private void BtnOrigem_Click(object sender, EventArgs e)
         {
+            txtHora2.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             if (txtHora2.Enabled == false && txtHora2.Text != "")
             {
                 txtHora2.Enabled = true;
@@ -378,7 +375,7 @@ namespace Sistema_Controle
                     return;
                 }
                 BtnOrigem.Text = "Equipe na Origem";
-
+                txtHora2.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
@@ -417,6 +414,7 @@ namespace Sistema_Controle
 
         private void BtnSaiuOrigem_Click(object sender, EventArgs e)
         {
+            txtHora3.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             if (txtHora3.Enabled == false && txtHora3.Text != "")
             {
                 txtHora3.Enabled = true;
@@ -438,7 +436,7 @@ namespace Sistema_Controle
                 }
 
                 BtnSaiuOrigem.Text = "Equipe Saiu da Origem";
-
+                txtHora3.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
@@ -476,6 +474,7 @@ namespace Sistema_Controle
 
         private void BtnEquipeDestino_Click(object sender, EventArgs e)
         {
+            txtHora4.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             if (txtHora4.Enabled == false && txtHora4.Text != "")
             {
                 txtHora4.Enabled = true;
@@ -496,7 +495,7 @@ namespace Sistema_Controle
                     return;
                 }
                 BtnEquipeDestino.Text = "Equipe no Destino";
-
+                txtHora4.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
@@ -535,6 +534,7 @@ namespace Sistema_Controle
 
         private void EquipeLiberada_Click(object sender, EventArgs e)
         {
+            txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             if (txtHora5.Enabled == false && txtHora5.Text != "")
             {
                 txtHora5.Enabled = true;
@@ -555,7 +555,7 @@ namespace Sistema_Controle
                     return;
                 }
                 EquipeLiberada.Text = "Equipe Liberada do Destino";
-
+                txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
@@ -640,8 +640,8 @@ namespace Sistema_Controle
 
 
         }
+       
 
-        ///////////////////////////////////////////////////////LOGISTICA DA AM - FIM///////////////////////////////////////////////////////////////////////////////
         private void selectHorarios()
         {
             if (statusAmbulancia == "OCUPADA")
@@ -787,7 +787,7 @@ namespace Sistema_Controle
             txtHora5.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
             txtHora6.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
         }
-
+        #endregion
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
