@@ -29,7 +29,7 @@ namespace Sistema_Controle
             label3.Visible = false;
             dataAgendamento.Visible = false;
             AutoCompletar();
-            if(idPaciente != 0)
+            if (idPaciente != 0)
             {
                 PreencherCampos(idPaciente);
             }
@@ -38,25 +38,31 @@ namespace Sistema_Controle
 
         private void PreencherCampos(int id)
         {
-            using(DAHUEEntities db = new DAHUEEntities())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = (from sp in db.solicitacoes_paciente
                              where sp.idPaciente_Solicitacoes == id
                              select sp).FirstOrDefault();
-                if(query.Agendamento == "Sim"){
+                if (query.Agendamento == "Sim")
+                {
                     Btnagendasim.PerformClick();
-                }else{
+                }
+                else
+                {
                     Btnagendanao.PerformClick();
                 }
-                if(query.TipoSolicitacao == "BÁSICA"){
+                if (query.TipoSolicitacao == "BÁSICA")
+                {
                     BtnBasica.PerformClick();
-                }else{
+                }
+                else
+                {
                     BtnAvancada.PerformClick();
                 }
                 CbLocalSolicita.Text = query.LocalSolicitacao;
                 txtTelefone.Text = query.Telefone;
                 txtNomePaciente.Text = query.Paciente;
-                if(query.Genero == "M")
+                if (query.Genero == "M")
                 {
                     RbMasculino.Checked = false;
                 }
@@ -287,7 +293,7 @@ namespace Sistema_Controle
 
         public void Endereco()
         {
-            using(DAHUEEntities db = new DAHUEEntities())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
                 CbLocalSolicita.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
                 CbLocalSolicita.ValueMember = "NomeUnidade";
@@ -304,22 +310,23 @@ namespace Sistema_Controle
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                var telefoneDoEndereco = db.enderecos
-                    .Where(e => e.NomeUnidade == pegaUnidade)
-                    .Select(e => e.Telefone);
+                var telefoneDoEndereco = from e in db.enderecos
+                                         where e.NomeUnidade == pegaUnidade
+                                         orderby e.NomeUnidade ascending
+                                         select e.Telefone;
 
                 txtTelefone.Text = telefoneDoEndereco.FirstOrDefault();
-             
+
             }
         }
         private void unidade_Endereco()
         {
-            using(DAHUEEntities db = new DAHUEEntities())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                var enderecoDoEnderecos = db.enderecos
-                    .Where(e => e.NomeUnidade == pegaUnidadeEnd)
-                    .Select(e => e.Endereco);
-
+                var enderecoDoEnderecos = from e in db.enderecos
+                                          where e.NomeUnidade == pegaUnidadeEnd
+                                          orderby e.NomeUnidade ascending
+                                          select e.Endereco;
                 Endereco1 = enderecoDoEnderecos.FirstOrDefault();
             }
         }
@@ -412,8 +419,12 @@ namespace Sistema_Controle
             {
                 pegamotivo = "TRANSPORTE_DE_PROFISSIONAIS";
             }
+            else if (CbMotivoChamado.Text == "TRANSFERENCIA")
+            {
+                pegamotivo = "TRANSFERENCIA";
+            }
 
-            using(DAHUEEntities db = new DAHUEEntities())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
                 CbTipoMotivoSelecionado.DataSource = db.referencias.ToList();
                 CbTipoMotivoSelecionado.ValueMember = pegamotivo;
@@ -423,7 +434,7 @@ namespace Sistema_Controle
 
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbTipoMotivoSelecionado.DataSource = null; 
+            CbTipoMotivoSelecionado.DataSource = null;
             CbTipoMotivoSelecionado.ValueMember = "";
             CbTipoMotivoSelecionado.DisplayMember = "";
 
@@ -468,26 +479,32 @@ namespace Sistema_Controle
 
         private void txtNomePaciente_KeyUp(object sender, KeyEventArgs e)
         {
-            /*          using (DAHUEEntities db = new DAHUEEntities())
-                      {
-                          var autoCompletarDadosPaciente = db.solicitacoes_paciente
-                              .Where(a => a.Paciente == txtNomePaciente.Text)
-                              .Select(a => new {a.Genero, a.Idade}).FirstOrDefault();
-                               
-                              if (autoCompletarDadosPaciente.Genero == "M")
-                              {
-                                  RbFemenino.Checked = false;
-                                  RbMasculino.Checked = true;
-                              }
-                              else
-                              {
-                                  RbMasculino.Checked = false;
-                                  RbFemenino.Checked = true;
-                              }
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var autoCompletarDadosPaciente = db.solicitacoes_paciente
+                .Where(a => a.Paciente == txtNomePaciente.Text)
+                .Select(a => new { a.Genero, a.Idade }).FirstOrDefault();
+
+                if (autoCompletarDadosPaciente != null)
+                {
+
+                    if (autoCompletarDadosPaciente.Genero == "M")
+                    {
+                        RbFemenino.Checked = false;
+                        RbMasculino.Checked = true;
+                    }
+                    else
+                    {
+                        RbMasculino.Checked = false;
+                        RbFemenino.Checked = true;
+                    }
 
 
-                              txtIdade.Text = autoCompletarDadosPaciente.Idade;
-                       }*/
+                    txtIdade.Text = autoCompletarDadosPaciente.Idade;
+                }
+            }
+
         }
 
         private void txtIdade_KeyPress(object sender, KeyPressEventArgs e)

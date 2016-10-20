@@ -77,6 +77,10 @@ namespace Sistema_Controle
 
         private void nova_Click(object sender, EventArgs e)
         {
+            if(NomeUnidade.Text == ""){
+                MessageBox.Show("Preencher nome da ambulância !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }else{
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var ambulanciaPesquisa = (from am in db.ambulancia
@@ -84,12 +88,11 @@ namespace Sistema_Controle
                                          select am.idAmbulancia).Count();
                 if (ambulanciaPesquisa >= 1)
                 {
-                    MessageBox.Show("Endereço ja existe !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ambulância ja existe !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-            if (NomeUnidade.Text != "")
-            {
+
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     ambulancia am = new ambulancia();
@@ -108,13 +111,23 @@ namespace Sistema_Controle
                     MessageBox.Show("Ambulancia salva com sucesso !", "Sucesso");
                 }
                 puxarAmbulancias();
-            }
+            
+        }
         }
 
         private void update_Click(object sender, EventArgs e)
         {
-            if (NomeUnidade.Text != "")
+            if (NomeUnidade.Text == "")
             {
+                MessageBox.Show("Preencher nome da ambulância !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                if(idControleAmbulancia == 0){
+                    MessageBox.Show("Selecionar ambulância !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }else{
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     ambulancia am = db.ambulancia.First(ama => ama.idAmbulancia == idControleAmbulancia);
@@ -135,6 +148,8 @@ namespace Sistema_Controle
                 puxarAmbulancias();
 
             }
+
+                }
         }
 
         private void ListaDeAmbulancias_KeyPress(object sender, KeyPressEventArgs e)

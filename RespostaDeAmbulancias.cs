@@ -282,7 +282,7 @@ namespace Sistema_Controle
 
         private void negativa_Click(object sender, EventArgs e)
         {
-            if (idPaciente != 0 && idPaciente != null) { 
+            if (idPaciente != 0) { 
                 NegarReagendamento nr = new NegarReagendamento(idPaciente);
                 nr.ShowDialog();
             }
@@ -294,7 +294,7 @@ namespace Sistema_Controle
 
         private void cancelarReagendamento_Click(object sender, EventArgs e)
         {
-            if (idPaciente != 0 && idPaciente != null)
+            if (idPaciente != 0)
             {
                 SelecionaAM ST = new SelecionaAM(idPaciente, 0, 0);
                 ST.ShowDialog();

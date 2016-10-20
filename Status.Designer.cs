@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Status));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAddPaciente = new System.Windows.Forms.Button();
@@ -335,6 +335,11 @@
             this.PainelHistorico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PainelHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.PainelHistorico.Controls.Add(this.painel5);
+            this.PainelHistorico.Controls.Add(this.painel4);
+            this.PainelHistorico.Controls.Add(this.painel3);
+            this.PainelHistorico.Controls.Add(this.painel2);
+            this.PainelHistorico.Controls.Add(this.painel1);
             this.PainelHistorico.Controls.Add(this.txtHora);
             this.PainelHistorico.Controls.Add(this.BtnOrigem);
             this.PainelHistorico.Controls.Add(this.txtAlterador6);
@@ -544,9 +549,9 @@
             this.painel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.painel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.painel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel5.Location = new System.Drawing.Point(912, 446);
+            this.painel5.Location = new System.Drawing.Point(838, 6);
             this.painel5.Name = "painel5";
-            this.painel5.Size = new System.Drawing.Size(144, 159);
+            this.painel5.Size = new System.Drawing.Size(144, 138);
             this.painel5.TabIndex = 22;
             // 
             // painel4
@@ -554,9 +559,9 @@
             this.painel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.painel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.painel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel4.Location = new System.Drawing.Point(762, 446);
+            this.painel4.Location = new System.Drawing.Point(688, 6);
             this.painel4.Name = "painel4";
-            this.painel4.Size = new System.Drawing.Size(144, 159);
+            this.painel4.Size = new System.Drawing.Size(144, 138);
             this.painel4.TabIndex = 21;
             // 
             // painel3
@@ -564,9 +569,9 @@
             this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.painel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel3.Location = new System.Drawing.Point(613, 446);
+            this.painel3.Location = new System.Drawing.Point(539, 6);
             this.painel3.Name = "painel3";
-            this.painel3.Size = new System.Drawing.Size(144, 159);
+            this.painel3.Size = new System.Drawing.Size(144, 138);
             this.painel3.TabIndex = 20;
             // 
             // painel2
@@ -574,9 +579,9 @@
             this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.painel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel2.Location = new System.Drawing.Point(464, 446);
+            this.painel2.Location = new System.Drawing.Point(390, 6);
             this.painel2.Name = "painel2";
-            this.painel2.Size = new System.Drawing.Size(144, 159);
+            this.painel2.Size = new System.Drawing.Size(144, 138);
             this.painel2.TabIndex = 19;
             // 
             // painel1
@@ -584,9 +589,9 @@
             this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.painel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel1.Location = new System.Drawing.Point(316, 446);
+            this.painel1.Location = new System.Drawing.Point(242, 6);
             this.painel1.Name = "painel1";
-            this.painel1.Size = new System.Drawing.Size(143, 159);
+            this.painel1.Size = new System.Drawing.Size(143, 138);
             this.painel1.TabIndex = 18;
             // 
             // label8
@@ -617,11 +622,6 @@
             // 
             this.painelCentral.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.painelCentral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
-            this.painelCentral.Controls.Add(this.painel5);
-            this.painelCentral.Controls.Add(this.painel4);
-            this.painelCentral.Controls.Add(this.painel3);
-            this.painelCentral.Controls.Add(this.painel2);
-            this.painelCentral.Controls.Add(this.painel1);
             this.painelCentral.Controls.Add(this.Origem);
             this.painelCentral.Controls.Add(this.ListadePacientes);
             this.painelCentral.Controls.Add(this.PainelHistorico);
@@ -663,35 +663,35 @@
             this.ListadePacientes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ListadePacientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ListadePacientes.BackgroundColor = System.Drawing.Color.DarkRed;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListadePacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListadePacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ListadePacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ListadePacientes.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListadePacientes.DefaultCellStyle = dataGridViewCellStyle2;
             this.ListadePacientes.Location = new System.Drawing.Point(414, 69);
             this.ListadePacientes.MultiSelect = false;
             this.ListadePacientes.Name = "ListadePacientes";
             this.ListadePacientes.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListadePacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListadePacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ListadePacientes.RowHeadersVisible = false;
             this.ListadePacientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ListadePacientes.Size = new System.Drawing.Size(416, 189);

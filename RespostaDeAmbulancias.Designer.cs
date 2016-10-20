@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RespostaDeAmbulancias));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cancelarReagendamento = new System.Windows.Forms.Button();
             this.negativa = new System.Windows.Forms.Button();
             this.dtHrReagendamento = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cancelarReagendamento = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaAgendados)).BeginInit();
@@ -148,6 +148,20 @@
             this.panel1.Size = new System.Drawing.Size(1067, 685);
             this.panel1.TabIndex = 0;
             // 
+            // cancelarReagendamento
+            // 
+            this.cancelarReagendamento.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cancelarReagendamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.cancelarReagendamento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelarReagendamento.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.cancelarReagendamento.Location = new System.Drawing.Point(951, 223);
+            this.cancelarReagendamento.Name = "cancelarReagendamento";
+            this.cancelarReagendamento.Size = new System.Drawing.Size(104, 33);
+            this.cancelarReagendamento.TabIndex = 104;
+            this.cancelarReagendamento.Text = "Cancelar";
+            this.cancelarReagendamento.UseVisualStyleBackColor = false;
+            this.cancelarReagendamento.Click += new System.EventHandler(this.cancelarReagendamento_Click);
+            // 
             // negativa
             // 
             this.negativa.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -167,7 +181,7 @@
             this.dtHrReagendamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtHrReagendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtHrReagendamento.ForeColor = System.Drawing.Color.Red;
-            this.dtHrReagendamento.Location = new System.Drawing.Point(830, 538);
+            this.dtHrReagendamento.Location = new System.Drawing.Point(811, 538);
             this.dtHrReagendamento.Name = "dtHrReagendamento";
             this.dtHrReagendamento.Size = new System.Drawing.Size(225, 16);
             this.dtHrReagendamento.TabIndex = 102;
@@ -179,7 +193,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(634, 538);
+            this.label3.Location = new System.Drawing.Point(615, 538);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(190, 16);
             this.label3.TabIndex = 101;
@@ -370,7 +384,7 @@
             this.Origem.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Origem.Enabled = false;
             this.Origem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Origem.Location = new System.Drawing.Point(637, 306);
+            this.Origem.Location = new System.Drawing.Point(618, 306);
             this.Origem.Name = "Origem";
             this.Origem.Size = new System.Drawing.Size(223, 21);
             this.Origem.TabIndex = 86;
@@ -380,7 +394,7 @@
             this.Destino.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Destino.Enabled = false;
             this.Destino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Destino.Location = new System.Drawing.Point(637, 353);
+            this.Destino.Location = new System.Drawing.Point(618, 353);
             this.Destino.Name = "Destino";
             this.Destino.Size = new System.Drawing.Size(223, 21);
             this.Destino.TabIndex = 85;
@@ -440,7 +454,7 @@
             // 
             this.Obs.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Obs.Enabled = false;
-            this.Obs.Location = new System.Drawing.Point(637, 417);
+            this.Obs.Location = new System.Drawing.Point(618, 417);
             this.Obs.Name = "Obs";
             this.Obs.Size = new System.Drawing.Size(415, 109);
             this.Obs.TabIndex = 78;
@@ -451,7 +465,7 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(634, 388);
+            this.label20.Location = new System.Drawing.Point(615, 388);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(93, 16);
             this.label20.TabIndex = 77;
@@ -462,7 +476,7 @@
             this.EnderecoDestino.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EnderecoDestino.Enabled = false;
             this.EnderecoDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnderecoDestino.Location = new System.Drawing.Point(867, 353);
+            this.EnderecoDestino.Location = new System.Drawing.Point(848, 353);
             this.EnderecoDestino.Name = "EnderecoDestino";
             this.EnderecoDestino.Size = new System.Drawing.Size(185, 21);
             this.EnderecoDestino.TabIndex = 76;
@@ -472,7 +486,7 @@
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(864, 334);
+            this.label19.Location = new System.Drawing.Point(845, 334);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(138, 16);
             this.label19.TabIndex = 75;
@@ -483,7 +497,7 @@
             this.EnderecoOrigem.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EnderecoOrigem.Enabled = false;
             this.EnderecoOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnderecoOrigem.Location = new System.Drawing.Point(866, 306);
+            this.EnderecoOrigem.Location = new System.Drawing.Point(847, 306);
             this.EnderecoOrigem.Name = "EnderecoOrigem";
             this.EnderecoOrigem.Size = new System.Drawing.Size(186, 21);
             this.EnderecoOrigem.TabIndex = 74;
@@ -493,7 +507,7 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(864, 288);
+            this.label18.Location = new System.Drawing.Point(845, 288);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(136, 16);
             this.label18.TabIndex = 73;
@@ -504,7 +518,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(634, 334);
+            this.label17.Location = new System.Drawing.Point(615, 334);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(132, 16);
             this.label17.TabIndex = 72;
@@ -515,7 +529,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(634, 282);
+            this.label16.Location = new System.Drawing.Point(615, 282);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(130, 16);
             this.label16.TabIndex = 70;
@@ -526,7 +540,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(634, 249);
+            this.label15.Location = new System.Drawing.Point(615, 249);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(168, 18);
             this.label15.TabIndex = 68;
@@ -728,20 +742,6 @@
             this.label1.Size = new System.Drawing.Size(129, 16);
             this.label1.TabIndex = 46;
             this.label1.Text = "Tipo da Ambulância";
-            // 
-            // cancelarReagendamento
-            // 
-            this.cancelarReagendamento.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.cancelarReagendamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
-            this.cancelarReagendamento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelarReagendamento.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.cancelarReagendamento.Location = new System.Drawing.Point(951, 223);
-            this.cancelarReagendamento.Name = "cancelarReagendamento";
-            this.cancelarReagendamento.Size = new System.Drawing.Size(104, 33);
-            this.cancelarReagendamento.TabIndex = 104;
-            this.cancelarReagendamento.Text = "Cancelar";
-            this.cancelarReagendamento.UseVisualStyleBackColor = false;
-            this.cancelarReagendamento.Click += new System.EventHandler(this.cancelarReagendamento_Click);
             // 
             // RespostaDeAmbulancias
             // 

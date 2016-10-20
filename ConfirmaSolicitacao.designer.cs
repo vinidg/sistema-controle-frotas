@@ -413,7 +413,8 @@
             "RETORNO",
             "SALA VERMELHA/EMERGÊNCIA",
             "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS",
-            "TRANSPORTE DE PROFISSIONAIS"});
+            "TRANSPORTE DE PROFISSIONAIS",
+            "TRANSFERENCIA"});
             this.CbMotivoChamado.Location = new System.Drawing.Point(41, 406);
             this.CbMotivoChamado.Name = "CbMotivoChamado";
             this.CbMotivoChamado.Size = new System.Drawing.Size(243, 23);

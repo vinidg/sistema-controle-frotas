@@ -37,7 +37,7 @@ namespace Sistema_Controle
             selectEquipeBD();
             statusJanela();
             selectHorarios();
-            selectHorarioVerificacao();
+            SelecionarPaines();
             NomeAM = label1.Text;
 
         }
@@ -47,14 +47,10 @@ namespace Sistema_Controle
             get { return NomeAM; }
             set { NomeAM = value; }
         }
-
         private void BtnTroca_Click(object sender, EventArgs e)
         {
-
             Paineltrocar.Visible = true;
-
         }
-
         private void BtTrocar_Click(object sender, EventArgs e)
         {
             InsercoesDoBanco ib = new InsercoesDoBanco();
@@ -79,6 +75,85 @@ namespace Sistema_Controle
                 MessageBox.Show("Equipe trocada !");
             }
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
+
+            this.Dispose();
+            cs.ShowDialog();
+
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PainelBloqueio.Visible = true;
+            txtResposavel.Text = resposavel;
+        }     
+        private void BtnBloquear_Click(object sender, EventArgs e)
+        {
+            InsercoesDoBanco IB = new InsercoesDoBanco();
+            IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
+                     
+            MessageBox.Show("Ambulância Bloqueada !");
+            PainelBloqueio.Visible = false;
+            BtnDesbloquear.Visible = true;
+            BtnBloqueio.Visible = false;
+            BtnAddPaciente.Visible = false;
+            painelCentral.BackColor = Color.FromArgb(0, 122, 181);
+            this.BackColor = Color.FromArgb(204, 229, 255);
+            label1.ForeColor = Color.White;
+            /////
+            label8.Visible = true;
+
+
+        }
+        private void BtnDesbloquear_Click(object sender, EventArgs e)
+        {
+            InsercoesDoBanco IB = new InsercoesDoBanco();
+            IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
+
+            MessageBox.Show("Ambulância Desbloqueada !");
+            BtnDesbloquear.Visible = false;
+            BtnBloqueio.Visible = true;
+            BtnAddPaciente.Visible = true;
+            painelCentral.BackColor = Color.FromArgb(46, 172, 109);
+            this.BackColor = Color.FromArgb(229, 255, 204);
+            label1.ForeColor = Color.White;
+            label8.Visible = false;
+            Destino.Visible = false;
+            Origem.Visible = false;
+        }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
+            this.Dispose();
+            sand.ShowDialog();
+        }
+        private void ListadePacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int IDpesquisa;
+            IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
+            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
+            this.Dispose();
+            sand.ShowDialog();
+        }
+        public void atualizarStatusOcupadoPacientePorCodigo()
+        {
+            //atualizar a AM dependendo do status no banco
+            using(DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = from sp in db.solicitacoes_paciente
+                            where sp.idPaciente_Solicitacoes == idPaciente
+                            select new
+                            {
+                                sp.idPaciente_Solicitacoes,
+                                sp.Paciente
+                            };
+                var querySP = query.ToList();
+                ListadePacientes.DataSource = querySP;
+                ListadePacientes.Columns[0].Visible = false;
+            }
+
+        }
         private void selectEquipeBD()
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -101,80 +176,6 @@ namespace Sistema_Controle
             }
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
-
-            this.Dispose();
-            cs.ShowDialog();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            PainelBloqueio.Visible = true;
-            txtResposavel.Text = resposavel;
-        }
-        ///////////////////////////////////////////////////////////////BLOQUEIO////////////////////////////////////////////////////////////////////
-        #region
-        private void BtnBloquear_Click(object sender, EventArgs e)
-        {
-            InsercoesDoBanco IB = new InsercoesDoBanco();
-            IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
-                     
-            MessageBox.Show("Ambulância Bloqueada !");
-            PainelBloqueio.Visible = false;
-            BtnDesbloquear.Visible = true;
-            BtnBloqueio.Visible = false;
-            BtnAddPaciente.Visible = false;
-            painelCentral.BackColor = Color.FromArgb(0, 122, 181);
-            this.BackColor = Color.FromArgb(204, 229, 255);
-            label1.ForeColor = Color.White;
-            /////
-            label8.Visible = true;
-
-
-        }
-
-        private void BtnDesbloquear_Click(object sender, EventArgs e)
-        {
-            InsercoesDoBanco IB = new InsercoesDoBanco();
-            IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
-
-            MessageBox.Show("Ambulância Desbloqueada !");
-            BtnDesbloquear.Visible = false;
-            BtnBloqueio.Visible = true;
-            BtnAddPaciente.Visible = true;
-            painelCentral.BackColor = Color.FromArgb(46, 172, 109);
-            this.BackColor = Color.FromArgb(229, 255, 204);
-            label1.ForeColor = Color.White;
-            label8.Visible = false;
-            Destino.Visible = false;
-            Origem.Visible = false;
-        }
-        #endregion
-        //////////////////////////////////////////////////////VERIFICAR QUAL PACIENTE ESTA NA AM E SE TEM MAIS DE 1/////////////////////////////
-        public void atualizarStatusOcupadoPacientePorCodigo()
-        {
-            //atualizar a AM dependendo do status no banco
-            using(DAHUEEntities db = new DAHUEEntities())
-            {
-                var query = from sp in db.solicitacoes_paciente
-                            where sp.idPaciente_Solicitacoes == idPaciente
-                            select new
-                            {
-                                sp.idPaciente_Solicitacoes,
-                                sp.Paciente
-                            };
-                var querySP = query.ToList();
-                ListadePacientes.DataSource = querySP;
-                ListadePacientes.Columns[0].Visible = false;
-            }
-
-        }
-
-        //////////////////////////////////////////////////////VERIFICAR STATUS DA AMBULANCIA E ENCAIXAR AS INFORMACOES CORRESPONDENTES/////////////////////////////
         public void statusJanela()
         {
             var queryStatus = (String)null;
@@ -225,6 +226,7 @@ namespace Sistema_Controle
                     {
                         return;
                     }
+                    
                     painelCentral.BackColor = Color.FromArgb(224, 62, 54);
                     this.BackColor = Color.FromArgb(255, 204, 204);
                     label7.Visible = true;
@@ -281,367 +283,7 @@ namespace Sistema_Controle
             NomeAM = nomeAM;
         }
 
-        ///////////////////////////////////////////////////////LOGISTICA DA AM - INICIO///////////////////////////////////////////////////////////////////
-        #region
-        private void BtnEquipeCiente_Click(object sender, EventArgs e)
-        {
-            txtHora.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            if (txtHora.Enabled == false && txtHora.Text != "")
-            {
-                txtHora.Enabled = true;
-                txtAlterador.Enabled = true;
-                BtnEquipeCiente.Text = "Alterar";
-                return;
-            }
-            if (txtHora.Enabled == true && txtHora.Text != "")
-            {
-                if (validarData(txtHora.Text).Equals(false))
-                {
-                    MessageBox.Show("Data inválida",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if(Convert.ToDateTime(txtHora.Text) >= Convert.ToDateTime(txtHora2.Text) && txtHora2.Text != ""){
-                    MessageBox.Show("A data e hora esta superior à seguinte", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                BtnEquipeCiente.Text = "Equipe Ciente";
-                txtHora.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
-                solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-
-                txtHora.Enabled = false;
-                txtAlterador.Enabled = false;
-                return;
-
-            }
-            if (equipeView.RowCount == 0)
-            {
-                MessageBox.Show("Atribua uma equipe na Ambulância !", "ATENÇÃO", MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
-                return;
-            }
-
-            txtAlterador.Text = resposavel;
-            txtHora.Text = DateTime.Now.ToString();
-
-            painel1.Visible = false;
-            BtnOrigem.BackColor = Color.MediumTurquoise;
-            BtnEquipeCiente.BackColor = Color.LightSkyBlue;
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
-                solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Avise a equipe que é necessario informar a chegada na origem !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            
-
-        }
-
-
-        private void BtnOrigem_Click(object sender, EventArgs e)
-        {
-            txtHora2.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            if (txtHora2.Enabled == false && txtHora2.Text != "")
-            {
-                txtHora2.Enabled = true;
-                txtAlterador2.Enabled = true;
-                BtnOrigem.Text = "Alterar";
-                return;
-            }
-            if (txtHora2.Enabled == true && txtHora2.Text != "")
-            {
-                if (validarData(txtHora.Text).Equals(false))
-                {
-                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (Convert.ToDateTime(txtHora2.Text) >= Convert.ToDateTime(txtHora3.Text) || Convert.ToDateTime(txtHora2.Text) <= Convert.ToDateTime(txtHora.Text) && txtHora3.Text != "")
-                {
-                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                BtnOrigem.Text = "Equipe na Origem";
-                txtHora2.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-                using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                    solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
-                    solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
-
-                    db.SaveChanges();
-                    MessageBox.Show("Solicitação salva com sucesso !!!");
-                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-
-                txtHora2.Enabled = false;
-                txtAlterador2.Enabled = false;
-                return;
-
-            }
-
-            txtHora2.Text = DateTime.Now.ToString();
-            txtAlterador2.Text = resposavel;
-
-            painel2.Visible = false;
-            BtnSaiuOrigem.BackColor = Color.MediumTurquoise;
-            BtnOrigem.BackColor = Color.LightSkyBlue;
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
-                solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Avise a equipe que é necessario informar a saida da origem !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-        }
-
-        private void BtnSaiuOrigem_Click(object sender, EventArgs e)
-        {
-            txtHora3.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            if (txtHora3.Enabled == false && txtHora3.Text != "")
-            {
-                txtHora3.Enabled = true;
-                txtAlterador3.Enabled = true;
-                BtnSaiuOrigem.Text = "Alterar";
-                return;
-            }
-            if (txtHora3.Enabled == true && txtHora3.Text != "")
-            {
-                if (validarData(txtHora.Text).Equals(false))
-                {
-                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (Convert.ToDateTime(txtHora3.Text) >= Convert.ToDateTime(txtHora4.Text) || Convert.ToDateTime(txtHora3.Text) <= Convert.ToDateTime(txtHora2.Text) && txtHora4.Text != "")
-                {
-                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                BtnSaiuOrigem.Text = "Equipe Saiu da Origem";
-                txtHora3.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-                using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                    solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
-                    solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
-
-                    db.SaveChanges();
-                    MessageBox.Show("Solicitação salva com sucesso !!!");
-                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-
-                txtHora3.Enabled = false;
-                txtAlterador3.Enabled = false;
-                return;
-
-            }
-            txtAlterador3.Text = resposavel;
-            txtHora3.Text = DateTime.Now.ToString();
-
-            painel3.Visible = false;
-            BtnEquipeDestino.BackColor = Color.MediumTurquoise;
-            BtnSaiuOrigem.BackColor = Color.LightSkyBlue;
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
-                solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Avise a equipe que é necessario informar ao chegar ao destino !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-        }
-
-        private void BtnEquipeDestino_Click(object sender, EventArgs e)
-        {
-            txtHora4.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            if (txtHora4.Enabled == false && txtHora4.Text != "")
-            {
-                txtHora4.Enabled = true;
-                txtAlterador4.Enabled = true;
-                BtnEquipeDestino.Text = "Alterar";
-                return;
-            }
-            if (txtHora4.Enabled == true && txtHora4.Text != "")
-            {
-                if (validarData(txtHora.Text).Equals(false))
-                {
-                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (Convert.ToDateTime (txtHora4.Text) >= Convert.ToDateTime(txtHora5.Text) || Convert.ToDateTime(txtHora4.Text) <= Convert.ToDateTime(txtHora3.Text) && txtHora5.Text != "")
-                {
-                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                BtnEquipeDestino.Text = "Equipe no Destino";
-                txtHora4.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-                using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                    solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
-                    solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
-
-                    db.SaveChanges();
-                    MessageBox.Show("Solicitação salva com sucesso !!!");
-                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-
-                txtHora4.Enabled = false;
-                txtAlterador4.Enabled = false;
-                return;
-
-            }
-
-            txtAlterador4.Text = resposavel;
-            txtHora4.Text = DateTime.Now.ToString();
-
-            painel4.Visible = false;
-            EquipeLiberada.BackColor = Color.MediumTurquoise;
-            BtnEquipeDestino.BackColor = Color.LightSkyBlue;
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
-                solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Avise a equipe que é necessario informar ao ser liberado do destino !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-        }
-
-        private void EquipeLiberada_Click(object sender, EventArgs e)
-        {
-            txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            if (txtHora5.Enabled == false && txtHora5.Text != "")
-            {
-                txtHora5.Enabled = true;
-                txtAlterador5.Enabled = true;
-                EquipeLiberada.Text = "Alterar";
-                return;
-            }
-            if (txtHora5.Enabled == true && txtHora5.Text != "")
-            {
-                if (validarData(txtHora.Text).Equals(false))
-                {
-                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (Convert.ToDateTime(txtHora5.Text) >= Convert.ToDateTime(txtHora6.Text) || Convert.ToDateTime(txtHora5.Text) <= Convert.ToDateTime(txtHora4.Text) && txtHora6.Text != "")
-                {
-                    MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                EquipeLiberada.Text = "Equipe Liberada do Destino";
-                txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-                using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                    solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
-                    solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
-
-                    db.SaveChanges();
-                    MessageBox.Show("Solicitação salva com sucesso !!!");
-                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-
-                txtHora5.Enabled = false;
-                txtAlterador5.Enabled = false;
-                return;
-
-            }
-            txtAlterador5.Text = resposavel;
-            txtHora5.Text = DateTime.Now.ToString();
-
-            painel5.Visible = false;
-            BtnPatio.BackColor = Color.MediumTurquoise;
-            EquipeLiberada.BackColor = Color.LightSkyBlue;
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
-                solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Avise a equipe que é necessario informar a chegada no pátio !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-        }
-
-        private void BtnPatio_Click(object sender, EventArgs e)
-        {
-
-            BtnEquipeDestino.BackColor = Color.LightSkyBlue;
-            txtHora6.Text = DateTime.Now.ToString();
-            txtAlterador6.Text = resposavel;
-            var idSolicitacaAM = (String)null;
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
-                solicitacoesAmbulancias.DtHrEquipePatio = txtHora6.Text;
-                solicitacoesAmbulancias.DtHrEquipePatioReg = txtAlterador6.Text;
-
-                var contemPaciente = (from soa in db.solicitacoes_ambulancias
-                                      where soa.idAmbulanciaSol == codigoDaAmbulancia && soa.SolicitacaoConcluida == 0
-                                      select soa).Count();
-                idSolicitacaAM = (from sa in db.solicitacoes_ambulancias
-                                          where sa.idSolicitacoesPacientes == idPaciente && sa.SolicitacaoConcluida == 0
-                                          select sa.idSolicitacoes_Ambulancias).FirstOrDefault().ToString();
-
-                if (contemPaciente == 1)
-                {
-                    ambulancia am = db.ambulancia.First(a => a.idAmbulancia == codigoDaAmbulancia);
-                    am.StatusAmbulancia = "DISPONIVEL";
-                }
-                solicitacoes_ambulancias sas = db.solicitacoes_ambulancias.First(s => s.idAmbulanciaSol == codigoDaAmbulancia && s.SolicitacaoConcluida == 0);
-                sas.SolicitacaoConcluida = 1;
-
-                db.SaveChanges();
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                MessageBox.Show("Equipe disponivel !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-
-            DialogResult rs = MessageBox.Show("Deseja imprimir a ficha completa da solicitação ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            if (rs == DialogResult.Yes)
-            {
-
-                SelecionaAM samb = new SelecionaAM(idPaciente, codigoDaAmbulancia, Convert.ToInt32(idSolicitacaAM));
-                samb.imprimirFicha();
-                this.Dispose();
-            }
-            else
-            {
-                this.Dispose();
-            }
-
-
-
-        }
-       
-
+        #region LogisticaAmbulancia
         private void selectHorarios()
         {
             if (statusAmbulancia == "OCUPADA")
@@ -719,15 +361,9 @@ namespace Sistema_Controle
             }
         }
 
-        private void selectHorarioVerificacao()
+        private void SelecionarPaines()
         {
-            txtHora.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txtHora2.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txtHora3.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txtHora4.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txtHora6.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-
+            DesativarMascara();
             if (txtHora.Text == "")
             {
                 painel1.Visible = true;
@@ -779,31 +415,384 @@ namespace Sistema_Controle
                 BtnPatio.BackColor = Color.MediumTurquoise;
                 EquipeLiberada.BackColor = Color.LightSkyBlue;
             }
-
-            txtHora.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-            txtHora2.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-            txtHora3.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-            txtHora4.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-            txtHora5.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
-            txtHora6.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            MostrarMascara();
         }
         #endregion
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+
+        #region BotoesHorarios
+        private void BtnEquipeCiente_Click(object sender, EventArgs e)
         {
-            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
-            this.Dispose();
-            sand.ShowDialog();
+
+            if (txtHora.Enabled == false && txtHora.Text != "__/__/____ __:__")
+            {
+                txtHora.Enabled = true;
+                txtAlterador.Enabled = true;
+                BtnEquipeCiente.Text = "Alterar";
+                return;
+            }
+            if (txtHora.Enabled == true && txtHora.Text != "__/__/____ __:__")
+            {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (txtHora2.Text != "__/__/____ __:__")
+                {
+                    if (Convert.ToDateTime(txtHora.Text) >= Convert.ToDateTime(txtHora2.Text))
+                    {
+                        MessageBox.Show("A data e hora esta superior à seguinte", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                
+                BtnEquipeCiente.Text = "Equipe Ciente";
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
+                solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
+
+                db.SaveChanges();
+                MessageBox.Show("Solicitação salva com sucesso !!!");
+                MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+                txtHora.Enabled = false;
+                txtAlterador.Enabled = false;
+                return;
+
+            }
+            if (equipeView.RowCount == 0)
+            {
+                MessageBox.Show("Atribua uma equipe na Ambulância !", "ATENÇÃO", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            txtAlterador.Text = resposavel;
+            txtHora.Text = DateTime.Now.ToString();
+
+            painel1.Visible = false;
+            BtnOrigem.BackColor = Color.MediumTurquoise;
+            BtnEquipeCiente.BackColor = Color.LightSkyBlue;
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
+                solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Avise a equipe que é necessario informar a chegada na origem !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            
         }
 
-        private void ListadePacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void BtnOrigem_Click(object sender, EventArgs e)
         {
-            int IDpesquisa;
-            IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
-            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
-            this.Dispose();
-            sand.ShowDialog();
+
+            if (txtHora2.Enabled == false && txtHora2.Text != "__/__/____ __:__")
+            {
+                txtHora2.Enabled = true;
+                txtAlterador2.Enabled = true;
+                BtnOrigem.Text = "Alterar";
+                return;
+            }
+            if (txtHora2.Enabled == true && txtHora2.Text != "__/__/____ __:__")
+            {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (txtHora3.Text != "__/__/____ __:__")
+                {
+                    if (Convert.ToDateTime(txtHora2.Text) >= Convert.ToDateTime(txtHora3.Text) || Convert.ToDateTime(txtHora2.Text) <= Convert.ToDateTime(txtHora.Text))
+                    {
+                        MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                BtnOrigem.Text = "Equipe na Origem";
+
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                    solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
+                    solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+
+                txtHora2.Enabled = false;
+                txtAlterador2.Enabled = false;
+                return;
+
+            }
+
+            txtHora2.Text = DateTime.Now.ToString();
+            txtAlterador2.Text = resposavel;
+
+            painel2.Visible = false;
+            BtnSaiuOrigem.BackColor = Color.MediumTurquoise;
+            BtnOrigem.BackColor = Color.LightSkyBlue;
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
+                solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Avise a equipe que é necessario informar a saida da origem !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
         }
 
+        private void BtnSaiuOrigem_Click(object sender, EventArgs e)
+        {
+
+            if (txtHora3.Enabled == false && txtHora3.Text != "__/__/____ __:__")
+            {
+                txtHora3.Enabled = true;
+                txtAlterador3.Enabled = true;
+                BtnSaiuOrigem.Text = "Alterar";
+                return;
+            }
+            if (txtHora3.Enabled == true && txtHora3.Text != "__/__/____ __:__")
+            {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (txtHora4.Text != "__/__/____ __:__")
+                {
+                    if (Convert.ToDateTime(txtHora3.Text) >= Convert.ToDateTime(txtHora4.Text) || Convert.ToDateTime(txtHora3.Text) <= Convert.ToDateTime(txtHora2.Text))
+                    {
+                        MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                BtnSaiuOrigem.Text = "Equipe Saiu da Origem";
+
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                    solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
+                    solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+
+                txtHora3.Enabled = false;
+                txtAlterador3.Enabled = false;
+                return;
+
+            }
+            txtAlterador3.Text = resposavel;
+            txtHora3.Text = DateTime.Now.ToString();
+
+            painel3.Visible = false;
+            BtnEquipeDestino.BackColor = Color.MediumTurquoise;
+            BtnSaiuOrigem.BackColor = Color.LightSkyBlue;
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
+                solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Avise a equipe que é necessario informar ao chegar ao destino !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
+        private void BtnEquipeDestino_Click(object sender, EventArgs e)
+        {
+
+            if (txtHora4.Enabled == false && txtHora4.Text != "__/__/____ __:__")
+            {
+                txtHora4.Enabled = true;
+                txtAlterador4.Enabled = true;
+                BtnEquipeDestino.Text = "Alterar";
+                return;
+            }
+            if (txtHora4.Enabled == true && txtHora4.Text != "__/__/____ __:__")
+            {
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (txtHora5.Text != "__/__/____ __:__")
+                {
+                    if (Convert.ToDateTime(txtHora4.Text) >= Convert.ToDateTime(txtHora5.Text) || Convert.ToDateTime(txtHora4.Text) <= Convert.ToDateTime(txtHora3.Text) && txtHora5.Text != "__/__/____ __:__")
+                    {
+                        MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                BtnEquipeDestino.Text = "Equipe no Destino";
+
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                    solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
+                    solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+
+                txtHora4.Enabled = false;
+                txtAlterador4.Enabled = false;
+                return;
+
+            }
+
+            txtAlterador4.Text = resposavel;
+            txtHora4.Text = DateTime.Now.ToString();
+
+            painel4.Visible = false;
+            EquipeLiberada.BackColor = Color.MediumTurquoise;
+            BtnEquipeDestino.BackColor = Color.LightSkyBlue;
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
+                solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Avise a equipe que é necessario informar ao ser liberado do destino !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
+        private void EquipeLiberada_Click(object sender, EventArgs e)
+        {
+
+            if (txtHora5.Enabled == false && txtHora5.Text != "__/__/____ __:__")
+            {
+                txtHora5.Enabled = true;
+                txtAlterador5.Enabled = true;
+                EquipeLiberada.Text = "Alterar";
+                return;
+            }
+            if (txtHora5.Enabled == true && txtHora5.Text != "__/__/____ __:__")
+            {
+
+                if (validarData(txtHora.Text).Equals(false))
+                {
+                    MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (txtHora6.Text != "__/__/____ __:__")
+                {
+                    if (Convert.ToDateTime(txtHora5.Text) >= Convert.ToDateTime(txtHora6.Text) || Convert.ToDateTime(txtHora5.Text) <= Convert.ToDateTime(txtHora4.Text) && txtHora6.Text != "__/__/____ __:__")
+                    {
+                        MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                EquipeLiberada.Text = "Equipe Liberada do Destino";
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                    solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
+                    solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Alterado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+
+                txtHora5.Enabled = false;
+                txtAlterador5.Enabled = false;
+                return;
+
+            }
+            txtAlterador5.Text = resposavel;
+            txtHora5.Text = DateTime.Now.ToString();
+
+            painel5.Visible = false;
+            BtnPatio.BackColor = Color.MediumTurquoise;
+            EquipeLiberada.BackColor = Color.LightSkyBlue;
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
+                solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Avise a equipe que é necessario informar a chegada no pátio !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
+        private void BtnPatio_Click(object sender, EventArgs e)
+        {
+
+            BtnEquipeDestino.BackColor = Color.LightSkyBlue;
+            txtHora6.Text = DateTime.Now.ToString();
+            txtAlterador6.Text = resposavel;
+            var idSolicitacaAM = (String)null;
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
+                solicitacoesAmbulancias.DtHrEquipePatio = txtHora6.Text;
+                solicitacoesAmbulancias.DtHrEquipePatioReg = txtAlterador6.Text;
+
+                var contemPaciente = (from soa in db.solicitacoes_ambulancias
+                                      where soa.idAmbulanciaSol == codigoDaAmbulancia && soa.SolicitacaoConcluida == 0
+                                      select soa).Count();
+                idSolicitacaAM = (from sa in db.solicitacoes_ambulancias
+                                          where sa.idSolicitacoesPacientes == idPaciente && sa.SolicitacaoConcluida == 0
+                                          select sa.idSolicitacoes_Ambulancias).FirstOrDefault().ToString();
+
+                if (contemPaciente == 1)
+                {
+                    ambulancia am = db.ambulancia.First(a => a.idAmbulancia == codigoDaAmbulancia);
+                    am.StatusAmbulancia = "DISPONIVEL";
+                }
+                solicitacoes_ambulancias sas = db.solicitacoes_ambulancias.First(s => s.idAmbulanciaSol == codigoDaAmbulancia && s.SolicitacaoConcluida == 0);
+                sas.SolicitacaoConcluida = 1;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Equipe disponivel !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+            DialogResult rs = MessageBox.Show("Deseja imprimir a ficha completa da solicitação ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (rs == DialogResult.Yes)
+            {
+
+                SelecionaAM samb = new SelecionaAM(idPaciente, codigoDaAmbulancia, Convert.ToInt32(idSolicitacaAM));
+                samb.imprimirFicha();
+                this.Dispose();
+            }
+            else
+            {
+                this.Dispose();
+            }
+
+
+
+        }
+        #endregion
         private bool validarData(string sData)
         {
             try
@@ -817,5 +806,23 @@ namespace Sistema_Controle
             }
         }
 
+        private void DesativarMascara()
+        {
+            txtHora.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora2.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora3.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora4.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora5.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtHora6.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+        }
+        private void MostrarMascara()
+        {
+            txtHora.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora2.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora3.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora4.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora5.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+            txtHora6.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+        }
     }
 }

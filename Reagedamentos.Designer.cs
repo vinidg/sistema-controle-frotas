@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ListaReagementos = new System.Windows.Forms.DataGridView();
             this.Negadas = new System.Windows.Forms.DataGridView();
+            this.ListaReagementos = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListaReagementos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Negadas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaReagementos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -45,29 +45,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(568, 409);
             this.panel1.TabIndex = 0;
-            // 
-            // ListaReagementos
-            // 
-            this.ListaReagementos.AllowUserToAddRows = false;
-            this.ListaReagementos.AllowUserToDeleteRows = false;
-            this.ListaReagementos.AllowUserToOrderColumns = true;
-            this.ListaReagementos.AllowUserToResizeRows = false;
-            this.ListaReagementos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaReagementos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ListaReagementos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.ListaReagementos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.ListaReagementos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaReagementos.Enabled = false;
-            this.ListaReagementos.Location = new System.Drawing.Point(3, 3);
-            this.ListaReagementos.MultiSelect = false;
-            this.ListaReagementos.Name = "ListaReagementos";
-            this.ListaReagementos.ReadOnly = true;
-            this.ListaReagementos.RowHeadersVisible = false;
-            this.ListaReagementos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ListaReagementos.Size = new System.Drawing.Size(562, 204);
-            this.ListaReagementos.TabIndex = 0;
             // 
             // Negadas
             // 
@@ -82,7 +59,6 @@
             this.Negadas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Negadas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.Negadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Negadas.Enabled = false;
             this.Negadas.Location = new System.Drawing.Point(3, 203);
             this.Negadas.MultiSelect = false;
             this.Negadas.Name = "Negadas";
@@ -91,6 +67,31 @@
             this.Negadas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Negadas.Size = new System.Drawing.Size(562, 204);
             this.Negadas.TabIndex = 1;
+            this.Negadas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Negadas_CellContentClick);
+            this.Negadas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Negadas_KeyPress);
+            // 
+            // ListaReagementos
+            // 
+            this.ListaReagementos.AllowUserToAddRows = false;
+            this.ListaReagementos.AllowUserToDeleteRows = false;
+            this.ListaReagementos.AllowUserToOrderColumns = true;
+            this.ListaReagementos.AllowUserToResizeRows = false;
+            this.ListaReagementos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListaReagementos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ListaReagementos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.ListaReagementos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.ListaReagementos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaReagementos.Location = new System.Drawing.Point(3, 3);
+            this.ListaReagementos.MultiSelect = false;
+            this.ListaReagementos.Name = "ListaReagementos";
+            this.ListaReagementos.ReadOnly = true;
+            this.ListaReagementos.RowHeadersVisible = false;
+            this.ListaReagementos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ListaReagementos.Size = new System.Drawing.Size(562, 204);
+            this.ListaReagementos.TabIndex = 0;
+            this.ListaReagementos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListaReagementos_KeyPress);
             // 
             // Reagedamentos
             // 
@@ -104,8 +105,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reagedamentos";
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ListaReagementos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Negadas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaReagementos)).EndInit();
             this.ResumeLayout(false);
 
         }

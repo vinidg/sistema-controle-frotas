@@ -33,8 +33,8 @@ namespace Sistema_Controle
             
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
-
         }
+
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
         public void timerAtualiza()
@@ -53,7 +53,6 @@ namespace Sistema_Controle
 
         private void txtSolicitacoes_Click(object sender, EventArgs e)
         {
-
             Solicitacoes Sol = new Solicitacoes(0, "");
             Sol.ShowDialog();
             if (txtSolicitacoes.Focus())
@@ -324,13 +323,11 @@ namespace Sistema_Controle
                 if (listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
                 {
                     string idPaciente = listaUsa.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
-
                     Status status = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
                     status.ShowDialog();
                 }
                 else
                 {
-
                     Status status = new Status(Convert.ToInt32(idAM), 0);
                     status.ShowDialog();
                 }
@@ -339,10 +336,8 @@ namespace Sistema_Controle
 
         private void Editar_Click(object sender, EventArgs e)
         {
-
             EditarAmbulancias ea = new EditarAmbulancias();
-            ea.ShowDialog();
-        
+            ea.ShowDialog();    
         }
 
         private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
@@ -384,21 +379,18 @@ namespace Sistema_Controle
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
             Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
         }
 
         private void AgendaPendentes_Click(object sender, EventArgs e)
         {
-
             RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
             ra.ShowDialog();
         }
 
         private void EnderecosEditar_Click(object sender, EventArgs e)
         {
-
             Enderecos en = new Enderecos();
             en.ShowDialog();
         }
