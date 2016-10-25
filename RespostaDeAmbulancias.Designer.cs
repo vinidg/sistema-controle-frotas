@@ -278,7 +278,7 @@
             this.Reagendamentos.Name = "Reagendamentos";
             this.Reagendamentos.Size = new System.Drawing.Size(144, 46);
             this.Reagendamentos.TabIndex = 99;
-            this.Reagendamentos.Text = "Reagendamentos/Negativas";
+            this.Reagendamentos.Text = "Reagendamentos e negativas";
             this.Reagendamentos.UseVisualStyleBackColor = false;
             this.Reagendamentos.Click += new System.EventHandler(this.Reagendamentos_Click);
             // 

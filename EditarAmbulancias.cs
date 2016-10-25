@@ -30,15 +30,16 @@ namespace Sistema_Controle
                                 am.idAmbulancia, 
                                 Nome = am.NomeAmbulancia, 
                                 Tipo = am.TipoAM, 
-                                Desativado = am.Desativado 
-                             } ).ToList();
+                                Desativado = (am.Desativado == 0 ? "Não" : "Sim")
+                             }).ToList();
                 
                 ListaDeAmbulancias.DataSource = query;
                 ListaDeAmbulancias.Refresh();
                 ListaDeAmbulancias.Columns[0].Visible = false;
             }
+
         }
-  
+ 
 
         private void ListaDeAmbulancias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -46,13 +47,13 @@ namespace Sistema_Controle
             NomeUnidade.Text = ListaDeAmbulancias.Rows[e.RowIndex].Cells[1].Value.ToString();
             Tipo.Text = ListaDeAmbulancias.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-            if (ListaDeAmbulancias.Rows[e.RowIndex].Cells[3].Value.ToString() == "1")
+            if (ListaDeAmbulancias.Rows[e.RowIndex].Cells[3].Value.ToString() == "Não")
             {
-                OpcaoDesativado.Checked = true;
+                OpcaoDesativadoNao.Checked = true;
             }
             else
             {
-                OpcaoDesativado.Checked = false;
+                OpcaoDesativadoSim.Checked = true;
             }
             Id.Text = idControleAmbulancia.ToString();
         }
@@ -63,13 +64,13 @@ namespace Sistema_Controle
             NomeUnidade.Text = ListaDeAmbulancias.Rows[e.RowIndex].Cells[1].Value.ToString();
             Tipo.Text = ListaDeAmbulancias.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-            if (ListaDeAmbulancias.Rows[e.RowIndex].Cells[3].Value.ToString() == "1")
+            if (ListaDeAmbulancias.Rows[e.RowIndex].Cells[3].Value.ToString() == "Não")
             {
-                OpcaoDesativado.Checked = true;
+                OpcaoDesativadoNao.Checked = true;
             }
             else
             {
-                OpcaoDesativado.Checked = false;
+                OpcaoDesativadoSim.Checked = true;
             }
 
             Id.Text = idControleAmbulancia.ToString();
@@ -98,7 +99,7 @@ namespace Sistema_Controle
                     ambulancia am = new ambulancia();
                     am.NomeAmbulancia = NomeUnidade.Text;
                     am.TipoAM = Tipo.Text;
-                    if(OpcaoDesativado.Checked == true)
+                    if(OpcaoDesativadoNao.Checked == true)
                     {
                         am.Desativado = 1;
                     }else
@@ -133,7 +134,7 @@ namespace Sistema_Controle
                     ambulancia am = db.ambulancia.First(ama => ama.idAmbulancia == idControleAmbulancia);
                     am.NomeAmbulancia = NomeUnidade.Text;
                     am.TipoAM = Tipo.Text;
-                    if (OpcaoDesativado.Checked == true)
+                    if (OpcaoDesativadoNao.Checked == true)
                     {
                         am.Desativado = 1;
                     }

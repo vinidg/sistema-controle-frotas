@@ -31,6 +31,7 @@ namespace Sistema_Controle
             Version newVersion = null;
 
             string xmlURL = @"\\\10.1.0.7\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\update.xml";
+           // string xmlURL = @"\\\10.1.0.7\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\updateHomologacao.xml";
             XmlTextReader reader = null;
 
             try

@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarAmbulancias));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Id = new System.Windows.Forms.Label();
             this.update = new System.Windows.Forms.Button();
-            this.OpcaoDesativado = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Tipo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,7 +40,8 @@
             this.nova = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ListaDeAmbulancias = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.Label();
+            this.OpcaoDesativadoSim = new System.Windows.Forms.RadioButton();
+            this.OpcaoDesativadoNao = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaDeAmbulancias)).BeginInit();
             this.SuspendLayout();
@@ -52,9 +53,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.OpcaoDesativadoNao);
+            this.panel1.Controls.Add(this.OpcaoDesativadoSim);
             this.panel1.Controls.Add(this.Id);
             this.panel1.Controls.Add(this.update);
-            this.panel1.Controls.Add(this.OpcaoDesativado);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Tipo);
             this.panel1.Controls.Add(this.label2);
@@ -68,30 +70,29 @@
             this.panel1.Size = new System.Drawing.Size(726, 501);
             this.panel1.TabIndex = 0;
             // 
+            // Id
+            // 
+            this.Id.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Id.AutoSize = true;
+            this.Id.Location = new System.Drawing.Point(12, 21);
+            this.Id.Name = "Id";
+            this.Id.Size = new System.Drawing.Size(35, 13);
+            this.Id.TabIndex = 27;
+            this.Id.Text = "label5";
+            // 
             // update
             // 
             this.update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
             this.update.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.update.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.update.Location = new System.Drawing.Point(571, 108);
+            this.update.Location = new System.Drawing.Point(536, 108);
             this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(72, 36);
+            this.update.Size = new System.Drawing.Size(87, 36);
             this.update.TabIndex = 26;
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = false;
             this.update.Click += new System.EventHandler(this.update_Click);
-            // 
-            // OpcaoDesativado
-            // 
-            this.OpcaoDesativado.AutoSize = true;
-            this.OpcaoDesativado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpcaoDesativado.Location = new System.Drawing.Point(280, 112);
-            this.OpcaoDesativado.Name = "OpcaoDesativado";
-            this.OpcaoDesativado.Size = new System.Drawing.Size(53, 22);
-            this.OpcaoDesativado.TabIndex = 25;
-            this.OpcaoDesativado.Text = "Sim";
-            this.OpcaoDesativado.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -99,9 +100,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 113);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 18);
+            this.label3.Size = new System.Drawing.Size(94, 18);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Desativado";
+            this.label3.Text = "Desativado ?";
             // 
             // Tipo
             // 
@@ -147,12 +148,12 @@
             // nova
             // 
             this.nova.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nova.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.nova.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(49)))), ((int)(((byte)(68)))));
             this.nova.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nova.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.nova.Location = new System.Drawing.Point(649, 108);
+            this.nova.Location = new System.Drawing.Point(629, 108);
             this.nova.Name = "nova";
-            this.nova.Size = new System.Drawing.Size(72, 36);
+            this.nova.Size = new System.Drawing.Size(92, 36);
             this.nova.TabIndex = 19;
             this.nova.Text = "Nova";
             this.nova.UseVisualStyleBackColor = false;
@@ -188,15 +189,29 @@
             this.ListaDeAmbulancias.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ListaDeAmbulancias_RowHeaderMouseClick);
             this.ListaDeAmbulancias.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListaDeAmbulancias_KeyPress);
             // 
-            // Id
+            // OpcaoDesativadoSim
             // 
-            this.Id.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Id.AutoSize = true;
-            this.Id.Location = new System.Drawing.Point(686, 10);
-            this.Id.Name = "Id";
-            this.Id.Size = new System.Drawing.Size(35, 13);
-            this.Id.TabIndex = 27;
-            this.Id.Text = "label5";
+            this.OpcaoDesativadoSim.AutoSize = true;
+            this.OpcaoDesativadoSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.OpcaoDesativadoSim.Location = new System.Drawing.Point(147, 111);
+            this.OpcaoDesativadoSim.Name = "OpcaoDesativadoSim";
+            this.OpcaoDesativadoSim.Size = new System.Drawing.Size(52, 22);
+            this.OpcaoDesativadoSim.TabIndex = 28;
+            this.OpcaoDesativadoSim.TabStop = true;
+            this.OpcaoDesativadoSim.Text = "Sim";
+            this.OpcaoDesativadoSim.UseVisualStyleBackColor = true;
+            // 
+            // OpcaoDesativadoNao
+            // 
+            this.OpcaoDesativadoNao.AutoSize = true;
+            this.OpcaoDesativadoNao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.OpcaoDesativadoNao.Location = new System.Drawing.Point(298, 111);
+            this.OpcaoDesativadoNao.Name = "OpcaoDesativadoNao";
+            this.OpcaoDesativadoNao.Size = new System.Drawing.Size(54, 22);
+            this.OpcaoDesativadoNao.TabIndex = 29;
+            this.OpcaoDesativadoNao.TabStop = true;
+            this.OpcaoDesativadoNao.Text = "Não";
+            this.OpcaoDesativadoNao.UseVisualStyleBackColor = true;
             // 
             // EditarAmbulancias
             // 
@@ -227,9 +242,10 @@
         private System.Windows.Forms.TextBox NomeUnidade;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Tipo;
-        private System.Windows.Forms.CheckBox OpcaoDesativado;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button update;
         private System.Windows.Forms.Label Id;
+        private System.Windows.Forms.RadioButton OpcaoDesativadoNao;
+        private System.Windows.Forms.RadioButton OpcaoDesativadoSim;
     }
 }
