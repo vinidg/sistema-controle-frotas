@@ -24,12 +24,12 @@ namespace Sistema_Controle
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             pegarDadosDasAmbulancias();
-            countparaSol();
-            countparaSolAgendadas();
-            countparaSolAgendadasPendentes();
+            contarSolicitacao();
+            contarSolicitacoesAgendadas();
+            contarSolicitacoesAgendadasPendentes();
             Re.Text = System.Environment.UserName;
 
-            timerAtualiza();
+            Timer();
             
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
@@ -37,47 +37,9 @@ namespace Sistema_Controle
 
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
-        public void timerAtualiza()
-        {
-            timer1.Stop();
-            timer1.Interval = 5000;
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Start();
-        }
-
-        private void BtnNew_Click(object sender, EventArgs e)
-        {
-            ConfirmaSolicitacao frm = new ConfirmaSolicitacao(0);
-            frm.ShowDialog();
-        }
-
-        private void txtSolicitacoes_Click(object sender, EventArgs e)
-        {
-            Solicitacoes Sol = new Solicitacoes(0, "");
-            Sol.ShowDialog();
-            if (txtSolicitacoes.Focus())
-            {
-                label1.Focus();
-            }
-        }
-
-        private void txtSolicitacoes_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (txtSolicitacoes.Focus())
-            {
-                label1.Focus();
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            countparaSol();
-            countparaSolAgendadas();
-            countparaSolAgendadasPendentes();
-        }
-        private void countparaSol()
-        {
-         
+        #region Numero_de_solicitacoes
+        private void contarSolicitacao()
+        {       
             using (DAHUEEntities db = new DAHUEEntities())
                 {
                     var query= (from sp in db.solicitacoes_paciente
@@ -89,8 +51,7 @@ namespace Sistema_Controle
                 }
 
         }
-
-        private void countparaSolAgendadas()
+        private void contarSolicitacoesAgendadas()
         {
             //CONTA AS solicitacoes agendadas
             using (DAHUEEntities db = new DAHUEEntities())
@@ -107,8 +68,7 @@ namespace Sistema_Controle
                 txtAgendadasHoje.Text = query.ToString();
             }
         }
-
-        private void countparaSolAgendadasPendentes()
+        private void contarSolicitacoesAgendadasPendentes()
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
@@ -121,16 +81,50 @@ namespace Sistema_Controle
             }
 
         }
+        #endregion
 
+        public void Timer()
+        {
+            timer1.Stop();
+            timer1.Interval = 5000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Start();
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             pegarDadosDasAmbulancias();
-            countparaSol();
-            countparaSolAgendadasPendentes();
+            contarSolicitacao();
+            contarSolicitacoesAgendadasPendentes();
             atualizadorParaNotificador();
 
         }
-
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            ConfirmaSolicitacao frm = new ConfirmaSolicitacao(0);
+            frm.ShowDialog();
+        }
+        private void txtSolicitacoes_Click(object sender, EventArgs e)
+        {
+            Solicitacoes Sol = new Solicitacoes(0, "");
+            Sol.ShowDialog();
+            if (txtSolicitacoes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+        private void txtSolicitacoes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtSolicitacoes.Focus())
+            {
+                label1.Focus();
+            }
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+            contarSolicitacao();
+            contarSolicitacoesAgendadas();
+            contarSolicitacoesAgendadasPendentes();
+        }
         private void atualizadorParaNotificador()
         {
             Update update = new Update();
@@ -142,7 +136,6 @@ namespace Sistema_Controle
                 Atualizar.Visible = true;
             }
         }
-
         private void txtAgendadasHoje_Click(object sender, EventArgs e)
         {
             Solicitacoes solicitacoes = new Solicitacoes(0, "");
@@ -152,7 +145,6 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-
         private void txtAgendadasHoje_KeyDown(object sender, KeyEventArgs e)
         {
             if (txtAgendadasHoje.Focus())
@@ -160,21 +152,16 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
             Atualizacao atualizacao = new Atualizacao();
             atualizacao.ShowDialog();
         }
-
         private void Consultar_Click(object sender, EventArgs e)
         {
-
             Consulta consulta = new Consulta();
             consulta.ShowDialog();
         }
-
         public void pegarDadosDasAmbulancias()
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -249,7 +236,6 @@ namespace Sistema_Controle
             this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
         }
-
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.listaUsb.Columns[e.ColumnIndex].Name == "Status")
@@ -271,7 +257,6 @@ namespace Sistema_Controle
                 }
             }
         }
-
         private void listaUsa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.listaUsa.Columns[e.ColumnIndex].Name == "Status")
@@ -293,7 +278,6 @@ namespace Sistema_Controle
                 }
             }
         }
-
         private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex > -1)
@@ -314,7 +298,6 @@ namespace Sistema_Controle
             }
             }
         }
-
         private void listaUsa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -333,13 +316,11 @@ namespace Sistema_Controle
                 }
             }
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             EditarAmbulancias ea = new EditarAmbulancias();
             ea.ShowDialog();    
         }
-
         private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
         {
             if (txtAgendasPendentes.Focus())
@@ -347,7 +328,6 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Update updatando = new Update();
@@ -357,7 +337,6 @@ namespace Sistema_Controle
                 Environment.Exit(1);
             }
         }
-
         private void txtAgendasPendentes_TextChanged(object sender, EventArgs e)
         {
             if (txtAgendasPendentes.Focus())
@@ -365,7 +344,6 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-
         private void txtAgendasPendentes_Click(object sender, EventArgs e)
         {
 
@@ -376,19 +354,16 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             Solicitacoes solicitacoes = new Solicitacoes(0, "");
             solicitacoes.ShowDialog();
         }
-
         private void AgendaPendentes_Click(object sender, EventArgs e)
         {
             RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
             ra.ShowDialog();
         }
-
         private void EnderecosEditar_Click(object sender, EventArgs e)
         {
             Enderecos en = new Enderecos();

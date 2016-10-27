@@ -15,25 +15,12 @@ namespace Sistema_Controle
     public partial class Consulta : Form
     {
         int IDpesquisa;
+
         public Consulta()
         {
             InitializeComponent();
             pesquisarTodos();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (dataInicio.Text == "  /  /")
-            {
-                dataInicio.Mask = "";
-            }
-            if (dataFim.Text == "  /  /")
-            {
-                dataFim.Mask = "";
-            }
-            pesquisar();
-        }
-
         private void pesquisar()
         {
             int numero = Convert.ToInt32(numeroFicha.Text);
@@ -88,7 +75,6 @@ namespace Sistema_Controle
 
 
         }
-
         private void pesquisarTodos()
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -107,17 +93,40 @@ namespace Sistema_Controle
                 consultaSolicitacoes.Columns[0].HeaderText = "ID";
             }
         }
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataInicio.Text == "  /  /")
+            {
+                dataInicio.Mask = "";
+            }
+            if (dataFim.Text == "  /  /")
+            {
+                dataFim.Mask = "";
+            }
+            pesquisar();
+        }
         private void dataInicio_KeyPress(object sender, KeyPressEventArgs e)
         {
             dataInicio.Mask = "00/00/0000";
         }
-
         private void dataFim_KeyPress(object sender, KeyPressEventArgs e)
         {
             dataFim.Mask = "00/00/0000";
         }
-
+        private void numeroFicha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                pesquisar();
+            }
+        }
+        private void nome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                pesquisar();
+            }
+        }
         private void consultaSolicitacoes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             IDpesquisa = Convert.ToInt32(consultaSolicitacoes.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -152,37 +161,6 @@ namespace Sistema_Controle
                 sand.ShowDialog();
             }
         }
-
-        private void opcaoNumero_CheckedChanged(object sender, EventArgs e)
-        {
-            nome.Enabled = false;
-            nome.Text = "";
-            numeroFicha.Enabled = true;
-        }
-
-        private void opcaoNome_CheckedChanged(object sender, EventArgs e)
-        {
-            numeroFicha.Enabled = false;
-            numeroFicha.Text = "0";
-            nome.Enabled = true;
-        }
-
-        private void numeroFicha_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                pesquisar();
-            }
-        }
-
-        private void nome_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                pesquisar();
-            }
-        }
-
         private void ListaSolicitacaoPaciente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int idSolicitacaoAm;
@@ -193,6 +171,17 @@ namespace Sistema_Controle
             this.Dispose();
             sand.ShowDialog();
         }
-
+        private void opcaoNumero_CheckedChanged(object sender, EventArgs e)
+        {
+            nome.Enabled = false;
+            nome.Text = "";
+            numeroFicha.Enabled = true;
+        }
+        private void opcaoNome_CheckedChanged(object sender, EventArgs e)
+        {
+            numeroFicha.Enabled = false;
+            numeroFicha.Text = "0";
+            nome.Enabled = true;
+        }
     }
 }

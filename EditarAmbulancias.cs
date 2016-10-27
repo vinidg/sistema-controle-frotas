@@ -13,14 +13,14 @@ namespace Sistema_Controle
 {
     public partial class EditarAmbulancias : Form
     {
-    int idControleAmbulancia;
+        int idControleAmbulancia;
+
         public EditarAmbulancias()
         {
             InitializeComponent();
             puxarAmbulancias();
             Id.Text = "";
         }
-
         private void puxarAmbulancias()
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -39,8 +39,6 @@ namespace Sistema_Controle
             }
 
         }
- 
-
         private void ListaDeAmbulancias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             idControleAmbulancia = Convert.ToInt32(ListaDeAmbulancias.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -57,7 +55,6 @@ namespace Sistema_Controle
             }
             Id.Text = idControleAmbulancia.ToString();
         }
-
         private void ListaDeAmbulancias_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             idControleAmbulancia = Convert.ToInt32(ListaDeAmbulancias.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -75,7 +72,6 @@ namespace Sistema_Controle
 
             Id.Text = idControleAmbulancia.ToString();
         }
-
         private void nova_Click(object sender, EventArgs e)
         {
             if(NomeUnidade.Text == ""){
@@ -115,7 +111,6 @@ namespace Sistema_Controle
             
         }
         }
-
         private void update_Click(object sender, EventArgs e)
         {
             if (NomeUnidade.Text == "")
@@ -152,7 +147,6 @@ namespace Sistema_Controle
 
                 }
         }
-
         private void ListaDeAmbulancias_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 100 || e.KeyChar == 68)
@@ -173,7 +167,6 @@ namespace Sistema_Controle
                 puxarAmbulancias();
             }
         }
-
 
     }
 }

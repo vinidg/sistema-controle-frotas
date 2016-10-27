@@ -22,6 +22,7 @@ namespace Sistema_Controle
         int idPaciente, idAm;
         string contarComPrioridade, contarAgendadas;
         string tipo, statusAM;
+
         public Solicitacoes(int AMocup, string StatusAM)
         {
             InitializeComponent();
@@ -70,7 +71,6 @@ namespace Sistema_Controle
                 ListaSolicitacoes.Columns[0].HeaderText = "ID";
             }
         }
-
         public void puxarAgendadas()
         {
             int zero = 0;
@@ -115,7 +115,6 @@ namespace Sistema_Controle
             ListaSolicitacoes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
             ListaSolicitacoes.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
         }
-
         private void listaAgendadas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             listaAgendadas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
@@ -170,7 +169,6 @@ namespace Sistema_Controle
                 STi.ShowDialog();
             }
         }
-
         private void listaAgendadas_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -218,6 +216,7 @@ namespace Sistema_Controle
             }
         }
 
+        #region Ordernacao
         private void OrdemPrioridade_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -253,7 +252,6 @@ namespace Sistema_Controle
             OrdemPaciente.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
             OrdemData.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
         }
-
         private void OrdemData_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -288,7 +286,6 @@ namespace Sistema_Controle
            OrdemPaciente.Font = new Font(OrdemDataAgenda.Font, FontStyle.Regular);
            OrdemPrioridade.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
         }
-
         private void OrdemPaciente_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -326,7 +323,6 @@ namespace Sistema_Controle
             OrdemPrioridade.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
 
         }
-
         private void OrdemPrioridadeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -371,7 +367,6 @@ namespace Sistema_Controle
             dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
             dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
-
         private void OrdemDataAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -417,7 +412,6 @@ namespace Sistema_Controle
             dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
             dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
-
         private void OrdemNomeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -464,6 +458,7 @@ namespace Sistema_Controle
             dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
             dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
+        #endregion
 
         private void dataFiltroAgenda_ValueChanged(object sender, EventArgs e)
         {
@@ -513,7 +508,6 @@ namespace Sistema_Controle
             }
 
         }
-
         private void dataReagendamento_ValueChanged(object sender, EventArgs e)
         {
             int zero = 0;

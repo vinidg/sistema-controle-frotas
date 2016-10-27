@@ -82,6 +82,26 @@ namespace Sistema_Controle
                 Obs.Text = query.ObsGerais;
             }
         }
+        public void Limpar()
+        {
+            RbFemenino.Checked = false;
+            RbMasculino.Checked = false;
+            TipoAM = "";
+            Agendamento = "";
+            Obs.Text = "";
+            label3.Visible = false;
+            dataAgendamento.Visible = false;
+
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
+
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+        }
 
         private void BtnBasica_Click(object sender, EventArgs e)
         {
@@ -122,29 +142,6 @@ namespace Sistema_Controle
             BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
             BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
         }
-
-
-        public void Limpar()
-        {
-            RbFemenino.Checked = false;
-            RbMasculino.Checked = false;
-            TipoAM = "";
-            Agendamento = "";
-            Obs.Text = "";
-            label3.Visible = false;
-            dataAgendamento.Visible = false;
-
-            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
-            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
-
-            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
-            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
-            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
-            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
-        }
-
         private void Btnagendanao_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
@@ -171,7 +168,6 @@ namespace Sistema_Controle
             Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
             Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
         }
-
         private void Btnagendasim_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
@@ -243,8 +239,6 @@ namespace Sistema_Controle
             }
 
         }
-
-
         private void RegistrarSolicitacao()
         {
             InsercoesDoBanco IB = new InsercoesDoBanco();
@@ -306,50 +300,8 @@ namespace Sistema_Controle
                 CbOrigem.DisplayMember = "NomeUnidade";
             }
         }
-        public void unidade_telefone()
-        {
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var telefoneDoEndereco = from e in db.enderecos
-                                         where e.NomeUnidade == pegaUnidade
-                                         orderby e.NomeUnidade ascending
-                                         select e.Telefone;
-
-                txtTelefone.Text = telefoneDoEndereco.FirstOrDefault();
-
-            }
-        }
-        private void unidade_Endereco()
-        {
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var enderecoDoEnderecos = from e in db.enderecos
-                                          where e.NomeUnidade == pegaUnidadeEnd
-                                          orderby e.NomeUnidade ascending
-                                          select e.Endereco;
-                Endereco1 = enderecoDoEnderecos.FirstOrDefault();
-            }
-        }
-
-        private void CbOrigem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            pegaUnidadeEnd = CbOrigem.Text;
-            unidade_Endereco();
-            txtEnderecoOrigem.Text = Endereco1;
-
-        }
-
-        private void CbDestino_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            pegaUnidadeEnd = CbDestino.Text;
-            unidade_Endereco();
-            txtEnderecoDestino.Text = Endereco1;
-
-        }
-
         private void Motivo()
         {
-
             //descobrir o que foi selecionado e criar uma variavel para ela
             if (CbMotivoChamado.Text == "ALTA HOSPITALAR")
             {
@@ -431,7 +383,45 @@ namespace Sistema_Controle
                 CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
             }
         }
+        public void unidade_telefone()
+        {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var telefoneDoEndereco = from e in db.enderecos
+                                         where e.NomeUnidade == pegaUnidade
+                                         orderby e.NomeUnidade ascending
+                                         select e.Telefone;
 
+                txtTelefone.Text = telefoneDoEndereco.FirstOrDefault();
+
+            }
+        }
+        private void unidade_Endereco()
+        {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var enderecoDoEnderecos = from e in db.enderecos
+                                          where e.NomeUnidade == pegaUnidadeEnd
+                                          orderby e.NomeUnidade ascending
+                                          select e.Endereco;
+                Endereco1 = enderecoDoEnderecos.FirstOrDefault();
+            }
+        }
+
+        private void CbOrigem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pegaUnidadeEnd = CbOrigem.Text;
+            unidade_Endereco();
+            txtEnderecoOrigem.Text = Endereco1;
+
+        }
+        private void CbDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pegaUnidadeEnd = CbDestino.Text;
+            unidade_Endereco();
+            txtEnderecoDestino.Text = Endereco1;
+
+        }
         private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
         {
             CbTipoMotivoSelecionado.DataSource = null;
@@ -459,24 +449,6 @@ namespace Sistema_Controle
             }
             Motivo();
         }
-
-        private void AutoCompletar()
-        {
-            RbFemenino.Checked = false;
-            RbMasculino.Checked = false;
-            txtIdade.Text = "";
-
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var autoCompletar = db.solicitacoes_paciente
-                    .Select(a => a.Paciente).Distinct().ToArray();
-                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
-                source.AddRange(autoCompletar);
-                txtNomePaciente.AutoCompleteCustomSource = source;
-
-            }
-        }
-
         private void txtNomePaciente_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -506,15 +478,33 @@ namespace Sistema_Controle
             }
 
         }
-
         private void txtIdade_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
         private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void Obs_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Char.ToUpper(e.KeyChar);
+        }
+        private void AutoCompletar()
+        {
+            RbFemenino.Checked = false;
+            RbMasculino.Checked = false;
+            txtIdade.Text = "";
+
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var autoCompletar = db.solicitacoes_paciente
+                    .Select(a => a.Paciente).Distinct().ToArray();
+                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+                source.AddRange(autoCompletar);
+                txtNomePaciente.AutoCompleteCustomSource = source;
+
+            }
         }
         private void ClearTextBoxes()
         {
@@ -545,11 +535,6 @@ namespace Sistema_Controle
             };
 
             func(Controls);
-        }
-
-        private void Obs_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Char.ToUpper(e.KeyChar);
         }
 
     }

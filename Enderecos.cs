@@ -29,7 +29,6 @@ namespace Sistema_Controle
             TabelaEnderecos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             TabelaEnderecos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-
         private void puxarEnderecos()
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -41,14 +40,6 @@ namespace Sistema_Controle
                 TabelaEnderecos.Refresh();
             }
         }
-        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            idControleEndereco = Convert.ToInt32(TabelaEnderecos.Rows[e.RowIndex].Cells[0].Value.ToString());
-            NomeUnidade.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[1].Value.ToString();
-            Endereco.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[2].Value.ToString();
-            Telefone.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[3].Value.ToString();
-        }
-
         private void Novo_Click(object sender, EventArgs e)
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -78,7 +69,6 @@ namespace Sistema_Controle
                 puxarEnderecos();
             }
         }
-
         private void Update_Click(object sender, EventArgs e)
         {
             if (NomeUnidade.Text != "" || Endereco.Text != "")
@@ -97,7 +87,13 @@ namespace Sistema_Controle
 
             }
         }
-
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            idControleEndereco = Convert.ToInt32(TabelaEnderecos.Rows[e.RowIndex].Cells[0].Value.ToString());
+            NomeUnidade.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[1].Value.ToString();
+            Endereco.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[2].Value.ToString();
+            Telefone.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
         private void TabelaEnderecos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -108,7 +104,6 @@ namespace Sistema_Controle
                 Telefone.Text = TabelaEnderecos.Rows[e.RowIndex].Cells[3].Value.ToString();
             }
         }
-
         private void TabelaEnderecos_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 100 || e.KeyChar == 68)
@@ -129,6 +124,5 @@ namespace Sistema_Controle
                 puxarEnderecos();
             }
         }
-
     }
 }

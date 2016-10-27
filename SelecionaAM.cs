@@ -46,7 +46,6 @@ namespace Sistema_Controle
             }
         }
 
-
         private void verificaSeAMEstaIncluida()
         {
             if (idAmbu == 0)
@@ -86,7 +85,6 @@ namespace Sistema_Controle
             }
 
         }
-
         private void VerificarPacienteJaestaInclusoNaMesma()
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -107,7 +105,6 @@ namespace Sistema_Controle
             }
 
         }
-
         private void PreencherCampos()
         {
             //buscar informacoes pelo id da tabela
@@ -178,18 +175,6 @@ namespace Sistema_Controle
 
             }
         }
-
-        private void BtnOutraAM_Click(object sender, EventArgs e)
-        {
-            PainelAM2.Visible = true;
-        }
-
-        private void BtnCancelar_Click(object sender, EventArgs e)
-        {
-            painelCancelar.Visible = true;
-            DtHrCancelamento.Text = DateTime.Now.ToString();
-            txtResponsavel.Text = System.Environment.UserName;
-        }
         private void cancelar()
         {
             try
@@ -210,67 +195,24 @@ namespace Sistema_Controle
                 MessageBox.Show("Solicitação cancelada com sucesso !!!");
                 this.Dispose();
         }
-
-        private void BtnConfimar_Click(object sender, EventArgs e)
+        private void ConfirmaAM()
         {
-            var querya = (String)null;
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var query = from am in db.ambulancia
-                            where am.idAmbulancia == idAmbu
-                            select am.TipoAM;
-                querya = query.FirstOrDefault();
-            }
 
-            if (tipoSolicitacao != "Avancada")
+            try
             {
-                if (querya != "BASICO")
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
-                    return;
-                }
+                InsercoesDoBanco ib = new InsercoesDoBanco();
+                ib.confirmarAmbulanciaNaSolicitacao(idPaciente, idAmbu);
             }
-
-            if (tipoSolicitacao != "Basica")
+            catch (Exception ex)
             {
-                if (querya != "AVANCADO")
-                {
-                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
-                    return;
-                }
-            }
-
-            int contadorMaxdePacientes, zero = 0;
-            if (statusAMLista == "BLOQUEADA")
-            {
-                MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (statusAMLista == "OCUPADA" || statusAM == "OCUPADA")
+            finally
             {
-                using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    var query = from sa in db.solicitacoes_ambulancias
-                                where sa.idAmbulanciaSol == idAmbu &&
-                                sa.SolicitacaoConcluida == zero
-                                select sa.idSolicitacoes_Ambulancias;
-
-                    var queryCount = query.Count();
-                    contadorMaxdePacientes = queryCount;
-                }
-                if (contadorMaxdePacientes == 5)
-                {
-                    MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (contadorMaxdePacientes == 1)
-                {
-                    DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                }
-
+                MessageBox.Show("Solicitação salva com sucesso !!!");
+                this.Dispose();
             }
-            ConfirmaAM();
-            PainelAM2.Visible = true;
 
         }
         public void pegarDadosDasAmbulancias()
@@ -303,31 +245,6 @@ namespace Sistema_Controle
                 Lista.Columns[0].Visible = false;
                 Lista.ClearSelection();
             }
-        }
-        private void ConfirmaAM()
-        {
-
-            try
-            {
-                InsercoesDoBanco ib = new InsercoesDoBanco();
-                ib.confirmarAmbulanciaNaSolicitacao(idPaciente, idAmbu);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            finally
-            {
-                MessageBox.Show("Solicitação salva com sucesso !!!");
-                this.Dispose();
-            }
-
-        }
-
-        private void BtnImprimir_Click(object sender, EventArgs e)
-        {
-            imprimirFicha();
         }
         public void imprimirFicha()
         {
@@ -462,77 +379,6 @@ namespace Sistema_Controle
                 
             }
         }
-
-        private void CancelaSolicitacao_Click(object sender, EventArgs e)
-        {
-            MotivoCancelar.Text = "";
-            txtObsCancelamento.Text = "";
-            DtHrCancelamento.Text = "";
-            painelCancelar.Visible = false;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?",
-            "Atenção !",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result1 == DialogResult.Yes)
-            {
-                cancelar();
-                imprimirFicha();
-                this.Dispose();
-
-            }
-        }
-        private void BtnAlterar_Click(object sender, EventArgs e)
-        {
-
-            if (dataAgendamento.Enabled == false)
-            {
-                DesbloquarCampos();
-            }
-            else
-            {
-                if (RbFemenino.Checked)
-                {
-                    Sexo = "F";
-                }
-                else if (RbMasculino.Checked)
-                {
-                    Sexo = "M";
-                }
-                if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
-                {
-                    MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (txtNomeSolicitante.Text == "" ||
-                CbLocalSolicita.Text == "" ||
-                txtTelefone.Text == "" ||
-                txtNomePaciente.Text == "" ||
-                txtIdade.Text == "" ||
-                txtDiagnostico.Text == "" ||
-                CbMotivoChamado.Text == "" ||
-                Sexo == "" ||
-                PrioridadeTxt.Text == "" ||
-                CbTipoMotivoSelecionado.Text == "" ||
-                CbOrigem.Text == "" ||
-                CbDestino.Text == "" ||
-                txtEnderecoOrigem.Text == "" ||
-                txtEnderecoDestino.Text == "")
-                {
-
-                    MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                MessageBox.Show("Deseja salvar as alterações feitas ?", "Atenção !", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                AlterarCampos();
-                bloquearCampos();
-
-            }
-
-        }
-
         private void DesbloquarCampos()
         {
             BtnBasica.Location = new Point(330, 12);
@@ -593,7 +439,6 @@ namespace Sistema_Controle
             PrioridadeTxt.Enabled = false;
 
         }
-
         private void AlterarCampos()
         {
 
@@ -610,87 +455,6 @@ namespace Sistema_Controle
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-
-        private void BtnAvancada_Click(object sender, EventArgs e)
-        {
-            TipoAM = "Avancada";
-            if (BtnBasica.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
-                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
-                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
-                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
-            }
-            BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
-            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
-            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
-            BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
-
-        }
-
-        private void BtnBasica_Click(object sender, EventArgs e)
-        {
-            TipoAM = "Basica";
-
-
-            if (BtnAvancada.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
-                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
-                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
-                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
-            }
-            BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
-            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
-            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
-            BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-
-        private void Btnagendasim_Click(object sender, EventArgs e)
-        {
-            dataAgendamento.Visible = true;
-            dataAgendamento.Focus();
-            Agendamento = "Sim";
-
-            if (Btnagendanao.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
-                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
-
-            }
-
-            Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
-            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
-            Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-
-        private void Btnagendanao_Click(object sender, EventArgs e)
-        {
-            Agendamento = "Nao";
-            dataAgendamento.Visible = false;
-            if (Btnagendasim.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
-                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
-
-            }
-
-            Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
-            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
-            Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-
-        private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            pegaUnidade = CbLocalSolicita.Text;
-            unidade_telefone();
         }
         public void unidade_telefone()
         {
@@ -728,35 +492,6 @@ namespace Sistema_Controle
                 CbOrigem.DisplayMember = "NomeUnidade";
             }
         }
-
-        private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CbTipoMotivoSelecionado.DataSource = null;
-            CbTipoMotivoSelecionado.ValueMember = "";
-            CbTipoMotivoSelecionado.DisplayMember = "";
-
-            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
-            {
-                BtnAvancada.PerformClick();
-                BtnAvancada.Enabled = false;
-                BtnBasica.Enabled = false;
-            }
-            else
-            {
-                label2.Visible = true;
-                Btnagendanao.Visible = true;
-                Btnagendasim.Visible = true;
-                TipoAM = "";
-                BtnAvancada.Enabled = true;
-                BtnBasica.Enabled = true;
-                BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
-                BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
-                BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
-                BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
-            }
-            Motivo();
-        }
-
         private void Motivo()
         {
 
@@ -838,21 +573,6 @@ namespace Sistema_Controle
             }
 
         }
-
-        private void CbOrigem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            pegaUnidadeEnd = CbOrigem.Text;
-            unidade_Endereco();
-            txtEnderecoOrigem.Text = Endereco1;
-        }
-
-        private void CbDestino_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            pegaUnidadeEnd = CbDestino.Text;
-            unidade_Endereco();
-            txtEnderecoDestino.Text = Endereco1;
-        }
-
         private void unidade_Endereco()
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -865,34 +585,219 @@ namespace Sistema_Controle
             }
         }
 
-        private void Lista_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void BtnOutraAM_Click(object sender, EventArgs e)
         {
-            idAmbu = Convert.ToInt32(Lista.Rows[e.RowIndex].Cells[0].Value.ToString());
-            statusAMLista = Lista.Rows[e.RowIndex].Cells["Status"].Value.ToString();
-            NomeAM = Lista.Rows[e.RowIndex].Cells["Ambulancia"].Value.ToString();
-            PainelAM2.Visible = false;
-            label22.Text = NomeAM;
+            PainelAM2.Visible = true;
         }
-
-        private void Lista_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+            painelCancelar.Visible = true;
+            DtHrCancelamento.Text = DateTime.Now.ToString();
+            txtResponsavel.Text = System.Environment.UserName;
+        }
+        private void BtnConfimar_Click(object sender, EventArgs e)
+        {
+            var querya = (String)null;
+            using (DAHUEEntities db = new DAHUEEntities())
             {
-                Lista.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
-                Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                var query = from am in db.ambulancia
+                            where am.idAmbulancia == idAmbu
+                            select am.TipoAM;
+                querya = query.FirstOrDefault();
             }
-            else if (e.Value != null && e.Value.Equals("OCUPADA"))
+
+            if (tipoSolicitacao != "Avancada")
             {
-                Lista.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
-                Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                if (querya != "BASICO")
+                {
+                    MessageBox.Show("Selecionar ambulância do tipo basica ou a solicitação do tipo avançada!");
+                    return;
+                }
             }
-            else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
+
+            if (tipoSolicitacao != "Basica")
             {
-                Lista.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
-                Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                if (querya != "AVANCADO")
+                {
+                    MessageBox.Show("Selecionar ambulância do tipo avançada ou a solicitação do tipo básica!");
+                    return;
+                }
+            }
+
+            int contadorMaxdePacientes, zero = 0;
+            if (statusAMLista == "BLOQUEADA")
+            {
+                MessageBox.Show("A ambulância selecionada esta Bloqueada, por favor selecione outra !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (statusAMLista == "OCUPADA" || statusAM == "OCUPADA")
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sa in db.solicitacoes_ambulancias
+                                where sa.idAmbulanciaSol == idAmbu &&
+                                sa.SolicitacaoConcluida == zero
+                                select sa.idSolicitacoes_Ambulancias;
+
+                    var queryCount = query.Count();
+                    contadorMaxdePacientes = queryCount;
+                }
+                if (contadorMaxdePacientes == 5)
+                {
+                    MessageBox.Show("O maximo de pacientes colocados na ambulancia ja atingiu a marca de 5 lugares, favor escolha outra ambulancia !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (contadorMaxdePacientes == 1)
+                {
+                    DialogResult a = MessageBox.Show("Voce esta adicionando outro paciente na ambulancia " + label22.Text + ", deseja concluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                }
+
+            }
+            ConfirmaAM();
+            PainelAM2.Visible = true;
+
+        }
+        private void BtnImprimir_Click(object sender, EventArgs e)
+        {
+            imprimirFicha();
+        }
+        private void CancelaSolicitacao_Click(object sender, EventArgs e)
+        {
+            MotivoCancelar.Text = "";
+            txtObsCancelamento.Text = "";
+            DtHrCancelamento.Text = "";
+            painelCancelar.Visible = false;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?",
+            "Atenção !",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result1 == DialogResult.Yes)
+            {
+                cancelar();
+                imprimirFicha();
+                this.Dispose();
+
             }
         }
+        private void BtnAlterar_Click(object sender, EventArgs e)
+        {
 
+            if (dataAgendamento.Enabled == false)
+            {
+                DesbloquarCampos();
+            }
+            else
+            {
+                if (RbFemenino.Checked)
+                {
+                    Sexo = "F";
+                }
+                else if (RbMasculino.Checked)
+                {
+                    Sexo = "M";
+                }
+                if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
+                {
+                    MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (txtNomeSolicitante.Text == "" ||
+                CbLocalSolicita.Text == "" ||
+                txtTelefone.Text == "" ||
+                txtNomePaciente.Text == "" ||
+                txtIdade.Text == "" ||
+                txtDiagnostico.Text == "" ||
+                CbMotivoChamado.Text == "" ||
+                Sexo == "" ||
+                PrioridadeTxt.Text == "" ||
+                CbTipoMotivoSelecionado.Text == "" ||
+                CbOrigem.Text == "" ||
+                CbDestino.Text == "" ||
+                txtEnderecoOrigem.Text == "" ||
+                txtEnderecoDestino.Text == "")
+                {
+
+                    MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Deseja salvar as alterações feitas ?", "Atenção !", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                AlterarCampos();
+                bloquearCampos();
+
+            }
+
+        }
+        private void BtnAvancada_Click(object sender, EventArgs e)
+        {
+            TipoAM = "Avancada";
+            if (BtnBasica.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+            }
+            BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+
+        }
+        private void BtnBasica_Click(object sender, EventArgs e)
+        {
+            TipoAM = "Basica";
+
+
+            if (BtnAvancada.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+            }
+            BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+        }
+        private void Btnagendasim_Click(object sender, EventArgs e)
+        {
+            dataAgendamento.Visible = true;
+            dataAgendamento.Focus();
+            Agendamento = "Sim";
+
+            if (Btnagendanao.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+
+            }
+
+            Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+        }
+        private void Btnagendanao_Click(object sender, EventArgs e)
+        {
+            Agendamento = "Nao";
+            dataAgendamento.Visible = false;
+            if (Btnagendasim.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
+                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
+            }
+            Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
+        }
         private void button1_Click_1(object sender, EventArgs e)
         {
             DialogResult result1 = MessageBox.Show("Deseja retirar a solicitação desta ambulância ?",
@@ -925,7 +830,6 @@ namespace Sistema_Controle
                 this.Dispose();
             }
         }
-
         private void IncluirSolicitacaoPendentes_Click(object sender, EventArgs e)
         {           
             DialogResult result1 = MessageBox.Show("Deseja inserir a solicitação na lista de pendêcias ?",
@@ -937,7 +841,6 @@ namespace Sistema_Controle
                 cs.ShowDialog();
             }
         }
-
         private void Reagendar_Click(object sender, EventArgs e)
         {
             DialogResult result1 = MessageBox.Show("Deseja reagendar a solicitação ?",
@@ -953,6 +856,77 @@ namespace Sistema_Controle
                 RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
                 this.Dispose();
                 ra.ShowDialog();
+            }
+        }
+
+        private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pegaUnidade = CbLocalSolicita.Text;
+            unidade_telefone();
+        }
+        private void CbMotivoChamado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CbTipoMotivoSelecionado.DataSource = null;
+            CbTipoMotivoSelecionado.ValueMember = "";
+            CbTipoMotivoSelecionado.DisplayMember = "";
+
+            if (CbMotivoChamado.Text == "INTERNAÇÃO EM UTI" || CbMotivoChamado.Text == "SALA VERMELHA/EMERGÊNCIA")
+            {
+                BtnAvancada.PerformClick();
+                BtnAvancada.Enabled = false;
+                BtnBasica.Enabled = false;
+            }
+            else
+            {
+                label2.Visible = true;
+                Btnagendanao.Visible = true;
+                Btnagendasim.Visible = true;
+                TipoAM = "";
+                BtnAvancada.Enabled = true;
+                BtnBasica.Enabled = true;
+                BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            }
+            Motivo();
+        }
+        private void CbOrigem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pegaUnidadeEnd = CbOrigem.Text;
+            unidade_Endereco();
+            txtEnderecoOrigem.Text = Endereco1;
+        }
+        private void CbDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pegaUnidadeEnd = CbDestino.Text;
+            unidade_Endereco();
+            txtEnderecoDestino.Text = Endereco1;
+        }
+        private void Lista_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idAmbu = Convert.ToInt32(Lista.Rows[e.RowIndex].Cells[0].Value.ToString());
+            statusAMLista = Lista.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+            NomeAM = Lista.Rows[e.RowIndex].Cells["Ambulancia"].Value.ToString();
+            PainelAM2.Visible = false;
+            label22.Text = NomeAM;
+        }
+        private void Lista_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null && e.Value.Equals("BLOQUEADA"))
+            {
+                Lista.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+            else if (e.Value != null && e.Value.Equals("OCUPADA"))
+            {
+                Lista.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+            }
+            else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
+            {
+                Lista.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
         }
 

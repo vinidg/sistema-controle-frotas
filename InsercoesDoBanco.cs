@@ -12,57 +12,87 @@ namespace Sistema_Controle
     {
 
         public void inserirSolicitacaoDoPaciente(string TipoSolicitacao, DateTime DtHrdoInicio, string Agendamento, DateTime DtHrdoAgendamento,
-            string NomeSolicitante, string LocalSolicitacao, string Telefone, string Paciente, string Genero, string Idade,string Diagnostico, 
-            string Motivo, string SubMotivo, string Prioridade, string Origem, string EnderecoOrigem, string Destino, string EnderecoDestino, 
-            string ObsGerais, int AmSolicitada, string usuario)
-        {
+                                                 string NomeSolicitante, string LocalSolicitacao, string Telefone, string Paciente, string Genero, string Idade,string Diagnostico, 
+                                                 string Motivo, string SubMotivo, string Prioridade, string Origem, string EnderecoOrigem, string Destino, string EnderecoDestino, 
+                                                 string ObsGerais, int AmSolicitada, string usuario)
+                                            {
 
-            using (DAHUEEntities dahue = new DAHUEEntities())
-            {
+                                                using (DAHUEEntities dahue = new DAHUEEntities())
+                                                {
 
-                solicitacoes_paciente solicitacoesPaciente = new solicitacoes_paciente();
+                                                    solicitacoes_paciente solicitacoesPaciente = new solicitacoes_paciente();
 
-                solicitacoesPaciente.TipoSolicitacao = TipoSolicitacao;
-                solicitacoesPaciente.DtHrdoInicio = DtHrdoInicio;
-                solicitacoesPaciente.Agendamento = Agendamento;
-                solicitacoesPaciente.DtHrdoAgendamento = DtHrdoAgendamento;
-                solicitacoesPaciente.NomeSolicitante = NomeSolicitante;
-                solicitacoesPaciente.LocalSolicitacao = LocalSolicitacao;
-                solicitacoesPaciente.Telefone = Telefone;
-                solicitacoesPaciente.Paciente = Paciente;
-                solicitacoesPaciente.Genero = Genero;
-                solicitacoesPaciente.Idade = Idade;
-                solicitacoesPaciente.Diagnostico = Diagnostico;
-                solicitacoesPaciente.Motivo = Motivo;
-                solicitacoesPaciente.SubMotivo = SubMotivo;
-                solicitacoesPaciente.Prioridade = Prioridade;
-                solicitacoesPaciente.Origem = Origem;
-                solicitacoesPaciente.EnderecoOrigem = EnderecoOrigem;
-                solicitacoesPaciente.Destino = Destino;
-                solicitacoesPaciente.EnderecoDestino = EnderecoDestino;
-                solicitacoesPaciente.ObsGerais = ObsGerais;
-                solicitacoesPaciente.AmSolicitada = AmSolicitada;
-                if(Agendamento == "Sim")
-                {
-                    solicitacoesPaciente.Registrado = "Aguardando resposta do controle";
-                }
-                else
-                {
-                    solicitacoesPaciente.Registrado = "Sim";
-                }
+                                                    solicitacoesPaciente.TipoSolicitacao = TipoSolicitacao;
+                                                    solicitacoesPaciente.DtHrdoInicio = DtHrdoInicio;
+                                                    solicitacoesPaciente.Agendamento = Agendamento;
+                                                    solicitacoesPaciente.DtHrdoAgendamento = DtHrdoAgendamento;
+                                                    solicitacoesPaciente.NomeSolicitante = NomeSolicitante;
+                                                    solicitacoesPaciente.LocalSolicitacao = LocalSolicitacao;
+                                                    solicitacoesPaciente.Telefone = Telefone;
+                                                    solicitacoesPaciente.Paciente = Paciente;
+                                                    solicitacoesPaciente.Genero = Genero;
+                                                    solicitacoesPaciente.Idade = Idade;
+                                                    solicitacoesPaciente.Diagnostico = Diagnostico;
+                                                    solicitacoesPaciente.Motivo = Motivo;
+                                                    solicitacoesPaciente.SubMotivo = SubMotivo;
+                                                    solicitacoesPaciente.Prioridade = Prioridade;
+                                                    solicitacoesPaciente.Origem = Origem;
+                                                    solicitacoesPaciente.EnderecoOrigem = EnderecoOrigem;
+                                                    solicitacoesPaciente.Destino = Destino;
+                                                    solicitacoesPaciente.EnderecoDestino = EnderecoDestino;
+                                                    solicitacoesPaciente.ObsGerais = ObsGerais;
+                                                    solicitacoesPaciente.AmSolicitada = AmSolicitada;
+                                                    if(Agendamento == "Sim")
+                                                    {
+                                                        solicitacoesPaciente.Registrado = "Aguardando resposta do controle";
+                                                    }
+                                                    else
+                                                    {
+                                                        solicitacoesPaciente.Registrado = "Sim";
+                                                    }
 
 
-                historico hi = new historico();
-                hi.Usuario = usuario;
-                hi.DtHrRegistro = DtHrdoInicio;
+                                                    historico hi = new historico();
+                                                    hi.Usuario = usuario;
+                                                    hi.DtHrRegistro = DtHrdoInicio;
 
-                dahue.solicitacoes_paciente.Add(solicitacoesPaciente);
-                dahue.historico.Add(hi);
-                dahue.SaveChanges();
-            }
-            MessageBox.Show("Solicitação salva com sucesso !!!");
-        }
+                                                    dahue.solicitacoes_paciente.Add(solicitacoesPaciente);
+                                                    dahue.historico.Add(hi);
+                                                    dahue.SaveChanges();
+                                                }
+                                                MessageBox.Show("Solicitação salva com sucesso !!!");
+                                            }
+        public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, DateTime DtHrdoAgendamento, string nomeSolicitante, string localSolicitante,
+                                               string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string prioridade, string origem, string enderecoOrigem,
+                                               string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais)
+                                            {
 
+                                                using(DAHUEEntities db = new DAHUEEntities())
+                                                {
+                                                    solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPaciente);
+                                                    sp.TipoSolicitacao = tipoAM;
+                                                    sp.Agendamento = agendamento;
+                                                    sp.DtHrdoAgendamento = DtHrdoAgendamento;
+                                                    sp.NomeSolicitante = nomeSolicitante;
+                                                    sp.LocalSolicitacao = localSolicitante;
+                                                    sp.Telefone = telefone;
+                                                    sp.Paciente = nomePaciente;
+                                                    sp.Genero = sexo;
+                                                    sp.Idade = idade;
+                                                    sp.Diagnostico = diagnostico;
+                                                    sp.Motivo = motivoChamado;
+                                                    sp.SubMotivo = tipoMotivoChamado;
+                                                    sp.Prioridade = prioridade;
+                                                    sp.Origem = origem;
+                                                    sp.EnderecoOrigem = enderecoOrigem;
+                                                    sp.Destino = destino;
+                                                    sp.EnderecoDestino = enderecoDestino;
+                                                    sp.ObsGerais = obsGerais;
+
+                                                    db.SaveChanges();
+                                                }
+                                                MessageBox.Show("Solicitação alterada com sucesso !!!");
+                                            }   
         public void inserirEquipeNaAmbulancia(string condutor, string enfermeiros, DateTime dtEscala, int idAM)
         {
             using(DAHUEEntities db = new DAHUEEntities()){
@@ -76,7 +106,6 @@ namespace Sistema_Controle
                 db.SaveChanges();
             }
         }
-
         public void inserirEquipeAmOcupada(int idequipe, int idSolAM)
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -89,7 +118,6 @@ namespace Sistema_Controle
                 db.SaveChanges();
             }
         }
-
         public void inserirBloqueioDaAm(string DtHrStatus, string Registrado, string Motivo, int FkAM)
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -109,7 +137,6 @@ namespace Sistema_Controle
         
             }
         }
-
         public void inserirDesloqueioDaAm(string Registrado, string DthrDesblo, int FkAMd)
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -128,7 +155,6 @@ namespace Sistema_Controle
 
             }
         }
-
         public void cancelarSolicitacao(int idPaciente, int idSolicitacaoAM, string MotivoCancelamento, string DtHrCancelamento, string ResposavelCancelamento, string ObsCancelamento)
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -146,7 +172,6 @@ namespace Sistema_Controle
                 db.SaveChanges();
             }
         }
-
         public void updateNasTabelasParaCancelar(int idPaciente, int AMocup, int idSolicitacaoAM)
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -172,7 +197,6 @@ namespace Sistema_Controle
                 db.SaveChanges();
             }
         }
-
         public void confirmarAmbulanciaNaSolicitacao(int IDPaciente, int idAmbu)
         {
             using(DAHUEEntities db = new DAHUEEntities())
@@ -193,40 +217,6 @@ namespace Sistema_Controle
                 db.SaveChanges();
             }
         }
-
-        public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, DateTime DtHrdoAgendamento, string nomeSolicitante, string localSolicitante,
-            string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string prioridade, string origem, string enderecoOrigem,
-            string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais)
-        {
-
-            using(DAHUEEntities db = new DAHUEEntities())
-            {
-                solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPaciente);
-                sp.TipoSolicitacao = tipoAM;
-                sp.Agendamento = agendamento;
-                sp.DtHrdoAgendamento = DtHrdoAgendamento;
-                sp.NomeSolicitante = nomeSolicitante;
-                sp.LocalSolicitacao = localSolicitante;
-                sp.Telefone = telefone;
-                sp.Paciente = nomePaciente;
-                sp.Genero = sexo;
-                sp.Idade = idade;
-                sp.Diagnostico = diagnostico;
-                sp.Motivo = motivoChamado;
-                sp.SubMotivo = tipoMotivoChamado;
-                sp.Prioridade = prioridade;
-                sp.Origem = origem;
-                sp.EnderecoOrigem = enderecoOrigem;
-                sp.Destino = destino;
-                sp.EnderecoDestino = enderecoDestino;
-                sp.ObsGerais = obsGerais;
-
-                db.SaveChanges();
-            }
-            MessageBox.Show("Solicitação alterada com sucesso !!!");
-        }
-
-   
 
     }
 }

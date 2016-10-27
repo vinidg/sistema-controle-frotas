@@ -41,12 +41,7 @@ namespace Sistema_Controle
             NomeAM = label1.Text;
 
         }
-        public string NomeAM1
-        {
 
-            get { return NomeAM; }
-            set { NomeAM = value; }
-        }
         private void BtnTroca_Click(object sender, EventArgs e)
         {
             Paineltrocar.Visible = true;
@@ -64,16 +59,6 @@ namespace Sistema_Controle
             Paineltrocar.Visible = false;
             selectEquipeBD();
             EquipeAtribuiNaOcupada();
-        }
-        private void EquipeAtribuiNaOcupada()
-        {
-            if (this.Text == "Ocupada")
-            {
-                InsercoesDoBanco ib = new InsercoesDoBanco();
-                ib.inserirEquipeAmOcupada(codEquipe ,SolicitaAM);
-                
-                MessageBox.Show("Equipe trocada !");
-            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -135,6 +120,17 @@ namespace Sistema_Controle
             SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
             this.Dispose();
             sand.ShowDialog();
+        }
+
+        private void EquipeAtribuiNaOcupada()
+        {
+            if (this.Text == "Ocupada")
+            {
+                InsercoesDoBanco ib = new InsercoesDoBanco();
+                ib.inserirEquipeAmOcupada(codEquipe ,SolicitaAM);
+                
+                MessageBox.Show("Equipe trocada !");
+            }
         }
         public void atualizarStatusOcupadoPacientePorCodigo()
         {
@@ -491,7 +487,6 @@ namespace Sistema_Controle
             }
             
         }
-
         private void BtnOrigem_Click(object sender, EventArgs e)
         {
 
@@ -554,7 +549,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Avise a equipe que é necessario informar a saida da origem !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
-
         private void BtnSaiuOrigem_Click(object sender, EventArgs e)
         {
 
@@ -617,7 +611,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Avise a equipe que é necessario informar ao chegar ao destino !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
-
         private void BtnEquipeDestino_Click(object sender, EventArgs e)
         {
 
@@ -680,7 +673,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Avise a equipe que é necessario informar ao ser liberado do destino !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
-
         private void EquipeLiberada_Click(object sender, EventArgs e)
         {
 
@@ -742,7 +734,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Avise a equipe que é necessario informar a chegada no pátio !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
-
         private void BtnPatio_Click(object sender, EventArgs e)
         {
 
@@ -793,6 +784,7 @@ namespace Sistema_Controle
 
         }
         #endregion
+
         private bool validarData(string sData)
         {
             try
@@ -805,7 +797,6 @@ namespace Sistema_Controle
                 return false;
             }
         }
-
         private void DesativarMascara()
         {
             txtHora.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;

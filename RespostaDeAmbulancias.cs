@@ -57,7 +57,6 @@ namespace Sistema_Controle
 
             }
         }
-
         public void puxarAgendadasPendentes()
         {
 
@@ -143,7 +142,6 @@ namespace Sistema_Controle
 
             }
         }
-
         private void Calendario_DateChanged(object sender, DateRangeEventArgs e)
         {
             if (Respondidos.Checked == true)
@@ -155,19 +153,30 @@ namespace Sistema_Controle
                 puxarAgendadasPendentes();
             }
         }
+        private void RespostaDeAmbulancias_Activated(object sender, EventArgs e)
+        {
+            if (Respondidos.Checked == true)
+            {
+                puxarAgendadasNegadas();
+                Respondidos.Checked = true;
+            }
+            else
+            {
+                puxarAgendadasPendentes();
+                Encaminhados.Checked = true;
+            }
+        }
 
         private void Encaminhados_Click(object sender, EventArgs e)
         {
             puxarAgendadasPendentes();
             negativa.Visible = true;
         }
-
         private void Respondidos_Click(object sender, EventArgs e)
         {
             puxarAgendadasNegadas();
             negativa.Visible = false;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (id.Text != "")
@@ -188,21 +197,17 @@ namespace Sistema_Controle
                 MessageBox.Show("Selecione a solicitação que deseja reagendar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void RespostaDeAmbulancias_Activated(object sender, EventArgs e)
+        private void negativa_Click(object sender, EventArgs e)
         {
-            if (Respondidos.Checked == true)
-            {
-                puxarAgendadasNegadas();
-                Respondidos.Checked = true;
+            if (idPaciente != 0) { 
+                NegarReagendamento nr = new NegarReagendamento(idPaciente);
+                nr.ShowDialog();
             }
             else
             {
-                puxarAgendadasPendentes();
-                Encaminhados.Checked = true;
+                MessageBox.Show("Selecione a solicitação que deseja cancelar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Reagendamentos_Click(object sender, EventArgs e)
         {
             if (id.Text != "")
@@ -215,7 +220,6 @@ namespace Sistema_Controle
                 MessageBox.Show("Selecione a solicitação que deseja ver o histórico de reagendamentos !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Aceitar_Click(object sender, EventArgs e)
         {
             if (id.Text != "")
@@ -249,6 +253,19 @@ namespace Sistema_Controle
                 MessageBox.Show("Selecione a solicitação que deseja aceitar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void cancelarReagendamento_Click(object sender, EventArgs e)
+        {
+            if (idPaciente != 0)
+            {
+                SelecionaAM ST = new SelecionaAM(idPaciente, 0, 0);
+                ST.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione a solicitação que deseja cancelar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void ClearTextBoxes()
         {
             Action<Control.ControlCollection> func = null;
@@ -278,31 +295,6 @@ namespace Sistema_Controle
             };
 
             func(Controls);
-        }
-
-        private void negativa_Click(object sender, EventArgs e)
-        {
-            if (idPaciente != 0) { 
-                NegarReagendamento nr = new NegarReagendamento(idPaciente);
-                nr.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Selecione a solicitação que deseja cancelar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cancelarReagendamento_Click(object sender, EventArgs e)
-        {
-            if (idPaciente != 0)
-            {
-                SelecionaAM ST = new SelecionaAM(idPaciente, 0, 0);
-                ST.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Selecione a solicitação que deseja cancelar !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
     }
