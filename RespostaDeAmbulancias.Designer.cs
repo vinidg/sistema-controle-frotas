@@ -154,7 +154,7 @@
             this.cancelarReagendamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
             this.cancelarReagendamento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelarReagendamento.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.cancelarReagendamento.Location = new System.Drawing.Point(951, 223);
+            this.cancelarReagendamento.Location = new System.Drawing.Point(954, 223);
             this.cancelarReagendamento.Name = "cancelarReagendamento";
             this.cancelarReagendamento.Size = new System.Drawing.Size(104, 33);
             this.cancelarReagendamento.TabIndex = 104;
@@ -219,7 +219,7 @@
             this.Encaminhados.AutoSize = true;
             this.Encaminhados.Checked = true;
             this.Encaminhados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Encaminhados.Location = new System.Drawing.Point(19, 10);
+            this.Encaminhados.Location = new System.Drawing.Point(7, 10);
             this.Encaminhados.Name = "Encaminhados";
             this.Encaminhados.Size = new System.Drawing.Size(219, 24);
             this.Encaminhados.TabIndex = 96;
@@ -262,7 +262,7 @@
             // Calendario
             // 
             this.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Calendario.Location = new System.Drawing.Point(831, 34);
+            this.Calendario.Location = new System.Drawing.Point(828, 34);
             this.Calendario.MaxSelectionCount = 31;
             this.Calendario.Name = "Calendario";
             this.Calendario.TabIndex = 0;

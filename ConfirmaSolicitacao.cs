@@ -233,9 +233,22 @@ namespace Sistema_Controle
             else
             {
                 RegistrarSolicitacao();
-                Limpar();
-                ClearTextBoxes();
-                ClearComboBox();
+                if(Agendamento == "Sim"){
+                    DialogResult result1 = MessageBox.Show("Deseja usar as mesmas informações para solicitar outro agendamento ?",
+                    "Atenção !",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result1 == DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+
+                    Limpar();
+                    ClearTextBoxes();
+                    ClearComboBox();
+                }
             }
 
         }
