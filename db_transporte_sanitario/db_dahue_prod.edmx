@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DAHUEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ambulancia">
+          <Key>
+            <PropertyRef Name="idAmbulancia" />
+          </Key>
+          <Property Name="idAmbulancia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeAmbulancia" Type="nvarchar" MaxLength="45" />
+          <Property Name="StatusAmbulancia" Type="nvarchar" MaxLength="45" />
+          <Property Name="TipoAM" Type="nvarchar" MaxLength="45" />
+          <Property Name="Desativado" Type="int" />
+        </EntityType>
+        <EntityType Name="bloqueio">
+          <Key>
+            <PropertyRef Name="idBloqueio" />
+          </Key>
+          <Property Name="idBloqueio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DtHrStatus" Type="nvarchar" MaxLength="150" />
+          <Property Name="Registrado" Type="nvarchar" MaxLength="150" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="250" />
+          <Property Name="FkAM" Type="int" />
+        </EntityType>
+        <EntityType Name="cancelados_pacientes">
+          <Key>
+            <PropertyRef Name="idcancelados_pacientes" />
+          </Key>
+          <Property Name="idcancelados_pacientes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPaciente" Type="int" />
+          <Property Name="idSolicitacaoAM" Type="int" />
+          <Property Name="MotivoCancelamento" Type="nvarchar" MaxLength="100" />
+          <Property Name="DtHrCancelamento" Type="nvarchar" MaxLength="45" />
+          <Property Name="ResposavelCancelamento" Type="nvarchar" MaxLength="45" />
+          <Property Name="ObsCancelamento" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="desbloqueioam">
+          <Key>
+            <PropertyRef Name="idDesbloqueioAM" />
+          </Key>
+          <Property Name="idDesbloqueioAM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Registrado" Type="nvarchar" MaxLength="45" />
+          <Property Name="DthrDesblo" Type="nvarchar" MaxLength="60" />
+          <Property Name="fkAMd" Type="int" />
+        </EntityType>
+        <EntityType Name="enderecos">
+          <Key>
+            <PropertyRef Name="idControle" />
+          </Key>
+          <Property Name="idControle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeUnidade" Type="nvarchar" MaxLength="100" />
+          <Property Name="Endereco" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Distancia" Type="nvarchar" MaxLength="8" />
+          <Property Name="Minutos" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="equipe">
+          <Key>
+            <PropertyRef Name="idEquipe" />
+          </Key>
+          <Property Name="idEquipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Condutor" Type="nvarchar" MaxLength="45" />
+          <Property Name="Enfermeiros" Type="nvarchar" MaxLength="200" />
+          <Property Name="DtEscala" Type="datetime" Nullable="false" />
+          <Property Name="idAM" Type="int" />
+        </EntityType>
+        <EntityType Name="equipe_solam">
+          <Key>
+            <PropertyRef Name="idEquipe_solamcol" />
+          </Key>
+          <Property Name="idequipe" Type="int" />
+          <Property Name="idSolAM" Type="int" />
+          <Property Name="idEquipe_solamcol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historico">
+          <Key>
+            <PropertyRef Name="IdHistorico" />
+          </Key>
+          <Property Name="IdHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtHrRegistro" Type="datetime" Nullable="false" />
+          <Property Name="idPaciente_Solicitacao" Type="int" Nullable="false" />
+          <Property Name="Obs" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="prontuarios">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomePaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="NomedaMae" Type="nvarchar" MaxLength="150" />
+          <Property Name="NomeSoliciante" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgPaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgSolicitante" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtNascimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="DtAtendimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="45" />
+          <Property Name="Unidade" Type="nvarchar" MaxLength="45" />
+          <Property Name="Internacao" Type="nvarchar" MaxLength="3" />
+          <Property Name="Dias" Type="nvarchar" MaxLength="1" />
+          <Property Name="Obs" Type="nvarchar" MaxLength="200" />
+          <Property Name="DtSolicitacao" Type="nvarchar" MaxLength="80" />
+          <Property Name="Status" Type="nvarchar" MaxLength="45" />
+          <Property Name="Funcionario" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtRetirada" Type="nvarchar" MaxLength="20" />
+          <Property Name="Motivo_Rg" Type="nvarchar" MaxLength="90" />
+          <Property Name="DtHrFato" Type="nvarchar" MaxLength="45" />
+          <Property Name="LocalFato" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="prontuariosupas">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomePaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="NomedaMae" Type="nvarchar" MaxLength="150" />
+          <Property Name="NomeSoliciante" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgPaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgSolicitante" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtNascimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="DtAtendimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="45" />
+          <Property Name="Unidade" Type="nvarchar" MaxLength="45" />
+          <Property Name="Internacao" Type="nvarchar" MaxLength="3" />
+          <Property Name="Dias" Type="nvarchar" MaxLength="2" />
+          <Property Name="Obs" Type="nvarchar" MaxLength="200" />
+          <Property Name="DtSolicitacao" Type="nvarchar" MaxLength="80" />
+          <Property Name="Status" Type="nvarchar" MaxLength="45" />
+          <Property Name="Funcionario" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtRetirada" Type="nvarchar" MaxLength="20" />
+          <Property Name="Motivo_Rg" Type="nvarchar" MaxLength="90" />
+          <Property Name="DtHrFato" Type="nvarchar" MaxLength="45" />
+          <Property Name="LocalFato" Type="nvarchar" MaxLength="45" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="referencias">
+          <Key>
+            <PropertyRef Name="referencias_id" />
+          </Key>
+          <Property Name="referencias_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ALTA_HOSPITALAR" Type="nvarchar" MaxLength="45" />
+          <Property Name="AVALIACAO_DE_MEDICO_ESPECIALISTA" Type="nvarchar" MaxLength="45" />
+          <Property Name="AVALIACAO_DE_PROFISSIONAL_NAO_MEDICO" Type="nvarchar" MaxLength="25" />
+          <Property Name="CONSULTA_AGENDADA" Type="nvarchar" MaxLength="45" />
+          <Property Name="DEMANDA_JUDICIAL" Type="nvarchar" MaxLength="25" />
+          <Property Name="EVENTO_COMEMORATIVO_DO_MUNICIPIO" Type="nvarchar" MaxLength="25" />
+          <Property Name="EVENTO_DE_CULTURA_LAZER_OU_RELIGIAO" Type="nvarchar" MaxLength="255" />
+          <Property Name="EVENTO_ESPORTIVO" Type="nvarchar" MaxLength="45" />
+          <Property Name="EXAME_AGENDADO" Type="nvarchar" MaxLength="25" />
+          <Property Name="EXAME_DE_URGENCIA" Type="nvarchar" MaxLength="25" />
+          <Property Name="INTERNACAO_EM_ENFERMARIA" Type="nvarchar" MaxLength="25" />
+          <Property Name="INTERNACAO_EM_UTI" Type="nvarchar" MaxLength="25" />
+          <Property Name="PROCEDIMENTO" Type="nvarchar" MaxLength="25" />
+          <Property Name="RETORNO" Type="nvarchar" MaxLength="25" />
+          <Property Name="SALA_VERMELHA_EMERGENCIA" Type="nvarchar" MaxLength="12" />
+          <Property Name="TRANSPORTE_DE_INSUMOS_PRODUTOS_MATERIAIS" Type="nvarchar" MaxLength="45" />
+          <Property Name="TRANSPORTE_DE_PROFISSIONAIS" Type="nvarchar" MaxLength="45" />
+          <Property Name="TRANSFERENCIA" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="solicitacoes_agendamentos">
+          <Key>
+            <PropertyRef Name="idSolicitacaoAgendamento" />
+          </Key>
+          <Property Name="idSolicitacaoAgendamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DtHrAgendamento" Type="datetime" Nullable="false" />
+          <Property Name="idSolicitacao_paciente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="solicitacoes_ambulancias">
+          <Key>
+            <PropertyRef Name="idSolicitacoes_Ambulancias" />
+          </Key>
+          <Property Name="idSolicitacoes_Ambulancias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSolicitacoesPacientes" Type="int" />
+          <Property Name="Cancelamento" Type="varbinary(max)" />
+          <Property Name="DtHrCiencia" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrCienciaReg" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrChegadaOrigem" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrChegadaOrigemReg" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrSaidaOrigem" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrSaidaOrigemReg" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrChegadaDestino" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrChegadaDestinoReg" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrLiberacaoEquipe" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrLiberacaoEquipeReg" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrEquipePatio" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrEquipePatioReg" Type="nvarchar" MaxLength="45" />
+          <Property Name="idAmbulanciaSol" Type="int" Nullable="false" />
+          <Property Name="SolicitacaoConcluida" Type="int" />
+          <Property Name="IdOutroPaciente" Type="int" />
+        </EntityType>
+        <EntityType Name="solicitacoes_paciente">
+          <Key>
+            <PropertyRef Name="idPaciente_Solicitacoes" />
+          </Key>
+          <Property Name="idPaciente_Solicitacoes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoSolicitacao" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DtHrdoInicio" Type="datetime" Nullable="false" />
+          <Property Name="Agendamento" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrAgendamento" Type="nvarchar" MaxLength="45" />
+          <Property Name="NomeSolicitante" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LocalSolicitacao" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Paciente" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Genero" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="Idade" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Diagnostico" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="SubMotivo" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="150" />
+          <Property Name="Origem" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="EnderecoOrigem" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Destino" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="EnderecoDestino" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ObsGerais" Type="nvarchar" MaxLength="300" />
+          <Property Name="AmSolicitada" Type="int" />
+          <Property Name="Registrado" Type="nvarchar" MaxLength="50" />
+          <Property Name="HrRegistro" Type="nvarchar" MaxLength="50" />
+          <Property Name="DtHrdoAgendamento" Type="datetime" />
+          <Property Name="idReagendamento" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="equipe$idAM">
+          <End Role="ambulancia" Type="Self.ambulancia" Multiplicity="0..1" />
+          <End Role="equipe" Type="Self.equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ambulancia">
+              <PropertyRef Name="idAmbulancia" />
+            </Principal>
+            <Dependent Role="equipe">
+              <PropertyRef Name="idAM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="equipe_solam$idEquipe">
+          <End Role="equipe" Type="Self.equipe" Multiplicity="0..1" />
+          <End Role="equipe_solam" Type="Self.equipe_solam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipe">
+              <PropertyRef Name="idEquipe" />
+            </Principal>
+            <Dependent Role="equipe_solam">
+              <PropertyRef Name="idequipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__historico__idPac__640DD89F">
+          <End Role="solicitacoes_paciente" Type="Self.solicitacoes_paciente" Multiplicity="1" />
+          <End Role="historico" Type="Self.historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="solicitacoes_paciente">
+              <PropertyRef Name="idPaciente_Solicitacoes" />
+            </Principal>
+            <Dependent Role="historico">
+              <PropertyRef Name="idPaciente_Solicitacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSolPacientes">
+          <End Role="solicitacoes_paciente" Type="Self.solicitacoes_paciente" Multiplicity="1" />
+          <End Role="solicitacoes_agendamentos" Type="Self.solicitacoes_agendamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="solicitacoes_paciente">
+              <PropertyRef Name="idPaciente_Solicitacoes" />
+            </Principal>
+            <Dependent Role="solicitacoes_agendamentos">
+              <PropertyRef Name="idSolicitacao_paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="solicitacoes_ambulancias$idAmbulanciaSol">
+          <End Role="ambulancia" Type="Self.ambulancia" Multiplicity="1" />
+          <End Role="solicitacoes_ambulancias" Type="Self.solicitacoes_ambulancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ambulancia">
+              <PropertyRef Name="idAmbulancia" />
+            </Principal>
+            <Dependent Role="solicitacoes_ambulancias">
+              <PropertyRef Name="idAmbulanciaSol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DAHUEModelStoreContainer">
+          <EntitySet Name="ambulancia" EntityType="Self.ambulancia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bloqueio" EntityType="Self.bloqueio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cancelados_pacientes" EntityType="Self.cancelados_pacientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="desbloqueioam" EntityType="Self.desbloqueioam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enderecos" EntityType="Self.enderecos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="equipe" EntityType="Self.equipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="equipe_solam" EntityType="Self.equipe_solam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historico" EntityType="Self.historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prontuarios" EntityType="Self.prontuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prontuariosupas" EntityType="Self.prontuariosupas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="referencias" EntityType="Self.referencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="solicitacoes_agendamentos" EntityType="Self.solicitacoes_agendamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="solicitacoes_ambulancias" EntityType="Self.solicitacoes_ambulancias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="solicitacoes_paciente" EntityType="Self.solicitacoes_paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="equipe$idAM" Association="Self.equipe$idAM">
+            <End Role="ambulancia" EntitySet="ambulancia" />
+            <End Role="equipe" EntitySet="equipe" />
+          </AssociationSet>
+          <AssociationSet Name="equipe_solam$idEquipe" Association="Self.equipe_solam$idEquipe">
+            <End Role="equipe" EntitySet="equipe" />
+            <End Role="equipe_solam" EntitySet="equipe_solam" />
+          </AssociationSet>
+          <AssociationSet Name="FK__historico__idPac__640DD89F" Association="Self.FK__historico__idPac__640DD89F">
+            <End Role="solicitacoes_paciente" EntitySet="solicitacoes_paciente" />
+            <End Role="historico" EntitySet="historico" />
+          </AssociationSet>
+          <AssociationSet Name="FKSolPacientes" Association="Self.FKSolPacientes">
+            <End Role="solicitacoes_paciente" EntitySet="solicitacoes_paciente" />
+            <End Role="solicitacoes_agendamentos" EntitySet="solicitacoes_agendamentos" />
+          </AssociationSet>
+          <AssociationSet Name="solicitacoes_ambulancias$idAmbulanciaSol" Association="Self.solicitacoes_ambulancias$idAmbulanciaSol">
+            <End Role="ambulancia" EntitySet="ambulancia" />
+            <End Role="solicitacoes_ambulancias" EntitySet="solicitacoes_ambulancias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DAHUEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ambulancia">
+          <Key>
+            <PropertyRef Name="idAmbulancia" />
+          </Key>
+          <Property Name="idAmbulancia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeAmbulancia" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="StatusAmbulancia" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="TipoAM" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Desativado" Type="Int32" />
+          <NavigationProperty Name="equipe" Relationship="Self.equipe_idAM" FromRole="ambulancia" ToRole="equipe" />
+          <NavigationProperty Name="solicitacoes_ambulancias" Relationship="Self.solicitacoes_ambulancias_idAmbulanciaSol" FromRole="ambulancia" ToRole="solicitacoes_ambulancias" />
+        </EntityType>
+        <EntityType Name="bloqueio">
+          <Key>
+            <PropertyRef Name="idBloqueio" />
+          </Key>
+          <Property Name="idBloqueio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DtHrStatus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Registrado" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FkAM" Type="Int32" />
+        </EntityType>
+        <EntityType Name="cancelados_pacientes">
+          <Key>
+            <PropertyRef Name="idcancelados_pacientes" />
+          </Key>
+          <Property Name="idcancelados_pacientes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPaciente" Type="Int32" />
+          <Property Name="idSolicitacaoAM" Type="Int32" />
+          <Property Name="MotivoCancelamento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrCancelamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="ResposavelCancelamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="ObsCancelamento" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="desbloqueioam">
+          <Key>
+            <PropertyRef Name="idDesbloqueioAM" />
+          </Key>
+          <Property Name="idDesbloqueioAM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Registrado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DthrDesblo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="fkAMd" Type="Int32" />
+        </EntityType>
+        <EntityType Name="enderecos">
+          <Key>
+            <PropertyRef Name="idControle" />
+          </Key>
+          <Property Name="idControle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeUnidade" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Distancia" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Minutos" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="equipe">
+          <Key>
+            <PropertyRef Name="idEquipe" />
+          </Key>
+          <Property Name="idEquipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Condutor" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Enfermeiros" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DtEscala" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idAM" Type="Int32" />
+          <NavigationProperty Name="ambulancia" Relationship="Self.equipe_idAM" FromRole="equipe" ToRole="ambulancia" />
+          <NavigationProperty Name="equipe_solam" Relationship="Self.equipe_solam_idEquipe" FromRole="equipe" ToRole="equipe_solam" />
+        </EntityType>
+        <EntityType Name="equipe_solam">
+          <Key>
+            <PropertyRef Name="idEquipe_solamcol" />
+          </Key>
+          <Property Name="idequipe" Type="Int32" />
+          <Property Name="idSolAM" Type="Int32" />
+          <Property Name="idEquipe_solamcol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="equipe" Relationship="Self.equipe_solam_idEquipe" FromRole="equipe_solam" ToRole="equipe" />
+        </EntityType>
+        <EntityType Name="historico">
+          <Key>
+            <PropertyRef Name="IdHistorico" />
+          </Key>
+          <Property Name="IdHistorico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DtHrRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idPaciente_Solicitacao" Type="Int32" Nullable="false" />
+          <Property Name="Obs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="solicitacoes_paciente" Relationship="Self.FK__historico__idPac__640DD89F" FromRole="historico" ToRole="solicitacoes_paciente" />
+        </EntityType>
+        <EntityType Name="prontuarios">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomePaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NomedaMae" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NomeSoliciante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgPaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgSolicitante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtNascimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DtAtendimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Unidade" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Internacao" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Dias" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DtSolicitacao" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Funcionario" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtRetirada" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo_Rg" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="LocalFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="prontuariosupas">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomePaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NomedaMae" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NomeSoliciante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgPaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgSolicitante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtNascimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DtAtendimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Unidade" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Internacao" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Dias" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DtSolicitacao" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Funcionario" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtRetirada" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo_Rg" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="LocalFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="referencias">
+          <Key>
+            <PropertyRef Name="referencias_id" />
+          </Key>
+          <Property Name="referencias_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ALTA_HOSPITALAR" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="AVALIACAO_DE_MEDICO_ESPECIALISTA" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="AVALIACAO_DE_PROFISSIONAL_NAO_MEDICO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CONSULTA_AGENDADA" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DEMANDA_JUDICIAL" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="EVENTO_COMEMORATIVO_DO_MUNICIPIO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="EVENTO_DE_CULTURA_LAZER_OU_RELIGIAO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EVENTO_ESPORTIVO" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="EXAME_AGENDADO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="EXAME_DE_URGENCIA" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="INTERNACAO_EM_ENFERMARIA" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="INTERNACAO_EM_UTI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PROCEDIMENTO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="RETORNO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SALA_VERMELHA_EMERGENCIA" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="TRANSPORTE_DE_INSUMOS_PRODUTOS_MATERIAIS" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="TRANSPORTE_DE_PROFISSIONAIS" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="TRANSFERENCIA" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="solicitacoes_agendamentos">
+          <Key>
+            <PropertyRef Name="idSolicitacaoAgendamento" />
+          </Key>
+          <Property Name="idSolicitacaoAgendamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DtHrAgendamento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idSolicitacao_paciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="solicitacoes_paciente" Relationship="Self.FKSolPacientes" FromRole="solicitacoes_agendamentos" ToRole="solicitacoes_paciente" />
+        </EntityType>
+        <EntityType Name="solicitacoes_ambulancias">
+          <Key>
+            <PropertyRef Name="idSolicitacoes_Ambulancias" />
+          </Key>
+          <Property Name="idSolicitacoes_Ambulancias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSolicitacoesPacientes" Type="Int32" />
+          <Property Name="Cancelamento" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DtHrCiencia" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrCienciaReg" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrChegadaOrigem" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrChegadaOrigemReg" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrSaidaOrigem" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrSaidaOrigemReg" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrChegadaDestino" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrChegadaDestinoReg" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrLiberacaoEquipe" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrLiberacaoEquipeReg" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrEquipePatio" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrEquipePatioReg" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="idAmbulanciaSol" Type="Int32" Nullable="false" />
+          <Property Name="SolicitacaoConcluida" Type="Int32" />
+          <Property Name="IdOutroPaciente" Type="Int32" />
+          <NavigationProperty Name="ambulancia" Relationship="Self.solicitacoes_ambulancias_idAmbulanciaSol" FromRole="solicitacoes_ambulancias" ToRole="ambulancia" />
+        </EntityType>
+        <EntityType Name="solicitacoes_paciente">
+          <Key>
+            <PropertyRef Name="idPaciente_Solicitacoes" />
+          </Key>
+          <Property Name="idPaciente_Solicitacoes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoSolicitacao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DtHrdoInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Agendamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrAgendamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NomeSolicitante" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocalSolicitacao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Paciente" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genero" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Idade" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Diagnostico" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Motivo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubMotivo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prioridade" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Origem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EnderecoOrigem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Destino" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EnderecoDestino" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ObsGerais" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AmSolicitada" Type="Int32" />
+          <Property Name="Registrado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HrRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrdoAgendamento" Type="DateTime" Precision="3" />
+          <Property Name="idReagendamento" Type="Int32" />
+          <NavigationProperty Name="historico" Relationship="Self.FK__historico__idPac__640DD89F" FromRole="solicitacoes_paciente" ToRole="historico" />
+          <NavigationProperty Name="solicitacoes_agendamentos" Relationship="Self.FKSolPacientes" FromRole="solicitacoes_paciente" ToRole="solicitacoes_agendamentos" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="equipe_idAM">
+          <End Role="ambulancia" Type="Self.ambulancia" Multiplicity="0..1" />
+          <End Role="equipe" Type="Self.equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ambulancia">
+              <PropertyRef Name="idAmbulancia" />
+            </Principal>
+            <Dependent Role="equipe">
+              <PropertyRef Name="idAM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="solicitacoes_ambulancias_idAmbulanciaSol">
+          <End Role="ambulancia" Type="Self.ambulancia" Multiplicity="1" />
+          <End Role="solicitacoes_ambulancias" Type="Self.solicitacoes_ambulancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ambulancia">
+              <PropertyRef Name="idAmbulancia" />
+            </Principal>
+            <Dependent Role="solicitacoes_ambulancias">
+              <PropertyRef Name="idAmbulanciaSol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="equipe_solam_idEquipe">
+          <End Role="equipe" Type="Self.equipe" Multiplicity="0..1" />
+          <End Role="equipe_solam" Type="Self.equipe_solam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipe">
+              <PropertyRef Name="idEquipe" />
+            </Principal>
+            <Dependent Role="equipe_solam">
+              <PropertyRef Name="idequipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__historico__idPac__640DD89F">
+          <End Role="solicitacoes_paciente" Type="Self.solicitacoes_paciente" Multiplicity="1" />
+          <End Role="historico" Type="Self.historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="solicitacoes_paciente">
+              <PropertyRef Name="idPaciente_Solicitacoes" />
+            </Principal>
+            <Dependent Role="historico">
+              <PropertyRef Name="idPaciente_Solicitacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSolPacientes">
+          <End Role="solicitacoes_paciente" Type="Self.solicitacoes_paciente" Multiplicity="1" />
+          <End Role="solicitacoes_agendamentos" Type="Self.solicitacoes_agendamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="solicitacoes_paciente">
+              <PropertyRef Name="idPaciente_Solicitacoes" />
+            </Principal>
+            <Dependent Role="solicitacoes_agendamentos">
+              <PropertyRef Name="idSolicitacao_paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DAHUEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ambulancia" EntityType="Self.ambulancia" />
+          <EntitySet Name="bloqueio" EntityType="Self.bloqueio" />
+          <EntitySet Name="cancelados_pacientes" EntityType="Self.cancelados_pacientes" />
+          <EntitySet Name="desbloqueioam" EntityType="Self.desbloqueioam" />
+          <EntitySet Name="enderecos" EntityType="Self.enderecos" />
+          <EntitySet Name="equipe" EntityType="Self.equipe" />
+          <EntitySet Name="equipe_solam" EntityType="Self.equipe_solam" />
+          <EntitySet Name="historico" EntityType="Self.historico" />
+          <EntitySet Name="prontuarios" EntityType="Self.prontuarios" />
+          <EntitySet Name="prontuariosupas" EntityType="Self.prontuariosupas" />
+          <EntitySet Name="referencias" EntityType="Self.referencias" />
+          <EntitySet Name="solicitacoes_agendamentos" EntityType="Self.solicitacoes_agendamentos" />
+          <EntitySet Name="solicitacoes_ambulancias" EntityType="Self.solicitacoes_ambulancias" />
+          <EntitySet Name="solicitacoes_paciente" EntityType="Self.solicitacoes_paciente" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="equipe_idAM" Association="Self.equipe_idAM">
+            <End Role="ambulancia" EntitySet="ambulancia" />
+            <End Role="equipe" EntitySet="equipe" />
+          </AssociationSet>
+          <AssociationSet Name="solicitacoes_ambulancias_idAmbulanciaSol" Association="Self.solicitacoes_ambulancias_idAmbulanciaSol">
+            <End Role="ambulancia" EntitySet="ambulancia" />
+            <End Role="solicitacoes_ambulancias" EntitySet="solicitacoes_ambulancias" />
+          </AssociationSet>
+          <AssociationSet Name="equipe_solam_idEquipe" Association="Self.equipe_solam_idEquipe">
+            <End Role="equipe" EntitySet="equipe" />
+            <End Role="equipe_solam" EntitySet="equipe_solam" />
+          </AssociationSet>
+          <AssociationSet Name="FK__historico__idPac__640DD89F" Association="Self.FK__historico__idPac__640DD89F">
+            <End Role="solicitacoes_paciente" EntitySet="solicitacoes_paciente" />
+            <End Role="historico" EntitySet="historico" />
+          </AssociationSet>
+          <AssociationSet Name="FKSolPacientes" Association="Self.FKSolPacientes">
+            <End Role="solicitacoes_paciente" EntitySet="solicitacoes_paciente" />
+            <End Role="solicitacoes_agendamentos" EntitySet="solicitacoes_agendamentos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DAHUEModelStoreContainer" CdmEntityContainer="DAHUEEntities">
+          <EntitySetMapping Name="ambulancia">
+            <EntityTypeMapping TypeName="DAHUEModel.ambulancia">
+              <MappingFragment StoreEntitySet="ambulancia">
+                <ScalarProperty Name="idAmbulancia" ColumnName="idAmbulancia" />
+                <ScalarProperty Name="NomeAmbulancia" ColumnName="NomeAmbulancia" />
+                <ScalarProperty Name="StatusAmbulancia" ColumnName="StatusAmbulancia" />
+                <ScalarProperty Name="TipoAM" ColumnName="TipoAM" />
+                <ScalarProperty Name="Desativado" ColumnName="Desativado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bloqueio">
+            <EntityTypeMapping TypeName="DAHUEModel.bloqueio">
+              <MappingFragment StoreEntitySet="bloqueio">
+                <ScalarProperty Name="idBloqueio" ColumnName="idBloqueio" />
+                <ScalarProperty Name="DtHrStatus" ColumnName="DtHrStatus" />
+                <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="FkAM" ColumnName="FkAM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cancelados_pacientes">
+            <EntityTypeMapping TypeName="DAHUEModel.cancelados_pacientes">
+              <MappingFragment StoreEntitySet="cancelados_pacientes">
+                <ScalarProperty Name="idcancelados_pacientes" ColumnName="idcancelados_pacientes" />
+                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+                <ScalarProperty Name="idSolicitacaoAM" ColumnName="idSolicitacaoAM" />
+                <ScalarProperty Name="MotivoCancelamento" ColumnName="MotivoCancelamento" />
+                <ScalarProperty Name="DtHrCancelamento" ColumnName="DtHrCancelamento" />
+                <ScalarProperty Name="ResposavelCancelamento" ColumnName="ResposavelCancelamento" />
+                <ScalarProperty Name="ObsCancelamento" ColumnName="ObsCancelamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="desbloqueioam">
+            <EntityTypeMapping TypeName="DAHUEModel.desbloqueioam">
+              <MappingFragment StoreEntitySet="desbloqueioam">
+                <ScalarProperty Name="idDesbloqueioAM" ColumnName="idDesbloqueioAM" />
+                <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+                <ScalarProperty Name="DthrDesblo" ColumnName="DthrDesblo" />
+                <ScalarProperty Name="fkAMd" ColumnName="fkAMd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enderecos">
+            <EntityTypeMapping TypeName="DAHUEModel.enderecos">
+              <MappingFragment StoreEntitySet="enderecos">
+                <ScalarProperty Name="idControle" ColumnName="idControle" />
+                <ScalarProperty Name="NomeUnidade" ColumnName="NomeUnidade" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Distancia" ColumnName="Distancia" />
+                <ScalarProperty Name="Minutos" ColumnName="Minutos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipe">
+            <EntityTypeMapping TypeName="DAHUEModel.equipe">
+              <MappingFragment StoreEntitySet="equipe">
+                <ScalarProperty Name="idEquipe" ColumnName="idEquipe" />
+                <ScalarProperty Name="Condutor" ColumnName="Condutor" />
+                <ScalarProperty Name="Enfermeiros" ColumnName="Enfermeiros" />
+                <ScalarProperty Name="DtEscala" ColumnName="DtEscala" />
+                <ScalarProperty Name="idAM" ColumnName="idAM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipe_solam">
+            <EntityTypeMapping TypeName="DAHUEModel.equipe_solam">
+              <MappingFragment StoreEntitySet="equipe_solam">
+                <ScalarProperty Name="idequipe" ColumnName="idequipe" />
+                <ScalarProperty Name="idSolAM" ColumnName="idSolAM" />
+                <ScalarProperty Name="idEquipe_solamcol" ColumnName="idEquipe_solamcol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historico">
+            <EntityTypeMapping TypeName="DAHUEModel.historico">
+              <MappingFragment StoreEntitySet="historico">
+                <ScalarProperty Name="IdHistorico" ColumnName="IdHistorico" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DtHrRegistro" ColumnName="DtHrRegistro" />
+                <ScalarProperty Name="idPaciente_Solicitacao" ColumnName="idPaciente_Solicitacao" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prontuarios">
+            <EntityTypeMapping TypeName="DAHUEModel.prontuarios">
+              <MappingFragment StoreEntitySet="prontuarios">
+                <ScalarProperty Name="idProntuarios" ColumnName="idProntuarios" />
+                <ScalarProperty Name="NomePaciente" ColumnName="NomePaciente" />
+                <ScalarProperty Name="NomedaMae" ColumnName="NomedaMae" />
+                <ScalarProperty Name="NomeSoliciante" ColumnName="NomeSoliciante" />
+                <ScalarProperty Name="RgPaciente" ColumnName="RgPaciente" />
+                <ScalarProperty Name="RgSolicitante" ColumnName="RgSolicitante" />
+                <ScalarProperty Name="DtNascimento" ColumnName="DtNascimento" />
+                <ScalarProperty Name="DtAtendimento" ColumnName="DtAtendimento" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+                <ScalarProperty Name="Internacao" ColumnName="Internacao" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="DtSolicitacao" ColumnName="DtSolicitacao" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
+                <ScalarProperty Name="DtRetirada" ColumnName="DtRetirada" />
+                <ScalarProperty Name="Motivo_Rg" ColumnName="Motivo_Rg" />
+                <ScalarProperty Name="DtHrFato" ColumnName="DtHrFato" />
+                <ScalarProperty Name="LocalFato" ColumnName="LocalFato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prontuariosupas">
+            <EntityTypeMapping TypeName="DAHUEModel.prontuariosupas">
+              <MappingFragment StoreEntitySet="prontuariosupas">
+                <ScalarProperty Name="idProntuarios" ColumnName="idProntuarios" />
+                <ScalarProperty Name="NomePaciente" ColumnName="NomePaciente" />
+                <ScalarProperty Name="NomedaMae" ColumnName="NomedaMae" />
+                <ScalarProperty Name="NomeSoliciante" ColumnName="NomeSoliciante" />
+                <ScalarProperty Name="RgPaciente" ColumnName="RgPaciente" />
+                <ScalarProperty Name="RgSolicitante" ColumnName="RgSolicitante" />
+                <ScalarProperty Name="DtNascimento" ColumnName="DtNascimento" />
+                <ScalarProperty Name="DtAtendimento" ColumnName="DtAtendimento" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+                <ScalarProperty Name="Internacao" ColumnName="Internacao" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="DtSolicitacao" ColumnName="DtSolicitacao" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
+                <ScalarProperty Name="DtRetirada" ColumnName="DtRetirada" />
+                <ScalarProperty Name="Motivo_Rg" ColumnName="Motivo_Rg" />
+                <ScalarProperty Name="DtHrFato" ColumnName="DtHrFato" />
+                <ScalarProperty Name="LocalFato" ColumnName="LocalFato" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="referencias">
+            <EntityTypeMapping TypeName="DAHUEModel.referencias">
+              <MappingFragment StoreEntitySet="referencias">
+                <ScalarProperty Name="referencias_id" ColumnName="referencias_id" />
+                <ScalarProperty Name="ALTA_HOSPITALAR" ColumnName="ALTA_HOSPITALAR" />
+                <ScalarProperty Name="AVALIACAO_DE_MEDICO_ESPECIALISTA" ColumnName="AVALIACAO_DE_MEDICO_ESPECIALISTA" />
+                <ScalarProperty Name="AVALIACAO_DE_PROFISSIONAL_NAO_MEDICO" ColumnName="AVALIACAO_DE_PROFISSIONAL_NAO_MEDICO" />
+                <ScalarProperty Name="CONSULTA_AGENDADA" ColumnName="CONSULTA_AGENDADA" />
+                <ScalarProperty Name="DEMANDA_JUDICIAL" ColumnName="DEMANDA_JUDICIAL" />
+                <ScalarProperty Name="EVENTO_COMEMORATIVO_DO_MUNICIPIO" ColumnName="EVENTO_COMEMORATIVO_DO_MUNICIPIO" />
+                <ScalarProperty Name="EVENTO_DE_CULTURA_LAZER_OU_RELIGIAO" ColumnName="EVENTO_DE_CULTURA_LAZER_OU_RELIGIAO" />
+                <ScalarProperty Name="EVENTO_ESPORTIVO" ColumnName="EVENTO_ESPORTIVO" />
+                <ScalarProperty Name="EXAME_AGENDADO" ColumnName="EXAME_AGENDADO" />
+                <ScalarProperty Name="EXAME_DE_URGENCIA" ColumnName="EXAME_DE_URGENCIA" />
+                <ScalarProperty Name="INTERNACAO_EM_ENFERMARIA" ColumnName="INTERNACAO_EM_ENFERMARIA" />
+                <ScalarProperty Name="INTERNACAO_EM_UTI" ColumnName="INTERNACAO_EM_UTI" />
+                <ScalarProperty Name="PROCEDIMENTO" ColumnName="PROCEDIMENTO" />
+                <ScalarProperty Name="RETORNO" ColumnName="RETORNO" />
+                <ScalarProperty Name="SALA_VERMELHA_EMERGENCIA" ColumnName="SALA_VERMELHA_EMERGENCIA" />
+                <ScalarProperty Name="TRANSPORTE_DE_INSUMOS_PRODUTOS_MATERIAIS" ColumnName="TRANSPORTE_DE_INSUMOS_PRODUTOS_MATERIAIS" />
+                <ScalarProperty Name="TRANSPORTE_DE_PROFISSIONAIS" ColumnName="TRANSPORTE_DE_PROFISSIONAIS" />
+                <ScalarProperty Name="TRANSFERENCIA" ColumnName="TRANSFERENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="solicitacoes_agendamentos">
+            <EntityTypeMapping TypeName="DAHUEModel.solicitacoes_agendamentos">
+              <MappingFragment StoreEntitySet="solicitacoes_agendamentos">
+                <ScalarProperty Name="idSolicitacaoAgendamento" ColumnName="idSolicitacaoAgendamento" />
+                <ScalarProperty Name="DtHrAgendamento" ColumnName="DtHrAgendamento" />
+                <ScalarProperty Name="idSolicitacao_paciente" ColumnName="idSolicitacao_paciente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="solicitacoes_ambulancias">
+            <EntityTypeMapping TypeName="DAHUEModel.solicitacoes_ambulancias">
+              <MappingFragment StoreEntitySet="solicitacoes_ambulancias">
+                <ScalarProperty Name="idSolicitacoes_Ambulancias" ColumnName="idSolicitacoes_Ambulancias" />
+                <ScalarProperty Name="idSolicitacoesPacientes" ColumnName="idSolicitacoesPacientes" />
+                <ScalarProperty Name="Cancelamento" ColumnName="Cancelamento" />
+                <ScalarProperty Name="DtHrCiencia" ColumnName="DtHrCiencia" />
+                <ScalarProperty Name="DtHrCienciaReg" ColumnName="DtHrCienciaReg" />
+                <ScalarProperty Name="DtHrChegadaOrigem" ColumnName="DtHrChegadaOrigem" />
+                <ScalarProperty Name="DtHrChegadaOrigemReg" ColumnName="DtHrChegadaOrigemReg" />
+                <ScalarProperty Name="DtHrSaidaOrigem" ColumnName="DtHrSaidaOrigem" />
+                <ScalarProperty Name="DtHrSaidaOrigemReg" ColumnName="DtHrSaidaOrigemReg" />
+                <ScalarProperty Name="DtHrChegadaDestino" ColumnName="DtHrChegadaDestino" />
+                <ScalarProperty Name="DtHrChegadaDestinoReg" ColumnName="DtHrChegadaDestinoReg" />
+                <ScalarProperty Name="DtHrLiberacaoEquipe" ColumnName="DtHrLiberacaoEquipe" />
+                <ScalarProperty Name="DtHrLiberacaoEquipeReg" ColumnName="DtHrLiberacaoEquipeReg" />
+                <ScalarProperty Name="DtHrEquipePatio" ColumnName="DtHrEquipePatio" />
+                <ScalarProperty Name="DtHrEquipePatioReg" ColumnName="DtHrEquipePatioReg" />
+                <ScalarProperty Name="idAmbulanciaSol" ColumnName="idAmbulanciaSol" />
+                <ScalarProperty Name="SolicitacaoConcluida" ColumnName="SolicitacaoConcluida" />
+                <ScalarProperty Name="IdOutroPaciente" ColumnName="IdOutroPaciente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="solicitacoes_paciente">
+            <EntityTypeMapping TypeName="DAHUEModel.solicitacoes_paciente">
+              <MappingFragment StoreEntitySet="solicitacoes_paciente">
+                <ScalarProperty Name="idPaciente_Solicitacoes" ColumnName="idPaciente_Solicitacoes" />
+                <ScalarProperty Name="TipoSolicitacao" ColumnName="TipoSolicitacao" />
+                <ScalarProperty Name="DtHrdoInicio" ColumnName="DtHrdoInicio" />
+                <ScalarProperty Name="Agendamento" ColumnName="Agendamento" />
+                <ScalarProperty Name="DtHrAgendamento" ColumnName="DtHrAgendamento" />
+                <ScalarProperty Name="NomeSolicitante" ColumnName="NomeSolicitante" />
+                <ScalarProperty Name="LocalSolicitacao" ColumnName="LocalSolicitacao" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Paciente" ColumnName="Paciente" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Idade" ColumnName="Idade" />
+                <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="SubMotivo" ColumnName="SubMotivo" />
+                <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+                <ScalarProperty Name="Origem" ColumnName="Origem" />
+                <ScalarProperty Name="EnderecoOrigem" ColumnName="EnderecoOrigem" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="EnderecoDestino" ColumnName="EnderecoDestino" />
+                <ScalarProperty Name="ObsGerais" ColumnName="ObsGerais" />
+                <ScalarProperty Name="AmSolicitada" ColumnName="AmSolicitada" />
+                <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+                <ScalarProperty Name="HrRegistro" ColumnName="HrRegistro" />
+                <ScalarProperty Name="DtHrdoAgendamento" ColumnName="DtHrdoAgendamento" />
+                <ScalarProperty Name="idReagendamento" ColumnName="idReagendamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DAHUEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
