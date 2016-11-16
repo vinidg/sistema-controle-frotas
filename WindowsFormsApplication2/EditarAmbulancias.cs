@@ -139,11 +139,11 @@ namespace Sistema_Controle
                         am.TipoAM = Tipo.Text;
                         if (OpcaoDesativadoNao.Checked == true)
                         {
-                            am.Desativado = 1;
+                            am.Desativado = 0;
                         }
                         else
                         {
-                            am.Desativado = 0;
+                            am.Desativado = 1;
                         }
 
                         db.SaveChanges();

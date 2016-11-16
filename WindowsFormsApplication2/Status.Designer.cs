@@ -53,6 +53,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.BtnDesbloquear = new System.Windows.Forms.Button();
             this.PainelHistorico = new System.Windows.Forms.Panel();
+            this.painel5 = new System.Windows.Forms.Panel();
+            this.painel4 = new System.Windows.Forms.Panel();
+            this.painel3 = new System.Windows.Forms.Panel();
+            this.painel2 = new System.Windows.Forms.Panel();
+            this.painel1 = new System.Windows.Forms.Panel();
             this.txtHora = new System.Windows.Forms.MaskedTextBox();
             this.BtnOrigem = new System.Windows.Forms.Button();
             this.txtAlterador6 = new System.Windows.Forms.TextBox();
@@ -71,11 +76,6 @@
             this.txtHora4 = new System.Windows.Forms.MaskedTextBox();
             this.txtHora3 = new System.Windows.Forms.MaskedTextBox();
             this.txtHora2 = new System.Windows.Forms.MaskedTextBox();
-            this.painel5 = new System.Windows.Forms.Panel();
-            this.painel4 = new System.Windows.Forms.Panel();
-            this.painel3 = new System.Windows.Forms.Panel();
-            this.painel2 = new System.Windows.Forms.Panel();
-            this.painel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
@@ -337,15 +337,14 @@
             this.PainelHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.PainelHistorico.Controls.Add(this.painel5);
             this.PainelHistorico.Controls.Add(this.painel4);
-            this.PainelHistorico.Controls.Add(this.painel3);
-            this.PainelHistorico.Controls.Add(this.painel2);
-            this.PainelHistorico.Controls.Add(this.painel1);
             this.PainelHistorico.Controls.Add(this.txtHora);
-            this.PainelHistorico.Controls.Add(this.BtnOrigem);
+            this.PainelHistorico.Controls.Add(this.painel3);
             this.PainelHistorico.Controls.Add(this.txtAlterador6);
             this.PainelHistorico.Controls.Add(this.BtnPatio);
+            this.PainelHistorico.Controls.Add(this.painel2);
             this.PainelHistorico.Controls.Add(this.txtAlterador5);
             this.PainelHistorico.Controls.Add(this.EquipeLiberada);
+            this.PainelHistorico.Controls.Add(this.painel1);
             this.PainelHistorico.Controls.Add(this.txtAlterador4);
             this.PainelHistorico.Controls.Add(this.BtnEquipeDestino);
             this.PainelHistorico.Controls.Add(this.txtAlterador3);
@@ -358,17 +357,68 @@
             this.PainelHistorico.Controls.Add(this.txtHora4);
             this.PainelHistorico.Controls.Add(this.txtHora3);
             this.PainelHistorico.Controls.Add(this.txtHora2);
+            this.PainelHistorico.Controls.Add(this.BtnOrigem);
             this.PainelHistorico.Location = new System.Drawing.Point(74, 446);
             this.PainelHistorico.Name = "PainelHistorico";
             this.PainelHistorico.Size = new System.Drawing.Size(1066, 159);
             this.PainelHistorico.TabIndex = 13;
             this.PainelHistorico.Visible = false;
             // 
+            // painel5
+            // 
+            this.painel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel5.Location = new System.Drawing.Point(838, 12);
+            this.painel5.Name = "painel5";
+            this.painel5.Size = new System.Drawing.Size(144, 138);
+            this.painel5.TabIndex = 22;
+            // 
+            // painel4
+            // 
+            this.painel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel4.Location = new System.Drawing.Point(688, 12);
+            this.painel4.Name = "painel4";
+            this.painel4.Size = new System.Drawing.Size(144, 138);
+            this.painel4.TabIndex = 21;
+            // 
+            // painel3
+            // 
+            this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel3.Location = new System.Drawing.Point(539, 12);
+            this.painel3.Name = "painel3";
+            this.painel3.Size = new System.Drawing.Size(144, 138);
+            this.painel3.TabIndex = 20;
+            // 
+            // painel2
+            // 
+            this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel2.Location = new System.Drawing.Point(390, 12);
+            this.painel2.Name = "painel2";
+            this.painel2.Size = new System.Drawing.Size(144, 138);
+            this.painel2.TabIndex = 19;
+            // 
+            // painel1
+            // 
+            this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel1.Location = new System.Drawing.Point(242, 12);
+            this.painel1.Name = "painel1";
+            this.painel1.Size = new System.Drawing.Size(143, 138);
+            this.painel1.TabIndex = 18;
+            // 
             // txtHora
             // 
             this.txtHora.Enabled = false;
             this.txtHora.Location = new System.Drawing.Point(93, 95);
-            this.txtHora.Mask = "00/00/0000 90:00";
+            this.txtHora.Mask = "00/00/0000 90:00:00";
             this.txtHora.Name = "txtHora";
             this.txtHora.Size = new System.Drawing.Size(143, 20);
             this.txtHora.TabIndex = 23;
@@ -503,7 +553,7 @@
             // 
             this.txtHora6.Enabled = false;
             this.txtHora6.Location = new System.Drawing.Point(839, 97);
-            this.txtHora6.Mask = "00/00/0000 90:00";
+            this.txtHora6.Mask = "00/00/0000 90:00:00";
             this.txtHora6.Name = "txtHora6";
             this.txtHora6.Size = new System.Drawing.Size(143, 20);
             this.txtHora6.TabIndex = 28;
@@ -512,7 +562,7 @@
             // 
             this.txtHora5.Enabled = false;
             this.txtHora5.Location = new System.Drawing.Point(688, 97);
-            this.txtHora5.Mask = "00/00/0000 90:00";
+            this.txtHora5.Mask = "00/00/0000 90:00:00";
             this.txtHora5.Name = "txtHora5";
             this.txtHora5.Size = new System.Drawing.Size(143, 20);
             this.txtHora5.TabIndex = 27;
@@ -521,7 +571,7 @@
             // 
             this.txtHora4.Enabled = false;
             this.txtHora4.Location = new System.Drawing.Point(539, 97);
-            this.txtHora4.Mask = "00/00/0000 90:00";
+            this.txtHora4.Mask = "00/00/0000 90:00:00";
             this.txtHora4.Name = "txtHora4";
             this.txtHora4.Size = new System.Drawing.Size(143, 20);
             this.txtHora4.TabIndex = 26;
@@ -530,7 +580,7 @@
             // 
             this.txtHora3.Enabled = false;
             this.txtHora3.Location = new System.Drawing.Point(390, 97);
-            this.txtHora3.Mask = "00/00/0000 90:00";
+            this.txtHora3.Mask = "00/00/0000 90:00:00";
             this.txtHora3.Name = "txtHora3";
             this.txtHora3.Size = new System.Drawing.Size(143, 20);
             this.txtHora3.TabIndex = 25;
@@ -539,60 +589,10 @@
             // 
             this.txtHora2.Enabled = false;
             this.txtHora2.Location = new System.Drawing.Point(242, 97);
-            this.txtHora2.Mask = "00/00/0000 90:00";
+            this.txtHora2.Mask = "00/00/0000 90:00:00";
             this.txtHora2.Name = "txtHora2";
             this.txtHora2.Size = new System.Drawing.Size(143, 20);
             this.txtHora2.TabIndex = 24;
-            // 
-            // painel5
-            // 
-            this.painel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel5.Location = new System.Drawing.Point(838, 6);
-            this.painel5.Name = "painel5";
-            this.painel5.Size = new System.Drawing.Size(144, 138);
-            this.painel5.TabIndex = 22;
-            // 
-            // painel4
-            // 
-            this.painel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel4.Location = new System.Drawing.Point(688, 6);
-            this.painel4.Name = "painel4";
-            this.painel4.Size = new System.Drawing.Size(144, 138);
-            this.painel4.TabIndex = 21;
-            // 
-            // painel3
-            // 
-            this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel3.Location = new System.Drawing.Point(539, 6);
-            this.painel3.Name = "painel3";
-            this.painel3.Size = new System.Drawing.Size(144, 138);
-            this.painel3.TabIndex = 20;
-            // 
-            // painel2
-            // 
-            this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel2.Location = new System.Drawing.Point(390, 6);
-            this.painel2.Name = "painel2";
-            this.painel2.Size = new System.Drawing.Size(144, 138);
-            this.painel2.TabIndex = 19;
-            // 
-            // painel1
-            // 
-            this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel1.Location = new System.Drawing.Point(242, 6);
-            this.painel1.Name = "painel1";
-            this.painel1.Size = new System.Drawing.Size(143, 138);
-            this.painel1.TabIndex = 18;
             // 
             // label8
             // 

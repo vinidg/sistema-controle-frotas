@@ -420,21 +420,21 @@ namespace Sistema_Controle
         private void BtnEquipeCiente_Click(object sender, EventArgs e)
         {
 
-            if (txtHora.Enabled == false && txtHora.Text != "__/__/____ __:__")
+            if (txtHora.Enabled == false && txtHora.Text != "__/__/____ __:__:__")
             {
                 txtHora.Enabled = true;
                 txtAlterador.Enabled = true;
                 BtnEquipeCiente.Text = "Alterar";
                 return;
             }
-            if (txtHora.Enabled == true && txtHora.Text != "__/__/____ __:__")
+            if (txtHora.Enabled == true && txtHora.Text != "__/__/____ __:__:__")
             {
                 if (validarData(txtHora.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (txtHora2.Text != "__/__/____ __:__")
+                if (txtHora2.Text != "__/__/____ __:__:__")
                 {
                     if (Convert.ToDateTime(txtHora.Text) >= Convert.ToDateTime(txtHora2.Text))
                     {
@@ -490,21 +490,21 @@ namespace Sistema_Controle
         private void BtnOrigem_Click(object sender, EventArgs e)
         {
 
-            if (txtHora2.Enabled == false && txtHora2.Text != "__/__/____ __:__")
+            if (txtHora2.Enabled == false && txtHora2.Text != "__/__/____ __:__:__")
             {
                 txtHora2.Enabled = true;
                 txtAlterador2.Enabled = true;
                 BtnOrigem.Text = "Alterar";
                 return;
             }
-            if (txtHora2.Enabled == true && txtHora2.Text != "__/__/____ __:__")
+            if (txtHora2.Enabled == true && txtHora2.Text != "__/__/____ __:__:__")
             {
                 if (validarData(txtHora.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (txtHora3.Text != "__/__/____ __:__")
+                if (txtHora3.Text != "__/__/____ __:__:__")
                 {
                     if (Convert.ToDateTime(txtHora2.Text) >= Convert.ToDateTime(txtHora3.Text) || Convert.ToDateTime(txtHora2.Text) <= Convert.ToDateTime(txtHora.Text))
                     {
@@ -552,21 +552,21 @@ namespace Sistema_Controle
         private void BtnSaiuOrigem_Click(object sender, EventArgs e)
         {
 
-            if (txtHora3.Enabled == false && txtHora3.Text != "__/__/____ __:__")
+            if (txtHora3.Enabled == false && txtHora3.Text != "__/__/____ __:__:__")
             {
                 txtHora3.Enabled = true;
                 txtAlterador3.Enabled = true;
                 BtnSaiuOrigem.Text = "Alterar";
                 return;
             }
-            if (txtHora3.Enabled == true && txtHora3.Text != "__/__/____ __:__")
+            if (txtHora3.Enabled == true && txtHora3.Text != "__/__/____ __:__:__")
             {
                 if (validarData(txtHora.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (txtHora4.Text != "__/__/____ __:__")
+                if (txtHora4.Text != "__/__/____ __:__:__")
                 {
                     if (Convert.ToDateTime(txtHora3.Text) >= Convert.ToDateTime(txtHora4.Text) || Convert.ToDateTime(txtHora3.Text) <= Convert.ToDateTime(txtHora2.Text))
                     {
@@ -614,23 +614,23 @@ namespace Sistema_Controle
         private void BtnEquipeDestino_Click(object sender, EventArgs e)
         {
 
-            if (txtHora4.Enabled == false && txtHora4.Text != "__/__/____ __:__")
+            if (txtHora4.Enabled == false && txtHora4.Text != "__/__/____ __:__:__")
             {
                 txtHora4.Enabled = true;
                 txtAlterador4.Enabled = true;
                 BtnEquipeDestino.Text = "Alterar";
                 return;
             }
-            if (txtHora4.Enabled == true && txtHora4.Text != "__/__/____ __:__")
+            if (txtHora4.Enabled == true && txtHora4.Text != "__/__/____ __:__:__")
             {
                 if (validarData(txtHora.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (txtHora5.Text != "__/__/____ __:__")
+                if (txtHora5.Text != "__/__/____ __:__:__")
                 {
-                    if (Convert.ToDateTime(txtHora4.Text) >= Convert.ToDateTime(txtHora5.Text) || Convert.ToDateTime(txtHora4.Text) <= Convert.ToDateTime(txtHora3.Text) && txtHora5.Text != "__/__/____ __:__")
+                    if (Convert.ToDateTime(txtHora4.Text) >= Convert.ToDateTime(txtHora5.Text) || Convert.ToDateTime(txtHora4.Text) <= Convert.ToDateTime(txtHora3.Text) && txtHora5.Text != "__/__/____ __:__:__")
                     {
                         MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -676,14 +676,14 @@ namespace Sistema_Controle
         private void EquipeLiberada_Click(object sender, EventArgs e)
         {
 
-            if (txtHora5.Enabled == false && txtHora5.Text != "__/__/____ __:__")
+            if (txtHora5.Enabled == false && txtHora5.Text != "__/__/____ __:__:__")
             {
                 txtHora5.Enabled = true;
                 txtAlterador5.Enabled = true;
                 EquipeLiberada.Text = "Alterar";
                 return;
             }
-            if (txtHora5.Enabled == true && txtHora5.Text != "__/__/____ __:__")
+            if (txtHora5.Enabled == true && txtHora5.Text != "__/__/____ __:__:__")
             {
 
                 if (validarData(txtHora.Text).Equals(false))
@@ -691,9 +691,9 @@ namespace Sistema_Controle
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (txtHora6.Text != "__/__/____ __:__")
+                if (txtHora6.Text != "__/__/____ __:__:__")
                 {
-                    if (Convert.ToDateTime(txtHora5.Text) >= Convert.ToDateTime(txtHora6.Text) || Convert.ToDateTime(txtHora5.Text) <= Convert.ToDateTime(txtHora4.Text) && txtHora6.Text != "__/__/____ __:__")
+                    if (Convert.ToDateTime(txtHora5.Text) >= Convert.ToDateTime(txtHora6.Text) || Convert.ToDateTime(txtHora5.Text) <= Convert.ToDateTime(txtHora4.Text) && txtHora6.Text != "__/__/____ __:__:__")
                     {
                         MessageBox.Show("A data e hora esta superior à seguinte e inferior à anterior", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;

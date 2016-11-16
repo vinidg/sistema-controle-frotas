@@ -35,74 +35,8 @@ namespace Sistema_Controle
             }
             Obs.SelectedText.ToUpper();
         }
-
-        private void PreencherCampos(int id)
-        {
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var query = (from sp in db.solicitacoes_paciente
-                             where sp.idPaciente_Solicitacoes == id
-                             select sp).FirstOrDefault();
-                if (query.Agendamento == "Sim")
-                {
-                    Btnagendasim.PerformClick();
-                }
-                else
-                {
-                    Btnagendanao.PerformClick();
-                }
-                if (query.TipoSolicitacao == "BÁSICA")
-                {
-                    BtnBasica.PerformClick();
-                }
-                else
-                {
-                    BtnAvancada.PerformClick();
-                }
-                CbLocalSolicita.Text = query.LocalSolicitacao;
-                txtTelefone.Text = query.Telefone;
-                txtNomePaciente.Text = query.Paciente;
-                if (query.Genero == "M")
-                {
-                    RbMasculino.Checked = false;
-                }
-                else
-                {
-                    RbFemenino.Checked = true;
-                }
-                txtIdade.Text = query.Idade;
-                txtDiagnostico.Text = query.Diagnostico;
-                CbMotivoChamado.Text = query.Motivo;
-                CbTipoMotivoSelecionado.Text = query.SubMotivo;
-                Prioridade.Text = query.Prioridade;
-                CbOrigem.Text = query.Origem;
-                txtEnderecoOrigem.Text = query.EnderecoOrigem;
-                CbDestino.Text = query.Destino;
-                txtEnderecoDestino.Text = query.EnderecoDestino;
-                Obs.Text = query.ObsGerais;
-            }
-        }
-        public void Limpar()
-        {
-            RbFemenino.Checked = false;
-            RbMasculino.Checked = false;
-            TipoAM = "";
-            Agendamento = "";
-            Obs.Text = "";
-            label3.Visible = false;
-            dataAgendamento.Visible = false;
-
-            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
-            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
-
-            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
-            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
-            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
-            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
-        }
-
+        
+        #region Clicks
         private void BtnBasica_Click(object sender, EventArgs e)
         {
             label2.Visible = true;
@@ -224,10 +158,16 @@ namespace Sistema_Controle
                 MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else if (dataAgendamento.Value <= DateTime.Now && Agendamento == "Sim")
+            {
+                MessageBox.Show("A data de agendamento não deve ser menor que a data atual", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             else
             {
                 RegistrarSolicitacao();
-                if(Agendamento == "Sim"){
+                if (Agendamento == "Sim")
+                {
                     DialogResult result1 = MessageBox.Show("Deseja usar as mesmas informações para solicitar outro agendamento ?",
                     "Atenção !",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -245,13 +185,132 @@ namespace Sistema_Controle
             }
 
         }
+
+        #endregion
+
+        #region Limpar_campos
+
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
             Limpar();
             ClearComboBox();
             ClearTextBoxes();
         }
+        private void AutoCompletar()
+        {
+            RbFemenino.Checked = false;
+            RbMasculino.Checked = false;
+            txtIdade.Text = "";
 
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var autoCompletar = db.solicitacoes_paciente
+                    .Select(a => a.Paciente).Distinct().ToArray();
+                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+                source.AddRange(autoCompletar);
+                txtNomePaciente.AutoCompleteCustomSource = source;
+
+            }
+        }
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+        private void ClearComboBox()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is ComboBox)
+                        (control as ComboBox).SelectedIndex = -1;
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+        public void Limpar()
+        {
+            RbFemenino.Checked = false;
+            RbMasculino.Checked = false;
+            TipoAM = "";
+            Agendamento = "";
+            Obs.Text = "";
+            label3.Visible = false;
+            dataAgendamento.Visible = false;
+
+            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
+            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
+            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
+
+            BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
+            BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
+            BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+            BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+        }
+
+        #endregion
+    
+        private void PreencherCampos(int id)
+        {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.idPaciente_Solicitacoes == id
+                             select sp).FirstOrDefault();
+                if (query.Agendamento == "Sim")
+                {
+                    Btnagendasim.PerformClick();
+                }
+                else
+                {
+                    Btnagendanao.PerformClick();
+                }
+                if (query.TipoSolicitacao == "BÁSICA")
+                {
+                    BtnBasica.PerformClick();
+                }
+                else
+                {
+                    BtnAvancada.PerformClick();
+                }
+                CbLocalSolicita.Text = query.LocalSolicitacao;
+                txtTelefone.Text = query.Telefone;
+                txtNomePaciente.Text = query.Paciente;
+                if (query.Genero == "M")
+                {
+                    RbMasculino.Checked = false;
+                }
+                else
+                {
+                    RbFemenino.Checked = true;
+                }
+                txtIdade.Text = query.Idade;
+                txtDiagnostico.Text = query.Diagnostico;
+                CbMotivoChamado.Text = query.Motivo;
+                CbTipoMotivoSelecionado.Text = query.SubMotivo;
+                Prioridade.Text = query.Prioridade;
+                CbOrigem.Text = query.Origem;
+                txtEnderecoOrigem.Text = query.EnderecoOrigem;
+                CbDestino.Text = query.Destino;
+                txtEnderecoDestino.Text = query.EnderecoDestino;
+                Obs.Text = query.ObsGerais;
+            }
+        }
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -502,52 +561,7 @@ namespace Sistema_Controle
         {
             e.KeyChar = Char.ToUpper(e.KeyChar);
         }
-        private void AutoCompletar()
-        {
-            RbFemenino.Checked = false;
-            RbMasculino.Checked = false;
-            txtIdade.Text = "";
 
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var autoCompletar = db.solicitacoes_paciente
-                    .Select(a => a.Paciente).Distinct().ToArray();
-                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
-                source.AddRange(autoCompletar);
-                txtNomePaciente.AutoCompleteCustomSource = source;
-
-            }
-        }
-        private void ClearTextBoxes()
-        {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                    if (control is TextBox)
-                        (control as TextBox).Clear();
-                    else
-                        func(control.Controls);
-            };
-
-            func(Controls);
-        }
-        private void ClearComboBox()
-        {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                    if (control is ComboBox)
-                        (control as ComboBox).SelectedIndex = -1;
-                    else
-                        func(control.Controls);
-            };
-
-            func(Controls);
-        }
 
     }
 }
