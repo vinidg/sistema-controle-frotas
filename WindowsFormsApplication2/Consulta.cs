@@ -9,50 +9,54 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using db_transporte_sanitario;
+using System.Data.Objects.SqlClient;
 
 namespace Sistema_Controle
 {
     public partial class Consulta : Form
     {
         int IDpesquisa;
-
+        enum Opcao { Nome, Numero, Data, Diagnostico, Origem, Destino, Motivo };
+        Opcao opcao;
         public Consulta()
         {
             InitializeComponent();
             pesquisarTodos();
+            dataInicio.Value = new DateTime(dataInicio.Value.Year, dataInicio.Value.Month, 1);
+
         }
         private void pesquisar()
         {
-            int numero = Convert.ToInt32(numeroFicha.Text);
-           
             consultaSolicitacoes.DataSource = null;
             consultaSolicitacoes.Refresh();
 
-            if(opcaoNome.Checked)
+            if (opcao == Opcao.Nome)
             {
 
-            using(DAHUEEntities db = new DAHUEEntities())
-            {
-            var query = from solicitacoes_paciente in db.solicitacoes_paciente
-                        where
-                          solicitacoes_paciente.Paciente.Contains(nome.Text)
-                        select new
-                        {
-                            solicitacoes_paciente.idPaciente_Solicitacoes,
-                            solicitacoes_paciente.Paciente,
-                            solicitacoes_paciente.Genero,
-                            solicitacoes_paciente.Idade
-                        };
-                consultaSolicitacoes.DataSource = query.ToArray();
-                consultaSolicitacoes.Refresh();
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from solicitacoes_paciente in db.solicitacoes_paciente
+                                where
+                                  solicitacoes_paciente.Paciente.Contains(nome.Text)
+                                select new
+                                {
+                                    solicitacoes_paciente.idPaciente_Solicitacoes,
+                                    solicitacoes_paciente.Paciente,
+                                    solicitacoes_paciente.Genero,
+                                    solicitacoes_paciente.Idade
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
 
-                consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+
             }
 
-            }
-            
-            else if (opcaoNumero.Checked)
+            else if (opcao == Opcao.Numero)
             {
+                int numero = Convert.ToInt32(numeroFicha.Text);
+                
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     var query = from solicitacoes_paciente in db.solicitacoes_paciente
@@ -71,13 +75,51 @@ namespace Sistema_Controle
                     consultaSolicitacoes.Columns[0].HeaderText = "ID";
                 }
             }
+            else if (opcao == Opcao.Data)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where
+                                  sp.DtHrdoInicio >= dataInicio.Value && sp.DtHrdoInicio <= dataFim.Value
+                                select new
+                                {
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
 
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
+            else if (opcao == Opcao.Diagnostico)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where sp.Diagnostico.Contains(diagnostico.Text)
+                                select new
+                               { 
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
+
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
 
 
         }
         private void pesquisarTodos()
         {
-            using(DAHUEEntities db = new DAHUEEntities())
+            using (DAHUEEntities db = new DAHUEEntities())
             {
                 var query = (from solicitacoes_paciente in db.solicitacoes_paciente
                              select new
@@ -95,23 +137,7 @@ namespace Sistema_Controle
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataInicio.Text == "  /  /")
-            {
-                dataInicio.Mask = "";
-            }
-            if (dataFim.Text == "  /  /")
-            {
-                dataFim.Mask = "";
-            }
             pesquisar();
-        }
-        private void dataInicio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            dataInicio.Mask = "00/00/0000";
-        }
-        private void dataFim_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            dataFim.Mask = "00/00/0000";
         }
         private void numeroFicha_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -127,6 +153,7 @@ namespace Sistema_Controle
                 pesquisar();
             }
         }
+
         private void consultaSolicitacoes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             IDpesquisa = Convert.ToInt32(consultaSolicitacoes.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -154,7 +181,7 @@ namespace Sistema_Controle
                 ListaSolicitacaoPaciente.Columns["idSolicitacaoAm"].Visible = false;
             }
 
-            if(ListaSolicitacaoPaciente.Rows.Count == 0)
+            if (ListaSolicitacaoPaciente.Rows.Count == 0)
             {
                 SelecionaAM sand = new SelecionaAM(IDpesquisa, 0, 0);
                 this.Dispose();
@@ -171,17 +198,28 @@ namespace Sistema_Controle
             this.Dispose();
             sand.ShowDialog();
         }
-        private void opcaoNumero_CheckedChanged(object sender, EventArgs e)
+
+        private void numeroFicha_Click(object sender, EventArgs e)
         {
-            nome.Enabled = false;
-            nome.Text = "";
-            numeroFicha.Enabled = true;
+            opcao = Opcao.Numero;
         }
-        private void opcaoNome_CheckedChanged(object sender, EventArgs e)
+        private void nome_Click(object sender, EventArgs e)
         {
-            numeroFicha.Enabled = false;
-            numeroFicha.Text = "0";
-            nome.Enabled = true;
+            opcao = Opcao.Nome;
         }
+        private void diagnostico_Click(object sender, EventArgs e)
+        {
+            opcao = Opcao.Diagnostico;
+        }
+
+        private void dataInicio_Enter(object sender, EventArgs e)
+        {
+            opcao = Opcao.Data;
+        }
+        private void dataFim_Enter(object sender, EventArgs e)
+        {
+            opcao = Opcao.Data;
+        }
+
     }
 }
