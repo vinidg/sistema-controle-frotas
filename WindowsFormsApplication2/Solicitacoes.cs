@@ -36,7 +36,6 @@ namespace Sistema_Controle
             {
                 puxarSolicitacoes();
                 puxarAgendadas();
-
             }
         }
 
@@ -463,7 +462,6 @@ namespace Sistema_Controle
         private void dataFiltroAgenda_ValueChanged(object sender, EventArgs e)
         {
             int zero = 0;
-            DateTime Data = DateTime.Now;
             
             dtagenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
             dataFiltroAgenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Bold);

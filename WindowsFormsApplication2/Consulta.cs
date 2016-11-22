@@ -16,15 +16,19 @@ namespace Sistema_Controle
     public partial class Consulta : Form
     {
         int IDpesquisa;
-        enum Opcao { Nome, Numero, Data, Diagnostico, Origem, Destino, Motivo };
+        enum Opcao { Nome, Numero, Data, Diagnostico, Origem, Destino, Motivo, LocalDaSolicitacao, DataAgendamento};
         Opcao opcao;
         public Consulta()
         {
             InitializeComponent();
             pesquisarTodos();
+            Endereco();
             dataInicio.Value = new DateTime(dataInicio.Value.Year, dataInicio.Value.Month, 1);
-
+            ToolTip descricao = new ToolTip();
+            descricao.SetToolTip(this.label5, "Digite a palavra que a ser procurada no campo diagnóstico. Exemplo: IAM");
+            descricao.SetToolTip(this.diagnostico, "Digite a palavra que a ser procurada no campo diagnóstico. Exemplo: IAM");
         }
+
         private void pesquisar()
         {
             consultaSolicitacoes.DataSource = null;
@@ -106,7 +110,8 @@ namespace Sistema_Controle
                                     sp.idPaciente_Solicitacoes,
                                     sp.Paciente,
                                     sp.Genero,
-                                    sp.Idade
+                                    sp.Idade,
+                                    sp.Diagnostico
                                 };
                     consultaSolicitacoes.DataSource = query.ToArray();
                     consultaSolicitacoes.Refresh();
@@ -114,7 +119,106 @@ namespace Sistema_Controle
                     consultaSolicitacoes.Columns[0].HeaderText = "ID";
                 }
             }
+            else if (opcao == Opcao.Motivo)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where sp.Motivo.Contains(motivo.Text)
+                                select new
+                                {
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade,
+                                    sp.Motivo
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
 
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
+            else if (opcao == Opcao.Origem)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where sp.Diagnostico.Contains(origem.Text)
+                                select new
+                                {
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade,
+                                    sp.Origem
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
+
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
+            else if (opcao == Opcao.Destino)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where sp.Destino.Contains(destino.Text)
+                                select new
+                                {
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade,
+                                    sp.Destino
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
+
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
+            else if (opcao == Opcao.LocalDaSolicitacao)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where sp.LocalSolicitacao.Contains(localdasolicitacao.Text)
+                                select new
+                                {
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade,
+                                    sp.LocalSolicitacao
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
+
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
+            else if (opcao == Opcao.DataAgendamento)
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                where sp.DtHrAgendamento == dataagendamento.Text || sp.DtHrdoAgendamento == dataagendamento.Value
+                                select new
+                                {
+                                    sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade,
+                                    sp.DtHrdoAgendamento
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
+
+                    consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
 
         }
         private void pesquisarTodos()
@@ -128,13 +232,29 @@ namespace Sistema_Controle
                                  solicitacoes_paciente.Paciente,
                                  solicitacoes_paciente.Genero,
                                  solicitacoes_paciente.Idade
-                             }).Take(50);
+                             }).OrderByDescending(x => x.idPaciente_Solicitacoes).Take(50);
                 consultaSolicitacoes.DataSource = query.ToList();
                 consultaSolicitacoes.Refresh();
 
                 consultaSolicitacoes.Columns[0].HeaderText = "ID";
             }
         }
+        public void Endereco()
+        {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                localdasolicitacao.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
+                localdasolicitacao.ValueMember = "NomeUnidade";
+                localdasolicitacao.DisplayMember = "NomeUnidade";
+                destino.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
+                destino.ValueMember = "NomeUnidade";
+                destino.DisplayMember = "NomeUnidade";
+                origem.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
+                origem.ValueMember = "NomeUnidade";
+                origem.DisplayMember = "NomeUnidade";
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             pesquisar();
@@ -211,7 +331,6 @@ namespace Sistema_Controle
         {
             opcao = Opcao.Diagnostico;
         }
-
         private void dataInicio_Enter(object sender, EventArgs e)
         {
             opcao = Opcao.Data;
@@ -219,6 +338,22 @@ namespace Sistema_Controle
         private void dataFim_Enter(object sender, EventArgs e)
         {
             opcao = Opcao.Data;
+        }
+        private void motivo_Click(object sender, EventArgs e)
+        {
+            opcao = Opcao.Motivo;
+        }
+        private void origem_Click(object sender, EventArgs e)
+        {
+            opcao = Opcao.Origem;
+        }
+        private void destino_Click(object sender, EventArgs e)
+        {
+            opcao = Opcao.Destino;
+        }
+        private void localdasolicitacao_Click(object sender, EventArgs e)
+        {
+            opcao = Opcao.LocalDaSolicitacao;
         }
 
     }

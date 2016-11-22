@@ -38,15 +38,29 @@
             this.button1 = new System.Windows.Forms.Button();
             this.consultaSolicitacoes = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataagendamento = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.localdasolicitacao = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.motivo = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.destino = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.origem = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.diagnostico = new System.Windows.Forms.TextBox();
             this.dataFim = new System.Windows.Forms.DateTimePicker();
             this.dataInicio = new System.Windows.Forms.DateTimePicker();
             this.ListaSolicitacaoPaciente = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.consultaSolicitacoes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacaoPaciente)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -127,13 +141,12 @@
             this.consultaSolicitacoes.AllowUserToAddRows = false;
             this.consultaSolicitacoes.AllowUserToDeleteRows = false;
             this.consultaSolicitacoes.AllowUserToResizeRows = false;
-            this.consultaSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.consultaSolicitacoes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.consultaSolicitacoes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.consultaSolicitacoes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
             this.consultaSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.consultaSolicitacoes.Location = new System.Drawing.Point(437, 47);
+            this.consultaSolicitacoes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.consultaSolicitacoes.Location = new System.Drawing.Point(0, 0);
             this.consultaSolicitacoes.MultiSelect = false;
             this.consultaSolicitacoes.Name = "consultaSolicitacoes";
             this.consultaSolicitacoes.ReadOnly = true;
@@ -145,10 +158,20 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.dataagendamento);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.localdasolicitacao);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.motivo);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.destino);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.origem);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.diagnostico);
             this.panel1.Controls.Add(this.dataFim);
@@ -161,8 +184,125 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(12, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(419, 209);
+            this.panel1.Size = new System.Drawing.Size(419, 274);
             this.panel1.TabIndex = 15;
+            // 
+            // dataagendamento
+            // 
+            this.dataagendamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dataagendamento.Location = new System.Drawing.Point(225, 243);
+            this.dataagendamento.Name = "dataagendamento";
+            this.dataagendamento.Size = new System.Drawing.Size(177, 20);
+            this.dataagendamento.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label11.Location = new System.Drawing.Point(222, 221);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(125, 16);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Data Agendamento";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label10.Location = new System.Drawing.Point(9, 221);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(130, 16);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Local da Solicitação";
+            // 
+            // localdasolicitacao
+            // 
+            this.localdasolicitacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.localdasolicitacao.FormattingEnabled = true;
+            this.localdasolicitacao.Location = new System.Drawing.Point(12, 243);
+            this.localdasolicitacao.Name = "localdasolicitacao";
+            this.localdasolicitacao.Size = new System.Drawing.Size(177, 21);
+            this.localdasolicitacao.TabIndex = 18;
+            this.localdasolicitacao.Click += new System.EventHandler(this.localdasolicitacao_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label9.Location = new System.Drawing.Point(222, 121);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 16);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Motivo";
+            // 
+            // motivo
+            // 
+            this.motivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.motivo.FormattingEnabled = true;
+            this.motivo.Items.AddRange(new object[] {
+            "ALTA HOSPITALAR",
+            "AVALIAÇÃO DE MÉDICO ESPECIALISTA",
+            "AVALIAÇÃO DE PROFISSIONAL NÃO MÉDICO",
+            "CONSULTA AGENDADA",
+            "DEMANDAS JUDICIAIS",
+            "EVENTO COMEMORATIVO",
+            "EVENTO DE CULTURA, LAZER OU RELIGIÃO",
+            "EVENTO ESPORTIVO",
+            "EXAME AGENDADO",
+            "EXAME DE URGÊNCIA",
+            "INTERNAÇÃO EM ENFERMARIA",
+            "INTERNAÇÃO EM UTI",
+            "PROCEDIMENTO",
+            "RETORNO",
+            "SALA VERMELHA/EMERGÊNCIA",
+            "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS",
+            "TRANSPORTE DE PROFISSIONAIS",
+            "TRANSFERENCIA"});
+            this.motivo.Location = new System.Drawing.Point(225, 140);
+            this.motivo.Name = "motivo";
+            this.motivo.Size = new System.Drawing.Size(177, 21);
+            this.motivo.TabIndex = 16;
+            this.motivo.Click += new System.EventHandler(this.motivo_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label8.Location = new System.Drawing.Point(222, 168);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 16);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Destino";
+            // 
+            // destino
+            // 
+            this.destino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.destino.FormattingEnabled = true;
+            this.destino.Location = new System.Drawing.Point(225, 187);
+            this.destino.Name = "destino";
+            this.destino.Size = new System.Drawing.Size(177, 21);
+            this.destino.TabIndex = 14;
+            this.destino.Click += new System.EventHandler(this.destino_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label7.Location = new System.Drawing.Point(9, 168);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(52, 16);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Origem";
+            // 
+            // origem
+            // 
+            this.origem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.origem.FormattingEnabled = true;
+            this.origem.Location = new System.Drawing.Point(12, 190);
+            this.origem.Name = "origem";
+            this.origem.Size = new System.Drawing.Size(177, 21);
+            this.origem.TabIndex = 12;
+            this.origem.Click += new System.EventHandler(this.origem_Click);
             // 
             // label5
             // 
@@ -205,19 +345,18 @@
             this.ListaSolicitacaoPaciente.AllowUserToAddRows = false;
             this.ListaSolicitacaoPaciente.AllowUserToDeleteRows = false;
             this.ListaSolicitacaoPaciente.AllowUserToResizeRows = false;
-            this.ListaSolicitacaoPaciente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ListaSolicitacaoPaciente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.ListaSolicitacaoPaciente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.ListaSolicitacaoPaciente.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
             this.ListaSolicitacaoPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaSolicitacaoPaciente.Location = new System.Drawing.Point(12, 262);
+            this.ListaSolicitacaoPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListaSolicitacaoPaciente.Location = new System.Drawing.Point(0, 0);
             this.ListaSolicitacaoPaciente.MultiSelect = false;
             this.ListaSolicitacaoPaciente.Name = "ListaSolicitacaoPaciente";
             this.ListaSolicitacaoPaciente.ReadOnly = true;
             this.ListaSolicitacaoPaciente.RowHeadersVisible = false;
             this.ListaSolicitacaoPaciente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListaSolicitacaoPaciente.Size = new System.Drawing.Size(419, 281);
+            this.ListaSolicitacaoPaciente.Size = new System.Drawing.Size(419, 216);
             this.ListaSolicitacaoPaciente.TabIndex = 16;
             this.ListaSolicitacaoPaciente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaSolicitacaoPaciente_CellDoubleClick);
             // 
@@ -233,16 +372,38 @@
             this.label6.Text = "Clique na consulta que deseja fazer";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
+            this.panel2.Controls.Add(this.ListaSolicitacaoPaciente);
+            this.panel2.Location = new System.Drawing.Point(12, 327);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(419, 216);
+            this.panel2.TabIndex = 18;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
+            this.panel3.Controls.Add(this.consultaSolicitacoes);
+            this.panel3.Location = new System.Drawing.Point(437, 47);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(357, 581);
+            this.panel3.TabIndex = 19;
+            // 
             // Consulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(226)))), ((int)(((byte)(157)))));
             this.ClientSize = new System.Drawing.Size(806, 640);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.ListaSolicitacaoPaciente);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.consultaSolicitacoes);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Consulta";
@@ -252,6 +413,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacaoPaciente)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -273,6 +436,18 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox diagnostico;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox motivo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox destino;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox origem;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox localdasolicitacao;
+        private System.Windows.Forms.DateTimePicker dataagendamento;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
 
 
     }
