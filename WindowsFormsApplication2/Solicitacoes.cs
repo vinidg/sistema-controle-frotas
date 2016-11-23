@@ -82,8 +82,9 @@ namespace Sistema_Controle
                             on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
                             from saa in spsaaajoin.DefaultIfEmpty()
                             where sp.AmSolicitada == zero &&
-                            sp.Agendamento == "Sim" &&
-                            sp.Registrado == "Sim"
+                            sp.Agendamento == "Sim"
+                            && sp.Registrado == "Sim"
+                            && SqlFunctions.DateDiff("day", Data, sp.DtHrdoAgendamento) == 0 
                             orderby sp.Paciente ascending
                             select new
                             {
@@ -106,6 +107,11 @@ namespace Sistema_Controle
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
 
+            }
+            foreach (DataGridViewColumn column in listaAgendadas.Columns)
+            {
+
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
         }
 
@@ -410,7 +416,9 @@ namespace Sistema_Controle
             OrdemPrioridadeAgenda.Font = new Font(OrdemPrioridadeAgenda.Font, FontStyle.Regular);
             dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
             dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
+
         }
+
         private void OrdemNomeAgenda_Click(object sender, EventArgs e)
         {
             int zero = 0;
@@ -457,8 +465,6 @@ namespace Sistema_Controle
             dtreagenda.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
             dataReagendamento.Font = new Font(OrdemNomeAgenda.Font, FontStyle.Regular);
         }
-        #endregion
-
         private void dataFiltroAgenda_ValueChanged(object sender, EventArgs e)
         {
             int zero = 0;
@@ -552,6 +558,8 @@ namespace Sistema_Controle
 
             }
         }
+
+        #endregion
 
     }
 }

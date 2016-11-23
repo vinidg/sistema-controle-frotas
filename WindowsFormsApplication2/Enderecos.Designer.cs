@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Update = new System.Windows.Forms.Button();
+            this.UpdateEndereco = new System.Windows.Forms.Button();
             this.Novo = new System.Windows.Forms.Button();
             this.Telefone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.Update);
+            this.groupBox1.Controls.Add(this.UpdateEndereco);
             this.groupBox1.Controls.Add(this.Novo);
             this.groupBox1.Controls.Add(this.Telefone);
             this.groupBox1.Controls.Add(this.label3);
@@ -79,16 +79,16 @@
             // 
             // Update
             // 
-            this.Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(124)))), ((int)(((byte)(102)))));
-            this.Update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Update.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Update.Location = new System.Drawing.Point(363, 126);
-            this.Update.Name = "Update";
-            this.Update.Size = new System.Drawing.Size(91, 31);
-            this.Update.TabIndex = 8;
-            this.Update.Text = "Update";
-            this.Update.UseVisualStyleBackColor = false;
-            this.Update.Click += new System.EventHandler(this.Update_Click);
+            this.UpdateEndereco.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(124)))), ((int)(((byte)(102)))));
+            this.UpdateEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateEndereco.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.UpdateEndereco.Location = new System.Drawing.Point(363, 126);
+            this.UpdateEndereco.Name = "Update";
+            this.UpdateEndereco.Size = new System.Drawing.Size(91, 31);
+            this.UpdateEndereco.TabIndex = 8;
+            this.UpdateEndereco.Text = "Update";
+            this.UpdateEndereco.UseVisualStyleBackColor = false;
+            this.UpdateEndereco.Click += new System.EventHandler(this.Update_Click);
             // 
             // Novo
             // 
@@ -269,6 +269,6 @@
         private System.Windows.Forms.TextBox Telefone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Novo;
-        private System.Windows.Forms.Button Update;
+        private System.Windows.Forms.Button UpdateEndereco;
     }
 }

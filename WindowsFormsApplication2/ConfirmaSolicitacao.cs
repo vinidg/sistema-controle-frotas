@@ -175,6 +175,12 @@ namespace Sistema_Controle
                     {
                         return;
                     }
+                    else
+                    {
+                        Limpar();
+                        ClearTextBoxes();
+                        ClearComboBox();
+                    }
                 }
                 else
                 {

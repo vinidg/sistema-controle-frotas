@@ -186,7 +186,7 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.listaAgendadas.DefaultCellStyle = dataGridViewCellStyle7;
-            this.listaAgendadas.Location = new System.Drawing.Point(12, 524);
+            this.listaAgendadas.Location = new System.Drawing.Point(12, 511);
             this.listaAgendadas.MultiSelect = false;
             this.listaAgendadas.Name = "listaAgendadas";
             this.listaAgendadas.ReadOnly = true;
@@ -202,7 +202,7 @@
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             this.listaAgendadas.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.listaAgendadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaAgendadas.Size = new System.Drawing.Size(1196, 267);
+            this.listaAgendadas.Size = new System.Drawing.Size(1196, 280);
             this.listaAgendadas.TabIndex = 33;
             this.listaAgendadas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaAgendadas_CellDoubleClick_1);
             this.listaAgendadas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaAgendadas_CellFormatting);
@@ -281,7 +281,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 423);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1196, 95);
+            this.groupBox2.Size = new System.Drawing.Size(1196, 82);
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ordernar Por:";
@@ -292,7 +292,7 @@
             this.dtreagenda.AutoSize = true;
             this.dtreagenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtreagenda.ForeColor = System.Drawing.Color.Black;
-            this.dtreagenda.Location = new System.Drawing.Point(880, 27);
+            this.dtreagenda.Location = new System.Drawing.Point(880, 20);
             this.dtreagenda.Name = "dtreagenda";
             this.dtreagenda.Size = new System.Drawing.Size(190, 20);
             this.dtreagenda.TabIndex = 40;
@@ -304,7 +304,7 @@
             this.dtagenda.AutoSize = true;
             this.dtagenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtagenda.ForeColor = System.Drawing.Color.Black;
-            this.dtagenda.Location = new System.Drawing.Point(495, 27);
+            this.dtagenda.Location = new System.Drawing.Point(495, 20);
             this.dtagenda.Name = "dtagenda";
             this.dtagenda.Size = new System.Drawing.Size(171, 20);
             this.dtagenda.TabIndex = 39;
@@ -314,7 +314,7 @@
             // 
             this.dataReagendamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataReagendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataReagendamento.Location = new System.Drawing.Point(884, 50);
+            this.dataReagendamento.Location = new System.Drawing.Point(884, 43);
             this.dataReagendamento.Name = "dataReagendamento";
             this.dataReagendamento.Size = new System.Drawing.Size(297, 22);
             this.dataReagendamento.TabIndex = 38;
@@ -323,7 +323,7 @@
             // dataFiltroAgenda
             // 
             this.dataFiltroAgenda.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dataFiltroAgenda.Location = new System.Drawing.Point(499, 50);
+            this.dataFiltroAgenda.Location = new System.Drawing.Point(499, 43);
             this.dataFiltroAgenda.Name = "dataFiltroAgenda";
             this.dataFiltroAgenda.Size = new System.Drawing.Size(330, 22);
             this.dataFiltroAgenda.TabIndex = 37;
@@ -335,7 +335,7 @@
             this.OrdemNomeAgenda.AutoSize = true;
             this.OrdemNomeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemNomeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemNomeAgenda.Location = new System.Drawing.Point(317, 42);
+            this.OrdemNomeAgenda.Location = new System.Drawing.Point(317, 35);
             this.OrdemNomeAgenda.Name = "OrdemNomeAgenda";
             this.OrdemNomeAgenda.Size = new System.Drawing.Size(157, 24);
             this.OrdemNomeAgenda.TabIndex = 36;
@@ -351,7 +351,7 @@
             this.OrdemDataAgenda.Checked = true;
             this.OrdemDataAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemDataAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemDataAgenda.Location = new System.Drawing.Point(137, 42);
+            this.OrdemDataAgenda.Location = new System.Drawing.Point(137, 35);
             this.OrdemDataAgenda.Name = "OrdemDataAgenda";
             this.OrdemDataAgenda.Size = new System.Drawing.Size(166, 24);
             this.OrdemDataAgenda.TabIndex = 35;
@@ -367,7 +367,7 @@
             this.OrdemPrioridadeAgenda.AutoSize = true;
             this.OrdemPrioridadeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridadeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(8, 42);
+            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(8, 35);
             this.OrdemPrioridadeAgenda.Name = "OrdemPrioridadeAgenda";
             this.OrdemPrioridadeAgenda.Size = new System.Drawing.Size(98, 24);
             this.OrdemPrioridadeAgenda.TabIndex = 34;

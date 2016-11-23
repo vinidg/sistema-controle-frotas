@@ -1,20 +1,10 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using Microsoft.Reporting.WebForms;
-using System.Drawing.Printing;
-using System.Collections.Specialized;
-using System.Drawing.Imaging;
-using System.Data.SqlClient;
 using db_transporte_sanitario;
 
 namespace Sistema_Controle
@@ -35,17 +25,98 @@ namespace Sistema_Controle
             LabelIDPaciente.Text = idPaciente.ToString();
             idAmbu = AMocupada;
             idSolicitacaoAm = idSoAm;
+
             PuxarEnderecos();
             PreencherCampos();
             verificaSeAMEstaIncluida();
             VerificarPacienteJaestaInclusoNaMesma();
             pegarDadosDasAmbulancias();
-            if(AMocupada == 0)
-            {
-                //IncluirSolicitacaoPendentes.Visible = true;
-            }
+            AgendamentoNao.Visible = false;
+            AgendamentoSim.Visible = false;
         }
 
+        private void PuxarEnderecos()
+        {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                CbLocalSolicita.DataSource = db.enderecos.ToList();
+                CbLocalSolicita.ValueMember = "NomeUnidade";
+                CbLocalSolicita.DisplayMember = "NomeUnidade";
+                CbDestino.DataSource = db.enderecos.ToList();
+                CbDestino.ValueMember = "NomeUnidade";
+                CbDestino.DisplayMember = "NomeUnidade";
+                CbOrigem.DataSource = db.enderecos.ToList();
+                CbOrigem.ValueMember = "NomeUnidade";
+                CbOrigem.DisplayMember = "NomeUnidade";
+            }
+        }
+        private void PreencherCampos()
+        {
+            //buscar informacoes pelo id da tabela
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.idPaciente_Solicitacoes == idPaciente
+                             select sp).FirstOrDefault();
+
+                tipoSolicitacao = query.TipoSolicitacao;
+                Agendamento = query.Agendamento;
+
+                if (query.TipoSolicitacao == "Avancada")
+                {
+                    LabelTipo.Text = "Avançada";
+                }
+                else
+                {
+                    LabelTipo.Text = "Básica";
+                }
+
+                if (query.Agendamento == "Sim")
+                {
+                    LabelAgendamento.Text = "Sim";
+
+                    labelAtendimentoMarcado.Visible = true;
+                    dataAgendamento.Visible = true;
+                    Reagendar.Visible = true;
+                    ReagendamentosNegativas.Visible = true;
+                }
+                else
+                {
+                    LabelAgendamento.Text = "Nao";
+
+                    labelAtendimentoMarcado.Visible = false;
+                    dataAgendamento.Visible = false;
+                    Reagendar.Visible = false;
+                    ReagendamentosNegativas.Visible = false;
+                }
+
+                dataAgendamento.Text = query.DtHrdoAgendamento.ToString();
+                txtNomeSolicitante.Text = query.NomeSolicitante;
+                CbLocalSolicita.Text = query.LocalSolicitacao;
+                txtTelefone.Text = query.Telefone;
+                txtNomePaciente.Text = query.Paciente;
+
+                if (query.Genero == "F")
+                {
+                    RbFemenino.Checked = true;
+                }
+                else
+                {
+                    RbMasculino.Checked = true;
+                }
+                txtIdade.Text = query.Idade;
+                txtDiagnostico.Text = query.Diagnostico;
+                CbMotivoChamado.Text = query.Motivo;
+                CbTipoMotivoSelecionado.Text = query.SubMotivo;
+                PrioridadeTxt.Text = query.Prioridade;
+                CbOrigem.Text = query.Origem;
+                txtEnderecoOrigem.Text = query.EnderecoOrigem;
+                CbDestino.Text = query.Destino;
+                txtEnderecoDestino.Text = query.EnderecoDestino;
+                obsGerais.Text = query.ObsGerais;
+
+            }
+        }
         private void verificaSeAMEstaIncluida()
         {
             if (idAmbu == 0)
@@ -105,76 +176,38 @@ namespace Sistema_Controle
             }
 
         }
-        private void PreencherCampos()
+        public void pegarDadosDasAmbulancias()
         {
-            //buscar informacoes pelo id da tabela
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                var query = (from sp in db.solicitacoes_paciente
-                             where sp.idPaciente_Solicitacoes == idPaciente
-                             select sp).FirstOrDefault();
+                var query = (from am in db.ambulancia
+                             join sa in db.solicitacoes_ambulancias
+                             on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                             equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                             from sa in sa_join.DefaultIfEmpty()
+                             join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                             from sp in sp_join.DefaultIfEmpty()
+                             where am.Desativado == 0
+                             orderby am.idAmbulancia
+                             select new
+                             {
+                                 am.idAmbulancia,
+                                 Ambulancia = am.NomeAmbulancia,
+                                 Status = am.StatusAmbulancia,
+                                 Paciente = sp.Paciente,
+                                 Idade = sp.Idade,
+                                 Origem = sp.Origem,
+                                 Destino = sp.Destino
+                             }).ToList();
 
-                tipoSolicitacao = query.TipoSolicitacao;
-                Agendamento = query.Agendamento;
+                Lista.DataSource = query;
+                Lista.ClearSelection();
 
-                if (query.TipoSolicitacao == "Avancada")
-                {
-                    BtnAvancada.Visible = true;
-                    BtnAvancada.BackColor = Color.FromArgb(69, 173, 168);
-                    BtnAvancada.ForeColor = Color.FromArgb(229, 252, 194);
-                }
-                else
-                {
-                    BtnBasica.Visible = true;
-                    BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
-                    BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
-                }
-
-                if (query.Agendamento == "Sim")
-                {
-                    Btnagendasim.Visible = true;
-                    label3.Visible = true;
-                    dataAgendamento.Visible = true;
-                    Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
-                    Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
-                    Reagendar.Visible = true;
-                }
-                else
-                {
-                    Btnagendanao.Visible = true;
-                    label3.Visible = false;
-                    dataAgendamento.Visible = false;
-                    Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
-                    Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
-                }
-
-                dataAgendamento.Text = query.DtHrdoAgendamento.ToString();
-                txtNomeSolicitante.Text = query.NomeSolicitante;
-                CbLocalSolicita.Text = query.LocalSolicitacao;
-                txtTelefone.Text = query.Telefone;
-                txtNomePaciente.Text = query.Paciente;
-
-                if (query.Genero == "F")
-                {
-                    RbFemenino.Checked = true;
-                }
-                else
-                {
-                    RbMasculino.Checked = true;
-                }
-                txtIdade.Text = query.Idade;
-                txtDiagnostico.Text = query.Diagnostico;
-                CbMotivoChamado.Text = query.Motivo;
-                CbTipoMotivoSelecionado.Text = query.SubMotivo;
-                PrioridadeTxt.Text = query.Prioridade;
-                CbOrigem.Text = query.Origem;
-                txtEnderecoOrigem.Text = query.EnderecoOrigem;
-                CbDestino.Text = query.Destino;
-                txtEnderecoDestino.Text = query.EnderecoDestino;
-                obsGerais.Text = query.ObsGerais;
-
+                Lista.Columns[0].Visible = false;
+                Lista.ClearSelection();
             }
         }
+
         private void cancelar()
         {
             try
@@ -214,37 +247,6 @@ namespace Sistema_Controle
                 this.Dispose();
             }
 
-        }
-        public void pegarDadosDasAmbulancias()
-        {
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                var query = (from am in db.ambulancia
-                             join sa in db.solicitacoes_ambulancias
-                             on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
-                             equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
-                             from sa in sa_join.DefaultIfEmpty()
-                             join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
-                             from sp in sp_join.DefaultIfEmpty()
-                             where am.Desativado == 0
-                             orderby am.idAmbulancia
-                             select new
-                             {
-                                 am.idAmbulancia,
-                                 Ambulancia = am.NomeAmbulancia,
-                                 Status = am.StatusAmbulancia,
-                                 Paciente = sp.Paciente,
-                                 Idade = sp.Idade,
-                                 Origem = sp.Origem,
-                                 Destino = sp.Destino
-                             }).ToList();
-
-                Lista.DataSource = query;
-                Lista.ClearSelection();
-
-                Lista.Columns[0].Visible = false;
-                Lista.ClearSelection();
-            }
         }
         public void imprimirFicha()
         {
@@ -381,14 +383,12 @@ namespace Sistema_Controle
         }
         private void DesbloquarCampos()
         {
-            BtnBasica.Location = new Point(330, 12);
-            BtnAvancada.Location = new Point(430, 12);
             BtnAvancada.Visible = true;
             BtnBasica.Visible = true;
-            Btnagendanao.Visible = true;
-            Btnagendasim.Visible = true;
-            Btnagendanao.Location = new Point(470, 40);
-            Btnagendasim.Location = new Point(390, 40);
+            AgendamentoNao.Visible = true;
+            AgendamentoSim.Visible = true;
+            LabelAgendamento.Visible = false;
+            LabelTipo.Visible = false;
 
             dataAgendamento.Enabled = true;
             txtNomeSolicitante.Enabled = true;
@@ -408,17 +408,49 @@ namespace Sistema_Controle
             obsGerais.Enabled = true;
             PrioridadeTxt.Enabled = true;
 
+            if (LabelTipo.Text == "Básica")
+            {
+                TipoAM = "Básica";
+                BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
+                BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+            }
+            else
+            {
+                TipoAM = "Avançada";
+                BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
+                BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
+                BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
+            }
+
+            if (LabelAgendamento.Text == "Sim")
+            {
+                Agendamento = "Sim";
+                AgendamentoSim.BackColor = Color.FromArgb(69, 173, 168);
+                AgendamentoSim.ForeColor = Color.FromArgb(229, 252, 194);
+                AgendamentoNao.ForeColor = Color.FromArgb(229, 252, 194);
+                AgendamentoNao.BackColor = Color.FromArgb(69, 173, 168);
+            }
+            else
+            {
+                Agendamento = "Não";
+                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoNao.BackColor = Color.FromArgb(69, 173, 168);
+                AgendamentoNao.ForeColor = Color.FromArgb(229, 252, 194);
+            }
+
         }
         private void bloquearCampos()
         {
-            BtnBasica.Location = new Point(382, 12);
-            BtnAvancada.Location = new Point(382, 12);
-            BtnAvancada.Visible = true;
-            BtnBasica.Visible = true;
-            Btnagendanao.Visible = true;
-            Btnagendasim.Visible = true;
-            Btnagendanao.Location = new Point(405, 40);
-            Btnagendasim.Location = new Point(405, 40);
+            BtnAvancada.Visible = false;
+            BtnBasica.Visible = false;
+            AgendamentoNao.Visible = false;
+            AgendamentoSim.Visible = false;
+            LabelAgendamento.Visible = true;
+            LabelTipo.Visible = true;
 
             dataAgendamento.Enabled = false;
             txtNomeSolicitante.Enabled = false;
@@ -455,42 +487,6 @@ namespace Sistema_Controle
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-        public void unidade_telefone()
-        {
-            try
-            {
-                using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    var query = from tele in db.enderecos
-                                where tele.NomeUnidade == pegaUnidade
-                                select tele.Telefone;
-                    txtTelefone.Text = query.FirstOrDefault();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-
-        }
-        private void PuxarEnderecos()
-        {
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-                CbLocalSolicita.DataSource = db.enderecos.ToList();
-                CbLocalSolicita.ValueMember = "NomeUnidade";
-                CbLocalSolicita.DisplayMember = "NomeUnidade";
-                CbDestino.DataSource = db.enderecos.ToList();
-                CbDestino.ValueMember = "NomeUnidade";
-                CbDestino.DisplayMember = "NomeUnidade";
-                CbOrigem.DataSource = db.enderecos.ToList();
-                CbOrigem.ValueMember = "NomeUnidade";
-                CbOrigem.DisplayMember = "NomeUnidade";
-            }
         }
         private void Motivo()
         {
@@ -571,6 +567,27 @@ namespace Sistema_Controle
                 CbTipoMotivoSelecionado.ValueMember = pegamotivo;
                 CbTipoMotivoSelecionado.DisplayMember = pegamotivo;
             }
+
+        }
+        public void unidade_telefone()
+        {
+            try
+            {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from tele in db.enderecos
+                                where tele.NomeUnidade == pegaUnidade
+                                select tele.Telefone;
+                    txtTelefone.Text = query.FirstOrDefault();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
 
         }
         private void unidade_Endereco()
@@ -668,25 +685,13 @@ namespace Sistema_Controle
             DtHrCancelamento.Text = "";
             painelCancelar.Visible = false;
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?",
-            "Atenção !",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result1 == DialogResult.Yes)
-            {
-                cancelar();
-                imprimirFicha();
-                this.Dispose();
-
-            }
-        }
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
 
             if (dataAgendamento.Enabled == false)
             {
                 DesbloquarCampos();
+                
             }
             else
             {
@@ -762,47 +767,11 @@ namespace Sistema_Controle
             BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
             BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
         }
-        private void Btnagendasim_Click(object sender, EventArgs e)
-        {
-            dataAgendamento.Visible = true;
-            dataAgendamento.Focus();
-            Agendamento = "Sim";
-
-            if (Btnagendanao.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
-                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
-
-            }
-
-            Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
-            Btnagendasim.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
-            Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-        private void Btnagendanao_Click(object sender, EventArgs e)
-        {
-            Agendamento = "Nao";
-            dataAgendamento.Visible = false;
-            if (Btnagendasim.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
-                Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
-                Btnagendanao.BackColor = Color.FromArgb(229, 252, 194);
-            }
-            Btnagendasim.BackColor = Color.FromArgb(229, 252, 194);
-            Btnagendanao.BackColor = Color.FromArgb(69, 173, 168);
-            Btnagendanao.ForeColor = Color.FromArgb(229, 252, 194);
-            Btnagendasim.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-        private void button1_Click_1(object sender, EventArgs e)
+        private void RetirarAM_Click(object sender, EventArgs e)
         {
             DialogResult result1 = MessageBox.Show("Deseja retirar a solicitação desta ambulância ?",
-            "Atenção !",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+"Atenção !",
+MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
             {
                 using (DAHUEEntities db = new DAHUEEntities())
@@ -858,6 +827,11 @@ namespace Sistema_Controle
                 ra.ShowDialog();
             }
         }
+        private void Reagendamentos_Click(object sender, EventArgs e)
+        {
+            Reagedamentos re = new Reagedamentos(idPaciente);
+            re.ShowDialog();
+        }
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -879,8 +853,8 @@ namespace Sistema_Controle
             else
             {
                 label2.Visible = true;
-                Btnagendanao.Visible = true;
-                Btnagendasim.Visible = true;
+                AgendamentoNao.Visible = true;
+                AgendamentoSim.Visible = true;
                 TipoAM = "";
                 BtnAvancada.Enabled = true;
                 BtnBasica.Enabled = true;
@@ -929,6 +903,60 @@ namespace Sistema_Controle
                 Lista.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
             }
         }
+
+        private void AgendamentoSim_Click(object sender, EventArgs e)
+        {
+            dataAgendamento.Visible = true;
+            labelAtendimentoMarcado.Visible = true;
+            dataAgendamento.Focus();
+            Agendamento = "Sim";
+
+            if (AgendamentoNao.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
+                AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+
+            }
+
+            AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
+            AgendamentoSim.BackColor = Color.FromArgb(69, 173, 168);
+            AgendamentoSim.ForeColor = Color.FromArgb(229, 252, 194);
+            AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
+        }
+        private void AgendamentoNao_Click(object sender, EventArgs e)
+        {
+            Agendamento = "Nao";
+            dataAgendamento.Visible = false;
+            labelAtendimentoMarcado.Visible = false;
+            if (AgendamentoSim.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
+            }
+            AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+            AgendamentoNao.BackColor = Color.FromArgb(69, 173, 168);
+            AgendamentoNao.ForeColor = Color.FromArgb(229, 252, 194);
+            AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+        }
+
+        private void BtnConfirmando_Click(object sender, EventArgs e)
+        {
+            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?",
+"Atenção !",
+MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result1 == DialogResult.Yes)
+            {
+                cancelar();
+                imprimirFicha();
+                this.Dispose();
+
+            }
+        }
+
 
     }
 }

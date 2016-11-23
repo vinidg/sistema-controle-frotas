@@ -258,10 +258,7 @@
     <EmbeddedResource Include="Status.resx">
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.Config">
-      <SubType>
-      </SubType>
-    </None>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

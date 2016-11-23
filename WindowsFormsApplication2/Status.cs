@@ -120,6 +120,7 @@ namespace Sistema_Controle
             SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
             this.Dispose();
             sand.ShowDialog();
+            
         }
 
         private void EquipeAtribuiNaOcupada()
