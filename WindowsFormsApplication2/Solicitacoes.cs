@@ -14,6 +14,7 @@ using System.Xml;
 using System.Xml.Linq;
 using db_transporte_sanitario;
 using System.Data.Entity.SqlServer;
+using System.Collections;
 
 namespace Sistema_Controle
 {
@@ -560,6 +561,177 @@ namespace Sistema_Controle
         }
 
         #endregion
+
+        private void iomprimirAgendamentos_Click(object sender, EventArgs e)
+        {
+            PrintPreviewDialog objPPdialog = new PrintPreviewDialog();
+            ((Form)objPPdialog).WindowState = FormWindowState.Maximized;
+            objPPdialog.Document = printDocument1;
+            objPPdialog.ShowDialog();
+
+        }
+        #region Member Variables Print
+        StringFormat strFormat; //Used to format the grid rows.
+        ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
+        ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
+        int iCellHeight = 0; //Used to get/set the datagridview cell height
+        int iTotalWidth = 0; //
+        int iRow = 0;//Used as counter
+        bool bFirstPage = false; //Used to check whether we are printing first page
+        bool bNewPage = false;// Used to check whether we are printing a new page
+        int iHeaderHeight = 0; //Used for the header height
+        #endregion
+        private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            try
+            {
+                strFormat = new StringFormat();
+                strFormat.Alignment = StringAlignment.Near;
+                strFormat.LineAlignment = StringAlignment.Center;
+                strFormat.Trimming = StringTrimming.EllipsisCharacter;
+
+                printDocument1.DefaultPageSettings.Landscape = true;
+                arrColumnLefts.Clear();
+                arrColumnWidths.Clear();
+                iCellHeight = 0;
+                iRow = 0;
+                bFirstPage = true;
+                bNewPage = true;
+
+                // Calculating Total Widths
+                iTotalWidth = 0;
+                foreach (DataGridViewColumn dgvGridCol in listaAgendadas.Columns)
+                {
+                    iTotalWidth += dgvGridCol.Width;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            try
+            {
+                Font fonte = new Font("Arial", 8);
+                //Set the left margin
+                int iLeftMargin = e.MarginBounds.Left;
+                //Set the top margin
+                int iTopMargin = e.MarginBounds.Top;
+                //Whether more pages have to print or not
+                bool bMorePagesToPrint = false;
+                int iTmpWidth = 0;             
+                
+                //For the first page to print set the cell width and header height
+                if (bFirstPage)
+                {
+                    foreach (DataGridViewColumn GridCol in listaAgendadas.Columns)
+                    {
+                        iTmpWidth = (int)(Math.Floor((double)((double)GridCol.Width /
+                                       (double)iTotalWidth * (double)iTotalWidth *
+                                       ((double)e.MarginBounds.Width / (double)iTotalWidth))));
+
+                        iHeaderHeight = (int)(e.Graphics.MeasureString(GridCol.HeaderText,
+                                    GridCol.InheritedStyle.Font, iTmpWidth).Height) + 11;
+
+                        // Save width and height of headres
+                        arrColumnLefts.Add(iLeftMargin);
+                        arrColumnWidths.Add(iTmpWidth);
+                        iLeftMargin += iTmpWidth;
+                    }
+                }
+                //Loop till all the grid rows not get printed
+                while (iRow <= listaAgendadas.Rows.Count - 1)
+                {
+                    DataGridViewRow GridRow = listaAgendadas.Rows[iRow];
+                    //Set the cell height
+                    iCellHeight = GridRow.Height + 6;
+                    int iCount = 0;
+                    //Check whether the current page settings allo more rows to print
+                    if (iTopMargin + iCellHeight >= e.MarginBounds.Height + e.MarginBounds.Top)
+                    {
+                        bNewPage = true;
+                        bFirstPage = false;
+                        bMorePagesToPrint = true;
+                        break;
+                    }
+                    else
+                    {
+                        if (bNewPage)
+                        {
+                            //Draw Header
+                            e.Graphics.DrawString("Agendamentos do dia", new Font(fonte, FontStyle.Bold),
+                                    Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top -
+                                    e.Graphics.MeasureString("Agendamentos do dia", new Font(fonte,
+                                    FontStyle.Bold), e.MarginBounds.Width).Height - 13);
+
+                            String strDate = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
+                            //Draw Date
+                            e.Graphics.DrawString(strDate, new Font(fonte, FontStyle.Bold),
+                                    Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width -
+                                    e.Graphics.MeasureString(strDate, new Font(fonte,
+                                    FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top -
+                                    e.Graphics.MeasureString("Agendamentos do dia", new Font(new Font(fonte,
+                                    FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13);
+
+                            //Draw Columns                 
+                            iTopMargin = e.MarginBounds.Top;
+                            foreach (DataGridViewColumn GridCol in listaAgendadas.Columns)
+                            {
+                                e.Graphics.FillRectangle(new SolidBrush(Color.LightGray),
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawRectangle(Pens.Black,
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawString(GridCol.HeaderText, GridCol.InheritedStyle.Font,
+                                    new SolidBrush(GridCol.InheritedStyle.ForeColor),
+                                    new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                                iCount++;
+                            }
+                            bNewPage = false;
+                            iTopMargin += iHeaderHeight;
+                        }
+                        iCount = 0;
+                        //Draw Columns Contents                
+                        foreach (DataGridViewCell Cel in GridRow.Cells)
+                        {
+                            if (Cel.Value != null)
+                            {
+                                e.Graphics.DrawString(Cel.Value.ToString(), fonte,
+                                            new SolidBrush(Cel.InheritedStyle.ForeColor),
+                                            new RectangleF((int)arrColumnLefts[iCount], (float)iTopMargin,
+                                            (int)arrColumnWidths[iCount], (float)iCellHeight), strFormat);
+
+                            }
+                            //Drawing Cells Borders 
+                            e.Graphics.DrawRectangle(Pens.Black, new Rectangle((int)arrColumnLefts[iCount],
+                                    iTopMargin, (int)arrColumnWidths[iCount], iCellHeight));
+
+                            iCount++;
+                        }
+                    }
+                    iRow++;
+                    iTopMargin += iCellHeight;                    
+                }                
+
+                //If more lines exist, print another page.
+                if (bMorePagesToPrint)
+                    e.HasMorePages = true;
+                else
+                    e.HasMorePages = false;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+        }
 
     }
 }

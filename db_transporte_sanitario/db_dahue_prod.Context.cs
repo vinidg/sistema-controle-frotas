@@ -33,7 +33,6 @@ namespace db_transporte_sanitario
         public virtual DbSet<equipe> equipe { get; set; }
         public virtual DbSet<equipe_solam> equipe_solam { get; set; }
         public virtual DbSet<historico> historico { get; set; }
-        public virtual DbSet<prontuarios> prontuarios { get; set; }
         public virtual DbSet<prontuariosupas> prontuariosupas { get; set; }
         public virtual DbSet<referencias> referencias { get; set; }
         public virtual DbSet<solicitacoes_agendamentos> solicitacoes_agendamentos { get; set; }

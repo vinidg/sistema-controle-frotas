@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="DAHUEModel.equipe" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DAHUEModel.equipe_solam" Width="1.5" PointX="10.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DAHUEModel.historico" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAHUEModel.prontuarios" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAHUEModel.prontuariosupas" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAHUEModel.referencias" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DAHUEModel.solicitacoes_agendamentos" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />

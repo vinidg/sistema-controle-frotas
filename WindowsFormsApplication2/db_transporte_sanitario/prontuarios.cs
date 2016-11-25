@@ -12,7 +12,7 @@ namespace db_transporte_sanitario
     using System;
     using System.Collections.Generic;
     
-    public partial class prontuariosupas
+    public partial class prontuarios
     {
         public int idProntuarios { get; set; }
         public string NomePaciente { get; set; }
@@ -34,6 +34,5 @@ namespace db_transporte_sanitario
         public string Motivo_Rg { get; set; }
         public string DtHrFato { get; set; }
         public string LocalFato { get; set; }
-        public string Motivo { get; set; }
     }
 }

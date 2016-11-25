@@ -56,6 +56,8 @@
             this.OrdemNomeAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemDataAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemPrioridadeAgenda = new System.Windows.Forms.RadioButton();
+            this.iomprimirAgendamentos = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaAgendadas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -376,12 +378,32 @@
             this.OrdemPrioridadeAgenda.UseVisualStyleBackColor = true;
             this.OrdemPrioridadeAgenda.Click += new System.EventHandler(this.OrdemPrioridadeAgenda_Click);
             // 
+            // iomprimirAgendamentos
+            // 
+            this.iomprimirAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iomprimirAgendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
+            this.iomprimirAgendamentos.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iomprimirAgendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.iomprimirAgendamentos.Location = new System.Drawing.Point(896, 381);
+            this.iomprimirAgendamentos.Name = "iomprimirAgendamentos";
+            this.iomprimirAgendamentos.Size = new System.Drawing.Size(144, 46);
+            this.iomprimirAgendamentos.TabIndex = 37;
+            this.iomprimirAgendamentos.Text = "Imprimir";
+            this.iomprimirAgendamentos.UseVisualStyleBackColor = false;
+            this.iomprimirAgendamentos.Click += new System.EventHandler(this.iomprimirAgendamentos_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument1_BeginPrint);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // Solicitacoes
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.ClientSize = new System.Drawing.Size(1220, 819);
+            this.Controls.Add(this.iomprimirAgendamentos);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listaAgendadas);
@@ -427,5 +449,7 @@
         private System.Windows.Forms.Label dtreagenda;
         private System.Windows.Forms.Label dtagenda;
         private System.Windows.Forms.DateTimePicker dataReagendamento;
+        private System.Windows.Forms.Button iomprimirAgendamentos;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

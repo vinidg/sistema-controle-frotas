@@ -1,17 +1,7 @@
-﻿using Sistema_Controle;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
 using db_transporte_sanitario;
 using System.Data.Entity.SqlServer;
 
@@ -55,7 +45,8 @@ namespace Sistema_Controle
                                {
                                    am.idAmbulancia,
                                    Ambulancia =  am.NomeAmbulancia,
-                                   Status = am.StatusAmbulancia,
+                                   Status = sa.Status, 
+                                   StatusE = am.StatusAmbulancia,
                                    idPaciente = sa.idSolicitacoesPacientes, 
                                    Paciente = sp.Paciente,
                                    Idade = sp.Idade,
@@ -79,7 +70,8 @@ namespace Sistema_Controle
                                {
                                    am.idAmbulancia,
                                    Ambulancia = am.NomeAmbulancia,
-                                   Status = am.StatusAmbulancia,
+                                   Status = sa.Status,
+                                   StatusE = am.StatusAmbulancia,
                                    idPaciente = sa.idSolicitacoesPacientes, 
                                    Paciente = sp.Paciente,
                                    Idade = sp.Idade,
@@ -95,20 +87,22 @@ namespace Sistema_Controle
             listaUsb.Columns[0].Visible = false;
             listaUsa.Columns["idPaciente"].Visible = false;
             listaUsb.Columns["idPaciente"].Visible = false;
+            listaUsa.Columns["StatusE"].Width = 0;
+            listaUsb.Columns["StatusE"].Width = 0;
 
             this.listaUsa.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.listaUsa.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsa.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsa.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.listaUsa.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsa.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsa.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.listaUsa.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsa.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             this.listaUsb.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.listaUsb.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsb.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
         }
 
@@ -276,6 +270,26 @@ namespace Sistema_Controle
                 }
             }
         }
+        private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex > -1)
+            {
+            string idAM = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
+            {
+                string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+
+                Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
+                sta.ShowDialog();
+            }
+            else
+            {
+
+                Status sta = new Status(Convert.ToInt32(idAM), 0);
+                sta.ShowDialog();
+            }
+            }
+        }
         private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
         {
             if (txtAgendasPendentes.Focus())
@@ -310,9 +324,9 @@ namespace Sistema_Controle
         }
         #endregion
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void listaUsb_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.listaUsb.Columns[e.ColumnIndex].Name == "Status")
+            if (this.listaUsb.Columns[e.ColumnIndex].Name == "StatusE")
             {
                 if (e.Value != null && e.Value.Equals("BLOQUEADA"))
                 {
@@ -333,7 +347,7 @@ namespace Sistema_Controle
         }
         private void listaUsa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.listaUsa.Columns[e.ColumnIndex].Name == "Status")
+            if (this.listaUsa.Columns[e.ColumnIndex].Name == "StatusE")
             {
                 if (e.Value != null && e.Value.Equals("BLOQUEADA"))
                 {
@@ -350,26 +364,6 @@ namespace Sistema_Controle
                     this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
                     this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
                 }
-            }
-        }
-        private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex > -1)
-            {
-            string idAM = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
-            {
-                string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
-
-                Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
-                sta.ShowDialog();
-            }
-            else
-            {
-
-                Status sta = new Status(Convert.ToInt32(idAM), 0);
-                sta.ShowDialog();
-            }
             }
         }
         private void txtAgendasPendentes_TextChanged(object sender, EventArgs e)

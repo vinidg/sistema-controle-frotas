@@ -55,15 +55,14 @@
             this.PainelHistorico = new System.Windows.Forms.Panel();
             this.painel5 = new System.Windows.Forms.Panel();
             this.painel4 = new System.Windows.Forms.Panel();
-            this.painel3 = new System.Windows.Forms.Panel();
-            this.painel2 = new System.Windows.Forms.Panel();
-            this.painel1 = new System.Windows.Forms.Panel();
             this.txtHora = new System.Windows.Forms.MaskedTextBox();
-            this.BtnOrigem = new System.Windows.Forms.Button();
+            this.painel3 = new System.Windows.Forms.Panel();
             this.txtAlterador6 = new System.Windows.Forms.TextBox();
             this.BtnPatio = new System.Windows.Forms.Button();
+            this.painel2 = new System.Windows.Forms.Panel();
             this.txtAlterador5 = new System.Windows.Forms.TextBox();
             this.EquipeLiberada = new System.Windows.Forms.Button();
+            this.painel1 = new System.Windows.Forms.Panel();
             this.txtAlterador4 = new System.Windows.Forms.TextBox();
             this.BtnEquipeDestino = new System.Windows.Forms.Button();
             this.txtAlterador3 = new System.Windows.Forms.TextBox();
@@ -76,6 +75,7 @@
             this.txtHora4 = new System.Windows.Forms.MaskedTextBox();
             this.txtHora3 = new System.Windows.Forms.MaskedTextBox();
             this.txtHora2 = new System.Windows.Forms.MaskedTextBox();
+            this.BtnOrigem = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
@@ -384,36 +384,6 @@
             this.painel4.Size = new System.Drawing.Size(144, 138);
             this.painel4.TabIndex = 21;
             // 
-            // painel3
-            // 
-            this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel3.Location = new System.Drawing.Point(539, 12);
-            this.painel3.Name = "painel3";
-            this.painel3.Size = new System.Drawing.Size(144, 138);
-            this.painel3.TabIndex = 20;
-            // 
-            // painel2
-            // 
-            this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel2.Location = new System.Drawing.Point(390, 12);
-            this.painel2.Name = "painel2";
-            this.painel2.Size = new System.Drawing.Size(144, 138);
-            this.painel2.TabIndex = 19;
-            // 
-            // painel1
-            // 
-            this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.painel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.painel1.Location = new System.Drawing.Point(242, 12);
-            this.painel1.Name = "painel1";
-            this.painel1.Size = new System.Drawing.Size(143, 138);
-            this.painel1.TabIndex = 18;
-            // 
             // txtHora
             // 
             this.txtHora.Enabled = false;
@@ -423,18 +393,15 @@
             this.txtHora.Size = new System.Drawing.Size(143, 20);
             this.txtHora.TabIndex = 23;
             // 
-            // BtnOrigem
+            // painel3
             // 
-            this.BtnOrigem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
-            this.BtnOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOrigem.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnOrigem.Location = new System.Drawing.Point(241, 23);
-            this.BtnOrigem.Name = "BtnOrigem";
-            this.BtnOrigem.Size = new System.Drawing.Size(143, 68);
-            this.BtnOrigem.TabIndex = 3;
-            this.BtnOrigem.Text = "Equipe na Origem";
-            this.BtnOrigem.UseVisualStyleBackColor = false;
-            this.BtnOrigem.Click += new System.EventHandler(this.BtnOrigem_Click);
+            this.painel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel3.Location = new System.Drawing.Point(539, 12);
+            this.painel3.Name = "painel3";
+            this.painel3.Size = new System.Drawing.Size(144, 138);
+            this.painel3.TabIndex = 20;
             // 
             // txtAlterador6
             // 
@@ -457,6 +424,16 @@
             this.BtnPatio.UseVisualStyleBackColor = false;
             this.BtnPatio.Click += new System.EventHandler(this.BtnPatio_Click);
             // 
+            // painel2
+            // 
+            this.painel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel2.Location = new System.Drawing.Point(390, 12);
+            this.painel2.Name = "painel2";
+            this.painel2.Size = new System.Drawing.Size(144, 138);
+            this.painel2.TabIndex = 19;
+            // 
             // txtAlterador5
             // 
             this.txtAlterador5.Enabled = false;
@@ -477,6 +454,16 @@
             this.EquipeLiberada.Text = "Equipe Liberada do Destino";
             this.EquipeLiberada.UseVisualStyleBackColor = false;
             this.EquipeLiberada.Click += new System.EventHandler(this.EquipeLiberada_Click);
+            // 
+            // painel1
+            // 
+            this.painel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.painel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.painel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.painel1.Location = new System.Drawing.Point(242, 12);
+            this.painel1.Name = "painel1";
+            this.painel1.Size = new System.Drawing.Size(143, 138);
+            this.painel1.TabIndex = 18;
             // 
             // txtAlterador4
             // 
@@ -593,6 +580,19 @@
             this.txtHora2.Name = "txtHora2";
             this.txtHora2.Size = new System.Drawing.Size(143, 20);
             this.txtHora2.TabIndex = 24;
+            // 
+            // BtnOrigem
+            // 
+            this.BtnOrigem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
+            this.BtnOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnOrigem.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BtnOrigem.Location = new System.Drawing.Point(241, 23);
+            this.BtnOrigem.Name = "BtnOrigem";
+            this.BtnOrigem.Size = new System.Drawing.Size(143, 68);
+            this.BtnOrigem.TabIndex = 3;
+            this.BtnOrigem.Text = "Equipe na Origem";
+            this.BtnOrigem.UseVisualStyleBackColor = false;
+            this.BtnOrigem.Click += new System.EventHandler(this.BtnOrigem_Click);
             // 
             // label8
             // 

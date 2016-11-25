@@ -16,20 +16,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "db_transporte_sanitario", "
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
 		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45FBE987-88E3-4200-BC38-492CC87E06B9}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{45FBE987-88E3-4200-BC38-492CC87E06B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45FBE987-88E3-4200-BC38-492CC87E06B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45FBE987-88E3-4200-BC38-492CC87E06B9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{45FBE987-88E3-4200-BC38-492CC87E06B9}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
 		{45FBE987-88E3-4200-BC38-492CC87E06B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45FBE987-88E3-4200-BC38-492CC87E06B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45FBE987-88E3-4200-BC38-492CC87E06B9}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

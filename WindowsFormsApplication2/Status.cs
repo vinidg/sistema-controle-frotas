@@ -120,7 +120,7 @@ namespace Sistema_Controle
             SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
             this.Dispose();
             sand.ShowDialog();
-            
+
         }
 
         private void EquipeAtribuiNaOcupada()
@@ -285,75 +285,73 @@ namespace Sistema_Controle
         {
             if (statusAmbulancia == "OCUPADA")
             {
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = (from sa in db.solicitacoes_ambulancias
+                                where sa.idSolicitacoes_Ambulancias == SolicitaAM
+                                select new 
+                                { sa.DtHrCiencia, 
+                                  sa.DtHrCienciaReg,
+                                  sa.DtHrChegadaOrigem,
+                                  sa.DtHrChegadaOrigemReg,
+                                  sa.DtHrSaidaOrigem,
+                                  sa.DtHrSaidaOrigemReg,
+                                  sa.DtHrChegadaDestino,
+                                  sa.DtHrChegadaDestinoReg,
+                                  sa.DtHrLiberacaoEquipe,
+                                  sa.DtHrLiberacaoEquipeReg,
+                                  sa.DtHrEquipePatio,
+                                  sa.DtHrEquipePatioReg
+                                }).FirstOrDefault();
 
-            using (DAHUEEntities db = new DAHUEEntities())
-            {
-
-                var query = (from sa in db.solicitacoes_ambulancias
-                            where sa.idSolicitacoes_Ambulancias == SolicitaAM
-                            select new 
-                            { sa.DtHrCiencia, 
-                              sa.DtHrCienciaReg,
-                              sa.DtHrChegadaOrigem,
-                              sa.DtHrChegadaOrigemReg,
-                              sa.DtHrSaidaOrigem,
-                              sa.DtHrSaidaOrigemReg,
-                              sa.DtHrChegadaDestino,
-                              sa.DtHrChegadaDestinoReg,
-                              sa.DtHrLiberacaoEquipe,
-                              sa.DtHrLiberacaoEquipeReg,
-                              sa.DtHrEquipePatio,
-                              sa.DtHrEquipePatioReg
-                            }).FirstOrDefault();
-
-                if (query.DtHrCiencia != null)
-                {
-                    txtHora.Text = query.DtHrCiencia;
-                }
-                if(query.DtHrChegadaOrigem != null)
-                {
-                    txtHora2.Text = query.DtHrChegadaOrigem;
-                }
-                if(query.DtHrSaidaOrigem != null)
-                {
-                    txtHora3.Text = query.DtHrSaidaOrigem;
-                }
-                if(query.DtHrChegadaDestino != null)
-                {
-                    txtHora4.Text = query.DtHrChegadaDestino;
-                }
-                if(query.DtHrLiberacaoEquipe != null)
-                {
-                    txtHora5.Text = query.DtHrLiberacaoEquipe;
-                }
-                if (query.DtHrEquipePatio != null)
-                {
-                    txtHora6.Text = query.DtHrEquipePatio;
-                }
-                if (query.DtHrCienciaReg != null)
-                {
-                    txtAlterador.Text = query.DtHrCienciaReg;
-                }
-                if (query.DtHrChegadaOrigemReg != null)
-                {
-                    txtAlterador2.Text = query.DtHrChegadaOrigemReg;
-                }
-                if (query.DtHrSaidaOrigemReg != null)
-                {
-                    txtAlterador3.Text = query.DtHrSaidaOrigemReg;
-                }
-                if (query.DtHrChegadaDestinoReg != null)
-                {
-                    txtAlterador4.Text = query.DtHrChegadaDestinoReg;
-                }
-                if (query.DtHrLiberacaoEquipeReg != null)
-                {
-                    txtAlterador5.Text = query.DtHrLiberacaoEquipeReg;
-                }
-                if (query.DtHrEquipePatioReg != null)
-                {
-                    txtAlterador6.Text = query.DtHrEquipePatioReg;
-                }
+                    if (query.DtHrCiencia != null)
+                    {
+                        txtHora.Text = query.DtHrCiencia;
+                    }
+                    if(query.DtHrChegadaOrigem != null)
+                    {
+                        txtHora2.Text = query.DtHrChegadaOrigem;
+                    }
+                    if(query.DtHrSaidaOrigem != null)
+                    {
+                        txtHora3.Text = query.DtHrSaidaOrigem;
+                    }
+                    if(query.DtHrChegadaDestino != null)
+                    {
+                        txtHora4.Text = query.DtHrChegadaDestino;
+                    }
+                    if(query.DtHrLiberacaoEquipe != null)
+                    {
+                        txtHora5.Text = query.DtHrLiberacaoEquipe;
+                    }
+                    if (query.DtHrEquipePatio != null)
+                    {
+                        txtHora6.Text = query.DtHrEquipePatio;
+                    }
+                    if (query.DtHrCienciaReg != null)
+                    {
+                        txtAlterador.Text = query.DtHrCienciaReg;
+                    }
+                    if (query.DtHrChegadaOrigemReg != null)
+                    {
+                        txtAlterador2.Text = query.DtHrChegadaOrigemReg;
+                    }
+                    if (query.DtHrSaidaOrigemReg != null)
+                    {
+                        txtAlterador3.Text = query.DtHrSaidaOrigemReg;
+                    }
+                    if (query.DtHrChegadaDestinoReg != null)
+                    {
+                        txtAlterador4.Text = query.DtHrChegadaDestinoReg;
+                    }
+                    if (query.DtHrLiberacaoEquipeReg != null)
+                    {
+                        txtAlterador5.Text = query.DtHrLiberacaoEquipeReg;
+                    }
+                    if (query.DtHrEquipePatioReg != null)
+                    {
+                        txtAlterador6.Text = query.DtHrEquipePatioReg;
+                    }
                 }
             }
         }
@@ -416,7 +414,6 @@ namespace Sistema_Controle
         }
         #endregion
 
-
         #region BotoesHorarios
         private void BtnEquipeCiente_Click(object sender, EventArgs e)
         {
@@ -450,6 +447,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
                 solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
+                solicitacoesAmbulancias.Status = "Equipe Ciente";
 
                 db.SaveChanges();
                 MessageBox.Show("Solicitação salva com sucesso !!!");
@@ -481,6 +479,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrCiencia = txtHora.Text;
                 solicitacoesAmbulancias.DtHrCienciaReg = txtAlterador.Text;
+                solicitacoesAmbulancias.Status = "Equipe Ciente";
 
                 db.SaveChanges();
 
@@ -520,6 +519,7 @@ namespace Sistema_Controle
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
                     solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
+                    solicitacoesAmbulancias.Status = "Equipe na Origem";
 
                     db.SaveChanges();
 
@@ -544,6 +544,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrChegadaOrigem = txtHora2.Text;
                 solicitacoesAmbulancias.DtHrChegadaOrigemReg = txtAlterador2.Text;
+                solicitacoesAmbulancias.Status = "Equipe na Origem";
 
                 db.SaveChanges();
 
@@ -583,6 +584,7 @@ namespace Sistema_Controle
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
                     solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
+                    solicitacoesAmbulancias.Status = "Equipe Saiu da Origem";
 
                     db.SaveChanges();
 
@@ -606,6 +608,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrSaidaOrigem = txtHora3.Text;
                 solicitacoesAmbulancias.DtHrSaidaOrigemReg = txtAlterador3.Text;
+                solicitacoesAmbulancias.Status = "Equipe Saiu da Origem";
 
                 db.SaveChanges();
 
@@ -644,6 +647,7 @@ namespace Sistema_Controle
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
                     solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
+                    solicitacoesAmbulancias.Status = "Equipe no Destino";
 
                     db.SaveChanges();
 
@@ -668,6 +672,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrChegadaDestino = txtHora4.Text;
                 solicitacoesAmbulancias.DtHrChegadaDestinoReg = txtAlterador4.Text;
+                solicitacoesAmbulancias.Status = "Equipe no Destino";
 
                 db.SaveChanges();
 
@@ -706,6 +711,7 @@ namespace Sistema_Controle
                     solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                     solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
                     solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
+                    solicitacoesAmbulancias.Status = "Equipe Liberada do Destino";
 
                     db.SaveChanges();
 
@@ -729,6 +735,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrLiberacaoEquipe = txtHora5.Text;
                 solicitacoesAmbulancias.DtHrLiberacaoEquipeReg = txtAlterador5.Text;
+                solicitacoesAmbulancias.Status = "Equipe Liberada do Destino";
 
                 db.SaveChanges();
 
@@ -747,6 +754,7 @@ namespace Sistema_Controle
                 solicitacoes_ambulancias solicitacoesAmbulancias = db.solicitacoes_ambulancias.First(p => p.idAmbulanciaSol == codigoDaAmbulancia && p.SolicitacaoConcluida == 0 && p.idSolicitacoesPacientes == idPaciente);
                 solicitacoesAmbulancias.DtHrEquipePatio = txtHora6.Text;
                 solicitacoesAmbulancias.DtHrEquipePatioReg = txtAlterador6.Text;
+                solicitacoesAmbulancias.Status = "Equipe no Pátio";
 
                 var contemPaciente = (from soa in db.solicitacoes_ambulancias
                                       where soa.idAmbulanciaSol == codigoDaAmbulancia && soa.SolicitacaoConcluida == 0

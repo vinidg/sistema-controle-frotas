@@ -32,6 +32,7 @@ namespace db_transporte_sanitario
         public int idAmbulanciaSol { get; set; }
         public Nullable<int> SolicitacaoConcluida { get; set; }
         public Nullable<int> IdOutroPaciente { get; set; }
+        public string Status { get; set; }
     
         public virtual ambulancia ambulancia { get; set; }
     }

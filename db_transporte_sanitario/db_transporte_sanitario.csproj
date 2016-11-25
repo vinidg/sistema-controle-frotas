@@ -91,9 +91,6 @@
     <Compile Include="historico.cs">
       <DependentUpon>db_dahue_prod.tt</DependentUpon>
     </Compile>
-    <Compile Include="prontuarios.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
-    </Compile>
     <Compile Include="prontuariosupas.cs">
       <DependentUpon>db_dahue_prod.tt</DependentUpon>
     </Compile>

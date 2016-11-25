@@ -36,7 +36,7 @@ namespace Sistema_Controle
             Obs.SelectedText.ToUpper();
         }
         
-        #region Clicks
+        #region Eventos Clicks
         private void BtnBasica_Click(object sender, EventArgs e)
         {
             label2.Visible = true;
@@ -192,6 +192,7 @@ namespace Sistema_Controle
 
         }
 
+        
         #endregion
 
         #region Limpar_campos
@@ -270,7 +271,7 @@ namespace Sistema_Controle
         }
 
         #endregion
-    
+         
         private void PreencherCampos(int id)
         {
             using (DAHUEEntities db = new DAHUEEntities())
