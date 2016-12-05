@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{311A02
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "db_transporte_sanitario", "db_transporte_sanitario\db_transporte_sanitario.csproj", "{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sistema Controle de Ambulancias", "Sistema Controle de Ambulancias\Sistema Controle de Ambulancias.vdproj", "{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -39,6 +41,11 @@ Global
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCAF0CA6-77F9-4BF8-B9FD-3ED0111C20F2}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.CD_ROM|Any CPU.ActiveCfg = Release
+		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.Debug|Any CPU.ActiveCfg = Debug
+		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.DVD-5|Any CPU.ActiveCfg = Debug
+		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.Release|Any CPU.ActiveCfg = Release
+		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.SingleImage|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

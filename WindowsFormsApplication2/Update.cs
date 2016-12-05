@@ -30,8 +30,7 @@ namespace Sistema_Controle
             string donwloadurl = "";
             Version newVersion = null;
 
-            string xmlURL = @"\\\10.1.0.7\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\update.xml";
-           // string xmlURL = @"\\\10.1.0.7\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\updateHomologacao.xml";
+            string xmlURL = @"\\\10.1.0.109\\SAUDE\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\update.xml";
             XmlTextReader reader = null;
 
             try
@@ -70,8 +69,7 @@ namespace Sistema_Controle
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                Environment.Exit(1);
+                MessageBox.Show("Sistema não está atualizado, podendo conter erros ao continuar usando a versão antiga");
             }
             finally
             {

@@ -49,6 +49,7 @@
             this.OrdemPaciente = new System.Windows.Forms.RadioButton();
             this.OrdemData = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.imprimirAgendamentos = new System.Windows.Forms.Button();
             this.dtreagenda = new System.Windows.Forms.Label();
             this.dtagenda = new System.Windows.Forms.Label();
             this.dataReagendamento = new System.Windows.Forms.DateTimePicker();
@@ -56,8 +57,8 @@
             this.OrdemNomeAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemDataAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemPrioridadeAgenda = new System.Windows.Forms.RadioButton();
-            this.iomprimirAgendamentos = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaAgendadas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -110,7 +111,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.ListaSolicitacoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ListaSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaSolicitacoes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ListaSolicitacoes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.ListaSolicitacoes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.ListaSolicitacoes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -166,10 +167,8 @@
             this.listaAgendadas.AllowUserToAddRows = false;
             this.listaAgendadas.AllowUserToDeleteRows = false;
             this.listaAgendadas.AllowUserToOrderColumns = true;
-            this.listaAgendadas.AllowUserToResizeRows = false;
             this.listaAgendadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaAgendadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.listaAgendadas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.listaAgendadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.listaAgendadas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
@@ -189,7 +188,6 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.listaAgendadas.DefaultCellStyle = dataGridViewCellStyle7;
             this.listaAgendadas.Location = new System.Drawing.Point(12, 511);
-            this.listaAgendadas.MultiSelect = false;
             this.listaAgendadas.Name = "listaAgendadas";
             this.listaAgendadas.ReadOnly = true;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -273,6 +271,7 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.imprimirAgendamentos);
             this.groupBox2.Controls.Add(this.dtreagenda);
             this.groupBox2.Controls.Add(this.dtagenda);
             this.groupBox2.Controls.Add(this.dataReagendamento);
@@ -287,6 +286,21 @@
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ordernar Por:";
+            // 
+            // imprimirAgendamentos
+            // 
+            this.imprimirAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imprimirAgendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
+            this.imprimirAgendamentos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imprimirAgendamentos.BackgroundImage")));
+            this.imprimirAgendamentos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.imprimirAgendamentos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imprimirAgendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.imprimirAgendamentos.Location = new System.Drawing.Point(1145, 11);
+            this.imprimirAgendamentos.Name = "imprimirAgendamentos";
+            this.imprimirAgendamentos.Size = new System.Drawing.Size(45, 37);
+            this.imprimirAgendamentos.TabIndex = 37;
+            this.imprimirAgendamentos.UseVisualStyleBackColor = false;
+            this.imprimirAgendamentos.Click += new System.EventHandler(this.imprimirAgendamentos_Click);
             // 
             // dtreagenda
             // 
@@ -378,24 +392,15 @@
             this.OrdemPrioridadeAgenda.UseVisualStyleBackColor = true;
             this.OrdemPrioridadeAgenda.Click += new System.EventHandler(this.OrdemPrioridadeAgenda_Click);
             // 
-            // iomprimirAgendamentos
+            // printPreviewDialog1
             // 
-            this.iomprimirAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iomprimirAgendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.iomprimirAgendamentos.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iomprimirAgendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.iomprimirAgendamentos.Location = new System.Drawing.Point(896, 381);
-            this.iomprimirAgendamentos.Name = "iomprimirAgendamentos";
-            this.iomprimirAgendamentos.Size = new System.Drawing.Size(144, 46);
-            this.iomprimirAgendamentos.TabIndex = 37;
-            this.iomprimirAgendamentos.Text = "Imprimir";
-            this.iomprimirAgendamentos.UseVisualStyleBackColor = false;
-            this.iomprimirAgendamentos.Click += new System.EventHandler(this.iomprimirAgendamentos_Click);
-            // 
-            // printDocument1
-            // 
-            this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument1_BeginPrint);
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Solicitacoes
             // 
@@ -403,7 +408,6 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.ClientSize = new System.Drawing.Size(1220, 819);
-            this.Controls.Add(this.iomprimirAgendamentos);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listaAgendadas);
@@ -449,7 +453,8 @@
         private System.Windows.Forms.Label dtreagenda;
         private System.Windows.Forms.Label dtagenda;
         private System.Windows.Forms.DateTimePicker dataReagendamento;
-        private System.Windows.Forms.Button iomprimirAgendamentos;
+        private System.Windows.Forms.Button imprimirAgendamentos;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

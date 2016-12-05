@@ -69,5 +69,15 @@ namespace Sistema_Controle.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_button_318_77516 {
+            get {
+                object obj = ResourceManager.GetObject("print-button_318-77516", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

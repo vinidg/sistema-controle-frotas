@@ -82,6 +82,9 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DGV Printer">
+      <HintPath>..\packages\DGV Printer.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -168,6 +171,13 @@
     <Compile Include="NegarReagendamento.Designer.cs">
       <DependentUpon>NegarReagendamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpcoesImprimir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpcoesImprimir.Designer.cs">
+      <DependentUpon>OpcoesImprimir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintDGV.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -234,6 +244,9 @@
     <EmbeddedResource Include="NegarReagendamento.resx">
       <DependentUpon>NegarReagendamento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OpcoesImprimir.resx">
+      <DependentUpon>OpcoesImprimir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -258,7 +271,9 @@
     <EmbeddedResource Include="Status.resx">
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -306,12 +321,12 @@
   <ItemGroup>
     <PublishFile Include="MySql.Data">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
@@ -322,6 +337,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Resources\FormA.png" />
     <Content Include="Resources\logo1.png" />
+    <None Include="Resources\print-button_318-77516.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\db_transporte_sanitario\db_transporte_sanitario.csproj">
