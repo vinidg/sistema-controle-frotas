@@ -410,7 +410,7 @@ namespace Sistema_Controle
 
             if (LabelTipo.Text == "Básica")
             {
-                TipoAM = "Básica";
+                TipoAM = "Basica";
                 BtnBasica.BackColor = Color.FromArgb(69, 173, 168);
                 BtnBasica.ForeColor = Color.FromArgb(229, 252, 194);
                 BtnAvancada.BackColor = Color.FromArgb(229, 252, 194);
@@ -418,7 +418,7 @@ namespace Sistema_Controle
             }
             else
             {
-                TipoAM = "Avançada";
+                TipoAM = "Avancada";
                 BtnBasica.BackColor = Color.FromArgb(229, 252, 194);
                 BtnBasica.ForeColor = Color.FromArgb(69, 173, 168);
                 BtnAvancada.ForeColor = Color.FromArgb(69, 173, 168);
@@ -435,7 +435,7 @@ namespace Sistema_Controle
             }
             else
             {
-                Agendamento = "Não";
+                Agendamento = "Nao";
                 AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
                 AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
                 AgendamentoNao.BackColor = Color.FromArgb(69, 173, 168);
@@ -473,14 +473,12 @@ namespace Sistema_Controle
         }
         private void AlterarCampos()
         {
-
             try
             {
                 InsercoesDoBanco ib = new InsercoesDoBanco();
                 ib.alterarCamposDaSolicitacao(idPaciente, TipoAM, Agendamento, dataAgendamento.Value, txtNomeSolicitante.Text, CbLocalSolicita.Text, txtTelefone.Text,
                                               txtNomePaciente.Text, Sexo, txtIdade.Text, txtDiagnostico.Text, CbMotivoChamado.Text, CbTipoMotivoSelecionado.Text, PrioridadeTxt.Text, CbOrigem.Text,
                                               txtEnderecoOrigem.Text, CbDestino.Text, txtEnderecoDestino.Text, System.Environment.UserName, DateTime.Now.ToString(), obsGerais.Text);
-
             }
             catch (Exception ex)
             {
