@@ -24,7 +24,7 @@ namespace Sistema_Controle
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
-
+        int numeroAgendamentos;
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
         public void pegarDadosDasAmbulancias()
         {
@@ -105,7 +105,7 @@ namespace Sistema_Controle
             this.listaUsb.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
         }
-
+          
         #region NumeroDeSolicitacoes
 
         private void contarSolicitacao()
@@ -168,10 +168,21 @@ namespace Sistema_Controle
             contarSolicitacao();
             contarSolicitacoesAgendadasPendentes();
             atualizadorParaNotificador();
-
+            //alertarNovosAgendamentos();
+            //numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
         }
+        
 
         #endregion
+        private void alertarNovosAgendamentos()
+        {
+            if (Convert.ToInt32(txtAgendasPendentes.Text) > numeroAgendamentos)
+            {
+                int novos = Convert.ToInt32(txtAgendasPendentes.Text) - numeroAgendamentos;
+                MessageBox.Show(novos + " novos agendamentos solicitados !", "Novos agendamentos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
+            }
+        }
 
         #region EventosCliks
         private void BtnNew_Click(object sender, EventArgs e)
@@ -324,6 +335,7 @@ namespace Sistema_Controle
         }
         #endregion
 
+        #region Eventos
         private void listaUsb_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.listaUsb.Columns[e.ColumnIndex].Name == "StatusE")
@@ -373,7 +385,8 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-        
+
+        #endregion
     }
 
 }

@@ -104,11 +104,6 @@ namespace Sistema_Controle
                                 sp.Telefone,
                                 sp.ObsGerais
                             };
-                this.listaAgendadas.Columns.Add("vtr", "VTR");
-                this.listaAgendadas.Columns.Add("fixo", "Fixo");
-
-                this.listaAgendadas.Columns["vtr"].Visible = false;
-                this.listaAgendadas.Columns["fixo"].Visible = false;
 
                 this.listaAgendadas.RowTemplate.MinimumHeight = 22;
 
@@ -118,8 +113,6 @@ namespace Sistema_Controle
                 txtTotal3.Text = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
-
-
             }
 
         }
@@ -152,7 +145,7 @@ namespace Sistema_Controle
                                 select am.TipoAM;
                     querya = query.FirstOrDefault();
                 }
-                idPaciente = Convert.ToInt32(ListaSolicitacoes.Rows[e.RowIndex].Cells[0].Value.ToString());
+                idPaciente = Convert.ToInt32(ListaSolicitacoes.Rows[e.RowIndex].Cells["ID"].Value.ToString());
                 tipo = ListaSolicitacoes.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
 
                 if (querya == null)
@@ -198,7 +191,7 @@ namespace Sistema_Controle
                                 select am.TipoAM;
                     querya = query.FirstOrDefault();
                 }
-                idPaciente = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells[0].Value.ToString());
+                idPaciente = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells["ID"].Value.ToString());
                 tipo = listaAgendadas.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
 
                 if (querya == "")
@@ -591,6 +584,12 @@ namespace Sistema_Controle
 
         private void imprimirAgendamentos_Click(object sender, EventArgs e)
         {
+            this.listaAgendadas.Columns.Add("vtr", "VTR");
+            this.listaAgendadas.Columns.Add("fixo", "Fixo");
+
+            this.listaAgendadas.Columns["vtr"].DisplayIndex = 12;
+            this.listaAgendadas.Columns["fixo"].DisplayIndex = 13;
+
             foreach (DataGridViewRow row in listaAgendadas.Rows)
             {
                 row.Height = 80;

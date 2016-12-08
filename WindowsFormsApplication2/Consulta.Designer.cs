@@ -194,6 +194,7 @@
             this.dataagendamento.Name = "dataagendamento";
             this.dataagendamento.Size = new System.Drawing.Size(177, 20);
             this.dataagendamento.TabIndex = 21;
+            this.dataagendamento.Enter += new System.EventHandler(this.dataagendamento_Enter);
             // 
             // label11
             // 

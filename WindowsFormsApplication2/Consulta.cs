@@ -204,14 +204,21 @@ namespace Sistema_Controle
                 using (DAHUEEntities db = new DAHUEEntities())
                 {
                     var query = from sp in db.solicitacoes_paciente
-                                where sp.DtHrAgendamento == dataagendamento.Text || sp.DtHrdoAgendamento == dataagendamento.Value
+                                join saa in db.solicitacoes_agendamentos
+                                on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
+                                from saa in spsaaajoin.DefaultIfEmpty()
+                                where 
+                                SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrAgendamento) == 0
+                               // || SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrdoAgendamento) == 0
+                               // || SqlFunctions.DateDiff("day", dataagendamento.Value, saa.DtHrAgendamento) == 0
                                 select new
                                 {
                                     sp.idPaciente_Solicitacoes,
                                     sp.Paciente,
                                     sp.Genero,
                                     sp.Idade,
-                                    sp.DtHrdoAgendamento
+                                    sp.DtHrdoAgendamento,
+                                    Data_Reagendada = saa.DtHrAgendamento
                                 };
                     consultaSolicitacoes.DataSource = query.ToArray();
                     consultaSolicitacoes.Refresh();
@@ -339,6 +346,10 @@ namespace Sistema_Controle
         {
             opcao = Opcao.Data;
         }
+        private void dataagendamento_Enter(object sender, EventArgs e)
+        {
+            opcao = Opcao.DataAgendamento;
+        }
         private void motivo_Click(object sender, EventArgs e)
         {
             opcao = Opcao.Motivo;
@@ -355,6 +366,7 @@ namespace Sistema_Controle
         {
             opcao = Opcao.LocalDaSolicitacao;
         }
+
 
     }
 }

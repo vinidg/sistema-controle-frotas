@@ -34,8 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.AgendamentoNao = new System.Windows.Forms.Button();
             this.AgendamentoSim = new System.Windows.Forms.Button();
+            this.BtnAvancada = new System.Windows.Forms.Button();
+            this.BtnBasica = new System.Windows.Forms.Button();
             this.ReagendamentosNegativas = new System.Windows.Forms.Button();
             this.Reagendar = new System.Windows.Forms.Button();
             this.dataAgendamento = new System.Windows.Forms.DateTimePicker();
@@ -99,12 +102,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.labelAtendimentoMarcado = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnAvancada = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnBasica = new System.Windows.Forms.Button();
             this.LabelAgendamento = new System.Windows.Forms.Label();
             this.LabelTipo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.painelCancelar.SuspendLayout();
             this.PainelAM2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Lista)).BeginInit();
@@ -114,6 +116,9 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.painelCancelar);
+            this.panel1.Controls.Add(this.PainelAM2);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.AgendamentoNao);
             this.panel1.Controls.Add(this.AgendamentoSim);
             this.panel1.Controls.Add(this.BtnAvancada);
@@ -125,17 +130,11 @@
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.PrioridadeTxt);
             this.panel1.Controls.Add(this.RetirarAM);
-            this.panel1.Controls.Add(this.painelCancelar);
             this.panel1.Controls.Add(this.CbTipoMotivoSelecionado);
             this.panel1.Controls.Add(this.CbMotivoChamado);
-            this.panel1.Controls.Add(this.PainelAM2);
             this.panel1.Controls.Add(this.BtnAlterar);
-            this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.LabelIDPaciente);
             this.panel1.Controls.Add(this.BtnCancelar);
-            this.panel1.Controls.Add(this.BtnConfimar);
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.BtnOutraAM);
             this.panel1.Controls.Add(this.obsGerais);
             this.panel1.Controls.Add(this.BtnImprimir);
             this.panel1.Controls.Add(this.label21);
@@ -178,6 +177,18 @@
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(246)))), ((int)(((byte)(182)))));
+            this.panel2.Controls.Add(this.BtnConfimar);
+            this.panel2.Controls.Add(this.label23);
+            this.panel2.Controls.Add(this.label22);
+            this.panel2.Controls.Add(this.BtnOutraAM);
+            this.panel2.Location = new System.Drawing.Point(493, 235);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(545, 164);
+            this.panel2.TabIndex = 105;
+            // 
             // AgendamentoNao
             // 
             this.AgendamentoNao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -209,6 +220,40 @@
             this.AgendamentoSim.Text = "Sim";
             this.AgendamentoSim.UseVisualStyleBackColor = false;
             this.AgendamentoSim.Click += new System.EventHandler(this.AgendamentoSim_Click);
+            // 
+            // BtnAvancada
+            // 
+            this.BtnAvancada.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
+            this.BtnAvancada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAvancada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.BtnAvancada.Location = new System.Drawing.Point(430, 12);
+            this.BtnAvancada.Name = "BtnAvancada";
+            this.BtnAvancada.Size = new System.Drawing.Size(97, 23);
+            this.BtnAvancada.TabIndex = 2;
+            this.BtnAvancada.Text = "Avançada";
+            this.BtnAvancada.UseVisualStyleBackColor = false;
+            this.BtnAvancada.Visible = false;
+            this.BtnAvancada.Click += new System.EventHandler(this.BtnAvancada_Click);
+            // 
+            // BtnBasica
+            // 
+            this.BtnBasica.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnBasica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
+            this.BtnBasica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBasica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.BtnBasica.Location = new System.Drawing.Point(330, 12);
+            this.BtnBasica.Name = "BtnBasica";
+            this.BtnBasica.Size = new System.Drawing.Size(97, 23);
+            this.BtnBasica.TabIndex = 1;
+            this.BtnBasica.Text = "Básica";
+            this.BtnBasica.UseVisualStyleBackColor = false;
+            this.BtnBasica.Visible = false;
+            this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
             // 
             // ReagendamentosNegativas
             // 
@@ -318,7 +363,7 @@
             this.painelCancelar.Controls.Add(this.txtResponsavel);
             this.painelCancelar.Controls.Add(this.DtHrCancelamento);
             this.painelCancelar.Controls.Add(this.MotivoCancelar);
-            this.painelCancelar.Location = new System.Drawing.Point(505, 240);
+            this.painelCancelar.Location = new System.Drawing.Point(486, 235);
             this.painelCancelar.Name = "painelCancelar";
             this.painelCancelar.Size = new System.Drawing.Size(558, 187);
             this.painelCancelar.TabIndex = 16;
@@ -504,7 +549,8 @@
             "RETORNO",
             "SALA VERMELHA/EMERGÊNCIA",
             "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS",
-            "TRANSPORTE DE PROFISSIONAIS"});
+            "TRANSPORTE DE PROFISSIONAIS",
+            "TRANSFERENCIA"});
             this.CbMotivoChamado.Location = new System.Drawing.Point(9, 352);
             this.CbMotivoChamado.Name = "CbMotivoChamado";
             this.CbMotivoChamado.Size = new System.Drawing.Size(237, 23);
@@ -515,7 +561,7 @@
             // 
             this.PainelAM2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(246)))), ((int)(((byte)(182)))));
             this.PainelAM2.Controls.Add(this.Lista);
-            this.PainelAM2.Location = new System.Drawing.Point(506, 280);
+            this.PainelAM2.Location = new System.Drawing.Point(490, 245);
             this.PainelAM2.Name = "PainelAM2";
             this.PainelAM2.Size = new System.Drawing.Size(545, 147);
             this.PainelAM2.TabIndex = 48;
@@ -588,7 +634,7 @@
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.SystemColors.Window;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(644, 238);
+            this.label23.Location = new System.Drawing.Point(136, 10);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(313, 18);
             this.label23.TabIndex = 49;
@@ -621,7 +667,7 @@
             // 
             this.BtnConfimar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BtnConfimar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnConfimar.Location = new System.Drawing.Point(898, 299);
+            this.BtnConfimar.Location = new System.Drawing.Point(408, 40);
             this.BtnConfimar.Name = "BtnConfimar";
             this.BtnConfimar.Size = new System.Drawing.Size(132, 100);
             this.BtnConfimar.TabIndex = 45;
@@ -635,7 +681,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(642, 335);
+            this.label22.Location = new System.Drawing.Point(134, 89);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(257, 28);
             this.label22.TabIndex = 47;
@@ -646,7 +692,7 @@
             // 
             this.BtnOutraAM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BtnOutraAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOutraAM.Location = new System.Drawing.Point(511, 299);
+            this.BtnOutraAM.Location = new System.Drawing.Point(3, 40);
             this.BtnOutraAM.Name = "BtnOutraAM";
             this.BtnOutraAM.Size = new System.Drawing.Size(132, 100);
             this.BtnOutraAM.TabIndex = 46;
@@ -1095,23 +1141,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
-            // BtnAvancada
-            // 
-            this.BtnAvancada.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAvancada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.BtnAvancada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAvancada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.BtnAvancada.Location = new System.Drawing.Point(430, 12);
-            this.BtnAvancada.Name = "BtnAvancada";
-            this.BtnAvancada.Size = new System.Drawing.Size(97, 23);
-            this.BtnAvancada.TabIndex = 2;
-            this.BtnAvancada.Text = "Avançada";
-            this.BtnAvancada.UseVisualStyleBackColor = false;
-            this.BtnAvancada.Visible = false;
-            this.BtnAvancada.Click += new System.EventHandler(this.BtnAvancada_Click);
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1124,23 +1153,6 @@
             this.label1.Size = new System.Drawing.Size(319, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "1. Qual o tipo de ambulância necessária?";
-            // 
-            // BtnBasica
-            // 
-            this.BtnBasica.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnBasica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.BtnBasica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBasica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.BtnBasica.Location = new System.Drawing.Point(330, 12);
-            this.BtnBasica.Name = "BtnBasica";
-            this.BtnBasica.Size = new System.Drawing.Size(97, 23);
-            this.BtnBasica.TabIndex = 1;
-            this.BtnBasica.Text = "Básica";
-            this.BtnBasica.UseVisualStyleBackColor = false;
-            this.BtnBasica.Visible = false;
-            this.BtnBasica.Click += new System.EventHandler(this.BtnBasica_Click);
             // 
             // LabelAgendamento
             // 
@@ -1181,6 +1193,8 @@
             this.Text = "Confirmar Solicitação";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.painelCancelar.ResumeLayout(false);
             this.painelCancelar.PerformLayout();
             this.PainelAM2.ResumeLayout(false);
@@ -1262,5 +1276,6 @@
         private System.Windows.Forms.Label LabelTipo;
         private System.Windows.Forms.Button AgendamentoNao;
         private System.Windows.Forms.Button AgendamentoSim;
+        private System.Windows.Forms.Panel panel2;
     }
 }

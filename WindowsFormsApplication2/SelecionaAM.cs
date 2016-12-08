@@ -558,6 +558,10 @@ namespace Sistema_Controle
             {
                 pegamotivo = "TRANSPORTE_DE_PROFISSIONAIS";
             }
+            else if (CbMotivoChamado.Text == "TRANSFERENCIA")
+            {
+                pegamotivo = "TRANSFERENCIA";
+            }
 
             using (DAHUEEntities db = new DAHUEEntities())
             {
@@ -954,7 +958,6 @@ MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             }
         }
-
 
     }
 }
