@@ -272,7 +272,8 @@
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config">
-      <SubType>Designer</SubType>
+      <SubType>
+      </SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

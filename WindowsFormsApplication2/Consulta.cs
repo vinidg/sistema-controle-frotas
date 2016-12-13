@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using db_transporte_sanitario;
-using System.Data.Objects.SqlClient;
+using System.Data.Entity.SqlServer;
 
 namespace Sistema_Controle
 {
@@ -208,8 +208,8 @@ namespace Sistema_Controle
                                 on sp.idReagendamento equals saa.idSolicitacaoAgendamento into spsaaajoin
                                 from saa in spsaaajoin.DefaultIfEmpty()
                                 where 
-                                SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrAgendamento) == 0
-                               // || SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrdoAgendamento) == 0
+                                SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrdoAgendamento) == 0
+                               // || SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrAgendamento) == 0
                                // || SqlFunctions.DateDiff("day", dataagendamento.Value, saa.DtHrAgendamento) == 0
                                 select new
                                 {
@@ -220,7 +220,7 @@ namespace Sistema_Controle
                                     sp.DtHrdoAgendamento,
                                     Data_Reagendada = saa.DtHrAgendamento
                                 };
-                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.DataSource = query.ToList();
                     consultaSolicitacoes.Refresh();
 
                     consultaSolicitacoes.Columns[0].HeaderText = "ID";
@@ -325,7 +325,8 @@ namespace Sistema_Controle
             this.Dispose();
             sand.ShowDialog();
         }
-
+       
+        #region Eventos Cliks
         private void numeroFicha_Click(object sender, EventArgs e)
         {
             opcao = Opcao.Numero;
@@ -365,6 +366,19 @@ namespace Sistema_Controle
         private void localdasolicitacao_Click(object sender, EventArgs e)
         {
             opcao = Opcao.LocalDaSolicitacao;
+        }
+        #endregion
+       
+        private void imprimirAgendamentos_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in consultaSolicitacoes.Rows)
+            {
+                row.Height = 60;
+            }
+            this.consultaSolicitacoes.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 8);
+            this.consultaSolicitacoes.DefaultCellStyle.Font = new Font("Arial", 8);
+
+            PrintDGV.Print_DataGridView(consultaSolicitacoes);
         }
 
 

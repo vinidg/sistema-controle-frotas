@@ -38,91 +38,92 @@ namespace Sistema_Controle
             statusJanela();
             selectHorarios();
             SelecionarPaines();
-            NomeAM = label1.Text;
+            NomeAM = Titulo.Text;
 
         }
+        #region clicks
 
-        private void BtnTroca_Click(object sender, EventArgs e)
-        {
-            Paineltrocar.Visible = true;
-        }
-        private void BtTrocar_Click(object sender, EventArgs e)
-        {
-            InsercoesDoBanco ib = new InsercoesDoBanco();
-            DateTime now = DateTime.Now;
+                private void BtnTroca_Click(object sender, EventArgs e)
+                {
+                    Paineltrocar.Visible = true;
+                }
+                private void BtTrocar_Click(object sender, EventArgs e)
+                {
+                    InsercoesDoBanco ib = new InsercoesDoBanco();
+                    DateTime now = DateTime.Now;
 
-            ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now, codigoDaAmbulancia);
+                    ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now, codigoDaAmbulancia);
 
-            MessageBox.Show("Equipe trocada !");
+                    MessageBox.Show("Equipe trocada !");
 
-            equipeView.DataSource = null;
-            Paineltrocar.Visible = false;
-            selectEquipeBD();
-            EquipeAtribuiNaOcupada();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
+                    equipeView.DataSource = null;
+                    Paineltrocar.Visible = false;
+                    selectEquipeBD();
+                    EquipeAtribuiNaOcupada();
+                }
+                private void button1_Click(object sender, EventArgs e)
+                {
+                    Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
 
-            this.Dispose();
-            cs.ShowDialog();
+                    this.Dispose();
+                    cs.ShowDialog();
 
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            PainelBloqueio.Visible = true;
-            txtResposavel.Text = resposavel;
-        }     
-        private void BtnBloquear_Click(object sender, EventArgs e)
-        {
-            InsercoesDoBanco IB = new InsercoesDoBanco();
-            IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
+                }
+                private void button2_Click(object sender, EventArgs e)
+                {
+                    PainelBloqueio.Visible = true;
+                    txtResposavel.Text = resposavel;
+                }     
+                private void BtnBloquear_Click(object sender, EventArgs e)
+                {
+                    InsercoesDoBanco IB = new InsercoesDoBanco();
+                    IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
                      
-            MessageBox.Show("Ambulância Bloqueada !");
-            PainelBloqueio.Visible = false;
-            BtnDesbloquear.Visible = true;
-            BtnBloqueio.Visible = false;
-            BtnAddPaciente.Visible = false;
-            painelCentral.BackColor = Color.FromArgb(0, 122, 181);
-            this.BackColor = Color.FromArgb(204, 229, 255);
-            label1.ForeColor = Color.White;
-            /////
-            label8.Visible = true;
+                    MessageBox.Show("Ambulância Bloqueada !");
+                    PainelBloqueio.Visible = false;
+                    BtnDesbloquear.Visible = true;
+                    BtnBloqueio.Visible = false;
+                    BtnAddPaciente.Visible = false;
+                    painelCentral.BackColor = Color.FromArgb(0, 122, 181);
+                    this.BackColor = Color.FromArgb(204, 229, 255);
+                    Titulo.ForeColor = Color.White;
+                    /////
+                    label8.Visible = true;
 
 
-        }
-        private void BtnDesbloquear_Click(object sender, EventArgs e)
-        {
-            InsercoesDoBanco IB = new InsercoesDoBanco();
-            IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
+                }
+                private void BtnDesbloquear_Click(object sender, EventArgs e)
+                {
+                    InsercoesDoBanco IB = new InsercoesDoBanco();
+                    IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
 
-            MessageBox.Show("Ambulância Desbloqueada !");
-            BtnDesbloquear.Visible = false;
-            BtnBloqueio.Visible = true;
-            BtnAddPaciente.Visible = true;
-            painelCentral.BackColor = Color.FromArgb(46, 172, 109);
-            this.BackColor = Color.FromArgb(229, 255, 204);
-            label1.ForeColor = Color.White;
-            label8.Visible = false;
-            Destino.Visible = false;
-            Origem.Visible = false;
-        }
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
-            this.Dispose();
-            sand.ShowDialog();
-        }
-        private void ListadePacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int IDpesquisa;
-            IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
-            SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
-            this.Dispose();
-            sand.ShowDialog();
+                    MessageBox.Show("Ambulância Desbloqueada !");
+                    BtnDesbloquear.Visible = false;
+                    BtnBloqueio.Visible = true;
+                    BtnAddPaciente.Visible = true;
+                    painelCentral.BackColor = Color.FromArgb(46, 172, 109);
+                    this.BackColor = Color.FromArgb(229, 255, 204);
+                    Titulo.ForeColor = Color.White;
+                    label8.Visible = false;
+                    Destino.Visible = false;
+                    Origem.Visible = false;
+                }
+                private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                    SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
+                    this.Dispose();
+                    sand.ShowDialog();
+                }
+                private void ListadePacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+                {
+                    int IDpesquisa;
+                    IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
+                    this.Dispose();
+                    sand.ShowDialog();
 
-        }
-
+                }
+        #endregion
         private void EquipeAtribuiNaOcupada()
         {
             if (this.Text == "Ocupada")
@@ -224,45 +225,66 @@ namespace Sistema_Controle
                         return;
                     }
                     
-                    painelCentral.BackColor = Color.FromArgb(224, 62, 54);
-                    this.BackColor = Color.FromArgb(255, 204, 204);
-                    label7.Visible = true;
-                    label8.Visible = true;
-                    PainelHistorico.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    BtnAddPaciente.Location = new Point(71, 244);
-                    BtnAddPaciente.Size = new Size(306, 146);
-                    BtnBloqueio.Visible = false;
-                    this.Text = "OCUPADA";
-                    statusAmbulancia = queryStatus;
-
-                    d.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
-                    
                     using (DAHUEEntities db = new DAHUEEntities())
                     {
-                        var query = (from sa in db.solicitacoes_paciente
-                                     where sa.idPaciente_Solicitacoes == idPaciente
-                                     select new { sa.Origem, sa.Destino }).FirstOrDefault();
+                        var query = (from sp in db.solicitacoes_paciente
+                                     join sa in db.solicitacoes_ambulancias
+                                     on sp.idPaciente_Solicitacoes equals sa.idSolicitacoesPacientes into sa_join
+                                     from sa in sa_join.DefaultIfEmpty()
+                                     where sp.idPaciente_Solicitacoes == idPaciente
+                                     select new { sp.Origem, sp.Destino, sa.Status }).FirstOrDefault();
 
                         if(query.Origem != null || query.Destino != null){
-                        origem = query.Origem.ToString();
-                        destino = query.Destino.ToString();
+
+                            origem = query.Origem.ToString();
+                            destino = query.Destino.ToString();
                         }
                         else
                         {
                             destino = "";
                             origem = "";
                         }
-                    }
+                        
+                        if (query.Status == "Equipe Liberada do Destino")
+                        {
+                            painelCentral.BackColor = Color.FromArgb(255, 232, 105);
+                            this.BackColor = Color.FromArgb(255, 251, 203);
+                            ListadePacientes.BackgroundColor = Color.FromArgb(255, 232, 105);
+                            Titulo.ForeColor = Color.Black;
+                            Origem.BackColor = Color.FromArgb(255, 251, 203);
+                            Origem.ForeColor = Color.Black;
+                            Destino.BackColor = Color.FromArgb(255, 251, 203);
+                            Destino.ForeColor = Color.Black;
+                            PainelHistorico.BackColor = Color.FromArgb(255, 232, 105);
+                        }
+                        else
+                        {
+                            painelCentral.BackColor = Color.FromArgb(224, 62, 54);
+                            this.BackColor = Color.FromArgb(255, 204, 204);
+                        }
 
-                    atualizarStatusOcupadoPacientePorCodigo();
+                        label7.Visible = true;
+                        label8.Visible = true;
+                        PainelHistorico.Visible = true;
+                        BtnAddPaciente.Visible = true;
+                        BtnAddPaciente.Location = new Point(71, 244);
+                        BtnAddPaciente.Size = new Size(306, 146);
+                        BtnBloqueio.Visible = false;
+                        this.Text = "OCUPADA";
+                        statusAmbulancia = queryStatus;
 
-                    Destino.Text = destino;
-                    Origem.Text = origem;
+                        d.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
+                    
+                        }
 
-                    SolicitaAM = Convert.ToInt32(d.IdSolicitacoes_Ambulancias);
-                    label7.Text = idPaciente.ToString();
+                        atualizarStatusOcupadoPacientePorCodigo();
 
+                        Destino.Text = destino;
+                        Origem.Text = origem;
+
+                        SolicitaAM = Convert.ToInt32(d.IdSolicitacoes_Ambulancias);
+                        label7.Text = idPaciente.ToString();
+                
                 }
             if (queryStatus.ToString() == "DISPONIVEL")
                 {
@@ -276,7 +298,7 @@ namespace Sistema_Controle
                     Destino.Visible = false;
                     Origem.Visible = false;
                 }
-            label1.Text = nomeAM;
+            Titulo.Text = nomeAM;
             NomeAM = nomeAM;
         }
 
@@ -499,7 +521,7 @@ namespace Sistema_Controle
             }
             if (txtHora2.Enabled == true && txtHora2.Text != "__/__/____ __:__:__")
             {
-                if (validarData(txtHora.Text).Equals(false))
+                if (validarData(txtHora2.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -563,7 +585,7 @@ namespace Sistema_Controle
             }
             if (txtHora3.Enabled == true && txtHora3.Text != "__/__/____ __:__:__")
             {
-                if (validarData(txtHora.Text).Equals(false))
+                if (validarData(txtHora3.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -627,7 +649,7 @@ namespace Sistema_Controle
             }
             if (txtHora4.Enabled == true && txtHora4.Text != "__/__/____ __:__:__")
             {
-                if (validarData(txtHora.Text).Equals(false))
+                if (validarData(txtHora4.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -691,8 +713,7 @@ namespace Sistema_Controle
             }
             if (txtHora5.Enabled == true && txtHora5.Text != "__/__/____ __:__:__")
             {
-
-                if (validarData(txtHora.Text).Equals(false))
+                if (validarData(txtHora5.Text).Equals(false))
                 {
                     MessageBox.Show("Data inválida", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

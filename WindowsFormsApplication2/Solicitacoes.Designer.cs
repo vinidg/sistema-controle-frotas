@@ -57,8 +57,6 @@
             this.OrdemNomeAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemDataAgenda = new System.Windows.Forms.RadioButton();
             this.OrdemPrioridadeAgenda = new System.Windows.Forms.RadioButton();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaAgendadas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -392,16 +390,6 @@
             this.OrdemPrioridadeAgenda.UseVisualStyleBackColor = true;
             this.OrdemPrioridadeAgenda.Click += new System.EventHandler(this.OrdemPrioridadeAgenda_Click);
             // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
-            // 
             // Solicitacoes
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -454,7 +442,5 @@
         private System.Windows.Forms.Label dtagenda;
         private System.Windows.Forms.DateTimePicker dataReagendamento;
         private System.Windows.Forms.Button imprimirAgendamentos;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

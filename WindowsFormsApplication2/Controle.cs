@@ -20,7 +20,7 @@ namespace Sistema_Controle
             Re.Text = System.Environment.UserName;
 
             Timer();
-            
+
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
@@ -31,57 +31,57 @@ namespace Sistema_Controle
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var queryUsb = (from am in db.ambulancia
-                               join sa in db.solicitacoes_ambulancias
-                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
-                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida} into sa_join
-                               from sa in sa_join.DefaultIfEmpty()
-                               join sp in db.solicitacoes_paciente 
-                               on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } 
-                               equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
-                               from sp in sp_join.DefaultIfEmpty()
-                               where am.TipoAM == "BASICO" && am.Desativado == 0
-                               orderby am.NomeAmbulancia ascending
-                               select new
-                               {
-                                   am.idAmbulancia,
-                                   Ambulancia =  am.NomeAmbulancia,
-                                   Status = sa.Status, 
-                                   StatusE = am.StatusAmbulancia,
-                                   idPaciente = sa.idSolicitacoesPacientes, 
-                                   Paciente = sp.Paciente,
-                                   Idade = sp.Idade,
-                                   Origem = sp.Origem,
-                                   Destino = sp.Destino
-                               }).ToList();
+                                join sa in db.solicitacoes_ambulancias
+                                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                                equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                                from sa in sa_join.DefaultIfEmpty()
+                                join sp in db.solicitacoes_paciente
+                                on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes }
+                                equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                                from sp in sp_join.DefaultIfEmpty()
+                                where am.TipoAM == "BASICO" && am.Desativado == 0
+                                orderby am.NomeAmbulancia ascending
+                                select new
+                                {
+                                    am.idAmbulancia,
+                                    Ambulancia = am.NomeAmbulancia,
+                                    Status = sa.Status,
+                                    StatusE = am.StatusAmbulancia,
+                                    idPaciente = sa.idSolicitacoesPacientes,
+                                    Paciente = sp.Paciente,
+                                    Idade = sp.Idade,
+                                    Origem = sp.Origem,
+                                    Destino = sp.Destino
+                                }).ToList();
 
                 listaUsb.DataSource = queryUsb;
                 listaUsb.ClearSelection();
 
                 var queryUsa = (from am in db.ambulancia
-                               join sa in db.solicitacoes_ambulancias
-                               on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
-                               equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
-                               from sa in sa_join.DefaultIfEmpty()
-                               join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
-                               from sp in sp_join.DefaultIfEmpty()
-                               where am.TipoAM == "AVANCADO" && am.Desativado == 0
-                               orderby am.NomeAmbulancia ascending
-                               select new
-                               {
-                                   am.idAmbulancia,
-                                   Ambulancia = am.NomeAmbulancia,
-                                   Status = sa.Status,
-                                   StatusE = am.StatusAmbulancia,
-                                   idPaciente = sa.idSolicitacoesPacientes, 
-                                   Paciente = sp.Paciente,
-                                   Idade = sp.Idade,
-                                   Origem = sp.Origem,
-                                   Destino = sp.Destino
-                               }).ToList();
+                                join sa in db.solicitacoes_ambulancias
+                                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                                equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                                from sa in sa_join.DefaultIfEmpty()
+                                join sp in db.solicitacoes_paciente on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes } equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                                from sp in sp_join.DefaultIfEmpty()
+                                where am.TipoAM == "AVANCADO" && am.Desativado == 0
+                                orderby am.NomeAmbulancia ascending
+                                select new
+                                {
+                                    am.idAmbulancia,
+                                    Ambulancia = am.NomeAmbulancia,
+                                    Status = sa.Status,
+                                    StatusE = am.StatusAmbulancia,
+                                    idPaciente = sa.idSolicitacoesPacientes,
+                                    Paciente = sp.Paciente,
+                                    Idade = sp.Idade,
+                                    Origem = sp.Origem,
+                                    Destino = sp.Destino
+                                }).ToList();
 
                 listaUsa.DataSource = queryUsa;
                 listaUsa.ClearSelection();
-                
+
             }
             listaUsa.Columns[0].Visible = false;
             listaUsb.Columns[0].Visible = false;
@@ -89,6 +89,7 @@ namespace Sistema_Controle
             listaUsb.Columns["idPaciente"].Visible = false;
             listaUsa.Columns["StatusE"].Width = 0;
             listaUsb.Columns["StatusE"].Width = 0;
+            coresDasTabelas();
 
             this.listaUsa.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.listaUsa.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -103,22 +104,21 @@ namespace Sistema_Controle
             this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             this.listaUsb.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
         }
-          
+
         #region NumeroDeSolicitacoes
 
         private void contarSolicitacao()
-        {       
+        {
             using (DAHUEEntities db = new DAHUEEntities())
-                {
-                    var query= (from sp in db.solicitacoes_paciente
-                                where sp.AmSolicitada == 0 && sp.Agendamento == "Nao" &&
-                                sp.Registrado == "Sim"
-                                select sp.idPaciente_Solicitacoes).Count();
-                    
-                    txtSolicitacoes.Text = query.ToString();
-                }
+            {
+                var query = (from sp in db.solicitacoes_paciente
+                             where sp.AmSolicitada == 0 && sp.Agendamento == "Nao" &&
+                             sp.Registrado == "Sim"
+                             select sp.idPaciente_Solicitacoes).Count();
+
+                txtSolicitacoes.Text = query.ToString();
+            }
 
         }
         private void contarSolicitacoesAgendadas()
@@ -154,7 +154,7 @@ namespace Sistema_Controle
 
         #endregion
 
-        #region Timer 
+        #region Timer
         public void Timer()
         {
             timer1.Stop();
@@ -171,18 +171,9 @@ namespace Sistema_Controle
             //alertarNovosAgendamentos();
             //numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
         }
-        
+
 
         #endregion
-        private void alertarNovosAgendamentos()
-        {
-            if (Convert.ToInt32(txtAgendasPendentes.Text) > numeroAgendamentos)
-            {
-                int novos = Convert.ToInt32(txtAgendasPendentes.Text) - numeroAgendamentos;
-                MessageBox.Show(novos + " novos agendamentos solicitados !", "Novos agendamentos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
-            }
-        }
 
         #region EventosCliks
         private void BtnNew_Click(object sender, EventArgs e)
@@ -252,7 +243,7 @@ namespace Sistema_Controle
         private void Editar_Click(object sender, EventArgs e)
         {
             EditarAmbulancias ea = new EditarAmbulancias();
-            ea.ShowDialog();    
+            ea.ShowDialog();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -283,22 +274,22 @@ namespace Sistema_Controle
         }
         private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex > -1)
+            if (e.RowIndex > -1)
             {
-            string idAM = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if(listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
-            {
-                string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
+                string idAM = listaUsb.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value != null)
+                {
+                    string idPaciente = listaUsb.Rows[e.RowIndex].Cells["idPaciente"].Value.ToString();
 
-                Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
-                sta.ShowDialog();
-            }
-            else
-            {
+                    Status sta = new Status(Convert.ToInt32(idAM), Convert.ToInt32(idPaciente));
+                    sta.ShowDialog();
+                }
+                else
+                {
 
-                Status sta = new Status(Convert.ToInt32(idAM), 0);
-                sta.ShowDialog();
-            }
+                    Status sta = new Status(Convert.ToInt32(idAM), 0);
+                    sta.ShowDialog();
+                }
             }
         }
         private void txtAgendasPendentes_KeyDown(object sender, KeyEventArgs e)
@@ -336,48 +327,6 @@ namespace Sistema_Controle
         #endregion
 
         #region Eventos
-        private void listaUsb_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (this.listaUsb.Columns[e.ColumnIndex].Name == "StatusE")
-            {
-                if (e.Value != null && e.Value.Equals("BLOQUEADA"))
-                {
-                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
-                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                }
-                else if (e.Value != null && e.Value.Equals("OCUPADA"))
-                {
-                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
-                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                }
-                else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
-                {
-                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
-                    this.listaUsb.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                }
-            }
-        }
-        private void listaUsa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (this.listaUsa.Columns[e.ColumnIndex].Name == "StatusE")
-            {
-                if (e.Value != null && e.Value.Equals("BLOQUEADA"))
-                {
-                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
-                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                }
-                else if (e.Value != null && e.Value.Equals("OCUPADA"))
-                {
-                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
-                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                }
-                else if (e.Value != null && e.Value.Equals("DISPONIVEL"))
-                {
-                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
-                    this.listaUsa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                }
-            }
-        }
         private void txtAgendasPendentes_TextChanged(object sender, EventArgs e)
         {
             if (txtAgendasPendentes.Focus())
@@ -386,7 +335,93 @@ namespace Sistema_Controle
             }
         }
 
+        private void coresDasTabelas()
+        {
+
+            foreach (DataGridViewRow row in listaUsb.Rows)
+            {
+
+                string RowType = row.Cells[3].Value.ToString();
+
+                if (RowType == "BLOQUEADA")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (RowType == "OCUPADA")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (RowType == "DISPONIVEL")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+
+            }
+            foreach (DataGridViewRow row in listaUsb.Rows)
+            {
+                string RowType2 = "";
+                if (row.Cells[2].Value != null)
+                {
+                    RowType2 = row.Cells[2].Value.ToString();
+                }
+                if (RowType2 == "Equipe Liberada do Destino")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(241, 237, 99);
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+
+            foreach (DataGridViewRow row in listaUsa.Rows)
+            {
+
+                string RowType = row.Cells[3].Value.ToString();
+
+                if (RowType == "BLOQUEADA")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(0, 122, 181);
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (RowType == "OCUPADA")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(224, 62, 54);
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (RowType == "DISPONIVEL")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(46, 172, 109);
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+
+            }
+            foreach (DataGridViewRow row in listaUsa.Rows)
+            {
+                string RowType2 = "";
+                if (row.Cells[2].Value != null)
+                {
+                    RowType2 = row.Cells[2].Value.ToString();
+                }
+                if (RowType2 == "Equipe Liberada do Destino")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(241, 237, 99);
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+
+
+        }
         #endregion
+        private void alertarNovosAgendamentos()
+        {
+            if (Convert.ToInt32(txtAgendasPendentes.Text) > numeroAgendamentos)
+            {
+                int novos = Convert.ToInt32(txtAgendasPendentes.Text) - numeroAgendamentos;
+                MessageBox.Show(novos + " novos agendamentos solicitados !", "Novos agendamentos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
+            }
+        }
     }
 
 }

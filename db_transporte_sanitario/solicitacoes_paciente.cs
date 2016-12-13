@@ -23,7 +23,7 @@ namespace db_transporte_sanitario
     
         public int idPaciente_Solicitacoes { get; set; }
         public string TipoSolicitacao { get; set; }
-        public DateTime? DtHrdoInicio { get; set; }
+        public Nullable<System.DateTime> DtHrdoInicio { get; set; }
         public string Agendamento { get; set; }
         public string DtHrAgendamento { get; set; }
         public string NomeSolicitante { get; set; }
@@ -44,7 +44,7 @@ namespace db_transporte_sanitario
         public Nullable<int> AmSolicitada { get; set; }
         public string Registrado { get; set; }
         public string HrRegistro { get; set; }
-        public DateTime? DtHrdoAgendamento { get; set; }
+        public Nullable<System.DateTime> DtHrdoAgendamento { get; set; }
         public Nullable<int> idReagendamento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

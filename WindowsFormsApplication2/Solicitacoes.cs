@@ -98,7 +98,9 @@ namespace Sistema_Controle
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 Prioridade = (sp.Prioridade.Contains("P0") ? "P0" : (sp.Prioridade.Contains("P1") ? "P1" : (sp.Prioridade.Contains("P2") ? "P2" : (sp.Prioridade.Contains("P3") ? "P3" : "SP")))),
                                 sp.Motivo,
+                                sp.SubMotivo,
                                 sp.Origem,
+                                sp.EnderecoOrigem,
                                 sp.Destino,
                                 sp.LocalSolicitacao,
                                 sp.Telefone,
@@ -113,6 +115,15 @@ namespace Sistema_Controle
                 txtTotal3.Text = contar.ToString();
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
+
+                this.listaAgendadas.Columns.Add("VTR", "VTR");
+                this.listaAgendadas.Columns.Add("Fixo", "Fixo");
+
+                this.listaAgendadas.Columns["VTR"].DisplayIndex = 12;
+                this.listaAgendadas.Columns["Fixo"].DisplayIndex = 13;
+
+                this.listaAgendadas.Columns["VTR"].Visible = false;
+                this.listaAgendadas.Columns["Fixo"].Visible = false;
             }
 
         }
@@ -419,7 +430,6 @@ namespace Sistema_Controle
                 listaAgendadas.DataSource = queryAmbu;
                 listaAgendadas.ClearSelection();
 
-
             }
             OrdemDataAgenda.Font = new Font(dtagenda.Font, FontStyle.Bold);
             dtagenda.Font = new Font(dtreagenda.Font, FontStyle.Regular);
@@ -455,7 +465,9 @@ namespace Sistema_Controle
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 Prioridade = (sp.Prioridade.Contains("P0") ? "P0" : (sp.Prioridade.Contains("P1") ? "P1" : (sp.Prioridade.Contains("P2") ? "P2" : (sp.Prioridade.Contains("P3") ? "P3" : "SP")))),
                                 sp.Motivo,
+                                sp.SubMotivo,
                                 sp.Origem,
+                                sp.EnderecoOrigem,
                                 sp.Destino,
                                 sp.LocalSolicitacao,
                                 sp.Telefone,
@@ -513,7 +525,9 @@ namespace Sistema_Controle
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 Prioridade = (sp.Prioridade.Contains("P0") ? "P0" : (sp.Prioridade.Contains("P1") ? "P1" : (sp.Prioridade.Contains("P2") ? "P2" : (sp.Prioridade.Contains("P3") ? "P3" : "SP")))),
                                 sp.Motivo,
+                                sp.SubMotivo,
                                 sp.Origem,
+                                sp.EnderecoOrigem,
                                 sp.Destino,
                                 sp.LocalSolicitacao,
                                 sp.Telefone,
@@ -563,7 +577,9 @@ namespace Sistema_Controle
                                 Data_Reagendada = saa.DtHrAgendamento,
                                 Prioridade = (sp.Prioridade.Contains("P0") ? "P0" : (sp.Prioridade.Contains("P1") ? "P1" : (sp.Prioridade.Contains("P2") ? "P2" : (sp.Prioridade.Contains("P3") ? "P3" : "SP")))),
                                 sp.Motivo,
+                                sp.SubMotivo,
                                 sp.Origem,
+                                sp.EnderecoOrigem,
                                 sp.Destino,
                                 sp.LocalSolicitacao,
                                 sp.Telefone,
@@ -584,12 +600,6 @@ namespace Sistema_Controle
 
         private void imprimirAgendamentos_Click(object sender, EventArgs e)
         {
-            this.listaAgendadas.Columns.Add("vtr", "VTR");
-            this.listaAgendadas.Columns.Add("fixo", "Fixo");
-
-            this.listaAgendadas.Columns["vtr"].DisplayIndex = 12;
-            this.listaAgendadas.Columns["fixo"].DisplayIndex = 13;
-
             foreach (DataGridViewRow row in listaAgendadas.Rows)
             {
                 row.Height = 80;
@@ -597,9 +607,10 @@ namespace Sistema_Controle
             this.listaAgendadas.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 8);
             this.listaAgendadas.DefaultCellStyle.Font = new Font("Arial", 8);
 
-            this.listaAgendadas.Columns["vtr"].Visible = true;
-            this.listaAgendadas.Columns["fixo"].Visible = true;
+            this.listaAgendadas.Columns["VTR"].Visible = true;
+            this.listaAgendadas.Columns["Fixo"].Visible = true;
             PrintDGV.Print_DataGridView(listaAgendadas);
+
         }
 
     }

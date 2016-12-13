@@ -56,6 +56,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.imprimirAgendamentos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.consultaSolicitacoes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacaoPaciente)).BeginInit();
@@ -189,7 +190,8 @@
             // 
             // dataagendamento
             // 
-            this.dataagendamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dataagendamento.CustomFormat = "dd/MM/yyyy";
+            this.dataagendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dataagendamento.Location = new System.Drawing.Point(225, 243);
             this.dataagendamento.Name = "dataagendamento";
             this.dataagendamento.Size = new System.Drawing.Size(177, 20);
@@ -395,12 +397,28 @@
             this.panel3.Size = new System.Drawing.Size(357, 581);
             this.panel3.TabIndex = 19;
             // 
+            // imprimirAgendamentos
+            // 
+            this.imprimirAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imprimirAgendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
+            this.imprimirAgendamentos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imprimirAgendamentos.BackgroundImage")));
+            this.imprimirAgendamentos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.imprimirAgendamentos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imprimirAgendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.imprimirAgendamentos.Location = new System.Drawing.Point(749, 7);
+            this.imprimirAgendamentos.Name = "imprimirAgendamentos";
+            this.imprimirAgendamentos.Size = new System.Drawing.Size(45, 37);
+            this.imprimirAgendamentos.TabIndex = 38;
+            this.imprimirAgendamentos.UseVisualStyleBackColor = false;
+            this.imprimirAgendamentos.Click += new System.EventHandler(this.imprimirAgendamentos_Click);
+            // 
             // Consulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(226)))), ((int)(((byte)(157)))));
             this.ClientSize = new System.Drawing.Size(806, 640);
+            this.Controls.Add(this.imprimirAgendamentos);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -449,6 +467,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button imprimirAgendamentos;
 
 
     }

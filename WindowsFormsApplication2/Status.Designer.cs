@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Status));
-            this.label1 = new System.Windows.Forms.Label();
+            this.Titulo = new System.Windows.Forms.Label();
             this.BtnAddPaciente = new System.Windows.Forms.Button();
             this.BtnBloqueio = new System.Windows.Forms.Button();
             this.BtnTroca = new System.Windows.Forms.Button();
@@ -93,16 +93,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // Titulo
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(7, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1215, 55);
-            this.label1.TabIndex = 0;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Titulo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo.ForeColor = System.Drawing.Color.White;
+            this.Titulo.Location = new System.Drawing.Point(7, 15);
+            this.Titulo.Name = "Titulo";
+            this.Titulo.Size = new System.Drawing.Size(1215, 55);
+            this.Titulo.TabIndex = 0;
+            this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnAddPaciente
             // 
@@ -630,7 +630,7 @@
             this.painelCentral.Controls.Add(this.BtnDesbloquear);
             this.painelCentral.Controls.Add(this.BtnTroca);
             this.painelCentral.Controls.Add(this.BtnBloqueio);
-            this.painelCentral.Controls.Add(this.label1);
+            this.painelCentral.Controls.Add(this.Titulo);
             this.painelCentral.Controls.Add(this.label7);
             this.painelCentral.Controls.Add(this.BtnAddPaciente);
             this.painelCentral.Controls.Add(this.equipeView);
@@ -761,7 +761,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Titulo;
         private System.Windows.Forms.Button BtnAddPaciente;
         private System.Windows.Forms.Button BtnBloqueio;
         private System.Windows.Forms.Button BtnTroca;

@@ -124,9 +124,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>db_dahue_prod.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.Config" />
     <None Include="db_dahue_prod.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>db_dahue_prod.edmx</DependentUpon>
