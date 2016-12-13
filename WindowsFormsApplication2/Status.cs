@@ -256,6 +256,7 @@ namespace Sistema_Controle
                             Destino.BackColor = Color.FromArgb(255, 251, 203);
                             Destino.ForeColor = Color.Black;
                             PainelHistorico.BackColor = Color.FromArgb(255, 232, 105);
+                            concluirSolicitacao.Visible = true;
                         }
                         else
                         {
@@ -297,6 +298,7 @@ namespace Sistema_Controle
                     Origem.Text = "";
                     Destino.Visible = false;
                     Origem.Visible = false;
+                    concluirSolicitacao.Visible = false;
                 }
             Titulo.Text = nomeAM;
             NomeAM = nomeAM;
@@ -762,6 +764,7 @@ namespace Sistema_Controle
 
                 MessageBox.Show("Avise a equipe que é necessario informar a chegada no pátio !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
+            statusJanela();
         }
         private void BtnPatio_Click(object sender, EventArgs e)
         {
@@ -810,8 +813,6 @@ namespace Sistema_Controle
                 this.Dispose();
             }
 
-
-
         }
         #endregion
 
@@ -844,6 +845,49 @@ namespace Sistema_Controle
             txtHora4.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
             txtHora5.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
             txtHora6.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+        }
+
+        private void concluirSolicitacao_Click(object sender, EventArgs e)
+        {
+            BtnEquipeDestino.BackColor = Color.LightSkyBlue;
+            txtHora6.Text = DateTime.Now.ToString();
+            txtAlterador6.Text = resposavel;
+            var idSolicitacaAM = (String)null;
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
+
+                var contemPaciente = (from soa in db.solicitacoes_ambulancias
+                                      where soa.idAmbulanciaSol == codigoDaAmbulancia && soa.SolicitacaoConcluida == 0
+                                      select soa).Count();
+                idSolicitacaAM = (from sa in db.solicitacoes_ambulancias
+                                  where sa.idSolicitacoesPacientes == idPaciente && sa.SolicitacaoConcluida == 0
+                                  select sa.idSolicitacoes_Ambulancias).FirstOrDefault().ToString();
+
+                if (contemPaciente == 1)
+                {
+                    ambulancia am = db.ambulancia.First(a => a.idAmbulancia == codigoDaAmbulancia);
+                    am.StatusAmbulancia = "DISPONIVEL";
+                }
+                solicitacoes_ambulancias sas = db.solicitacoes_ambulancias.First(s => s.idAmbulanciaSol == codigoDaAmbulancia && s.SolicitacaoConcluida == 0);
+                sas.SolicitacaoConcluida = 1;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Equipe disponivel !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+            DialogResult rs = MessageBox.Show("Deseja imprimir a ficha completa da solicitação ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (rs == DialogResult.Yes)
+            {
+
+                SelecionaAM samb = new SelecionaAM(idPaciente, codigoDaAmbulancia, Convert.ToInt32(idSolicitacaAM));
+                samb.imprimirFicha();
+                this.Dispose();
+            }
+            else
+            {
+                this.Dispose();
+            }
         }
     }
 }
