@@ -68,7 +68,7 @@ namespace Sistema_Controle
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Sistema não está atualizado, podendo conter erros ao continuar usando a versão antiga");
+                MessageBox.Show("Sistema não está atualizado, podendo conter erros ao continuar usando a versão antiga."+ ex.Message , Application.ProductName );
             }
             finally
             {

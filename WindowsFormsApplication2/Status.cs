@@ -50,9 +50,9 @@ namespace Sistema_Controle
                 private void BtTrocar_Click(object sender, EventArgs e)
                 {
                     InsercoesDoBanco ib = new InsercoesDoBanco();
-                    DateTime now = DateTime.Now;
+                    DateTime agora = DateTime.Now;
 
-                    ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, now, codigoDaAmbulancia);
+                    ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, agora, codigoDaAmbulancia);
 
                     MessageBox.Show("Equipe trocada !");
 
@@ -383,52 +383,52 @@ namespace Sistema_Controle
         private void SelecionarPaines()
         {
             DesativarMascara();
-            if (txtHora.Text == "")
+            if (String.IsNullOrEmpty(txtHora.Text))
             {
                 painel1.Visible = true;
             }
-            else if (txtHora.Text != "")
+            else if (String.IsNullOrEmpty(txtHora.Text).Equals(false))
             {
                 painel1.Visible = false;
                 BtnOrigem.BackColor = Color.MediumTurquoise;
                 BtnEquipeCiente.BackColor = Color.LightSkyBlue;
             }
-            if (txtHora2.Text == "")
+            if (String.IsNullOrEmpty(txtHora2.Text))
             {
                 painel2.Visible = true;
             }
-            else if (txtHora2.Text != "")
+            else if (String.IsNullOrEmpty(txtHora2.Text).Equals(false))
             {
                 BtnOrigem.BackColor = Color.LightSkyBlue;
                 painel2.Visible = false;
                 BtnSaiuOrigem.BackColor = Color.MediumTurquoise;
             }
-            if (txtHora3.Text == "")
+            if (String.IsNullOrEmpty(txtHora3.Text))
             {
                 painel3.Visible = true;
             }
-            else if (txtHora3.Text != "")
+            else if (String.IsNullOrEmpty(txtHora3.Text).Equals(false))
             {
 
                 painel3.Visible = false;
                 BtnEquipeDestino.BackColor = Color.MediumTurquoise;
                 BtnSaiuOrigem.BackColor = Color.LightSkyBlue;
             }
-            if (txtHora4.Text == "")
+            if (String.IsNullOrEmpty(txtHora4.Text))
             {
                 painel4.Visible = true;
             }
-            else if (txtHora4.Text != "")
+            else if (String.IsNullOrEmpty(txtHora4.Text).Equals(false))
             {
                 painel4.Visible = false;
                 EquipeLiberada.BackColor = Color.MediumTurquoise;
                 BtnEquipeDestino.BackColor = Color.LightSkyBlue;
             }
-            if (txtHora5.Text == "")
+            if (String.IsNullOrEmpty(txtHora5.Text))
             {
                 painel5.Visible = true;
             }
-            else if (txtHora5.Text != "")
+            else if (String.IsNullOrEmpty(txtHora5.Text).Equals(false))
             {
                 painel5.Visible = false;
                 BtnPatio.BackColor = Color.MediumTurquoise;
@@ -816,6 +816,7 @@ namespace Sistema_Controle
         }
         #endregion
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         private bool validarData(string sData)
         {
             try

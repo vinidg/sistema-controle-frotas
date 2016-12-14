@@ -14,8 +14,8 @@ namespace db_transporte_sanitario
     
     public partial class solicitacoes_ambulancias
     {
-        public int idSolicitacoes_Ambulancias { get; set; }
-        public Nullable<int> idSolicitacoesPacientes { get; set; }
+        public int? idSolicitacoes_Ambulancias { get; set; }
+        public int? idSolicitacoesPacientes { get; set; }
         public byte[] Cancelamento { get; set; }
         public string DtHrCiencia { get; set; }
         public string DtHrCienciaReg { get; set; }
@@ -31,7 +31,7 @@ namespace db_transporte_sanitario
         public string DtHrEquipePatioReg { get; set; }
         public int idAmbulanciaSol { get; set; }
         public Nullable<int> SolicitacaoConcluida { get; set; }
-        public Nullable<int> IdOutroPaciente { get; set; }
+        public int? IdOutroPaciente { get; set; }
         public string Status { get; set; }
     
         public virtual ambulancia ambulancia { get; set; }

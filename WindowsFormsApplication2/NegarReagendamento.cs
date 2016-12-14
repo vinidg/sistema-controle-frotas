@@ -22,7 +22,7 @@ namespace Sistema_Controle
 
         private void Aceitar_Click(object sender, EventArgs e)
         {
-            if (Motivo.Text != "")
+            if (String.IsNullOrEmpty(Motivo.Text).Equals(false))
             {
                 DialogResult result1 = MessageBox.Show("Deseja negar o agendamento ?",
                 Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);

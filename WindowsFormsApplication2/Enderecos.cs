@@ -53,7 +53,7 @@ namespace Sistema_Controle
                     return;
                 }
             }
-            if(NomeUnidade.Text != "" || Endereco.Text != "")
+            if(String.IsNullOrEmpty(NomeUnidade.Text).Equals(false) || String.IsNullOrEmpty(Endereco.Text).Equals(false))
             {
                 using(DAHUEEntities db = new DAHUEEntities())
                 {
@@ -71,7 +71,7 @@ namespace Sistema_Controle
         }
         private void Update_Click(object sender, EventArgs e)
         {
-            if (NomeUnidade.Text != "" || Endereco.Text != "")
+            if (String.IsNullOrEmpty(NomeUnidade.Text).Equals(false) || String.IsNullOrEmpty(Endereco.Text).Equals(false))
             {
                 using (DAHUEEntities db = new DAHUEEntities())
                 {

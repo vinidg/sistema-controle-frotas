@@ -122,6 +122,7 @@ namespace Sistema_Controle
             Btnagendasim.ForeColor = Color.FromArgb(229, 252, 194);
             Btnagendanao.ForeColor = Color.FromArgb(69, 173, 168);
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1820:TestForEmptyStringsUsingStringLength")]
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
 
@@ -135,25 +136,25 @@ namespace Sistema_Controle
             }
 
 
-            if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
+            if (String.IsNullOrEmpty(Agendamento) || String.IsNullOrEmpty(TipoAM))
             {
 
                 MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (txtNomeSolicitante.Text == "" ||
-            CbLocalSolicita.Text == "" ||
-            txtTelefone.Text == "" ||
-            txtNomePaciente.Text == "" ||
-            txtIdade.Text == "" ||
-            txtDiagnostico.Text == "" ||
-            CbMotivoChamado.Text == "" ||
-            Sexo == "" ||
-            CbTipoMotivoSelecionado.Text == "" ||
-            CbOrigem.Text == "" ||
-            CbDestino.Text == "" ||
-            txtEnderecoOrigem.Text == "" ||
-            txtEnderecoDestino.Text == "")
+            else if (String.IsNullOrEmpty(txtNomeSolicitante.Text) ||
+            String.IsNullOrEmpty(CbLocalSolicita.Text) ||
+            String.IsNullOrEmpty(txtTelefone.Text) ||
+            String.IsNullOrEmpty(txtNomePaciente.Text) ||
+            String.IsNullOrEmpty(txtIdade.Text) ||
+            String.IsNullOrEmpty(txtDiagnostico.Text) ||
+            String.IsNullOrEmpty(CbMotivoChamado.Text) ||
+            String.IsNullOrEmpty(Sexo) ||
+            String.IsNullOrEmpty(CbTipoMotivoSelecionado.Text) ||
+            String.IsNullOrEmpty(CbOrigem.Text) ||
+            String.IsNullOrEmpty(CbDestino.Text) ||
+            String.IsNullOrEmpty(txtEnderecoOrigem.Text) ||
+            String.IsNullOrEmpty(txtEnderecoDestino.Text))
             {
                 MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -219,6 +220,7 @@ namespace Sistema_Controle
 
             }
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         private void ClearTextBoxes()
         {
             Action<Control.ControlCollection> func = null;
@@ -234,6 +236,7 @@ namespace Sistema_Controle
 
             func(Controls);
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         private void ClearComboBox()
         {
             Action<Control.ControlCollection> func = null;

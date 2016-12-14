@@ -51,7 +51,8 @@ namespace Sistema_Controle
                                     Paciente = sp.Paciente,
                                     Idade = sp.Idade,
                                     Origem = sp.Origem,
-                                    Destino = sp.Destino
+                                    Destino = sp.Destino,
+                                    Bica = (am.Bica == 0 ? false : true)
                                 }).ToList();
 
                 listaUsb.DataSource = queryUsb;
@@ -76,7 +77,8 @@ namespace Sistema_Controle
                                     Paciente = sp.Paciente,
                                     Idade = sp.Idade,
                                     Origem = sp.Origem,
-                                    Destino = sp.Destino
+                                    Destino = sp.Destino,
+                                    Bica = (am.Bica == 0 ? false : true)
                                 }).ToList();
 
                 listaUsa.DataSource = queryUsa;
@@ -270,6 +272,7 @@ namespace Sistema_Controle
                     Status status = new Status(Convert.ToInt32(idAM), 0);
                     status.ShowDialog();
                 }
+
             }
         }
         private void listaUsb_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -412,6 +415,7 @@ namespace Sistema_Controle
 
 
         }
+
         #endregion
         private void alertarNovosAgendamentos()
         {
@@ -420,6 +424,77 @@ namespace Sistema_Controle
                 int novos = Convert.ToInt32(txtAgendasPendentes.Text) - numeroAgendamentos;
                 MessageBox.Show(novos + " novos agendamentos solicitados !", "Novos agendamentos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
+            }
+        }
+
+        private void listaUsa_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                if (e.ColumnIndex == listaUsa.Columns["Bica"].Index)
+                {
+                    if (listaUsa.Rows[e.RowIndex].Cells["StatusE"].Value.ToString() == "DISPONIVEL" || listaUsa.Rows[e.RowIndex].Cells["StatusE"].Value.ToString() == "BLOQUEADA")
+                    {
+                        int bicaSelecionada;
+                        if (Convert.ToBoolean(listaUsa.Rows[e.RowIndex].Cells[e.ColumnIndex].Value))
+                        {
+                            bicaSelecionada = 0;
+                        }
+                        else
+                        {
+                            bicaSelecionada = 1;
+                        }
+
+                        int id = Convert.ToInt32(listaUsa.Rows[e.RowIndex].Cells[0].Value);
+                        using (DAHUEEntities db = new DAHUEEntities())
+                        {
+                            ambulancia am = db.ambulancia.First(a => a.idAmbulancia == id);
+                            am.Bica = bicaSelecionada;
+                            db.SaveChanges();
+                        }
+                        pegarDadosDasAmbulancias();
+                    }
+                    else
+                    {
+                        MessageBox.Show("A ambulância ainda está transportando o paciente, conclua a solicitação primeiro.",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } 
+            }
+
+        }
+
+        private void listaUsb_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                if (e.ColumnIndex == listaUsb.Columns["Bica"].Index)
+                {
+                    if (listaUsb.Rows[e.RowIndex].Cells["StatusE"].Value.ToString() == "DISPONIVEL" || listaUsb.Rows[e.RowIndex].Cells["StatusE"].Value.ToString() == "BLOQUEADA")
+                    {
+                        int bicaSelecionada;
+                        if (Convert.ToBoolean(listaUsb.Rows[e.RowIndex].Cells[e.ColumnIndex].Value))
+                        {
+                            bicaSelecionada = 0;
+                        }
+                        else
+                        {
+                            bicaSelecionada = 1;
+                        }
+
+                        int id = Convert.ToInt32(listaUsb.Rows[e.RowIndex].Cells[0].Value);
+                        using (DAHUEEntities db = new DAHUEEntities())
+                        {
+                            ambulancia am = db.ambulancia.First(a => a.idAmbulancia == id);
+                            am.Bica = bicaSelecionada;
+                            db.SaveChanges();
+                        }
+                        pegarDadosDasAmbulancias();
+                    }
+                    else
+                    {
+                        MessageBox.Show("A ambulância ainda está transportando o paciente, conclua a solicitação primeiro.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

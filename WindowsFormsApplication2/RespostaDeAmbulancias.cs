@@ -179,7 +179,7 @@ namespace Sistema_Controle
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (id.Text != "")
+            if (String.IsNullOrEmpty(id.Text).Equals(false))
             {
                 Reagendar re = new Reagendar(DataHrAgendamento.Text, idPaciente);
                 re.ShowDialog();
@@ -210,7 +210,7 @@ namespace Sistema_Controle
         }
         private void Reagendamentos_Click(object sender, EventArgs e)
         {
-            if (id.Text != "")
+            if (String.IsNullOrEmpty(id.Text).Equals(false))
             {
                 Reagedamentos re = new Reagedamentos(idPaciente);
                 re.ShowDialog();
@@ -222,7 +222,7 @@ namespace Sistema_Controle
         }
         private void Aceitar_Click(object sender, EventArgs e)
         {
-            if (id.Text != "")
+            if (String.IsNullOrEmpty(id.Text).Equals(false))
             {
                 DialogResult result1 = MessageBox.Show("Deseja aceitar o agendamento ?",
                 "Atenção !",
@@ -266,6 +266,7 @@ namespace Sistema_Controle
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         private void ClearTextBoxes()
         {
             Action<Control.ControlCollection> func = null;
@@ -281,6 +282,7 @@ namespace Sistema_Controle
 
             func(Controls);
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         private void ClearComboBox()
         {
             Action<Control.ControlCollection> func = null;

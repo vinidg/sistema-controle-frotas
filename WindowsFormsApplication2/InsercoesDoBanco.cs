@@ -210,6 +210,7 @@ namespace Sistema_Controle
 
                 ambulancia am = db.ambulancia.First(a => a.idAmbulancia == idAmbu);
                 am.StatusAmbulancia = "OCUPADA";
+                am.Bica = 0;
 
                 solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == IDPaciente);
                 sp.AmSolicitada = 1;

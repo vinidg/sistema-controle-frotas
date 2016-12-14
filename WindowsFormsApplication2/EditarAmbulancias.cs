@@ -75,7 +75,7 @@ namespace Sistema_Controle
         }
         private void nova_Click(object sender, EventArgs e)
         {
-            if (NomeUnidade.Text == "")
+            if (String.IsNullOrEmpty(NomeUnidade.Text))
             {
                 MessageBox.Show("Preencher nome da ambulância !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -118,7 +118,7 @@ namespace Sistema_Controle
         }
         private void update_Click(object sender, EventArgs e)
         {
-            if (NomeUnidade.Text == "")
+            if (String.IsNullOrEmpty(NomeUnidade.Text))
             {
                 MessageBox.Show("Preencher nome da ambulância !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

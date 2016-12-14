@@ -163,7 +163,7 @@
             // txtEquipe
             // 
             this.txtEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEquipe.Location = new System.Drawing.Point(14, 125);
+            this.txtEquipe.Location = new System.Drawing.Point(14, 119);
             this.txtEquipe.Name = "txtEquipe";
             this.txtEquipe.Size = new System.Drawing.Size(358, 22);
             this.txtEquipe.TabIndex = 8;
@@ -174,7 +174,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(14, 96);
+            this.label2.Location = new System.Drawing.Point(14, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(153, 16);
             this.label2.TabIndex = 7;
@@ -207,9 +207,9 @@
             this.Paineltrocar.Controls.Add(this.label3);
             this.Paineltrocar.Controls.Add(this.txtMoto);
             this.Paineltrocar.Controls.Add(this.label2);
-            this.Paineltrocar.Location = new System.Drawing.Point(3, 45);
+            this.Paineltrocar.Location = new System.Drawing.Point(0, 46);
             this.Paineltrocar.Name = "Paineltrocar";
-            this.Paineltrocar.Size = new System.Drawing.Size(397, 217);
+            this.Paineltrocar.Size = new System.Drawing.Size(397, 214);
             this.Paineltrocar.TabIndex = 10;
             this.Paineltrocar.Visible = false;
             // 

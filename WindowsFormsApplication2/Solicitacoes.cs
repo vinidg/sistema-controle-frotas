@@ -205,7 +205,7 @@ namespace Sistema_Controle
                 idPaciente = Convert.ToInt32(listaAgendadas.Rows[e.RowIndex].Cells["ID"].Value.ToString());
                 tipo = listaAgendadas.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
 
-                if (querya == "")
+                if (String.IsNullOrEmpty(querya))
                 {
                     SelecionaAM ST = new SelecionaAM(idPaciente, idAm, 0);
                     this.Dispose();

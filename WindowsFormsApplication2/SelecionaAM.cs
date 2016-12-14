@@ -309,7 +309,7 @@ namespace Sistema_Controle
                     
                     
                     //Pesquisar nome da ambulancias
-                    if (NomeAM == "" || NomeAM == null)
+                    if (String.IsNullOrEmpty(NomeAM))
                     {
                         var nome = (from am in db.ambulancia
                                     where am.idAmbulancia == Horarios.IdAmbulanciaSol
@@ -705,25 +705,25 @@ namespace Sistema_Controle
                 {
                     Sexo = "M";
                 }
-                if (Agendamento == "" || TipoAM == "" || Agendamento == null || TipoAM == null)
+                if (String.IsNullOrEmpty(Agendamento) || String.IsNullOrEmpty(TipoAM))
                 {
                     MessageBox.Show("Marque a opção do tipo de ambulancia ou se é agendado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                else if (txtNomeSolicitante.Text == "" ||
-                CbLocalSolicita.Text == "" ||
-                txtTelefone.Text == "" ||
-                txtNomePaciente.Text == "" ||
-                txtIdade.Text == "" ||
-                txtDiagnostico.Text == "" ||
-                CbMotivoChamado.Text == "" ||
-                Sexo == "" ||
-                PrioridadeTxt.Text == "" ||
-                CbTipoMotivoSelecionado.Text == "" ||
-                CbOrigem.Text == "" ||
-                CbDestino.Text == "" ||
-                txtEnderecoOrigem.Text == "" ||
-                txtEnderecoDestino.Text == "")
+                else if (String.IsNullOrEmpty(txtNomeSolicitante.Text) ||
+                String.IsNullOrEmpty(CbLocalSolicita.Text) ||
+                String.IsNullOrEmpty(txtTelefone.Text) ||
+                String.IsNullOrEmpty(txtNomePaciente.Text) ||
+                String.IsNullOrEmpty(txtIdade.Text) ||
+                String.IsNullOrEmpty(txtDiagnostico.Text) ||
+                String.IsNullOrEmpty(CbMotivoChamado.Text) ||
+                String.IsNullOrEmpty(Sexo) ||
+                String.IsNullOrEmpty(PrioridadeTxt.Text) ||
+                String.IsNullOrEmpty(CbTipoMotivoSelecionado.Text) ||
+                String.IsNullOrEmpty(CbOrigem.Text) ||
+                String.IsNullOrEmpty(CbDestino.Text) ||
+                String.IsNullOrEmpty(txtEnderecoOrigem.Text) ||
+                String.IsNullOrEmpty(txtEnderecoDestino.Text))
                 {
 
                     MessageBox.Show("Verifique se algum campo esta vazio ou desmarcado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
