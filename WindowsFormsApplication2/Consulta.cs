@@ -16,7 +16,7 @@ namespace Sistema_Controle
     public partial class Consulta : Form
     {
         int IDpesquisa;
-        enum Opcao { Nome, Numero, Data, Diagnostico, Origem, Destino, Motivo, LocalDaSolicitacao, DataAgendamento};
+        enum Opcao { Nome, Numero, Data, Diagnostico, Origem, Destino, Motivo, LocalDaSolicitacao, DataAgendamento, Ambulancia};
         Opcao opcao;
         public Consulta()
         {
@@ -209,8 +209,8 @@ namespace Sistema_Controle
                                 from saa in spsaaajoin.DefaultIfEmpty()
                                 where 
                                 SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrdoAgendamento) == 0
-                               // || SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrAgendamento) == 0
-                               // || SqlFunctions.DateDiff("day", dataagendamento.Value, saa.DtHrAgendamento) == 0
+                                || SqlFunctions.DateDiff("day", dataagendamento.Value, sp.DtHrAgendamento) == 0
+                                || SqlFunctions.DateDiff("day", dataagendamento.Value, saa.DtHrAgendamento) == 0
                                 select new
                                 {
                                     sp.idPaciente_Solicitacoes,
@@ -224,6 +224,29 @@ namespace Sistema_Controle
                     consultaSolicitacoes.Refresh();
 
                     consultaSolicitacoes.Columns[0].HeaderText = "ID";
+                }
+            }
+            else if (opcao == Opcao.Ambulancia)
+            {
+                int idOpcaoAmbulancia = Convert.ToInt32(OpcaoAmbulancia.SelectedValue);
+                using (DAHUEEntities db = new DAHUEEntities())
+                {
+                    var query = from sp in db.solicitacoes_paciente
+                                join sa in db.solicitacoes_ambulancias
+                                on sp.idPaciente_Solicitacoes equals sa.idSolicitacoesPacientes into saspjoin
+                                from sa in saspjoin.DefaultIfEmpty()
+                                where sa.idAmbulanciaSol == idOpcaoAmbulancia
+                                select new
+                                {
+                                    ID = sp.idPaciente_Solicitacoes,
+                                    sp.Paciente,
+                                    sp.Genero,
+                                    sp.Idade,
+                                    sa.idAmbulanciaSol
+                                };
+                    consultaSolicitacoes.DataSource = query.ToArray();
+                    consultaSolicitacoes.Refresh();
+
                 }
             }
 
@@ -259,6 +282,9 @@ namespace Sistema_Controle
                 origem.DataSource = db.enderecos.OrderBy(x => x.NomeUnidade).ToList();
                 origem.ValueMember = "NomeUnidade";
                 origem.DisplayMember = "NomeUnidade";
+                OpcaoAmbulancia.DataSource = db.ambulancia.OrderBy(x => x.NomeAmbulancia).ToList();
+                OpcaoAmbulancia.ValueMember = "idAmbulancia";
+                OpcaoAmbulancia.DisplayMember = "NomeAmbulancia";
             }
         }
 
@@ -367,8 +393,10 @@ namespace Sistema_Controle
         {
             opcao = Opcao.LocalDaSolicitacao;
         }
-        #endregion
-       
+        private void OpcaoAmbulancia_Click(object sender, EventArgs e)
+        {
+            opcao = Opcao.Ambulancia;
+        }
         private void imprimirAgendamentos_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in consultaSolicitacoes.Rows)
@@ -380,6 +408,9 @@ namespace Sistema_Controle
 
             PrintDGV.Print_DataGridView(consultaSolicitacoes);
         }
+        #endregion
+       
+
 
 
     }

@@ -57,6 +57,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.imprimirAgendamentos = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.OpcaoAmbulancia = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.consultaSolicitacoes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacaoPaciente)).BeginInit();
@@ -68,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label1.Location = new System.Drawing.Point(9, 22);
+            this.label1.Location = new System.Drawing.Point(9, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 16);
             this.label1.TabIndex = 1;
@@ -76,7 +78,7 @@
             // 
             // numeroFicha
             // 
-            this.numeroFicha.Location = new System.Drawing.Point(12, 41);
+            this.numeroFicha.Location = new System.Drawing.Point(12, 29);
             this.numeroFicha.Name = "numeroFicha";
             this.numeroFicha.Size = new System.Drawing.Size(177, 20);
             this.numeroFicha.TabIndex = 2;
@@ -86,7 +88,7 @@
             // 
             // nome
             // 
-            this.nome.Location = new System.Drawing.Point(225, 41);
+            this.nome.Location = new System.Drawing.Point(225, 29);
             this.nome.Name = "nome";
             this.nome.Size = new System.Drawing.Size(177, 20);
             this.nome.TabIndex = 4;
@@ -97,7 +99,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(222, 22);
+            this.label2.Location = new System.Drawing.Point(222, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 3;
@@ -107,7 +109,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label3.Location = new System.Drawing.Point(9, 72);
+            this.label3.Location = new System.Drawing.Point(9, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 16);
             this.label3.TabIndex = 5;
@@ -117,7 +119,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label4.Location = new System.Drawing.Point(222, 72);
+            this.label4.Location = new System.Drawing.Point(222, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 16);
             this.label4.TabIndex = 7;
@@ -129,7 +131,7 @@
             this.button1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.button1.Font = new System.Drawing.Font("Arial", 20.25F);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(103, 549);
+            this.button1.Location = new System.Drawing.Point(103, 608);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(208, 79);
             this.button1.TabIndex = 9;
@@ -153,7 +155,7 @@
             this.consultaSolicitacoes.ReadOnly = true;
             this.consultaSolicitacoes.RowHeadersVisible = false;
             this.consultaSolicitacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.consultaSolicitacoes.Size = new System.Drawing.Size(357, 581);
+            this.consultaSolicitacoes.Size = new System.Drawing.Size(357, 640);
             this.consultaSolicitacoes.TabIndex = 12;
             this.consultaSolicitacoes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.consultaSolicitacoes_CellDoubleClick);
             // 
@@ -163,6 +165,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.OpcaoAmbulancia);
             this.panel1.Controls.Add(this.dataagendamento);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
@@ -185,14 +189,14 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(12, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(419, 274);
+            this.panel1.Size = new System.Drawing.Size(419, 332);
             this.panel1.TabIndex = 15;
             // 
             // dataagendamento
             // 
             this.dataagendamento.CustomFormat = "dd/MM/yyyy";
             this.dataagendamento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dataagendamento.Location = new System.Drawing.Point(225, 243);
+            this.dataagendamento.Location = new System.Drawing.Point(225, 231);
             this.dataagendamento.Name = "dataagendamento";
             this.dataagendamento.Size = new System.Drawing.Size(177, 20);
             this.dataagendamento.TabIndex = 21;
@@ -202,7 +206,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label11.Location = new System.Drawing.Point(222, 221);
+            this.label11.Location = new System.Drawing.Point(222, 209);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(125, 16);
             this.label11.TabIndex = 20;
@@ -212,7 +216,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label10.Location = new System.Drawing.Point(9, 221);
+            this.label10.Location = new System.Drawing.Point(9, 209);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(130, 16);
             this.label10.TabIndex = 19;
@@ -222,7 +226,7 @@
             // 
             this.localdasolicitacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.localdasolicitacao.FormattingEnabled = true;
-            this.localdasolicitacao.Location = new System.Drawing.Point(12, 243);
+            this.localdasolicitacao.Location = new System.Drawing.Point(12, 231);
             this.localdasolicitacao.Name = "localdasolicitacao";
             this.localdasolicitacao.Size = new System.Drawing.Size(177, 21);
             this.localdasolicitacao.TabIndex = 18;
@@ -232,7 +236,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label9.Location = new System.Drawing.Point(222, 121);
+            this.label9.Location = new System.Drawing.Point(222, 109);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 16);
             this.label9.TabIndex = 17;
@@ -261,7 +265,7 @@
             "TRANSPORTE DE INSUMOS/PRODUTOS/MATERIAIS",
             "TRANSPORTE DE PROFISSIONAIS",
             "TRANSFERENCIA"});
-            this.motivo.Location = new System.Drawing.Point(225, 140);
+            this.motivo.Location = new System.Drawing.Point(225, 128);
             this.motivo.Name = "motivo";
             this.motivo.Size = new System.Drawing.Size(177, 21);
             this.motivo.TabIndex = 16;
@@ -271,7 +275,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label8.Location = new System.Drawing.Point(222, 168);
+            this.label8.Location = new System.Drawing.Point(222, 156);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 16);
             this.label8.TabIndex = 15;
@@ -281,7 +285,7 @@
             // 
             this.destino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.destino.FormattingEnabled = true;
-            this.destino.Location = new System.Drawing.Point(225, 187);
+            this.destino.Location = new System.Drawing.Point(225, 175);
             this.destino.Name = "destino";
             this.destino.Size = new System.Drawing.Size(177, 21);
             this.destino.TabIndex = 14;
@@ -291,7 +295,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label7.Location = new System.Drawing.Point(9, 168);
+            this.label7.Location = new System.Drawing.Point(9, 156);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 16);
             this.label7.TabIndex = 13;
@@ -301,7 +305,7 @@
             // 
             this.origem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.origem.FormattingEnabled = true;
-            this.origem.Location = new System.Drawing.Point(12, 190);
+            this.origem.Location = new System.Drawing.Point(12, 178);
             this.origem.Name = "origem";
             this.origem.Size = new System.Drawing.Size(177, 21);
             this.origem.TabIndex = 12;
@@ -311,7 +315,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label5.Location = new System.Drawing.Point(9, 122);
+            this.label5.Location = new System.Drawing.Point(9, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 16);
             this.label5.TabIndex = 10;
@@ -319,7 +323,7 @@
             // 
             // diagnostico
             // 
-            this.diagnostico.Location = new System.Drawing.Point(12, 141);
+            this.diagnostico.Location = new System.Drawing.Point(12, 129);
             this.diagnostico.Name = "diagnostico";
             this.diagnostico.Size = new System.Drawing.Size(177, 20);
             this.diagnostico.TabIndex = 11;
@@ -328,7 +332,7 @@
             // dataFim
             // 
             this.dataFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataFim.Location = new System.Drawing.Point(225, 91);
+            this.dataFim.Location = new System.Drawing.Point(225, 79);
             this.dataFim.Name = "dataFim";
             this.dataFim.Size = new System.Drawing.Size(177, 20);
             this.dataFim.TabIndex = 9;
@@ -337,7 +341,7 @@
             // dataInicio
             // 
             this.dataInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataInicio.Location = new System.Drawing.Point(12, 91);
+            this.dataInicio.Location = new System.Drawing.Point(12, 79);
             this.dataInicio.Name = "dataInicio";
             this.dataInicio.Size = new System.Drawing.Size(177, 20);
             this.dataInicio.TabIndex = 8;
@@ -381,7 +385,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
             this.panel2.Controls.Add(this.ListaSolicitacaoPaciente);
-            this.panel2.Location = new System.Drawing.Point(12, 327);
+            this.panel2.Location = new System.Drawing.Point(12, 386);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(419, 216);
             this.panel2.TabIndex = 18;
@@ -394,7 +398,7 @@
             this.panel3.Controls.Add(this.consultaSolicitacoes);
             this.panel3.Location = new System.Drawing.Point(437, 47);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(357, 581);
+            this.panel3.Size = new System.Drawing.Size(357, 640);
             this.panel3.TabIndex = 19;
             // 
             // imprimirAgendamentos
@@ -412,12 +416,32 @@
             this.imprimirAgendamentos.UseVisualStyleBackColor = false;
             this.imprimirAgendamentos.Click += new System.EventHandler(this.imprimirAgendamentos_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label12.Location = new System.Drawing.Point(9, 264);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 16);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Ambulancia";
+            // 
+            // OpcaoAmbulancia
+            // 
+            this.OpcaoAmbulancia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OpcaoAmbulancia.FormattingEnabled = true;
+            this.OpcaoAmbulancia.Location = new System.Drawing.Point(12, 283);
+            this.OpcaoAmbulancia.Name = "OpcaoAmbulancia";
+            this.OpcaoAmbulancia.Size = new System.Drawing.Size(177, 21);
+            this.OpcaoAmbulancia.TabIndex = 22;
+            this.OpcaoAmbulancia.Click += new System.EventHandler(this.OpcaoAmbulancia_Click);
+            // 
             // Consulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(226)))), ((int)(((byte)(157)))));
-            this.ClientSize = new System.Drawing.Size(806, 640);
+            this.ClientSize = new System.Drawing.Size(806, 699);
             this.Controls.Add(this.imprimirAgendamentos);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -468,6 +492,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button imprimirAgendamentos;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox OpcaoAmbulancia;
 
 
     }
