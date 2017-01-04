@@ -148,7 +148,6 @@ namespace Sistema_Controle
                              where sp.AmSolicitada == 0 && sp.Agendamento == "Sim"
                              && sp.Registrado == "Aguardando resposta do controle"
                              select sp.idPaciente_Solicitacoes).Count();
-
                 txtAgendasPendentes.Text = query.ToString();
             }
 
@@ -170,8 +169,8 @@ namespace Sistema_Controle
             contarSolicitacao();
             contarSolicitacoesAgendadasPendentes();
             atualizadorParaNotificador();
-            //alertarNovosAgendamentos();
-            //numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
+            alertarNovosAgendamentos();
+            numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
         }
 
 
@@ -234,8 +233,7 @@ namespace Sistema_Controle
         }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Atualizacao atualizacao = new Atualizacao();
-            atualizacao.ShowDialog();
+            System.Diagnostics.Process.Start("https://goo.gl/forms/IIOpkaXMHg8vUTd03");
         }
         private void Consultar_Click(object sender, EventArgs e)
         {
@@ -337,10 +335,9 @@ namespace Sistema_Controle
                 label1.Focus();
             }
         }
-
         private void coresDasTabelas()
         {
-
+            this.Cursor = Cursors.WaitCursor;
             foreach (DataGridViewRow row in listaUsb.Rows)
             {
 
@@ -413,17 +410,17 @@ namespace Sistema_Controle
                 }
             }
 
-
+            this.Cursor = Cursors.Default;
         }
 
-        #endregion
         private void alertarNovosAgendamentos()
         {
             if (Convert.ToInt32(txtAgendasPendentes.Text) > numeroAgendamentos)
             {
                 int novos = Convert.ToInt32(txtAgendasPendentes.Text) - numeroAgendamentos;
-                MessageBox.Show(novos + " novos agendamentos solicitados !", "Novos agendamentos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
+                MessageBox.Show(novos + " novos agendamentos solicitados !", "Novos agendamentos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
             }
         }
 
@@ -497,6 +494,7 @@ namespace Sistema_Controle
                 }
             }
         }
+        #endregion
     }
 
 }

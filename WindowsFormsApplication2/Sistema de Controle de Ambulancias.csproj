@@ -129,12 +129,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Atualizacao.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Atualizacao.Designer.cs">
-      <DependentUpon>Atualizacao.cs</DependentUpon>
-    </Compile>
     <Compile Include="Consulta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,9 +218,6 @@
     </Compile>
     <Compile Include="StatusBD.cs" />
     <Compile Include="Update.cs" />
-    <EmbeddedResource Include="Atualizacao.resx">
-      <DependentUpon>Atualizacao.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Consulta.resx">
       <DependentUpon>Consulta.cs</DependentUpon>
     </EmbeddedResource>

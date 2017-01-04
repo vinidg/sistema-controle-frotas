@@ -69,9 +69,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Location = new System.Drawing.Point(12, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1196, 20);
+            this.label1.Size = new System.Drawing.Size(1220, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Solicitações";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -80,7 +80,7 @@
             // 
             this.txtTotal1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal1.Enabled = false;
-            this.txtTotal1.Location = new System.Drawing.Point(1170, 397);
+            this.txtTotal1.Location = new System.Drawing.Point(1194, 413);
             this.txtTotal1.Name = "txtTotal1";
             this.txtTotal1.Size = new System.Drawing.Size(38, 20);
             this.txtTotal1.TabIndex = 2;
@@ -90,9 +90,9 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.label3.Location = new System.Drawing.Point(16, 397);
+            this.label3.Location = new System.Drawing.Point(16, 413);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1192, 20);
+            this.label3.Size = new System.Drawing.Size(1216, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Solicitações Agendadas";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,7 +129,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.ListaSolicitacoes.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ListaSolicitacoes.Location = new System.Drawing.Point(12, 102);
+            this.ListaSolicitacoes.Location = new System.Drawing.Point(12, 118);
             this.ListaSolicitacoes.MultiSelect = false;
             this.ListaSolicitacoes.Name = "ListaSolicitacoes";
             this.ListaSolicitacoes.ReadOnly = true;
@@ -146,7 +146,7 @@
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
             this.ListaSolicitacoes.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.ListaSolicitacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListaSolicitacoes.Size = new System.Drawing.Size(1196, 289);
+            this.ListaSolicitacoes.Size = new System.Drawing.Size(1220, 289);
             this.ListaSolicitacoes.TabIndex = 31;
             this.ListaSolicitacoes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaComPrioridade_CellDoubleClick);
             this.ListaSolicitacoes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaComPrioridade_CellFormatting);
@@ -155,7 +155,7 @@
             // 
             this.txtTotal3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtTotal3.Enabled = false;
-            this.txtTotal3.Location = new System.Drawing.Point(1170, 797);
+            this.txtTotal3.Location = new System.Drawing.Point(1194, 813);
             this.txtTotal3.Name = "txtTotal3";
             this.txtTotal3.Size = new System.Drawing.Size(38, 20);
             this.txtTotal3.TabIndex = 8;
@@ -185,7 +185,7 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.listaAgendadas.DefaultCellStyle = dataGridViewCellStyle7;
-            this.listaAgendadas.Location = new System.Drawing.Point(12, 511);
+            this.listaAgendadas.Location = new System.Drawing.Point(12, 527);
             this.listaAgendadas.Name = "listaAgendadas";
             this.listaAgendadas.ReadOnly = true;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -200,7 +200,7 @@
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             this.listaAgendadas.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.listaAgendadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaAgendadas.Size = new System.Drawing.Size(1196, 280);
+            this.listaAgendadas.Size = new System.Drawing.Size(1220, 280);
             this.listaAgendadas.TabIndex = 33;
             this.listaAgendadas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaAgendadas_CellDoubleClick_1);
             this.listaAgendadas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listaAgendadas_CellFormatting);
@@ -211,7 +211,7 @@
             this.OrdemPrioridade.AutoSize = true;
             this.OrdemPrioridade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPrioridade.Location = new System.Drawing.Point(353, 21);
+            this.OrdemPrioridade.Location = new System.Drawing.Point(365, 21);
             this.OrdemPrioridade.Name = "OrdemPrioridade";
             this.OrdemPrioridade.Size = new System.Drawing.Size(98, 24);
             this.OrdemPrioridade.TabIndex = 34;
@@ -227,9 +227,9 @@
             this.groupBox1.Controls.Add(this.OrdemData);
             this.groupBox1.Controls.Add(this.OrdemPrioridade);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 34);
+            this.groupBox1.Location = new System.Drawing.Point(12, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1196, 62);
+            this.groupBox1.Size = new System.Drawing.Size(1220, 62);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ordernar Por:";
@@ -240,7 +240,7 @@
             this.OrdemPaciente.AutoSize = true;
             this.OrdemPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPaciente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPaciente.Location = new System.Drawing.Point(721, 21);
+            this.OrdemPaciente.Location = new System.Drawing.Point(733, 21);
             this.OrdemPaciente.Name = "OrdemPaciente";
             this.OrdemPaciente.Size = new System.Drawing.Size(157, 24);
             this.OrdemPaciente.TabIndex = 36;
@@ -256,7 +256,7 @@
             this.OrdemData.Checked = true;
             this.OrdemData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemData.Location = new System.Drawing.Point(532, 21);
+            this.OrdemData.Location = new System.Drawing.Point(544, 21);
             this.OrdemData.Name = "OrdemData";
             this.OrdemData.Size = new System.Drawing.Size(166, 24);
             this.OrdemData.TabIndex = 35;
@@ -278,9 +278,9 @@
             this.groupBox2.Controls.Add(this.OrdemDataAgenda);
             this.groupBox2.Controls.Add(this.OrdemPrioridadeAgenda);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 423);
+            this.groupBox2.Location = new System.Drawing.Point(12, 439);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1196, 82);
+            this.groupBox2.Size = new System.Drawing.Size(1220, 82);
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ordernar Por:";
@@ -293,7 +293,7 @@
             this.imprimirAgendamentos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imprimirAgendamentos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.imprimirAgendamentos.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.imprimirAgendamentos.Location = new System.Drawing.Point(1145, 11);
+            this.imprimirAgendamentos.Location = new System.Drawing.Point(1169, 11);
             this.imprimirAgendamentos.Name = "imprimirAgendamentos";
             this.imprimirAgendamentos.Size = new System.Drawing.Size(45, 37);
             this.imprimirAgendamentos.TabIndex = 37;
@@ -306,7 +306,7 @@
             this.dtreagenda.AutoSize = true;
             this.dtreagenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtreagenda.ForeColor = System.Drawing.Color.Black;
-            this.dtreagenda.Location = new System.Drawing.Point(880, 20);
+            this.dtreagenda.Location = new System.Drawing.Point(892, 20);
             this.dtreagenda.Name = "dtreagenda";
             this.dtreagenda.Size = new System.Drawing.Size(190, 20);
             this.dtreagenda.TabIndex = 40;
@@ -318,7 +318,7 @@
             this.dtagenda.AutoSize = true;
             this.dtagenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtagenda.ForeColor = System.Drawing.Color.Black;
-            this.dtagenda.Location = new System.Drawing.Point(495, 20);
+            this.dtagenda.Location = new System.Drawing.Point(507, 20);
             this.dtagenda.Name = "dtagenda";
             this.dtagenda.Size = new System.Drawing.Size(171, 20);
             this.dtagenda.TabIndex = 39;
@@ -328,7 +328,7 @@
             // 
             this.dataReagendamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataReagendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataReagendamento.Location = new System.Drawing.Point(884, 43);
+            this.dataReagendamento.Location = new System.Drawing.Point(896, 43);
             this.dataReagendamento.Name = "dataReagendamento";
             this.dataReagendamento.Size = new System.Drawing.Size(297, 22);
             this.dataReagendamento.TabIndex = 38;
@@ -337,7 +337,7 @@
             // dataFiltroAgenda
             // 
             this.dataFiltroAgenda.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dataFiltroAgenda.Location = new System.Drawing.Point(499, 43);
+            this.dataFiltroAgenda.Location = new System.Drawing.Point(511, 43);
             this.dataFiltroAgenda.Name = "dataFiltroAgenda";
             this.dataFiltroAgenda.Size = new System.Drawing.Size(330, 22);
             this.dataFiltroAgenda.TabIndex = 37;
@@ -349,7 +349,7 @@
             this.OrdemNomeAgenda.AutoSize = true;
             this.OrdemNomeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemNomeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemNomeAgenda.Location = new System.Drawing.Point(317, 35);
+            this.OrdemNomeAgenda.Location = new System.Drawing.Point(329, 35);
             this.OrdemNomeAgenda.Name = "OrdemNomeAgenda";
             this.OrdemNomeAgenda.Size = new System.Drawing.Size(157, 24);
             this.OrdemNomeAgenda.TabIndex = 36;
@@ -365,7 +365,7 @@
             this.OrdemDataAgenda.Checked = true;
             this.OrdemDataAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemDataAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemDataAgenda.Location = new System.Drawing.Point(137, 35);
+            this.OrdemDataAgenda.Location = new System.Drawing.Point(149, 35);
             this.OrdemDataAgenda.Name = "OrdemDataAgenda";
             this.OrdemDataAgenda.Size = new System.Drawing.Size(166, 24);
             this.OrdemDataAgenda.TabIndex = 35;
@@ -381,7 +381,7 @@
             this.OrdemPrioridadeAgenda.AutoSize = true;
             this.OrdemPrioridadeAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrdemPrioridadeAgenda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(91)))), ((int)(((byte)(93)))));
-            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(8, 35);
+            this.OrdemPrioridadeAgenda.Location = new System.Drawing.Point(20, 35);
             this.OrdemPrioridadeAgenda.Name = "OrdemPrioridadeAgenda";
             this.OrdemPrioridadeAgenda.Size = new System.Drawing.Size(98, 24);
             this.OrdemPrioridadeAgenda.TabIndex = 34;
@@ -395,7 +395,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
-            this.ClientSize = new System.Drawing.Size(1220, 819);
+            this.ClientSize = new System.Drawing.Size(1244, 851);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listaAgendadas);
@@ -442,5 +442,11 @@
         private System.Windows.Forms.Label dtagenda;
         private System.Windows.Forms.DateTimePicker dataReagendamento;
         private System.Windows.Forms.Button imprimirAgendamentos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idAmbulanciaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeAmbulanciaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusAmbulanciaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipoAMDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desativadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bicaDataGridViewTextBoxColumn;
     }
 }

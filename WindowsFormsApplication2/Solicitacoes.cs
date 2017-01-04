@@ -68,7 +68,6 @@ namespace Sistema_Controle
                 contarComPrioridade = contar.ToString();
                 ListaSolicitacoes.DataSource = queryAmbu;
                 ListaSolicitacoes.ClearSelection();
-
                 ListaSolicitacoes.Columns[0].HeaderText = "ID";
             }
         }
@@ -143,7 +142,7 @@ namespace Sistema_Controle
                 // listaAgendadas.Columns["Data_Reagendada"].HeaderCell.Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
              }
         }
-
+        
         private void listaComPrioridade_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -190,6 +189,7 @@ namespace Sistema_Controle
                 STi.ShowDialog();
             }
         }
+        
         private void listaAgendadas_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -612,6 +612,7 @@ namespace Sistema_Controle
             PrintDGV.Print_DataGridView(listaAgendadas);
 
         }
+
 
     }
 }
