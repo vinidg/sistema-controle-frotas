@@ -38,6 +38,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.consultaSolicitacoes = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.OpcaoAmbulancia = new System.Windows.Forms.ComboBox();
             this.dataagendamento = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.imprimirAgendamentos = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.OpcaoAmbulancia = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.consultaSolicitacoes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaSolicitacaoPaciente)).BeginInit();
@@ -128,7 +128,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.button1.BackColor = System.Drawing.Color.ForestGreen;
             this.button1.Font = new System.Drawing.Font("Arial", 20.25F);
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(103, 608);
@@ -146,7 +146,7 @@
             this.consultaSolicitacoes.AllowUserToResizeRows = false;
             this.consultaSolicitacoes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.consultaSolicitacoes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.consultaSolicitacoes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
+            this.consultaSolicitacoes.BackgroundColor = System.Drawing.Color.White;
             this.consultaSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.consultaSolicitacoes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.consultaSolicitacoes.Location = new System.Drawing.Point(0, 0);
@@ -163,7 +163,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.OpcaoAmbulancia);
@@ -191,6 +191,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(419, 332);
             this.panel1.TabIndex = 15;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label12.Location = new System.Drawing.Point(9, 264);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 16);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Ambulancia";
+            // 
+            // OpcaoAmbulancia
+            // 
+            this.OpcaoAmbulancia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OpcaoAmbulancia.FormattingEnabled = true;
+            this.OpcaoAmbulancia.Location = new System.Drawing.Point(12, 283);
+            this.OpcaoAmbulancia.Name = "OpcaoAmbulancia";
+            this.OpcaoAmbulancia.Size = new System.Drawing.Size(177, 21);
+            this.OpcaoAmbulancia.TabIndex = 22;
+            this.OpcaoAmbulancia.Click += new System.EventHandler(this.OpcaoAmbulancia_Click);
             // 
             // dataagendamento
             // 
@@ -354,7 +374,7 @@
             this.ListaSolicitacaoPaciente.AllowUserToResizeRows = false;
             this.ListaSolicitacaoPaciente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.ListaSolicitacaoPaciente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.ListaSolicitacaoPaciente.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(153)))));
+            this.ListaSolicitacaoPaciente.BackgroundColor = System.Drawing.Color.White;
             this.ListaSolicitacaoPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListaSolicitacaoPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListaSolicitacaoPaciente.Location = new System.Drawing.Point(0, 0);
@@ -404,7 +424,7 @@
             // imprimirAgendamentos
             // 
             this.imprimirAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.imprimirAgendamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
+            this.imprimirAgendamentos.BackColor = System.Drawing.Color.YellowGreen;
             this.imprimirAgendamentos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imprimirAgendamentos.BackgroundImage")));
             this.imprimirAgendamentos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imprimirAgendamentos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -415,26 +435,6 @@
             this.imprimirAgendamentos.TabIndex = 38;
             this.imprimirAgendamentos.UseVisualStyleBackColor = false;
             this.imprimirAgendamentos.Click += new System.EventHandler(this.imprimirAgendamentos_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label12.Location = new System.Drawing.Point(9, 264);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 16);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Ambulancia";
-            // 
-            // OpcaoAmbulancia
-            // 
-            this.OpcaoAmbulancia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.OpcaoAmbulancia.FormattingEnabled = true;
-            this.OpcaoAmbulancia.Location = new System.Drawing.Point(12, 283);
-            this.OpcaoAmbulancia.Name = "OpcaoAmbulancia";
-            this.OpcaoAmbulancia.Size = new System.Drawing.Size(177, 21);
-            this.OpcaoAmbulancia.TabIndex = 22;
-            this.OpcaoAmbulancia.Click += new System.EventHandler(this.OpcaoAmbulancia_Click);
             // 
             // Consulta
             // 

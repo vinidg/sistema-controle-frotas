@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarAmbulancias));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.OpcaoDesativadoNao = new System.Windows.Forms.RadioButton();
+            this.OpcaoDesativadoSim = new System.Windows.Forms.RadioButton();
             this.Id = new System.Windows.Forms.Label();
             this.update = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,8 +42,6 @@
             this.nova = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ListaDeAmbulancias = new System.Windows.Forms.DataGridView();
-            this.OpcaoDesativadoSim = new System.Windows.Forms.RadioButton();
-            this.OpcaoDesativadoNao = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaDeAmbulancias)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.OpcaoDesativadoNao);
             this.panel1.Controls.Add(this.OpcaoDesativadoSim);
@@ -69,6 +69,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(726, 501);
             this.panel1.TabIndex = 0;
+            // 
+            // OpcaoDesativadoNao
+            // 
+            this.OpcaoDesativadoNao.AutoSize = true;
+            this.OpcaoDesativadoNao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.OpcaoDesativadoNao.Location = new System.Drawing.Point(298, 111);
+            this.OpcaoDesativadoNao.Name = "OpcaoDesativadoNao";
+            this.OpcaoDesativadoNao.Size = new System.Drawing.Size(54, 22);
+            this.OpcaoDesativadoNao.TabIndex = 29;
+            this.OpcaoDesativadoNao.TabStop = true;
+            this.OpcaoDesativadoNao.Text = "Não";
+            this.OpcaoDesativadoNao.UseVisualStyleBackColor = true;
+            // 
+            // OpcaoDesativadoSim
+            // 
+            this.OpcaoDesativadoSim.AutoSize = true;
+            this.OpcaoDesativadoSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.OpcaoDesativadoSim.Location = new System.Drawing.Point(147, 111);
+            this.OpcaoDesativadoSim.Name = "OpcaoDesativadoSim";
+            this.OpcaoDesativadoSim.Size = new System.Drawing.Size(52, 22);
+            this.OpcaoDesativadoSim.TabIndex = 28;
+            this.OpcaoDesativadoSim.TabStop = true;
+            this.OpcaoDesativadoSim.Text = "Sim";
+            this.OpcaoDesativadoSim.UseVisualStyleBackColor = true;
             // 
             // Id
             // 
@@ -188,30 +212,6 @@
             this.ListaDeAmbulancias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaDeAmbulancias_CellContentClick);
             this.ListaDeAmbulancias.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ListaDeAmbulancias_RowHeaderMouseClick);
             this.ListaDeAmbulancias.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListaDeAmbulancias_KeyPress);
-            // 
-            // OpcaoDesativadoSim
-            // 
-            this.OpcaoDesativadoSim.AutoSize = true;
-            this.OpcaoDesativadoSim.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.OpcaoDesativadoSim.Location = new System.Drawing.Point(147, 111);
-            this.OpcaoDesativadoSim.Name = "OpcaoDesativadoSim";
-            this.OpcaoDesativadoSim.Size = new System.Drawing.Size(52, 22);
-            this.OpcaoDesativadoSim.TabIndex = 28;
-            this.OpcaoDesativadoSim.TabStop = true;
-            this.OpcaoDesativadoSim.Text = "Sim";
-            this.OpcaoDesativadoSim.UseVisualStyleBackColor = true;
-            // 
-            // OpcaoDesativadoNao
-            // 
-            this.OpcaoDesativadoNao.AutoSize = true;
-            this.OpcaoDesativadoNao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.OpcaoDesativadoNao.Location = new System.Drawing.Point(298, 111);
-            this.OpcaoDesativadoNao.Name = "OpcaoDesativadoNao";
-            this.OpcaoDesativadoNao.Size = new System.Drawing.Size(54, 22);
-            this.OpcaoDesativadoNao.TabIndex = 29;
-            this.OpcaoDesativadoNao.TabStop = true;
-            this.OpcaoDesativadoNao.Text = "Não";
-            this.OpcaoDesativadoNao.UseVisualStyleBackColor = true;
             // 
             // EditarAmbulancias
             // 

@@ -57,7 +57,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Negadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Negadas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.Negadas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.Negadas.BackgroundColor = System.Drawing.Color.White;
             this.Negadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Negadas.Location = new System.Drawing.Point(3, 203);
             this.Negadas.MultiSelect = false;
@@ -81,7 +81,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListaReagementos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ListaReagementos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.ListaReagementos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.ListaReagementos.BackgroundColor = System.Drawing.Color.White;
             this.ListaReagementos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListaReagementos.Location = new System.Drawing.Point(3, 3);
             this.ListaReagementos.MultiSelect = false;

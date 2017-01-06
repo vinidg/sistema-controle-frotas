@@ -93,7 +93,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.cancelarReagendamento);
             this.panel1.Controls.Add(this.negativa);
             this.panel1.Controls.Add(this.dtHrReagendamento);
@@ -234,7 +234,7 @@
             this.ListaAgendados.AllowUserToDeleteRows = false;
             this.ListaAgendados.AllowUserToResizeRows = false;
             this.ListaAgendados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaAgendados.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.ListaAgendados.BackgroundColor = System.Drawing.Color.White;
             this.ListaAgendados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListaAgendados.Location = new System.Drawing.Point(6, 34);
             this.ListaAgendados.MultiSelect = false;

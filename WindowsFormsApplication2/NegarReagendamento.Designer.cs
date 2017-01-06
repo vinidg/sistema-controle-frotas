@@ -38,7 +38,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.La);
             this.panel1.Controls.Add(this.Motivo);
             this.panel1.Controls.Add(this.Aceitar);
