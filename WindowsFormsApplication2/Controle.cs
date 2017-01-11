@@ -4,14 +4,29 @@ using System.Linq;
 using System.Windows.Forms;
 using db_transporte_sanitario;
 using System.Data.Entity.SqlServer;
+using NAppUpdate.Framework;
+using System.IO;
+using NAppUpdate.Framework.Sources;
 
 namespace Sistema_Controle
 {
     public partial class CONTROLE : Form
     {
+
+        int numeroAgendamentos;
+        Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
         public CONTROLE()
         {
             InitializeComponent();
+
+            Update updatando = new Update();
+            updatando.up();
+
+            if (updatando.Yn == true)
+            {
+                Environment.Exit(1);
+            }
+
             StartPosition = FormStartPosition.CenterScreen;
             pegarDadosDasAmbulancias();
             contarSolicitacao();
@@ -24,8 +39,7 @@ namespace Sistema_Controle
             this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
-        int numeroAgendamentos;
-        Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+
         public void pegarDadosDasAmbulancias()
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -247,12 +261,6 @@ namespace Sistema_Controle
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Update updatando = new Update();
-            updatando.up();
-            if (updatando.Yn == true)
-            {
-                Environment.Exit(1);
-            }
         }
         private void listaUsa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {

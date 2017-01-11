@@ -79,12 +79,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.painelCentral = new System.Windows.Forms.Panel();
+            this.concluirSolicitacao = new System.Windows.Forms.Button();
             this.Origem = new System.Windows.Forms.TextBox();
             this.ListadePacientes = new System.Windows.Forms.DataGridView();
             this.equipeView = new System.Windows.Forms.DataGridView();
             this.Destino = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.concluirSolicitacao = new System.Windows.Forms.Button();
             this.Paineltrocar.SuspendLayout();
             this.PainelBloqueio.SuspendLayout();
             this.PainelHistorico.SuspendLayout();
@@ -242,6 +242,7 @@
             "Enfermagem Ausente",
             "Motorista Ausente",
             "Ambulância Ausente",
+            "Maca Presa",
             "Outro Motivo"});
             this.CbMotivoBloqueio.Location = new System.Drawing.Point(17, 53);
             this.CbMotivoBloqueio.Name = "CbMotivoBloqueio";
@@ -643,6 +644,21 @@
             this.painelCentral.Size = new System.Drawing.Size(1229, 610);
             this.painelCentral.TabIndex = 20;
             // 
+            // concluirSolicitacao
+            // 
+            this.concluirSolicitacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.concluirSolicitacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
+            this.concluirSolicitacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.concluirSolicitacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.concluirSolicitacao.Location = new System.Drawing.Point(904, 264);
+            this.concluirSolicitacao.Name = "concluirSolicitacao";
+            this.concluirSolicitacao.Size = new System.Drawing.Size(306, 70);
+            this.concluirSolicitacao.TabIndex = 23;
+            this.concluirSolicitacao.Text = "Concluir";
+            this.concluirSolicitacao.UseVisualStyleBackColor = false;
+            this.concluirSolicitacao.Visible = false;
+            this.concluirSolicitacao.Click += new System.EventHandler(this.concluirSolicitacao_Click);
+            // 
             // Origem
             // 
             this.Origem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -733,21 +749,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.RightToLeft = true;
-            // 
-            // concluirSolicitacao
-            // 
-            this.concluirSolicitacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.concluirSolicitacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(173)))), ((int)(((byte)(168)))));
-            this.concluirSolicitacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.concluirSolicitacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
-            this.concluirSolicitacao.Location = new System.Drawing.Point(904, 264);
-            this.concluirSolicitacao.Name = "concluirSolicitacao";
-            this.concluirSolicitacao.Size = new System.Drawing.Size(306, 70);
-            this.concluirSolicitacao.TabIndex = 23;
-            this.concluirSolicitacao.Text = "Concluir";
-            this.concluirSolicitacao.UseVisualStyleBackColor = false;
-            this.concluirSolicitacao.Visible = false;
-            this.concluirSolicitacao.Click += new System.EventHandler(this.concluirSolicitacao_Click);
             // 
             // Status
             // 

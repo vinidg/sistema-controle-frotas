@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using NAppUpdate.Framework;
+using NAppUpdate.Framework.Sources;
+using NAppUpdate.Framework.Common;
 
 namespace Sistema_Controle
 
@@ -30,7 +33,7 @@ namespace Sistema_Controle
             string donwloadurl = "";
             Version newVersion = null;
 
-            string xmlURL = @"\\\10.1.0.109\\SAUDE\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\update.xml";
+            string xmlURL = @"\\\fileserver-03\\SAUDE\\Mapa_de_Leitos\\Sistemas - Vinicius\\Sistema de Controle de Ambulancias\\update.xml";
             XmlTextReader reader = null;
 
             try
@@ -91,4 +94,8 @@ namespace Sistema_Controle
             }
         }
     }
+
+
+
+    
 }

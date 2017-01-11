@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "db_transporte_sanitario", "
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sistema Controle de Ambulancias", "Sistema Controle de Ambulancias\Sistema Controle de Ambulancias.vdproj", "{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema de Controle.Tests", "Sistema de Controle.Tests\Sistema de Controle.Tests.csproj", "{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -46,6 +48,16 @@ Global
 		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.DVD-5|Any CPU.ActiveCfg = Debug
 		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.Release|Any CPU.ActiveCfg = Release
 		{3C7C9A7A-CE59-4C29-93E0-702B20FBFD70}.SingleImage|Any CPU.ActiveCfg = Release
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{2862B8DA-35D7-4B6F-BA6F-C1B2A7BA69C3}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,7 +14,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <PublishUrl>\\DIV-HOS-AD03\Publica\Sistema de Controle de Ambulancias\</PublishUrl>
+    <PublishUrl>\\fileserver-03\saude\Mapa_de_Leitos\Sistemas - Vinicius\Sistema de Controle de Ambulancias\TesteFeed\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -56,10 +56,10 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E542A0ED0CF633B8006744E148C88690A86B0276</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4690D1D28BF56341C4B2BB2251726FF938F34D10</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>WindowsFormsApplication2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Sistema de Controle de Ambulancias_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -75,8 +75,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>Sistema_Controle.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -113,6 +112,10 @@
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\ReportViewer\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="NAppUpdate.Framework, Version=0.5.1.0, Culture=neutral, PublicKeyToken=d1f1d1f19f9e5a56, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAppUpdate.Framework.0.5.1.0\lib\net40\NAppUpdate.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -279,6 +282,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\LOGO.png" />
+    <None Include="Sistema de Controle de Ambulancias_TemporaryKey.pfx" />
     <None Include="WindowsFormsApplication2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,6 @@ namespace Sistema_Controle
         int idPaciente, codEquipe, SolicitaAM;
         int codigoDaAmbulancia;
         string NomeAM, statusAmbulancia;
-
         public Status(int codigoAM, int idPacientes)
         {
             InitializeComponent();
@@ -41,89 +40,7 @@ namespace Sistema_Controle
             NomeAM = Titulo.Text;
 
         }
-        #region clicks
 
-                private void BtnTroca_Click(object sender, EventArgs e)
-                {
-                    Paineltrocar.Visible = true;
-                }
-                private void BtTrocar_Click(object sender, EventArgs e)
-                {
-                    InsercoesDoBanco ib = new InsercoesDoBanco();
-                    DateTime agora = DateTime.Now;
-
-                    ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, agora, codigoDaAmbulancia);
-
-                    MessageBox.Show("Equipe trocada !");
-
-                    equipeView.DataSource = null;
-                    Paineltrocar.Visible = false;
-                    selectEquipeBD();
-                    EquipeAtribuiNaOcupada();
-                }
-                private void button1_Click(object sender, EventArgs e)
-                {
-                    Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
-
-                    this.Dispose();
-                    cs.ShowDialog();
-
-                }
-                private void button2_Click(object sender, EventArgs e)
-                {
-                    PainelBloqueio.Visible = true;
-                    txtResposavel.Text = resposavel;
-                }     
-                private void BtnBloquear_Click(object sender, EventArgs e)
-                {
-                    InsercoesDoBanco IB = new InsercoesDoBanco();
-                    IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
-                     
-                    MessageBox.Show("Ambulância Bloqueada !");
-                    PainelBloqueio.Visible = false;
-                    BtnDesbloquear.Visible = true;
-                    BtnBloqueio.Visible = false;
-                    BtnAddPaciente.Visible = false;
-                    painelCentral.BackColor = Color.FromArgb(0, 122, 181);
-                    this.BackColor = Color.FromArgb(204, 229, 255);
-                    Titulo.ForeColor = Color.White;
-                    /////
-                    label8.Visible = true;
-
-
-                }
-                private void BtnDesbloquear_Click(object sender, EventArgs e)
-                {
-                    InsercoesDoBanco IB = new InsercoesDoBanco();
-                    IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
-
-                    MessageBox.Show("Ambulância Desbloqueada !");
-                    BtnDesbloquear.Visible = false;
-                    BtnBloqueio.Visible = true;
-                    BtnAddPaciente.Visible = true;
-                    painelCentral.BackColor = Color.FromArgb(46, 172, 109);
-                    this.BackColor = Color.FromArgb(229, 255, 204);
-                    Titulo.ForeColor = Color.White;
-                    label8.Visible = false;
-                    Destino.Visible = false;
-                    Origem.Visible = false;
-                }
-                private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-                {
-                    SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
-                    this.Dispose();
-                    sand.ShowDialog();
-                }
-                private void ListadePacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-                {
-                    int IDpesquisa;
-                    IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
-                    this.Dispose();
-                    sand.ShowDialog();
-
-                }
-        #endregion
         private void EquipeAtribuiNaOcupada()
         {
             if (this.Text == "Ocupada")
@@ -303,6 +220,90 @@ namespace Sistema_Controle
             Titulo.Text = nomeAM;
             NomeAM = nomeAM;
         }
+
+        #region clicks
+
+                private void BtnTroca_Click(object sender, EventArgs e)
+                {
+                    Paineltrocar.Visible = true;
+                }
+                private void BtTrocar_Click(object sender, EventArgs e)
+                {
+                    InsercoesDoBanco ib = new InsercoesDoBanco();
+                    DateTime agora = DateTime.Now;
+
+                    ib.inserirEquipeNaAmbulancia(txtMoto.Text, txtEquipe.Text, agora, codigoDaAmbulancia);
+
+                    MessageBox.Show("Equipe trocada !");
+
+                    equipeView.DataSource = null;
+                    Paineltrocar.Visible = false;
+                    selectEquipeBD();
+                    EquipeAtribuiNaOcupada();
+                }
+                private void button1_Click(object sender, EventArgs e)
+                {
+                    Solicitacoes cs = new Solicitacoes(codigoDaAmbulancia, statusAmbulancia);
+
+                    this.Dispose();
+                    cs.ShowDialog();
+
+                }
+                private void button2_Click(object sender, EventArgs e)
+                {
+                    PainelBloqueio.Visible = true;
+                    txtResposavel.Text = resposavel;
+                }     
+                private void BtnBloquear_Click(object sender, EventArgs e)
+                {
+                    InsercoesDoBanco IB = new InsercoesDoBanco();
+                    IB.inserirBloqueioDaAm(txtDtHorasBloqueio.Text, txtResposavel.Text, CbMotivoBloqueio.Text, codigoDaAmbulancia);
+                     
+                    MessageBox.Show("Ambulância Bloqueada !");
+                    PainelBloqueio.Visible = false;
+                    BtnDesbloquear.Visible = true;
+                    BtnBloqueio.Visible = false;
+                    BtnAddPaciente.Visible = false;
+                    painelCentral.BackColor = Color.FromArgb(0, 122, 181);
+                    this.BackColor = Color.FromArgb(204, 229, 255);
+                    Titulo.ForeColor = Color.White;
+                    /////
+                    label8.Visible = true;
+
+
+                }
+                private void BtnDesbloquear_Click(object sender, EventArgs e)
+                {
+                    InsercoesDoBanco IB = new InsercoesDoBanco();
+                    IB.inserirDesloqueioDaAm(resposavel, now.ToString(), codigoDaAmbulancia);
+
+                    MessageBox.Show("Ambulância Desbloqueada !");
+                    BtnDesbloquear.Visible = false;
+                    BtnBloqueio.Visible = true;
+                    BtnAddPaciente.Visible = true;
+                    painelCentral.BackColor = Color.FromArgb(46, 172, 109);
+                    this.BackColor = Color.FromArgb(229, 255, 204);
+                    Titulo.ForeColor = Color.White;
+                    label8.Visible = false;
+                    Destino.Visible = false;
+                    Origem.Visible = false;
+                }
+                private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                    SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
+                    this.Dispose();
+                    sand.ShowDialog();
+                }
+                private void ListadePacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+                {
+                    int IDpesquisa;
+                    IDpesquisa = Convert.ToInt32(ListadePacientes.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    SelecionaAM sand = new SelecionaAM(idPaciente, codigoDaAmbulancia, 0);
+                    this.Dispose();
+                    sand.ShowDialog();
+
+                }
+        #endregion
 
         #region LogisticaAmbulancia
         private void selectHorarios()

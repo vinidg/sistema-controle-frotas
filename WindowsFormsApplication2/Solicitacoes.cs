@@ -188,8 +188,7 @@ namespace Sistema_Controle
                 this.Dispose();
                 STi.ShowDialog();
             }
-        }
-        
+        }    
         private void listaAgendadas_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -235,6 +234,21 @@ namespace Sistema_Controle
                 this.Dispose();
                 STi.ShowDialog();
             }
+        }
+
+        private void imprimirAgendamentos_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in listaAgendadas.Rows)
+            {
+                row.Height = 80;
+            }
+            this.listaAgendadas.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 8);
+            this.listaAgendadas.DefaultCellStyle.Font = new Font("Arial", 8);
+
+            this.listaAgendadas.Columns["VTR"].Visible = true;
+            this.listaAgendadas.Columns["Fixo"].Visible = true;
+            PrintDGV.Print_DataGridView(listaAgendadas);
+
         }
 
         #region Ordernacao
@@ -597,21 +611,6 @@ namespace Sistema_Controle
         }
 
         #endregion
-
-        private void imprimirAgendamentos_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in listaAgendadas.Rows)
-            {
-                row.Height = 80;
-            }
-            this.listaAgendadas.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 8);
-            this.listaAgendadas.DefaultCellStyle.Font = new Font("Arial", 8);
-
-            this.listaAgendadas.Columns["VTR"].Visible = true;
-            this.listaAgendadas.Columns["Fixo"].Visible = true;
-            PrintDGV.Print_DataGridView(listaAgendadas);
-
-        }
 
 
     }

@@ -23,11 +23,9 @@ namespace Sistema_Controle
         {
             puxarEnderecos();
 
-            TabelaEnderecos.Columns[4].Visible = false;
-            TabelaEnderecos.Columns[5].Visible = false;
-            TabelaEnderecos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            TabelaEnderecos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            TabelaEnderecos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            TabelaEnderecos.Columns["idControle"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            TabelaEnderecos.Columns["NomeUnidade"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            TabelaEnderecos.Columns["Endereco"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         private void puxarEnderecos()
         {

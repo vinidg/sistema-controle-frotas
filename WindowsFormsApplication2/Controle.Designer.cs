@@ -364,7 +364,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(449, 11);
+            this.label6.Location = new System.Drawing.Point(447, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(263, 18);
             this.label6.TabIndex = 28;
@@ -374,7 +374,7 @@
             // txtAgendadasHoje
             // 
             this.txtAgendadasHoje.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendadasHoje.Location = new System.Drawing.Point(718, 8);
+            this.txtAgendadasHoje.Location = new System.Drawing.Point(716, 8);
             this.txtAgendadasHoje.Name = "txtAgendadasHoje";
             this.txtAgendadasHoje.Size = new System.Drawing.Size(77, 25);
             this.txtAgendadasHoje.TabIndex = 27;
@@ -484,9 +484,9 @@
             this.avisandoAoControle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.avisandoAoControle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.avisandoAoControle.ForeColor = System.Drawing.Color.Red;
-            this.avisandoAoControle.Location = new System.Drawing.Point(16, 90);
+            this.avisandoAoControle.Location = new System.Drawing.Point(12, 90);
             this.avisandoAoControle.Name = "avisandoAoControle";
-            this.avisandoAoControle.Size = new System.Drawing.Size(1260, 16);
+            this.avisandoAoControle.Size = new System.Drawing.Size(1264, 16);
             this.avisandoAoControle.TabIndex = 27;
             this.avisandoAoControle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.avisandoAoControle.Visible = false;
@@ -521,7 +521,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(70, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1148, 33);
