@@ -1,12 +1,9 @@
-﻿using System;
+﻿using db_transporte_sanitario;
+using System;
+using System.Data.Entity.SqlServer;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using db_transporte_sanitario;
-using System.Data.Entity.SqlServer;
-using NAppUpdate.Framework;
-using System.IO;
-using NAppUpdate.Framework.Sources;
 
 namespace Sistema_Controle
 {
@@ -28,7 +25,8 @@ namespace Sistema_Controle
             }
 
             StartPosition = FormStartPosition.CenterScreen;
-            pegarDadosDasAmbulancias();
+            pegarDadosDasAmbulanciasUsa();
+            pegarDadosDasAmbulanciasUsb();
             contarSolicitacao();
             contarSolicitacoesAgendadas();
             contarSolicitacoesAgendadasPendentes();
@@ -40,7 +38,7 @@ namespace Sistema_Controle
             label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
 
-        public void pegarDadosDasAmbulancias()
+        public void pegarDadosDasAmbulanciasUsb()
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
@@ -71,7 +69,22 @@ namespace Sistema_Controle
 
                 listaUsb.DataSource = queryUsb;
                 listaUsb.ClearSelection();
-
+            }
+            listaUsb.Columns[0].Visible = false;
+            listaUsb.Columns["idPaciente"].Visible = false;
+            listaUsb.Columns["StatusE"].Width = 0;
+            coresDasTabelas();
+            this.listaUsb.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+        public void pegarDadosDasAmbulanciasUsa()
+            {
+            using (DAHUEEntities db = new DAHUEEntities())
+            {
                 var queryUsa = (from am in db.ambulancia
                                 join sa in db.solicitacoes_ambulancias
                                 on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
@@ -99,12 +112,10 @@ namespace Sistema_Controle
                 listaUsa.ClearSelection();
 
             }
+
             listaUsa.Columns[0].Visible = false;
-            listaUsb.Columns[0].Visible = false;
-            listaUsa.Columns["idPaciente"].Visible = false;
-            listaUsb.Columns["idPaciente"].Visible = false;
-            listaUsa.Columns["StatusE"].Width = 0;
-            listaUsb.Columns["StatusE"].Width = 0;
+            listaUsa.Columns["idPaciente"].Visible = false;           
+            listaUsa.Columns["StatusE"].Width = 0;        
             coresDasTabelas();
 
             this.listaUsa.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -114,12 +125,7 @@ namespace Sistema_Controle
             this.listaUsa.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             this.listaUsa.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            this.listaUsb.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.listaUsb.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            this.listaUsb.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
         }
 
         #region NumeroDeSolicitacoes
@@ -179,7 +185,8 @@ namespace Sistema_Controle
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            pegarDadosDasAmbulancias();
+            pegarDadosDasAmbulanciasUsa();
+            pegarDadosDasAmbulanciasUsb();
             contarSolicitacao();
             contarSolicitacoesAgendadasPendentes();
             atualizadorParaNotificador();
@@ -457,7 +464,8 @@ namespace Sistema_Controle
                             am.Bica = bicaSelecionada;
                             db.SaveChanges();
                         }
-                        pegarDadosDasAmbulancias();
+                        pegarDadosDasAmbulanciasUsa();
+                        pegarDadosDasAmbulanciasUsb();
                     }
                     else
                     {
@@ -493,7 +501,8 @@ namespace Sistema_Controle
                             am.Bica = bicaSelecionada;
                             db.SaveChanges();
                         }
-                        pegarDadosDasAmbulancias();
+                        pegarDadosDasAmbulanciasUsa();
+                        pegarDadosDasAmbulanciasUsb();
                     }
                     else
                     {
