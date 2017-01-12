@@ -1,21 +1,9 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
 using db_transporte_sanitario;
 using System.Data.Entity.SqlServer;
-using System.Collections;
-using DGVPrinterHelper;
 
 namespace Sistema_Controle
 {

@@ -547,6 +547,8 @@
             this.Name = "CONTROLE";
             this.Text = "CONTROLE DE AMBULÂNCIA 2015";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CONTROLE_FormClosing);
+            this.Load += new System.EventHandler(this.CONTROLE_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

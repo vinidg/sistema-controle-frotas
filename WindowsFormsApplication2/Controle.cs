@@ -1,7 +1,9 @@
-﻿using db_transporte_sanitario;
+﻿using AutoUpdaterDotNET;
+using db_transporte_sanitario;
 using System;
 using System.Data.Entity.SqlServer;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,33 +11,11 @@ namespace Sistema_Controle
 {
     public partial class CONTROLE : Form
     {
-
         int numeroAgendamentos;
         Version appverion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
         public CONTROLE()
         {
             InitializeComponent();
-
-            Update updatando = new Update();
-            updatando.up();
-
-            if (updatando.Yn == true)
-            {
-                Environment.Exit(1);
-            }
-
-            StartPosition = FormStartPosition.CenterScreen;
-            pegarDadosDasAmbulanciasUsa();
-            pegarDadosDasAmbulanciasUsb();
-            contarSolicitacao();
-            contarSolicitacoesAgendadas();
-            contarSolicitacoesAgendadasPendentes();
-            Re.Text = System.Environment.UserName;
-
-            Timer();
-
-            this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
-            label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
         }
 
         public void pegarDadosDasAmbulanciasUsb()
@@ -192,6 +172,9 @@ namespace Sistema_Controle
             atualizadorParaNotificador();
             alertarNovosAgendamentos();
             numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
+
+            AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
+            AutoUpdater.Start(@"\\fileserver-03\SAUDE\Mapa_de_Leitos\Sistemas - Vinicius\Sistema de Controle de Ambulancias\update.xml");
         }
 
 
@@ -339,6 +322,10 @@ namespace Sistema_Controle
         {
             Enderecos en = new Enderecos();
             en.ShowDialog();
+        }
+        private void CONTROLE_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AutoUpdater.disableSkip();
         }
         #endregion
 
@@ -512,6 +499,26 @@ namespace Sistema_Controle
             }
         }
         #endregion
+
+        private void CONTROLE_Load(object sender, EventArgs e)
+        {
+            AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
+            AutoUpdater.Start(@"\\fileserver-03\SAUDE\Mapa_de_Leitos\Sistemas - Vinicius\Sistema de Controle de Ambulancias\update.xml");
+
+            StartPosition = FormStartPosition.CenterScreen;
+            pegarDadosDasAmbulanciasUsa();
+            pegarDadosDasAmbulanciasUsb();
+            contarSolicitacao();
+            contarSolicitacoesAgendadas();
+            contarSolicitacoesAgendadasPendentes();
+            Re.Text = System.Environment.UserName;
+
+            Timer();
+
+            this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
+            label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
+        }
+
     }
 
 }

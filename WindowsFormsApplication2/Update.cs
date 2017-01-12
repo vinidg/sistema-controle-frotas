@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using NAppUpdate.Framework;
-using NAppUpdate.Framework.Sources;
-using NAppUpdate.Framework.Common;
 
 namespace Sistema_Controle
 
