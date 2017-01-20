@@ -249,6 +249,7 @@ namespace Sistema_Controle
         {
             RbFemenino.Checked = false;
             RbMasculino.Checked = false;
+            chGestante.Checked = false;
             TipoAM = "";
             Agendamento = "";
             Obs.Text = "";
@@ -304,6 +305,7 @@ namespace Sistema_Controle
                 }
                 txtIdade.Text = query.Idade;
                 txtDiagnostico.Text = query.Diagnostico;
+                chGestante.Checked = query.Gestante;
                 CbMotivoChamado.Text = query.Motivo;
                 CbTipoMotivoSelecionado.Text = query.SubMotivo;
                 Prioridade.Text = query.Prioridade;
@@ -349,7 +351,7 @@ namespace Sistema_Controle
                 IB.inserirSolicitacaoDoPaciente(TipoAM, DateTime.Now, Agendamento, this.dataAgendamento.Value, this.txtNomeSolicitante.Text, this.CbLocalSolicita.Text, this.txtTelefone.Text,
                 this.txtNomePaciente.Text, Sexo, this.txtIdade.Text, this.txtDiagnostico.Text, this.CbMotivoChamado.Text, this.CbTipoMotivoSelecionado.Text,
                 this.Prioridade.Text, this.CbOrigem.Text, this.txtEnderecoOrigem.Text, this.CbDestino.Text, this.txtEnderecoDestino.Text, this.Obs.Text,
-                0, System.Environment.UserName);
+                0, System.Environment.UserName, chGestante.Checked);
 
             }
             catch (Exception ex)

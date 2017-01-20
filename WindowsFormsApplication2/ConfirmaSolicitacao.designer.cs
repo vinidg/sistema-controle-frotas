@@ -74,6 +74,7 @@
             this.Btnagendasim = new System.Windows.Forms.Button();
             this.Btnagendanao = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.chGestante = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,6 +124,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.chGestante);
             this.panel1.Controls.Add(this.dataAgendamento);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.Prioridade);
@@ -428,7 +430,7 @@
             this.txtDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiagnostico.Location = new System.Drawing.Point(39, 353);
             this.txtDiagnostico.Name = "txtDiagnostico";
-            this.txtDiagnostico.Size = new System.Drawing.Size(522, 21);
+            this.txtDiagnostico.Size = new System.Drawing.Size(433, 21);
             this.txtDiagnostico.TabIndex = 24;
             // 
             // label12
@@ -656,6 +658,16 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "2. Necessita agendar o horario do atendimento ?";
             // 
+            // chGestante
+            // 
+            this.chGestante.AutoSize = true;
+            this.chGestante.Location = new System.Drawing.Point(477, 356);
+            this.chGestante.Name = "chGestante";
+            this.chGestante.Size = new System.Drawing.Size(69, 17);
+            this.chGestante.TabIndex = 47;
+            this.chGestante.Text = "Gestante";
+            this.chGestante.UseVisualStyleBackColor = true;
+            // 
             // ConfirmaSolicitacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -724,5 +736,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox Prioridade;
         private System.Windows.Forms.DateTimePicker dataAgendamento;
+        private System.Windows.Forms.CheckBox chGestante;
     }
 }

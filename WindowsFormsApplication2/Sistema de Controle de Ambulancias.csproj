@@ -85,7 +85,7 @@
   <ItemGroup>
     <Reference Include="AutoUpdater.NET, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\fu14855\Desktop\AutoUpdater.NET\.net4.0\AutoUpdater.NET.dll</HintPath>
+      <HintPath>..\..\AutoUpdater.NET-PT-BR\AutoUpdater.NET\bin\Debug\AutoUpdater.NET.dll</HintPath>
     </Reference>
     <Reference Include="DGV Printer">
       <HintPath>..\packages\DGV Printer.dll</HintPath>
@@ -220,7 +220,6 @@
       <DependentUpon>Status.cs</DependentUpon>
     </Compile>
     <Compile Include="StatusBD.cs" />
-    <Compile Include="Update.cs" />
     <EmbeddedResource Include="Consulta.resx">
       <DependentUpon>Consulta.cs</DependentUpon>
     </EmbeddedResource>

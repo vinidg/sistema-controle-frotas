@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DAHUEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DAHUEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ambulancia">
           <Key>
             <PropertyRef Name="idAmbulancia" />
@@ -34,7 +34,7 @@
           <Property Name="idPaciente" Type="int" />
           <Property Name="idSolicitacaoAM" Type="int" />
           <Property Name="MotivoCancelamento" Type="nvarchar" MaxLength="100" />
-          <Property Name="DtHrCancelamento" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtHrCancelamento" Type="datetime" />
           <Property Name="ResposavelCancelamento" Type="nvarchar" MaxLength="45" />
           <Property Name="ObsCancelamento" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -65,7 +65,7 @@
           <Property Name="idEquipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Condutor" Type="nvarchar" MaxLength="45" />
           <Property Name="Enfermeiros" Type="nvarchar" MaxLength="200" />
-          <Property Name="DtEscala" Type="datetime" />
+          <Property Name="DtEscala" Type="datetime" Nullable="false" />
           <Property Name="idAM" Type="int" />
         </EntityType>
         <EntityType Name="equipe_solam">
@@ -85,6 +85,31 @@
           <Property Name="DtHrRegistro" Type="datetime" Nullable="false" />
           <Property Name="idPaciente_Solicitacao" Type="int" Nullable="false" />
           <Property Name="Obs" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="prontuarios">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomePaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="NomedaMae" Type="nvarchar" MaxLength="150" />
+          <Property Name="NomeSoliciante" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgPaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgSolicitante" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtNascimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="DtAtendimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="45" />
+          <Property Name="Unidade" Type="nvarchar" MaxLength="45" />
+          <Property Name="Internacao" Type="nvarchar" MaxLength="3" />
+          <Property Name="Dias" Type="nvarchar" MaxLength="1" />
+          <Property Name="Obs" Type="nvarchar" MaxLength="200" />
+          <Property Name="DtSolicitacao" Type="nvarchar" MaxLength="80" />
+          <Property Name="Status" Type="nvarchar" MaxLength="45" />
+          <Property Name="Funcionario" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtRetirada" Type="nvarchar" MaxLength="20" />
+          <Property Name="Motivo_Rg" Type="nvarchar" MaxLength="90" />
+          <Property Name="DtHrFato" Type="nvarchar" MaxLength="45" />
+          <Property Name="LocalFato" Type="nvarchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="prontuariosupas">
           <Key>
@@ -174,7 +199,7 @@
           </Key>
           <Property Name="idPaciente_Solicitacoes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TipoSolicitacao" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="DtHrdoInicio" Type="datetime" />
+          <Property Name="DtHrdoInicio" Type="datetime" Nullable="false" />
           <Property Name="Agendamento" Type="nvarchar" MaxLength="45" />
           <Property Name="DtHrAgendamento" Type="nvarchar" MaxLength="45" />
           <Property Name="NomeSolicitante" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -186,7 +211,7 @@
           <Property Name="Diagnostico" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Motivo" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="SubMotivo" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Prioridade" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="150" />
           <Property Name="Origem" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="EnderecoOrigem" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Destino" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -197,6 +222,7 @@
           <Property Name="HrRegistro" Type="nvarchar" MaxLength="50" />
           <Property Name="DtHrdoAgendamento" Type="datetime" />
           <Property Name="idReagendamento" Type="int" />
+          <Property Name="Gestante" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -268,37 +294,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DAHUEModelStoreContainer">
           <EntitySet Name="ambulancia" EntityType="Self.ambulancia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bloqueio" EntityType="Self.bloqueio" Schema="dbo" store:Type="Tables" />
@@ -308,6 +303,7 @@
           <EntitySet Name="equipe" EntityType="Self.equipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="equipe_solam" EntityType="Self.equipe_solam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historico" EntityType="Self.historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prontuarios" EntityType="Self.prontuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prontuariosupas" EntityType="Self.prontuariosupas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="referencias" EntityType="Self.referencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="solicitacoes_agendamentos" EntityType="Self.solicitacoes_agendamentos" Schema="dbo" store:Type="Tables" />
@@ -335,7 +331,8 @@
             <End Role="solicitacoes_ambulancias" EntitySet="solicitacoes_ambulancias" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAHUEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -348,9 +345,9 @@
           <Property Name="StatusAmbulancia" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="TipoAM" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="Desativado" Type="Int32" />
+          <Property Name="Bica" Type="Int32" />
           <NavigationProperty Name="equipe" Relationship="Self.equipe_idAM" FromRole="ambulancia" ToRole="equipe" />
           <NavigationProperty Name="solicitacoes_ambulancias" Relationship="Self.solicitacoes_ambulancias_idAmbulanciaSol" FromRole="ambulancia" ToRole="solicitacoes_ambulancias" />
-          <Property Name="Bica" Type="Int32" />
         </EntityType>
         <EntityType Name="bloqueio">
           <Key>
@@ -370,7 +367,7 @@
           <Property Name="idPaciente" Type="Int32" />
           <Property Name="idSolicitacaoAM" Type="Int32" />
           <Property Name="MotivoCancelamento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DtHrCancelamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrCancelamento" Type="DateTime" Precision="3" />
           <Property Name="ResposavelCancelamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="ObsCancelamento" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -401,7 +398,7 @@
           <Property Name="idEquipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Condutor" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="Enfermeiros" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="DtEscala" Type="DateTime" Precision="3" />
+          <Property Name="DtEscala" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idAM" Type="Int32" />
           <NavigationProperty Name="ambulancia" Relationship="Self.equipe_idAM" FromRole="equipe" ToRole="ambulancia" />
           <NavigationProperty Name="equipe_solam" Relationship="Self.equipe_solam_idEquipe" FromRole="equipe" ToRole="equipe_solam" />
@@ -425,6 +422,31 @@
           <Property Name="idPaciente_Solicitacao" Type="Int32" Nullable="false" />
           <Property Name="Obs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="solicitacoes_paciente" Relationship="Self.FK__historico__idPac__640DD89F" FromRole="historico" ToRole="solicitacoes_paciente" />
+        </EntityType>
+        <EntityType Name="prontuarios">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomePaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NomedaMae" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NomeSoliciante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgPaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgSolicitante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtNascimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DtAtendimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Unidade" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Internacao" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Dias" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DtSolicitacao" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Funcionario" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtRetirada" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo_Rg" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="LocalFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="prontuariosupas">
           <Key>
@@ -507,8 +529,8 @@
           <Property Name="idAmbulanciaSol" Type="Int32" Nullable="false" />
           <Property Name="SolicitacaoConcluida" Type="Int32" />
           <Property Name="IdOutroPaciente" Type="Int32" />
-          <NavigationProperty Name="ambulancia" Relationship="Self.solicitacoes_ambulancias_idAmbulanciaSol" FromRole="solicitacoes_ambulancias" ToRole="ambulancia" />
           <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ambulancia" Relationship="Self.solicitacoes_ambulancias_idAmbulanciaSol" FromRole="solicitacoes_ambulancias" ToRole="ambulancia" />
         </EntityType>
         <EntityType Name="solicitacoes_paciente">
           <Key>
@@ -516,7 +538,7 @@
           </Key>
           <Property Name="idPaciente_Solicitacoes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TipoSolicitacao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DtHrdoInicio" Type="DateTime" Precision="3" />
+          <Property Name="DtHrdoInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Agendamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="DtHrAgendamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="NomeSolicitante" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
@@ -528,7 +550,7 @@
           <Property Name="Diagnostico" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Motivo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SubMotivo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Prioridade" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prioridade" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Origem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EnderecoOrigem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Destino" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
@@ -539,6 +561,7 @@
           <Property Name="HrRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DtHrdoAgendamento" Type="DateTime" Precision="3" />
           <Property Name="idReagendamento" Type="Int32" />
+          <Property Name="Gestante" Type="Boolean" />
           <NavigationProperty Name="historico" Relationship="Self.FK__historico__idPac__640DD89F" FromRole="solicitacoes_paciente" ToRole="historico" />
           <NavigationProperty Name="solicitacoes_agendamentos" Relationship="Self.FKSolPacientes" FromRole="solicitacoes_paciente" ToRole="solicitacoes_agendamentos" />
         </EntityType>
@@ -621,6 +644,7 @@
           <EntitySet Name="equipe" EntityType="Self.equipe" />
           <EntitySet Name="equipe_solam" EntityType="Self.equipe_solam" />
           <EntitySet Name="historico" EntityType="Self.historico" />
+          <EntitySet Name="prontuarios" EntityType="Self.prontuarios" />
           <EntitySet Name="prontuariosupas" EntityType="Self.prontuariosupas" />
           <EntitySet Name="referencias" EntityType="Self.referencias" />
           <EntitySet Name="solicitacoes_agendamentos" EntityType="Self.solicitacoes_agendamentos" />
@@ -647,48 +671,7 @@
             <End Role="solicitacoes_paciente" EntitySet="solicitacoes_paciente" />
             <End Role="solicitacoes_agendamentos" EntitySet="solicitacoes_agendamentos" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DAHUEModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DAHUEModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -698,12 +681,12 @@
           <EntitySetMapping Name="ambulancia">
             <EntityTypeMapping TypeName="DAHUEModel.ambulancia">
               <MappingFragment StoreEntitySet="ambulancia">
-                <ScalarProperty Name="Bica" ColumnName="Bica" />
                 <ScalarProperty Name="idAmbulancia" ColumnName="idAmbulancia" />
                 <ScalarProperty Name="NomeAmbulancia" ColumnName="NomeAmbulancia" />
                 <ScalarProperty Name="StatusAmbulancia" ColumnName="StatusAmbulancia" />
                 <ScalarProperty Name="TipoAM" ColumnName="TipoAM" />
                 <ScalarProperty Name="Desativado" ColumnName="Desativado" />
+                <ScalarProperty Name="Bica" ColumnName="Bica" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -784,6 +767,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="prontuarios">
+            <EntityTypeMapping TypeName="DAHUEModel.prontuarios">
+              <MappingFragment StoreEntitySet="prontuarios">
+                <ScalarProperty Name="idProntuarios" ColumnName="idProntuarios" />
+                <ScalarProperty Name="NomePaciente" ColumnName="NomePaciente" />
+                <ScalarProperty Name="NomedaMae" ColumnName="NomedaMae" />
+                <ScalarProperty Name="NomeSoliciante" ColumnName="NomeSoliciante" />
+                <ScalarProperty Name="RgPaciente" ColumnName="RgPaciente" />
+                <ScalarProperty Name="RgSolicitante" ColumnName="RgSolicitante" />
+                <ScalarProperty Name="DtNascimento" ColumnName="DtNascimento" />
+                <ScalarProperty Name="DtAtendimento" ColumnName="DtAtendimento" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+                <ScalarProperty Name="Internacao" ColumnName="Internacao" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="DtSolicitacao" ColumnName="DtSolicitacao" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
+                <ScalarProperty Name="DtRetirada" ColumnName="DtRetirada" />
+                <ScalarProperty Name="Motivo_Rg" ColumnName="Motivo_Rg" />
+                <ScalarProperty Name="DtHrFato" ColumnName="DtHrFato" />
+                <ScalarProperty Name="LocalFato" ColumnName="LocalFato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="prontuariosupas">
             <EntityTypeMapping TypeName="DAHUEModel.prontuariosupas">
               <MappingFragment StoreEntitySet="prontuariosupas">
@@ -846,27 +855,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="solicitacoes_ambulancias">
-            <EntityTypeMapping TypeName="IsTypeOf(DAHUEModel.solicitacoes_ambulancias)">
+            <EntityTypeMapping TypeName="DAHUEModel.solicitacoes_ambulancias">
               <MappingFragment StoreEntitySet="solicitacoes_ambulancias">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="idSolicitacoes_Ambulancias" ColumnName="idSolicitacoes_Ambulancias" />
-                <ScalarProperty Name="IdOutroPaciente" ColumnName="IdOutroPaciente" />
-                <ScalarProperty Name="SolicitacaoConcluida" ColumnName="SolicitacaoConcluida" />
-                <ScalarProperty Name="idAmbulanciaSol" ColumnName="idAmbulanciaSol" />
-                <ScalarProperty Name="DtHrEquipePatioReg" ColumnName="DtHrEquipePatioReg" />
-                <ScalarProperty Name="DtHrEquipePatio" ColumnName="DtHrEquipePatio" />
-                <ScalarProperty Name="DtHrLiberacaoEquipeReg" ColumnName="DtHrLiberacaoEquipeReg" />
-                <ScalarProperty Name="DtHrLiberacaoEquipe" ColumnName="DtHrLiberacaoEquipe" />
-                <ScalarProperty Name="DtHrChegadaDestinoReg" ColumnName="DtHrChegadaDestinoReg" />
-                <ScalarProperty Name="DtHrChegadaDestino" ColumnName="DtHrChegadaDestino" />
-                <ScalarProperty Name="DtHrSaidaOrigemReg" ColumnName="DtHrSaidaOrigemReg" />
-                <ScalarProperty Name="DtHrSaidaOrigem" ColumnName="DtHrSaidaOrigem" />
-                <ScalarProperty Name="DtHrChegadaOrigemReg" ColumnName="DtHrChegadaOrigemReg" />
-                <ScalarProperty Name="DtHrChegadaOrigem" ColumnName="DtHrChegadaOrigem" />
-                <ScalarProperty Name="DtHrCienciaReg" ColumnName="DtHrCienciaReg" />
-                <ScalarProperty Name="DtHrCiencia" ColumnName="DtHrCiencia" />
-                <ScalarProperty Name="Cancelamento" ColumnName="Cancelamento" />
                 <ScalarProperty Name="idSolicitacoesPacientes" ColumnName="idSolicitacoesPacientes" />
+                <ScalarProperty Name="Cancelamento" ColumnName="Cancelamento" />
+                <ScalarProperty Name="DtHrCiencia" ColumnName="DtHrCiencia" />
+                <ScalarProperty Name="DtHrCienciaReg" ColumnName="DtHrCienciaReg" />
+                <ScalarProperty Name="DtHrChegadaOrigem" ColumnName="DtHrChegadaOrigem" />
+                <ScalarProperty Name="DtHrChegadaOrigemReg" ColumnName="DtHrChegadaOrigemReg" />
+                <ScalarProperty Name="DtHrSaidaOrigem" ColumnName="DtHrSaidaOrigem" />
+                <ScalarProperty Name="DtHrSaidaOrigemReg" ColumnName="DtHrSaidaOrigemReg" />
+                <ScalarProperty Name="DtHrChegadaDestino" ColumnName="DtHrChegadaDestino" />
+                <ScalarProperty Name="DtHrChegadaDestinoReg" ColumnName="DtHrChegadaDestinoReg" />
+                <ScalarProperty Name="DtHrLiberacaoEquipe" ColumnName="DtHrLiberacaoEquipe" />
+                <ScalarProperty Name="DtHrLiberacaoEquipeReg" ColumnName="DtHrLiberacaoEquipeReg" />
+                <ScalarProperty Name="DtHrEquipePatio" ColumnName="DtHrEquipePatio" />
+                <ScalarProperty Name="DtHrEquipePatioReg" ColumnName="DtHrEquipePatioReg" />
+                <ScalarProperty Name="idAmbulanciaSol" ColumnName="idAmbulanciaSol" />
+                <ScalarProperty Name="SolicitacaoConcluida" ColumnName="SolicitacaoConcluida" />
+                <ScalarProperty Name="IdOutroPaciente" ColumnName="IdOutroPaciente" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -898,6 +907,7 @@
                 <ScalarProperty Name="HrRegistro" ColumnName="HrRegistro" />
                 <ScalarProperty Name="DtHrdoAgendamento" ColumnName="DtHrdoAgendamento" />
                 <ScalarProperty Name="idReagendamento" ColumnName="idReagendamento" />
+                <ScalarProperty Name="Gestante" ColumnName="Gestante" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -912,30 +922,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DAHUEModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DAHUEModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DAHUEModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DAHUEModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DAHUEModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DAHUEModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DAHUEModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DAHUEModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DAHUEModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

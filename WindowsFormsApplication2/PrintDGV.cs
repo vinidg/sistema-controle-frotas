@@ -144,7 +144,7 @@ namespace Sistema_Controle
                     System.Drawing.Printing.PrintPageEventArgs e)
         {
             int tmpWidth, i;
-            int tmpTop = e.PageBounds.Top;
+            int tmpTop = 3;
             int tmpLeft = 6;
 
             try

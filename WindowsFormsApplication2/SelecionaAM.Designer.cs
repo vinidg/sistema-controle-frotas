@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelecionaAM));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chGestante = new System.Windows.Forms.CheckBox();
             this.painelCancelar = new System.Windows.Forms.Panel();
             this.BtnConfirmando = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -116,6 +117,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(252)))), ((int)(((byte)(194)))));
+            this.panel1.Controls.Add(this.chGestante);
             this.panel1.Controls.Add(this.painelCancelar);
             this.panel1.Controls.Add(this.PainelAM2);
             this.panel1.Controls.Add(this.panel2);
@@ -176,6 +178,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1066, 675);
             this.panel1.TabIndex = 4;
+            // 
+            // chGestante
+            // 
+            this.chGestante.AutoSize = true;
+            this.chGestante.Enabled = false;
+            this.chGestante.Location = new System.Drawing.Point(411, 299);
+            this.chGestante.Name = "chGestante";
+            this.chGestante.Size = new System.Drawing.Size(69, 17);
+            this.chGestante.TabIndex = 106;
+            this.chGestante.Text = "Gestante";
+            this.chGestante.UseVisualStyleBackColor = true;
             // 
             // painelCancelar
             // 
@@ -905,7 +918,7 @@
             this.txtDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiagnostico.Location = new System.Drawing.Point(7, 299);
             this.txtDiagnostico.Name = "txtDiagnostico";
-            this.txtDiagnostico.Size = new System.Drawing.Size(473, 21);
+            this.txtDiagnostico.Size = new System.Drawing.Size(398, 21);
             this.txtDiagnostico.TabIndex = 24;
             // 
             // label12
@@ -1277,5 +1290,6 @@
         private System.Windows.Forms.Button AgendamentoNao;
         private System.Windows.Forms.Button AgendamentoSim;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox chGestante;
     }
 }

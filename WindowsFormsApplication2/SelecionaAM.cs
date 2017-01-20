@@ -58,7 +58,7 @@ namespace Sistema_Controle
                 var query = (from sp in db.solicitacoes_paciente
                              where sp.idPaciente_Solicitacoes == idPaciente
                              select sp).FirstOrDefault();
-
+                
                 tipoSolicitacao = query.TipoSolicitacao;
                 Agendamento = query.Agendamento;
 
@@ -106,6 +106,7 @@ namespace Sistema_Controle
                 }
                 txtIdade.Text = query.Idade;
                 txtDiagnostico.Text = query.Diagnostico;
+                chGestante.Checked = query.Gestante;
                 CbMotivoChamado.Text = query.Motivo;
                 CbTipoMotivoSelecionado.Text = query.SubMotivo;
                 PrioridadeTxt.Text = query.Prioridade;
@@ -216,7 +217,7 @@ namespace Sistema_Controle
                 d.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
 
                 InsercoesDoBanco ib = new InsercoesDoBanco();
-                ib.cancelarSolicitacao(idPaciente, Convert.ToInt32(d.IdSolicitacoes_Ambulancias), MotivoCancelar.Text, DtHrCancelamento.Text,
+                ib.cancelarSolicitacao(idPaciente, Convert.ToInt32(d.IdSolicitacoes_Ambulancias), MotivoCancelar.Text, DateTime.Now,
                     txtResponsavel.Text, txtObsCancelamento.Text);
                 ib.updateNasTabelasParaCancelar(idPaciente, idAmbu, Convert.ToInt32(d.IdSolicitacoes_Ambulancias));
             }
@@ -225,8 +226,8 @@ namespace Sistema_Controle
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-                MessageBox.Show("Solicitação cancelada com sucesso !!!");
-                this.Dispose();
+            MessageBox.Show("Solicitação cancelada com sucesso !!!");
+            this.Dispose();
         }
         private void ConfirmaAM()
         {
@@ -255,130 +256,135 @@ namespace Sistema_Controle
             StatusBD Horarios = new StatusBD();
             using (DAHUEEntities db = new DAHUEEntities())
             {
-                   
-                string Condutor="", Enfermeiros="";
 
-                    //pesquisar equipe
-                    var Equipe = (from eq in db.equipe
-                                 where eq.idAM == idAmbu
-                                 orderby eq.idEquipe descending
-                                 select eq).FirstOrDefault();
-                        if(Equipe != null)
-                        {
-                            Condutor = Equipe.Condutor;
-                            Enfermeiros = Equipe.Enfermeiros;
-                        }
-            
+                string Condutor = "", Enfermeiros = "";
 
-                    //pesquisar dados do paciente
-                    var Solicitacao = (from sp in db.solicitacoes_paciente
+                //pesquisar equipe
+                var Equipe = (from eq in db.equipe
+                              where eq.idAM == idAmbu
+                              orderby eq.idEquipe descending
+                              select eq).FirstOrDefault();
+                if (Equipe != null)
+                {
+                    Condutor = Equipe.Condutor;
+                    Enfermeiros = Equipe.Enfermeiros;
+                }
+
+
+                //pesquisar dados do paciente
+                var Solicitacao = (from sp in db.solicitacoes_paciente
                                    where sp.idPaciente_Solicitacoes == idPaciente
                                    select sp).FirstOrDefault();
 
-                    if (idSolicitacaoAm == 0)
+                if (idSolicitacaoAm == 0)
+                {
+                    Horarios.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
+                }
+                else
+                {
+                    Horarios.puxarLogisticaDaSolicitacaNaAmbulanciaSelecionadaNaConsulta(idPaciente, idSolicitacaoAm);
+
+                    Equipe = (from eq in db.equipe
+                              where eq.idAM == Horarios.IdAmbulanciaSol
+                              orderby eq.idEquipe descending
+                              select eq).FirstOrDefault();
+                }
+
+                //Verificar se esta sendo cancelado
+                string cancelado = "", dataHoraCancelamento = "", MotivoCancelamento = "", nomeCancelante = "";
+                var query = (from can in db.cancelados_pacientes
+                             where can.idPaciente == idPaciente
+                             orderby can.DtHrCancelamento descending
+                             select can).Take(1).FirstOrDefault();
+                if (query != null)
+                {
+                    cancelado = "Sim";
+                    dataHoraCancelamento = query.DtHrCancelamento.ToString("dd/MM/yyyy HH:mm");
+                    MotivoCancelamento = query.MotivoCancelamento;
+                    nomeCancelante = query.ResposavelCancelamento;
+                }
+                else
+                {
+                    cancelado = "Não";
+                }
+
+
+                //Pesquisar nome da ambulancias
+                if (String.IsNullOrEmpty(NomeAM))
+                {
+                    var nome = (from am in db.ambulancia
+                                where am.idAmbulancia == Horarios.IdAmbulanciaSol
+                                select am.NomeAmbulancia).FirstOrDefault();
+                    if (String.IsNullOrEmpty(nome))
                     {
-                        Horarios.puxarLogisticaDaSolicitacaNaAmbulancia(idPaciente);
+                        NomeAM = "";
                     }
                     else
                     {
-                        Horarios.puxarLogisticaDaSolicitacaNaAmbulanciaSelecionadaNaConsulta(idPaciente, idSolicitacaoAm);
-
-                       Equipe = (from eq in db.equipe
-                                 where eq.idAM == Horarios.IdAmbulanciaSol
-                                 orderby eq.idEquipe descending
-                                 select eq).FirstOrDefault();
-                    }
-            
-                    //Verificar se esta sendo cancelado
-                    string cancelado = "", dataHoraCancelamento = "", MotivoCancelamento = "", nomeCancelante="";
-                        var query = (from can in db.cancelados_pacientes
-                                     where can.idPaciente == idPaciente
-                                     orderby can.DtHrCancelamento descending
-                                     select can).Take(1).FirstOrDefault();
-                        if(query != null)
-                        {
-                            cancelado = "Sim";
-                            dataHoraCancelamento = query.DtHrCancelamento;
-                            MotivoCancelamento = query.MotivoCancelamento;
-                            nomeCancelante = query.ResposavelCancelamento;
-                        }
-                        else
-                        {
-                           cancelado = "Não";
-                        }
-                    
-                    
-                    //Pesquisar nome da ambulancias
-                    if (String.IsNullOrEmpty(NomeAM))
-                    {
-                        var nome = (from am in db.ambulancia
-                                    where am.idAmbulancia == Horarios.IdAmbulanciaSol
-                                    select am.NomeAmbulancia).FirstOrDefault();
                         NomeAM = nome;
                     }
+                }
 
-                    int n = 34;
-                    ReportViewer report = new ReportViewer();
-                    report.ProcessingMode = ProcessingMode.Local;
-                    report.LocalReport.ReportEmbeddedResource = "Sistema_Controle.Report1.rdlc";
-                    ReportParameter[] listReport = new ReportParameter[n];
-                    listReport[0] = new ReportParameter("Nome", Solicitacao.Paciente);
-                    listReport[1] = new ReportParameter("Tipo", Solicitacao.TipoSolicitacao);
-                    listReport[2] = new ReportParameter("Agendado", Solicitacao.Agendamento);
-                    listReport[3] = new ReportParameter("DtHrAgendado", Solicitacao.DtHrdoAgendamento.ToString());
-                    listReport[4] = new ReportParameter("ID", Convert.ToString(Solicitacao.idPaciente_Solicitacoes));
-                    listReport[5] = new ReportParameter("Sexo", Solicitacao.Genero);
-                    listReport[6] = new ReportParameter("Idade", Solicitacao.Idade);
-                    listReport[7] = new ReportParameter("Diagnostico", Solicitacao.Diagnostico);
-                    listReport[8] = new ReportParameter("Motivo", Solicitacao.Motivo);
-                    listReport[9] = new ReportParameter("Submotivo", Solicitacao.SubMotivo);
-                    listReport[10] = new ReportParameter("Origem", Solicitacao.Origem);
-                    listReport[11] = new ReportParameter("Destino", Solicitacao.Destino);
-                    listReport[12] = new ReportParameter("EnderecoOrigem", Solicitacao.EnderecoOrigem);
-                    listReport[13] = new ReportParameter("EnderecoDestino", Solicitacao.EnderecoDestino);
-                    listReport[14] = new ReportParameter("Obsgerais", Solicitacao.ObsGerais);
-                    listReport[15] = new ReportParameter("NomeSolicitante", Solicitacao.NomeSolicitante);
-                    listReport[16] = new ReportParameter("LocalSolicitacao", Solicitacao.LocalSolicitacao);
-                    listReport[17] = new ReportParameter("Telefone", Solicitacao.Telefone);
-                    listReport[18] = new ReportParameter("Registrado", System.Environment.UserName);
-                    listReport[19] = new ReportParameter("HrRegistro", DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"));
-                    listReport[20] = new ReportParameter("AM", NomeAM);
-                    listReport[21] = new ReportParameter("Condutor", Condutor);
-                    listReport[22] = new ReportParameter("Equipe", Enfermeiros);
-                    listReport[23] = new ReportParameter("Prioridade", Solicitacao.Prioridade.Substring(0,2));
-                    listReport[24] = new ReportParameter("Cancelamento", cancelado);
-                    listReport[25] = new ReportParameter("HrCancelamento", dataHoraCancelamento);
-                    listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelamento);
-                    listReport[27] = new ReportParameter("NomeCancelante", nomeCancelante);
-                    listReport[28] = new ReportParameter("HrCiencia", Horarios.DtHrCiencia1);
-                    listReport[29] = new ReportParameter("HrSaida", Horarios.DtHrSaidaOrigem1);
-                    listReport[30] = new ReportParameter("HrLiberacao", Horarios.DtHrLiberacaoEquipe1);
-                    listReport[31] = new ReportParameter("HrChegadaOrigem", Horarios.DtHrChegadaOrigem1);
-                    listReport[32] = new ReportParameter("HrChegadaDestino", Horarios.DtHrChegadaDestino1);
-                    listReport[33] = new ReportParameter("HrEquipepatio", Horarios.DtHrEquipePatio1);
+                int n = 32;
+                ReportViewer report = new ReportViewer();
+                report.ProcessingMode = ProcessingMode.Local;
+                report.LocalReport.ReportEmbeddedResource = "Sistema_Controle.Report1.rdlc";
+                ReportParameter[] listReport = new ReportParameter[n];
+                listReport[0] = new ReportParameter("Nome", Solicitacao.Paciente);
+                listReport[1] = new ReportParameter("Tipo", Solicitacao.TipoSolicitacao);
+                listReport[2] = new ReportParameter("Agendado", Solicitacao.Agendamento);
+                listReport[3] = new ReportParameter("DtHrAgendado", Solicitacao.DtHrdoAgendamento.ToString());
+                listReport[4] = new ReportParameter("ID", Convert.ToString(Solicitacao.idPaciente_Solicitacoes));
+                listReport[5] = new ReportParameter("Sexo", Solicitacao.Genero);
+                listReport[6] = new ReportParameter("Idade", Solicitacao.Idade);
+                listReport[7] = new ReportParameter("Diagnostico", Solicitacao.Diagnostico);
+                listReport[8] = new ReportParameter("Motivo", Solicitacao.Motivo);
+                listReport[9] = new ReportParameter("Submotivo", Solicitacao.SubMotivo);
+                listReport[10] = new ReportParameter("Origem", Solicitacao.Origem);
+                listReport[11] = new ReportParameter("Destino", Solicitacao.Destino);
+                listReport[12] = new ReportParameter("EnderecoOrigem", Solicitacao.EnderecoOrigem);
+                listReport[13] = new ReportParameter("EnderecoDestino", Solicitacao.EnderecoDestino);
+                listReport[14] = new ReportParameter("Obsgerais", Solicitacao.ObsGerais);
+                listReport[15] = new ReportParameter("NomeSolicitante", Solicitacao.NomeSolicitante);
+                listReport[16] = new ReportParameter("LocalSolicitacao", Solicitacao.LocalSolicitacao);
+                listReport[17] = new ReportParameter("Telefone", Solicitacao.Telefone);
+                listReport[18] = new ReportParameter("AM", NomeAM);
+                listReport[19] = new ReportParameter("Condutor", Condutor);
+                listReport[20] = new ReportParameter("Equipe", Enfermeiros);
+                listReport[21] = new ReportParameter("Prioridade", Solicitacao.Prioridade.Substring(0, 2));
+                listReport[22] = new ReportParameter("Cancelamento", cancelado);
+                listReport[23] = new ReportParameter("HrCancelamento", dataHoraCancelamento);
+                listReport[24] = new ReportParameter("MotivoCancelamento", MotivoCancelamento);
+                listReport[25] = new ReportParameter("NomeCancelante", nomeCancelante);
+                listReport[26] = new ReportParameter("HrCiencia", Horarios.DtHrCiencia1);
+                listReport[27] = new ReportParameter("HrSaida", Horarios.DtHrSaidaOrigem1);
+                listReport[28] = new ReportParameter("HrLiberacao", Horarios.DtHrLiberacaoEquipe1);
+                listReport[29] = new ReportParameter("HrChegadaOrigem", Horarios.DtHrChegadaOrigem1);
+                listReport[30] = new ReportParameter("HrChegadaDestino", Horarios.DtHrChegadaDestino1);
+                listReport[31] = new ReportParameter("HrEquipepatio", Horarios.DtHrEquipePatio1);
 
-                    report.LocalReport.SetParameters(listReport);
-                    report.LocalReport.Refresh();
+                report.LocalReport.SetParameters(listReport);
+                report.LocalReport.Refresh();
 
-                    //reportViewer1.Visible = true;
+                //reportViewer1.Visible = true;
 
-                    Warning[] warnings;
-                    string[] streamids;
-                    string mimeType;
-                    string enconding;
-                    string extension;
+                Warning[] warnings;
+                string[] streamids;
+                string mimeType;
+                string enconding;
+                string extension;
 
-                    byte[] bytePDF = report.LocalReport.Render("Pdf", null, out mimeType, out enconding, out extension, out streamids, out warnings);
+                byte[] bytePDF = report.LocalReport.Render("Pdf", null, out mimeType, out enconding, out extension, out streamids, out warnings);
 
-                    FileStream filestrampdf = null;
-                    string nomeArquivopdf = Path.GetTempPath() + "Impresso_" + txtNomePaciente.Text + DateTime.Now.ToString("_dd_MM_yyyy-HH_mm_ss") + ".pdf";
+                FileStream filestrampdf = null;
+                string nomeArquivopdf = Path.GetTempPath() + "Impresso_" + txtNomePaciente.Text + DateTime.Now.ToString("_dd_MM_yyyy-HH_mm_ss") + ".pdf";
 
-                    filestrampdf = new FileStream(nomeArquivopdf, FileMode.Create);
-                    filestrampdf.Write(bytePDF, 0, bytePDF.Length);
-                    filestrampdf.Close();
+                filestrampdf = new FileStream(nomeArquivopdf, FileMode.Create);
+                filestrampdf.Write(bytePDF, 0, bytePDF.Length);
+                filestrampdf.Close();
 
-                    Process.Start(nomeArquivopdf);
-                
+                Process.Start(nomeArquivopdf);
+
             }
         }
         private void DesbloquarCampos()
@@ -399,6 +405,7 @@ namespace Sistema_Controle
             RbMasculino.Enabled = true;
             txtIdade.Enabled = true;
             txtDiagnostico.Enabled = true;
+            chGestante.Enabled = true;
             CbMotivoChamado.Enabled = true;
             CbTipoMotivoSelecionado.Enabled = true;
             CbOrigem.Enabled = true;
@@ -461,6 +468,7 @@ namespace Sistema_Controle
             RbMasculino.Enabled = false;
             txtIdade.Enabled = false;
             txtDiagnostico.Enabled = false;
+            chGestante.Enabled = false;
             CbMotivoChamado.Enabled = false;
             CbTipoMotivoSelecionado.Enabled = false;
             CbOrigem.Enabled = false;
@@ -478,7 +486,7 @@ namespace Sistema_Controle
                 InsercoesDoBanco ib = new InsercoesDoBanco();
                 ib.alterarCamposDaSolicitacao(idPaciente, TipoAM, Agendamento, dataAgendamento.Value, txtNomeSolicitante.Text, CbLocalSolicita.Text, txtTelefone.Text,
                                               txtNomePaciente.Text, Sexo, txtIdade.Text, txtDiagnostico.Text, CbMotivoChamado.Text, CbTipoMotivoSelecionado.Text, PrioridadeTxt.Text, CbOrigem.Text,
-                                              txtEnderecoOrigem.Text, CbDestino.Text, txtEnderecoDestino.Text, System.Environment.UserName, DateTime.Now.ToString(), obsGerais.Text);
+                                              txtEnderecoOrigem.Text, CbDestino.Text, txtEnderecoDestino.Text, System.Environment.UserName, DateTime.Now.ToString(), obsGerais.Text, chGestante.Checked);
             }
             catch (Exception ex)
             {
@@ -693,7 +701,7 @@ namespace Sistema_Controle
             if (dataAgendamento.Enabled == false)
             {
                 DesbloquarCampos();
-                
+
             }
             else
             {
@@ -771,9 +779,7 @@ namespace Sistema_Controle
         }
         private void RetirarAM_Click(object sender, EventArgs e)
         {
-            DialogResult result1 = MessageBox.Show("Deseja retirar a solicitação desta ambulância ?",
-"Atenção !",
-MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result1 = MessageBox.Show("Deseja retirar a solicitação desta ambulância ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
             {
                 using (DAHUEEntities db = new DAHUEEntities())
@@ -802,7 +808,7 @@ MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
         }
         private void IncluirSolicitacaoPendentes_Click(object sender, EventArgs e)
-        {           
+        {
             DialogResult result1 = MessageBox.Show("Deseja inserir a solicitação na lista de pendêcias ?",
             "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
@@ -818,11 +824,11 @@ MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
             {
-                using(DAHUEEntities db = new DAHUEEntities())
+                using (DAHUEEntities db = new DAHUEEntities())
                 {
                     solicitacoes_paciente sp = db.solicitacoes_paciente.First(p => p.idPaciente_Solicitacoes == idPaciente);
                     sp.Registrado = "Aguardando resposta do controle";
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
                 RespostaDeAmbulancias ra = new RespostaDeAmbulancias();
                 this.Dispose();
@@ -947,9 +953,7 @@ MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
         private void BtnConfirmando_Click(object sender, EventArgs e)
         {
-            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?",
-"Atenção !",
-MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result1 == DialogResult.Yes)
             {
                 cancelar();

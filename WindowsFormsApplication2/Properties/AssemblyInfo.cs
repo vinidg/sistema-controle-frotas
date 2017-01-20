@@ -6,8 +6,8 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Sistema para controle de Ambulancia")]
-[assembly: AssemblyDescription("Sistema para controle de Ambulancia")]
+[assembly: AssemblyTitle("Sistema de Controle de Ambulancia")]
+[assembly: AssemblyDescription("Sistema de Controle de Ambulancia")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("São Bernardo do Campo")]
 [assembly: AssemblyProduct("Sistema de Controle de Ambulancias")]
@@ -34,6 +34,6 @@ using System.Resources;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersionAttribute("3.0.2.1")]
-[assembly: AssemblyFileVersionAttribute("3.0.2.1")]
+[assembly: AssemblyVersionAttribute("3.0.2.4")]
+[assembly: AssemblyFileVersionAttribute("3.0.2.4")]
 [assembly: NeutralResourcesLanguageAttribute("pt-BR")]

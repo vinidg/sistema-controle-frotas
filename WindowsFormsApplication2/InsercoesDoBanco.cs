@@ -14,7 +14,7 @@ namespace Sistema_Controle
         public void inserirSolicitacaoDoPaciente(string TipoSolicitacao, DateTime DtHrdoInicio, string Agendamento, DateTime DtHrdoAgendamento,
                                                  string NomeSolicitante, string LocalSolicitacao, string Telefone, string Paciente, string Genero, string Idade,string Diagnostico, 
                                                  string Motivo, string SubMotivo, string Prioridade, string Origem, string EnderecoOrigem, string Destino, string EnderecoDestino, 
-                                                 string ObsGerais, int AmSolicitada, string usuario)
+                                                 string ObsGerais, int AmSolicitada, string usuario, Boolean Gestante)
                                             {
 
                                                 using (DAHUEEntities dahue = new DAHUEEntities())
@@ -33,6 +33,7 @@ namespace Sistema_Controle
                                                     solicitacoesPaciente.Genero = Genero;
                                                     solicitacoesPaciente.Idade = Idade;
                                                     solicitacoesPaciente.Diagnostico = Diagnostico;
+                                                    solicitacoesPaciente.Gestante = Gestante;
                                                     solicitacoesPaciente.Motivo = Motivo;
                                                     solicitacoesPaciente.SubMotivo = SubMotivo;
                                                     solicitacoesPaciente.Prioridade = Prioridade;
@@ -64,7 +65,7 @@ namespace Sistema_Controle
                                             }
         public void alterarCamposDaSolicitacao(int idPaciente, string tipoAM, string agendamento, DateTime DtHrdoAgendamento, string nomeSolicitante, string localSolicitante,
                                                string telefone, string nomePaciente, string sexo, string idade, string diagnostico, string motivoChamado, string tipoMotivoChamado, string prioridade, string origem, string enderecoOrigem,
-                                               string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais)
+                                               string destino, string enderecoDestino, string registrado, string horaRegistrado, string obsGerais, Boolean chGestante)
                                             {
 
                                                 using(DAHUEEntities db = new DAHUEEntities())
@@ -80,6 +81,7 @@ namespace Sistema_Controle
                                                     sp.Genero = sexo;
                                                     sp.Idade = idade;
                                                     sp.Diagnostico = diagnostico;
+                                                    sp.Gestante = chGestante;
                                                     sp.Motivo = motivoChamado;
                                                     sp.SubMotivo = tipoMotivoChamado;
                                                     sp.Prioridade = prioridade;
@@ -155,7 +157,7 @@ namespace Sistema_Controle
 
             }
         }
-        public void cancelarSolicitacao(int idPaciente, int idSolicitacaoAM, string MotivoCancelamento, string DtHrCancelamento, string ResposavelCancelamento, string ObsCancelamento)
+        public void cancelarSolicitacao(int idPaciente, int idSolicitacaoAM, string MotivoCancelamento, DateTime DtHrCancelamento, string ResposavelCancelamento, string ObsCancelamento)
         {
             using(DAHUEEntities db = new DAHUEEntities())
             {

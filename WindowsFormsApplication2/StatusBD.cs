@@ -42,8 +42,33 @@ namespace Sistema_Controle
                              }).FirstOrDefault();
                 if (query == null)
                 {
+                    DtHrCiencia = "";
+
+                    DtHrCienciaReg = "";
+
+                    DtHrChegadaOrigem = "";
+
+                    DtHrChegadaOrigemReg = "";
+
+                    DtHrSaidaOrigem = "";
+
+                    DtHrSaidaOrigemReg = "";
+
+                    DtHrChegadaDestino = "";
+
+                    DtHrChegadaDestinoReg = "";
+
+                    DtHrLiberacaoEquipe = "";
+
+                    DtHrLiberacaoEquipeReg = "";
+
+                    DtHrEquipePatio = "";
+
+                    DtHrEquipePatioReg = "";
+
                     return;
                 }
+
                 idSolicitacoes_Ambulancias = query.idSolicitacoes_Ambulancias;
                 IdOutroPaciente = Convert.ToInt32(query.IdOutroPaciente);
                 idSolicitacoesPacientes = Convert.ToInt32(query.idSolicitacoesPacientes);

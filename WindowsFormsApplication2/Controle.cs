@@ -17,6 +17,24 @@ namespace Sistema_Controle
         {
             InitializeComponent();
         }
+        private void CONTROLE_Load(object sender, EventArgs e)
+        {
+            AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
+            AutoUpdater.Start("http://vinidg.github.io/update_sistemas/update_controle.xml");
+
+            StartPosition = FormStartPosition.CenterScreen;
+            pegarDadosDasAmbulanciasUsa();
+            pegarDadosDasAmbulanciasUsb();
+            contarSolicitacao();
+            contarSolicitacoesAgendadas();
+            contarSolicitacoesAgendadasPendentes();
+            Re.Text = System.Environment.UserName;
+
+            Timer();
+
+            this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
+            label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
+        }
 
         public void pegarDadosDasAmbulanciasUsb()
         {
@@ -169,12 +187,13 @@ namespace Sistema_Controle
             pegarDadosDasAmbulanciasUsb();
             contarSolicitacao();
             contarSolicitacoesAgendadasPendentes();
-            atualizadorParaNotificador();
             alertarNovosAgendamentos();
             numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
 
-            AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
-            AutoUpdater.Start(@"\\fileserver-03\SAUDE\Mapa_de_Leitos\Sistemas - Vinicius\Sistema de Controle de Ambulancias\update.xml");
+                AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
+                AutoUpdater.Start("http://vinidg.github.io/update_sistemas/update_controle.xml");
+                return;
+
         }
 
 
@@ -207,17 +226,6 @@ namespace Sistema_Controle
             contarSolicitacao();
             contarSolicitacoesAgendadas();
             contarSolicitacoesAgendadasPendentes();
-        }
-        private void atualizadorParaNotificador()
-        {
-            Update update = new Update();
-            update.up();
-            if (update.Avisar == true)
-            {
-                avisandoAoControle.Visible = true;
-                avisandoAoControle.Text = "Nova atualização no sistema de Controle de Ambulancias. Reinicie o sistema !!!";
-                Atualizar.Visible = true;
-            }
         }
         private void txtAgendadasHoje_Click(object sender, EventArgs e)
         {
@@ -500,24 +508,6 @@ namespace Sistema_Controle
         }
         #endregion
 
-        private void CONTROLE_Load(object sender, EventArgs e)
-        {
-            AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
-            AutoUpdater.Start(@"\\fileserver-03\SAUDE\Mapa_de_Leitos\Sistemas - Vinicius\Sistema de Controle de Ambulancias\update.xml");
-
-            StartPosition = FormStartPosition.CenterScreen;
-            pegarDadosDasAmbulanciasUsa();
-            pegarDadosDasAmbulanciasUsb();
-            contarSolicitacao();
-            contarSolicitacoesAgendadas();
-            contarSolicitacoesAgendadasPendentes();
-            Re.Text = System.Environment.UserName;
-
-            Timer();
-
-            this.Text = "Sistema de Controle de Ambulancias - " + DateTime.Now.Year.ToString() + ". Versão: " + appverion;
-            label1.Text = "CONTROLE DE AMBULÂNCIAS - " + DateTime.Now.Year.ToString();
-        }
 
     }
 

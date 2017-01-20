@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reagedamentos));
             this.panel1 = new System.Windows.Forms.Panel();
             this.Negadas = new System.Windows.Forms.DataGridView();
             this.ListaReagementos = new System.Windows.Forms.DataGridView();
@@ -100,6 +101,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(173)))));
             this.ClientSize = new System.Drawing.Size(592, 433);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Reagedamentos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

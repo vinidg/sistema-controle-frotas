@@ -14,11 +14,11 @@ namespace db_transporte_sanitario
     
     public partial class cancelados_pacientes
     {
-        public int? idcancelados_pacientes { get; set; }
+        public int idcancelados_pacientes { get; set; }
         public int? idPaciente { get; set; }
         public int? idSolicitacaoAM { get; set; }
         public string MotivoCancelamento { get; set; }
-        public string DtHrCancelamento { get; set; }
+        public DateTime DtHrCancelamento { get; set; }
         public string ResposavelCancelamento { get; set; }
         public string ObsCancelamento { get; set; }
     }
