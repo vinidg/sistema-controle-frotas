@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feed BaseUrl="\\fileserver-03\SAUDE\Mapa_de_Leitos\Sistemas - Vinicius\Sistema de Controle de Ambulancias\TesteFeed">
+  <Tasks>
+    <FileUpdateTask localPath="db_transporte_sanitario.dll" lastModified="131280965934484147" fileSize="94208" version="1.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="1.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="A04A195C47E709F8D0506A4FA9EC82F36F38AFA4FA12E1E9642CC88775252822" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="DGV Printer.dll" lastModified="130361774625104296" fileSize="53760" version="1.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="1.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="940C927877A67569E5E37CC653328B06943612F1CBA42400EB4785DC8E7824EA" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="EntityFramework.dll" lastModified="131122004377724578" fileSize="5185232" version="6.1.30610.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="6.1.30610.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="11D98CF43EE1C3EF4287B8195BF14981FBAFFAC0FBF706A3CD04A9FF481DA104" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="EntityFramework.SqlServer.dll" lastModified="131122004378138601" fileSize="599760" version="6.1.30610.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="6.1.30610.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="FEB4A96821B32BA8E52CC104EB2E76C7679A6801B94234D1F803C795FFA17280" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="EntityFramework.SqlServer.xml" lastModified="131122004378268690" fileSize="142488" version="0.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="0.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="2BBF4850630F390C5AA32BDD92AA1A12C1708DC411973CCE1606089E60A8CCB6" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="EntityFramework.xml" lastModified="131122004378789185" fileSize="3623761" version="0.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="0.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="BD554D77CF11E1CD1E9C621CC2A1D8C2E406BDDD12C6B25AF0C1FE707D622B12" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Microsoft.ReportViewer.Common.dll" lastModified="130366486580000000" fileSize="6391672" version="10.0.40219.1">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="10.0.40219.1" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="E475122047A36371F61E86B8D099FC8D6F263BD3BDB03D00B1116B0CB5B28636" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Microsoft.ReportViewer.DataVisualization.dll" lastModified="130366486580000000" fileSize="3875728" version="10.0.40219.1">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="10.0.40219.1" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="6ABB0C733248C3CAE99C58512A6E2B4F938FAD3420203E96EB03C9CB1AAB60B7" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Microsoft.ReportViewer.ProcessingObjectModel.dll" lastModified="130366486580000000" fileSize="92056" version="10.0.40219.1">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="10.0.40219.1" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="68DF6E12892CDD9244D50BE4C0BAA22A9E14BBA4E64655521B29C17EBAED2A24" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Microsoft.ReportViewer.WebForms.dll" lastModified="130451600780000000" fileSize="2136960" version="10.0.40219.1">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="10.0.40219.1" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="6B488659B937014469CF01973F0055B0C817FB6A15D0F136C0FB405B2E4524EC" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Microsoft.ReportViewer.WebForms.xml" lastModified="130451600780000000" fileSize="135305" version="0.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="0.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="2A4BE0909FF0F4D276EE7866E5FE0ABC50D56A40C80195C0C8AB511C179F00BF" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="NAppUpdate.Framework.dll" lastModified="131284421387937011" fileSize="171008" version="0.5.1.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="0.5.1.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="B46AAE1C69D17A4A45B1C7D9BC4284AAF27C644F222297E64D1B471ABA31FE91" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Sistema de Controle de Ambulancias.exe" lastModified="131284515260380467" fileSize="3794432" version="3.0.1.2">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="3.0.1.2" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="D6D43FE79289506C75AAE973837B5FD762D838D243BD20A1753D79673B97F616" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Sistema de Controle de Ambulancias.exe.config" lastModified="131245693432059223" fileSize="553" version="0.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="0.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="46C863824F28B6EB638C4E4177A1CBA9407CBFA7A609B069C5ACE3A614F38DBD" />
+      </Conditions>
+    </FileUpdateTask>
+    <FileUpdateTask localPath="Sistema de Controle.exe" lastModified="131284345298818692" fileSize="7106247" version="0.0.0.0">
+      <Conditions>
+        <FileExistsCondition type="or-not" />
+        <FileVersionCondition type="or" what="below" version="0.0.0.0" />
+        <FileChecksumCondition type="or-not" checksumType="sha256" checksum="350C999A65FCB532E783CE2CC838551EDE381DB1061B8813623525532F6F0CED" />
+      </Conditions>
+    </FileUpdateTask>
+  </Tasks>
+</Feed>

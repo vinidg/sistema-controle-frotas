@@ -190,12 +190,10 @@ namespace Sistema_Controle
             alertarNovosAgendamentos();
             numeroAgendamentos = Convert.ToInt32(txtAgendasPendentes.Text);
 
-                AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
-                AutoUpdater.Start("http://vinidg.github.io/update_sistemas/update_controle.xml");
-                return;
+            AutoUpdater.CurrentCulture = CultureInfo.CreateSpecificCulture("pt");
+            AutoUpdater.Start("http://vinidg.github.io/update_sistemas/update_controle.xml");
 
         }
-
 
         #endregion
 
