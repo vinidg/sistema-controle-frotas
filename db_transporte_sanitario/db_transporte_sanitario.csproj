@@ -53,49 +53,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ambulancia.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="bloqueio.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="cancelados_pacientes.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
-    <Compile Include="db_dahue_prod.Context.cs">
+    <Compile Include="db_dahue.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db_dahue_prod.Context.tt</DependentUpon>
+      <DependentUpon>db_dahue.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="db_dahue_prod.cs">
+    <Compile Include="db_dahue.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
-    <Compile Include="db_dahue_prod.Designer.cs">
+    <Compile Include="db_dahue.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db_dahue_prod.edmx</DependentUpon>
+      <DependentUpon>db_dahue.edmx</DependentUpon>
     </Compile>
     <Compile Include="desbloqueioam.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="enderecos.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="equipe.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="equipe_solam.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="historico.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
-    </Compile>
-    <Compile Include="prontuarios.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="prontuariosupas.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -104,42 +101,48 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="referencias.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="solicitacoes_agendamentos.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="solicitacoes_ambulancias.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="solicitacoes_paciente.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>db_dahue.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>db_dahue_prod.tt</DependentUpon>
+      <DependentUpon>db_dahue.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="db_dahue_prod.edmx">
+    <EntityDeploy Include="db_dahue.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>db_dahue_prod.Designer.cs</LastGenOutput>
+      <LastGenOutput>db_dahue.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="db_dahue_prod.Context.tt">
+    <None Include="db_dahue.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>db_dahue_prod.edmx</DependentUpon>
-      <LastGenOutput>db_dahue_prod.Context.cs</LastGenOutput>
+      <DependentUpon>db_dahue.edmx</DependentUpon>
+      <LastGenOutput>db_dahue.Context.cs</LastGenOutput>
     </None>
-    <None Include="db_dahue_prod.edmx.diagram">
-      <DependentUpon>db_dahue_prod.edmx</DependentUpon>
+    <None Include="db_dahue.edmx.diagram">
+      <DependentUpon>db_dahue.edmx</DependentUpon>
     </None>
-    <None Include="db_dahue_prod.tt">
+    <None Include="db_dahue.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>db_dahue_prod.edmx</DependentUpon>
-      <LastGenOutput>db_dahue_prod.cs</LastGenOutput>
+      <DependentUpon>db_dahue.edmx</DependentUpon>
+      <LastGenOutput>db_dahue.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

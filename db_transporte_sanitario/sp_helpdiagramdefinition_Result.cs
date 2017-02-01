@@ -10,16 +10,10 @@
 namespace db_transporte_sanitario
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class cancelados_pacientes
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int idcancelados_pacientes { get; set; }
-        public Nullable<int> idPaciente { get; set; }
-        public int? idSolicitacaoAM { get; set; }
-        public string MotivoCancelamento { get; set; }
-        public DateTime DtHrCancelamento { get; set; }
-        public string ResposavelCancelamento { get; set; }
-        public string ObsCancelamento { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

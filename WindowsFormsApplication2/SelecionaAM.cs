@@ -35,6 +35,7 @@ namespace Sistema_Controle
             AgendamentoSim.Visible = false;
         }
 
+        #region Funcoes
         private void PuxarEnderecos()
         {
             using (DAHUEEntities db = new DAHUEEntities())
@@ -325,7 +326,7 @@ namespace Sistema_Controle
                     }
                 }
 
-                int n = 32;
+                int n = 34;
                 ReportViewer report = new ReportViewer();
                 report.ProcessingMode = ProcessingMode.Local;
                 report.LocalReport.ReportEmbeddedResource = "Sistema_Controle.Report1.rdlc";
@@ -348,20 +349,22 @@ namespace Sistema_Controle
                 listReport[15] = new ReportParameter("NomeSolicitante", Solicitacao.NomeSolicitante);
                 listReport[16] = new ReportParameter("LocalSolicitacao", Solicitacao.LocalSolicitacao);
                 listReport[17] = new ReportParameter("Telefone", Solicitacao.Telefone);
-                listReport[18] = new ReportParameter("AM", NomeAM);
-                listReport[19] = new ReportParameter("Condutor", Condutor);
-                listReport[20] = new ReportParameter("Equipe", Enfermeiros);
-                listReport[21] = new ReportParameter("Prioridade", Solicitacao.Prioridade.Substring(0, 2));
-                listReport[22] = new ReportParameter("Cancelamento", cancelado);
-                listReport[23] = new ReportParameter("HrCancelamento", dataHoraCancelamento);
-                listReport[24] = new ReportParameter("MotivoCancelamento", MotivoCancelamento);
-                listReport[25] = new ReportParameter("NomeCancelante", nomeCancelante);
-                listReport[26] = new ReportParameter("HrCiencia", Horarios.DtHrCiencia1);
-                listReport[27] = new ReportParameter("HrSaida", Horarios.DtHrSaidaOrigem1);
-                listReport[28] = new ReportParameter("HrLiberacao", Horarios.DtHrLiberacaoEquipe1);
-                listReport[29] = new ReportParameter("HrChegadaOrigem", Horarios.DtHrChegadaOrigem1);
-                listReport[30] = new ReportParameter("HrChegadaDestino", Horarios.DtHrChegadaDestino1);
-                listReport[31] = new ReportParameter("HrEquipepatio", Horarios.DtHrEquipePatio1);
+                listReport[18] = new ReportParameter("Registrado", System.Environment.UserName);
+                listReport[19] = new ReportParameter("HrRegistro", DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"));
+                listReport[20] = new ReportParameter("AM", NomeAM);
+                listReport[21] = new ReportParameter("Condutor", Condutor);
+                listReport[22] = new ReportParameter("Equipe", Enfermeiros);
+                listReport[23] = new ReportParameter("Prioridade", Solicitacao.Prioridade.Substring(0, 2));
+                listReport[24] = new ReportParameter("Cancelamento", cancelado);
+                listReport[25] = new ReportParameter("HrCancelamento", dataHoraCancelamento);
+                listReport[26] = new ReportParameter("MotivoCancelamento", MotivoCancelamento);
+                listReport[27] = new ReportParameter("NomeCancelante", nomeCancelante);
+                listReport[28] = new ReportParameter("HrCiencia", Horarios.DtHrCiencia1);
+                listReport[29] = new ReportParameter("HrSaida", Horarios.DtHrSaidaOrigem1);
+                listReport[30] = new ReportParameter("HrLiberacao", Horarios.DtHrLiberacaoEquipe1);
+                listReport[31] = new ReportParameter("HrChegadaOrigem", Horarios.DtHrChegadaOrigem1);
+                listReport[32] = new ReportParameter("HrChegadaDestino", Horarios.DtHrChegadaDestino1);
+                listReport[33] = new ReportParameter("HrEquipepatio", Horarios.DtHrEquipePatio1);
 
                 report.LocalReport.SetParameters(listReport);
                 report.LocalReport.Refresh();
@@ -611,7 +614,9 @@ namespace Sistema_Controle
                 Endereco1 = enderecoDoEnderecos.FirstOrDefault();
             }
         }
+        #endregion
 
+        #region Clicks
         private void BtnOutraAM_Click(object sender, EventArgs e)
         {
             PainelAM2.Visible = true;
@@ -840,6 +845,56 @@ namespace Sistema_Controle
             Reagedamentos re = new Reagedamentos(idPaciente);
             re.ShowDialog();
         }
+        private void AgendamentoSim_Click(object sender, EventArgs e)
+        {
+            dataAgendamento.Visible = true;
+            labelAtendimentoMarcado.Visible = true;
+            dataAgendamento.Focus();
+            Agendamento = "Sim";
+
+            if (AgendamentoNao.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
+                AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+
+            }
+
+            AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
+            AgendamentoSim.BackColor = Color.FromArgb(69, 173, 168);
+            AgendamentoSim.ForeColor = Color.FromArgb(229, 252, 194);
+            AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
+        }
+        private void AgendamentoNao_Click(object sender, EventArgs e)
+        {
+            Agendamento = "Nao";
+            dataAgendamento.Visible = false;
+            labelAtendimentoMarcado.Visible = false;
+            if (AgendamentoSim.BackColor == Color.FromArgb(229, 252, 194))
+            {
+                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
+                AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
+            }
+            AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
+            AgendamentoNao.BackColor = Color.FromArgb(69, 173, 168);
+            AgendamentoNao.ForeColor = Color.FromArgb(229, 252, 194);
+            AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
+        }
+        private void BtnConfirmando_Click(object sender, EventArgs e)
+        {
+            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result1 == DialogResult.Yes)
+            {
+                cancelar();
+                imprimirFicha();
+                this.Dispose();
+
+            }
+        }
+        #endregion
 
         private void CbLocalSolicita_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -912,56 +967,6 @@ namespace Sistema_Controle
             }
         }
 
-        private void AgendamentoSim_Click(object sender, EventArgs e)
-        {
-            dataAgendamento.Visible = true;
-            labelAtendimentoMarcado.Visible = true;
-            dataAgendamento.Focus();
-            Agendamento = "Sim";
-
-            if (AgendamentoNao.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
-                AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
-                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
-                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
-
-            }
-
-            AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
-            AgendamentoSim.BackColor = Color.FromArgb(69, 173, 168);
-            AgendamentoSim.ForeColor = Color.FromArgb(229, 252, 194);
-            AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-        private void AgendamentoNao_Click(object sender, EventArgs e)
-        {
-            Agendamento = "Nao";
-            dataAgendamento.Visible = false;
-            labelAtendimentoMarcado.Visible = false;
-            if (AgendamentoSim.BackColor == Color.FromArgb(229, 252, 194))
-            {
-                AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
-                AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
-                AgendamentoNao.ForeColor = Color.FromArgb(69, 173, 168);
-                AgendamentoNao.BackColor = Color.FromArgb(229, 252, 194);
-            }
-            AgendamentoSim.BackColor = Color.FromArgb(229, 252, 194);
-            AgendamentoNao.BackColor = Color.FromArgb(69, 173, 168);
-            AgendamentoNao.ForeColor = Color.FromArgb(229, 252, 194);
-            AgendamentoSim.ForeColor = Color.FromArgb(69, 173, 168);
-        }
-
-        private void BtnConfirmando_Click(object sender, EventArgs e)
-        {
-            DialogResult result1 = MessageBox.Show("Deseja cancelar a solicitação do paciente na ambulancia ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result1 == DialogResult.Yes)
-            {
-                cancelar();
-                imprimirFicha();
-                this.Dispose();
-
-            }
-        }
 
     }
 }

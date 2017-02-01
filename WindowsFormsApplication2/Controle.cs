@@ -2,6 +2,7 @@
 using db_transporte_sanitario;
 using System;
 using System.Data.Entity.SqlServer;
+using System.Data.Objects;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -40,6 +41,70 @@ namespace Sistema_Controle
         {
             using (DAHUEEntities db = new DAHUEEntities())
             {
+                //var queryUsb = (from am in db.ambulancia
+                //                join sa in db.solicitacoes_ambulancias
+                //                on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
+                //                equals new { sa.idAmbulanciaSol, SolicitacaoConcluida = (int)sa.SolicitacaoConcluida } into sa_join
+                //                from sa in sa_join.DefaultIfEmpty()
+                //                join sp in db.solicitacoes_paciente
+                //                on new { idSolicitacoesPacientes = (int)sa.idSolicitacoesPacientes }
+                //                equals new { idSolicitacoesPacientes = sp.idPaciente_Solicitacoes } into sp_join
+                //                from sp in sp_join.DefaultIfEmpty()
+                //                where am.TipoAM == "BASICO" && am.Desativado == 0
+                //                orderby am.NomeAmbulancia ascending
+                //                select new
+                //                {
+                //                    am.idAmbulancia,
+                //                    Ambulancia = am.NomeAmbulancia,
+                //                    Status = sa.Status,
+                //                    StatusE = am.StatusAmbulancia,
+                //                    idPaciente = sa.idSolicitacoesPacientes,
+                //                    Paciente = sp.Paciente,
+                //                    Idade = sp.Idade,
+                //                    Origem = sp.Origem,
+                //                    Destino = sp.Destino,
+                //                    Bica = (am.Bica == 0 ? false : true),
+                //                    TempoBase = (DateTime.Now - am.BicaDtHr.Value).ToString(@"hh\:mm\:ss\:fff")
+                //                }).ToList();
+                
+                //var queryUsb = db.ambulancia
+                //    .GroupJoin(db.solicitacoes_ambulancias
+                //    .Where(sa => sa.SolicitacaoConcluida == 0),
+                //        am => am.idAmbulancia,
+                //        sa => sa.idAmbulanciaSol,
+                //        (am, saa) => new
+                //        {
+                //            am, saa
+                //        })
+                //        .GroupJoin(db.solicitacoes_paciente,
+                //        sa => sa.saa.Select(o=> o.idSolicitacoesPacientes),
+                //        sp => sp.idPaciente_Solicitacoes,
+                //        (saa, sp) => new
+                //        {
+                //            saa,sp = sp
+                //        })
+                //        .Where(e => e.saa.am.TipoAM == "BASICO" && e.saa.am.Desativado == 0)
+                //        .OrderBy(o => o.saa.am.NomeAmbulancia)
+                //        .AsEnumerable()
+                //        .Select(s => new
+                //        {
+                //            idAM = s.saa.am.idAmbulancia, 
+                //            Ambulancia = s.saa.am.NomeAmbulancia,
+                //            Status = s.saa.sa.Status,
+                //            StatusE = s.saa.am.StatusAmbulancia,
+                //            idPaciente = s.saa.sa.idSolicitacoesPacientes,
+                //            Paciente = s.sp.Paciente,
+                //            Idade = s.sp.Idade,
+                //            Origem = s.sp.Origem,
+                //            Destino = s.sp.Destino,
+                //            Bica = (s.saa.am.Bica == 0 ? false : true),
+                //            startTime = s.saa.am.BicaDtHr.Value.TimeOfDay,
+                //            endTime = DateTime.Now.TimeOfDay,
+                //            TempoBase = (s.saa.am.BicaDtHr.Value.TimeOfDay.Duration() - DateTime.Now.TimeOfDay.Duration()).Duration()
+                //        })
+                //        .ToList();
+
+
                 var queryUsb = (from am in db.ambulancia
                                 join sa in db.solicitacoes_ambulancias
                                 on new { idAmbulanciaSol = am.idAmbulancia, SolicitacaoConcluida = 0 }
@@ -53,7 +118,7 @@ namespace Sistema_Controle
                                 orderby am.NomeAmbulancia ascending
                                 select new
                                 {
-                                    am.idAmbulancia,
+                                    idAM = am.idAmbulancia,
                                     Ambulancia = am.NomeAmbulancia,
                                     Status = sa.Status,
                                     StatusE = am.StatusAmbulancia,
@@ -62,25 +127,32 @@ namespace Sistema_Controle
                                     Idade = sp.Idade,
                                     Origem = sp.Origem,
                                     Destino = sp.Destino,
-                                    Bica = (am.Bica == 0 ? false : true)
+                                    Bica = (am.Bica == 0 ? false : true),
+                                    //TempoBica = am.BicaDtHr,
                                 }).ToList();
+
 
                 listaUsb.DataSource = queryUsb;
                 listaUsb.ClearSelection();
+                
             }
-            listaUsb.Columns[0].Visible = false;
+
+
+
+            listaUsb.Columns["idAM"].Visible = false;
             listaUsb.Columns["idPaciente"].Visible = false;
             listaUsb.Columns["StatusE"].Width = 0;
             coresDasTabelas();
-            this.listaUsb.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.listaUsb.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsb.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.listaUsb.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.listaUsb.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            this.listaUsb.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns["Ambulancia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns["Status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns["Paciente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.listaUsb.Columns["Idade"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.listaUsb.Columns["Origem"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.listaUsb.Columns["Destino"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
         }
         public void pegarDadosDasAmbulanciasUsa()
-            {
+        {
             using (DAHUEEntities db = new DAHUEEntities())
             {
                 var queryUsa = (from am in db.ambulancia
@@ -103,7 +175,8 @@ namespace Sistema_Controle
                                     Idade = sp.Idade,
                                     Origem = sp.Origem,
                                     Destino = sp.Destino,
-                                    Bica = (am.Bica == 0 ? false : true)
+                                    Bica = (am.Bica == 0 ? false : true),
+                                   // TempoBase = SqlFunctions.DateDiff("day", am.BicaDtHr, DateTime.Now)
                                 }).ToList();
 
                 listaUsa.DataSource = queryUsa;
@@ -112,8 +185,8 @@ namespace Sistema_Controle
             }
 
             listaUsa.Columns[0].Visible = false;
-            listaUsa.Columns["idPaciente"].Visible = false;           
-            listaUsa.Columns["StatusE"].Width = 0;        
+            listaUsa.Columns["idPaciente"].Visible = false;
+            listaUsa.Columns["StatusE"].Width = 0;
             coresDasTabelas();
 
             this.listaUsa.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -255,9 +328,7 @@ namespace Sistema_Controle
             EditarAmbulancias ea = new EditarAmbulancias();
             ea.ShowDialog();
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
+
         private void listaUsa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -420,7 +491,6 @@ namespace Sistema_Controle
 
             this.Cursor = Cursors.Default;
         }
-
         private void alertarNovosAgendamentos()
         {
             if (Convert.ToInt32(txtAgendasPendentes.Text) > numeroAgendamentos)
@@ -431,7 +501,6 @@ namespace Sistema_Controle
                 return;
             }
         }
-
         private void listaUsa_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -455,6 +524,7 @@ namespace Sistema_Controle
                         {
                             ambulancia am = db.ambulancia.First(a => a.idAmbulancia == id);
                             am.Bica = bicaSelecionada;
+                            am.BicaDtHr = DateTime.Now;
                             db.SaveChanges();
                         }
                         pegarDadosDasAmbulanciasUsa();
@@ -462,13 +532,12 @@ namespace Sistema_Controle
                     }
                     else
                     {
-                        MessageBox.Show("A ambulância ainda está transportando o paciente, conclua a solicitação primeiro.",Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("A ambulância ainda está transportando o paciente, conclua a solicitação primeiro.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                } 
+                }
             }
 
         }
-
         private void listaUsb_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)

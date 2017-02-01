@@ -547,9 +547,7 @@ namespace Sistema_Controle
                         RbMasculino.Checked = false;
                         RbFemenino.Checked = true;
                     }
-
-
-                    txtIdade.Text = autoCompletarDadosPaciente.Idade;
+                        txtIdade.Text = autoCompletarDadosPaciente.Idade;
                 }
             }
 

@@ -442,11 +442,5 @@
         private System.Windows.Forms.Label dtagenda;
         private System.Windows.Forms.DateTimePicker dataReagendamento;
         private System.Windows.Forms.Button imprimirAgendamentos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idAmbulanciaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeAmbulanciaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statusAmbulanciaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipoAMDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn desativadoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bicaDataGridViewTextBoxColumn;
     }
 }
