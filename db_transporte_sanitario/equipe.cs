@@ -23,7 +23,7 @@ namespace db_transporte_sanitario
         public int idEquipe { get; set; }
         public string Condutor { get; set; }
         public string Enfermeiros { get; set; }
-        public DateTime? DtEscala { get; set; }
+        public System.DateTime DtEscala { get; set; }
         public Nullable<int> idAM { get; set; }
     
         public virtual ambulancia ambulancia { get; set; }

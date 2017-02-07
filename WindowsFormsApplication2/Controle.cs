@@ -524,7 +524,7 @@ namespace Sistema_Controle
                         {
                             ambulancia am = db.ambulancia.First(a => a.idAmbulancia == id);
                             am.Bica = bicaSelecionada;
-                            am.BicaDtHr = DateTime.Now;
+                            //am.BicaDtHr = DateTime.Now;
                             db.SaveChanges();
                         }
                         pegarDadosDasAmbulanciasUsa();
@@ -536,7 +536,6 @@ namespace Sistema_Controle
                     }
                 }
             }
-
         }
         private void listaUsb_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -555,7 +554,6 @@ namespace Sistema_Controle
                         {
                             bicaSelecionada = 1;
                         }
-
                         int id = Convert.ToInt32(listaUsb.Rows[e.RowIndex].Cells[0].Value);
                         using (DAHUEEntities db = new DAHUEEntities())
                         {

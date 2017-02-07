@@ -225,6 +225,7 @@
 	<table name="AppSearch">
 		<col key="yes" def="s72">Property</col>
 		<col key="yes" def="s72">Signature_</col>
+		<row><td>DOTNETVERSION45FULL</td><td>DotNet45Full</td></row>
 	</table>
 
 	<table name="BBControl">
@@ -339,16 +340,16 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>AutoUpdater.NET.dll</td><td>{4A6AA93C-391D-42E7-8FDF-23FC80BC651E}</td><td>DATABASEDIR</td><td>2</td><td/><td>autoupdater.net.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>DGV_Printer.dll</td><td>{92BC833A-7D76-415D-9425-400DA95C7957}</td><td>DATABASEDIR</td><td>2</td><td/><td>dgv_printer.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>EntityFramework.SqlServer.dll</td><td>{C3A8992C-EA15-43AD-AE81-6876EAC178D4}</td><td>DATABASEDIR</td><td>2</td><td/><td>entityframework.sqlserver.dl</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>EntityFramework.dll</td><td>{31AD09D5-E4F0-40FB-9F57-5137D467FCA3}</td><td>DATABASEDIR</td><td>2</td><td/><td>entityframework.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>AutoUpdater.NET.dll</td><td>{849462F0-9026-4C09-A187-37709172636D}</td><td>DATABASEDIR</td><td>2</td><td/><td>autoupdater.net.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>DGV_Printer.dll</td><td>{1F839929-F8A9-47C3-83F8-979FA7407D4E}</td><td>DATABASEDIR</td><td>2</td><td/><td>dgv_printer.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>EntityFramework.SqlServer.dll</td><td>{556AEC05-0089-46D4-B265-3B40EF32EECB}</td><td>DATABASEDIR</td><td>2</td><td/><td>entityframework.sqlserver.dl</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>EntityFramework.dll</td><td>{12247914-FD04-4F38-A1AC-1180D40306B7}</td><td>DATABASEDIR</td><td>2</td><td/><td>entityframework.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{2641E0B2-06D7-4938-8132-94736A5A649E}</td><td>DATABASEDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{0CC24578-B9AD-4669-B9CA-C0A371628848}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Sistema_de_Controle.exe</td><td>{B2522984-F1C9-41C1-A829-14E786B202CD}</td><td>DATABASEDIR</td><td>2</td><td/><td>sistema_de_controle.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>{D95A6105-014E-4EAE-AFB6-253607B59532}</td><td>DATABASEDIR</td><td>2</td><td/><td>sistema_de_controle_de_ambul</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td>{2073FE1D-A318-480B-8F7C-DD079CDDA341}</td><td>DATABASEDIR</td><td>2</td><td/><td>sistema_de_controle_de_ambul3</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>db_transporte_sanitario.dll</td><td>{092DAE86-4438-4E1D-89BE-04685ED6AD8A}</td><td>DATABASEDIR</td><td>2</td><td/><td>db_transporte_sanitario.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Sistema_de_Controle.exe</td><td>{E3231A11-B6CB-49BD-883F-7B36A359AFA4}</td><td>DATABASEDIR</td><td>2</td><td/><td>sistema_de_controle.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>{F4E59BB8-143D-4FF0-A435-0E5BEAAC8BCC}</td><td>DATABASEDIR</td><td>2</td><td/><td>sistema_de_controle_de_ambul</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td>{0645B597-187A-4D38-B02D-DB50D0E99397}</td><td>DATABASEDIR</td><td>2</td><td/><td>sistema_de_controle_de_ambul3</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>db_transporte_sanitario.dll</td><td>{4B7F2909-6AD6-4604-88E4-03D4FFCE49B7}</td><td>DATABASEDIR</td><td>2</td><td/><td>db_transporte_sanitario.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1140,7 +1141,7 @@
 		<row><td>ALLUSERSPROFILE</td><td>TARGETDIR</td><td>.:ALLUSE~1|All Users</td><td/><td>0</td><td/></row>
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
-		<row><td>C</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>C</td><td>TARGETDIR</td><td>D</td><td/><td>0</td><td/></row>
 		<row><td>CommonAppDataFolder</td><td>TARGETDIR</td><td>.:Common~1|CommonAppData</td><td/><td>0</td><td/></row>
 		<row><td>CommonFiles64Folder</td><td>TARGETDIR</td><td>.:Common64</td><td/><td>0</td><td/></row>
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
@@ -1153,11 +1154,12 @@
 		<row><td>DIRPROPERTY6</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DIRPROPERTY7</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DIRPROPERTY8</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>DIRPROPERTY9</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>C</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>DIRPROPERTY9</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
@@ -2071,16 +2073,16 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>AutoUpdater.NET.dll</td><td/><td/><td>_857FEFB0_FB73_4F8C_8274_30598346BDF4_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>DGV_Printer.dll</td><td/><td/><td>_9337C61A_955E_49DC_9887_C2994FEFB84A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>EntityFramework.SqlServer.dll</td><td/><td/><td>_429BD6B1_BF39_4122_AD90_28A8AA90A966_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>EntityFramework.dll</td><td/><td/><td>_95E6514D_975D_4CC7_AF9F_3DE394C2F8BD_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>AutoUpdater.NET.dll</td><td/><td/><td>_DEDA3DB1_DE24_46BC_8D67_D3D950A27BBE_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>DGV_Printer.dll</td><td/><td/><td>_713A53D7_E6A4_4DB9_9743_2F13524AE429_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>EntityFramework.SqlServer.dll</td><td/><td/><td>_A5BC4AF1_A5BF_4A3A_AF88_5A589475ADA2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>EntityFramework.dll</td><td/><td/><td>_3D60A7D8_A2BE_4E56_A001_A6ECE9CFE55D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_3764A259_2831_4CBC_8F4F_4F936401DAA0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_359B7C9E_068E_4669_BDC6_4DE5F08A31FF_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Sistema_de_Controle.exe</td><td/><td/><td>_87566599_CF6C_46CA_B753_B364FA65F096_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td/><td/><td>_8340E07C_976D_4AED_B737_1D24165A9AE6_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td/><td/><td>_B58633EF_9453_4958_BE74_4B6B47A9DFE2_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>db_transporte_sanitario.dll</td><td/><td/><td>_FEFCB468_24C1_4E7F_8B99_23440D524731_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Sistema_de_Controle.exe</td><td/><td/><td>_3C83EE6B_7906_4AEE_8343_71E124BAF7A1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td/><td/><td>_D3C6A0A6_8C5F_43C6_8791_0CFDD34B9234_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td/><td/><td>_6DEB6F52_6F29_41E8_A276_D9CA79CCBAE7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>db_transporte_sanitario.dll</td><td/><td/><td>_DB35057D_25C4_4AC7_925A_32E13DC61656_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2702,6 +2704,7 @@
 		<row><td>COMPANY_NAME</td><td>1033</td><td>São Bernardo do Campo</td><td>0</td><td/><td>-1062927798</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1062922935</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1062922935</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>153452297</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>-1062922935</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1062922935</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1062922935</td></row>
@@ -3513,9 +3516,12 @@
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>-1062922935</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle de Ambulancias.exe</td><td>0</td><td/><td>-1062881559</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME10</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle.exe</td><td>0</td><td/><td>-1062901174</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME11</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle de Ambulancias.exe</td><td>0</td><td/><td>-1062914742</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME11</td><td>1033</td><td>Sistema de Controle de Ambulancias.exe</td><td>0</td><td/><td>153478921</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME12</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle de Ambulancias.vshost.exe</td><td>0</td><td/><td>-1062914742</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME13</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle.exe</td><td>0</td><td/><td>-1062914742</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME14</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle de Ambulancias.exe</td><td>0</td><td/><td>153427817</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME15</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle de Ambulancias.vshost.exe</td><td>0</td><td/><td>153427817</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME16</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle.exe</td><td>0</td><td/><td>153427817</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle de Ambulancias.vshost.exe</td><td>0</td><td/><td>-1062881559</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de Controle.exe</td><td>0</td><td/><td>-1062881559</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LAUNCH~1.EXE|Launch Sistema de AmbulanciasC.exe</td><td>0</td><td/><td>-1062908151</td></row>
@@ -3926,7 +3932,10 @@
 		<row><td>Sistema_de_Control_2F127CAA387E437380E5FDF309314A34.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>Sistema_de_Control_3EFC3789F1D849D493D37DB287196162.exe</td><td/><td>D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Debug\Sistema de Controle de Ambulancias.exe</td><td>0</td></row>
 		<row><td>Sistema_de_Control_56864484FF9A4D7FBCEB6294CB1B4B9C.exe</td><td/><td>D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Debug\Sistema de Controle.exe</td><td>0</td></row>
+		<row><td>Sistema_de_Control_691A20C0762D40B79363BAE77F74F4A9.exe</td><td/><td>D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Debug\Sistema de Controle de Ambulancias.exe</td><td>0</td></row>
 		<row><td>Sistema_de_Control_A24FD5A3307242CDB34AC2A1A70EA18D.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>Sistema_de_Control_D5BCFD0332FB479B9279D86E61DC471F.exe</td><td/><td>D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Debug\Sistema de Controle.exe</td><td>0</td></row>
+		<row><td>Sistema_de_Control_EDBBAF2925044B4B9A0FC8E2D15567A2.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>Sistema_de_Control_F7C64CB226E94E6FA79FD241AC52FE5C.exe</td><td/><td>D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Debug\Sistema de Controle.exe</td><td>0</td></row>
 		<row><td>Sistema_de_Control_F9D8A49F26F24A4D859BF06542C05E8B.exe</td><td/><td>D:\source\Controle Ambulancias\WindowsFormsApplication2\bin\Debug\Sistema de Controle de Ambulancias.exe</td><td>0</td></row>
 	</table>
@@ -4119,6 +4128,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 	<table name="LaunchCondition">
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
+		<row><td>DOTNETVERSION45FULL&gt;="#1"</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL##</td></row>
 	</table>
 
 	<table name="ListBox">
@@ -4371,6 +4381,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ARPURLINFOABOUT</td><td>##ID_STRING1##</td><td/></row>
 		<row><td>AgreeToLicense</td><td>No</td><td/></row>
 		<row><td>ApplicationUsers</td><td>AllUsers</td><td/></row>
+		<row><td>DIRPROPERTY9</td><td>D</td><td/></row>
 		<row><td>DWUSINTERVAL</td><td>30</td><td/></row>
 		<row><td>DWUSLINK</td><td>CEFB37F81E9CD7F86EAC87586E7B978FEEEB978FFE3C97AFCE4CB0E8898CA0FFBE0B40B8BEAC</td><td/></row>
 		<row><td>DefaultUIFont</td><td>ExpressDefault</td><td/></row>
@@ -4435,7 +4446,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{5DEBAE58-1218-46E1-9FA6-C251AA0C5BCD}</td><td/></row>
 		<row><td>ProductName</td><td>Sistema de Controle de Ambulancia</td><td/></row>
-		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>3.0.2.7</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4447,7 +4458,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SERIALNUMBER</td><td/><td/></row>
 		<row><td>SERIALNUMVALSUCCESSRETVAL</td><td>1</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION45FULL</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
 		<row><td>UpgradeCode</td><td>{1644B589-B263-4F1B-B96F-D1C335A3B5B1}</td><td/></row>
@@ -4492,6 +4503,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s255">Key</col>
 		<col def="S255">Name</col>
 		<col def="I2">Type</col>
+		<row><td>DotNet45Full</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full</td><td>Version</td><td>2</td></row>
 	</table>
 
 	<table name="Registry">
@@ -4510,7 +4522,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>Sistema_de_Controle.exe</td><td>Sistema_de_Controle.exe</td><td/><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>2</td></row>
 		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>Sistema_de_Controle_de_Ambulancias.exe</td><td/><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>2</td></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td/><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4596,7 +4610,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>##IDS_SHORTCUT_DISPLAY_NAME11##</td><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Sistema_de_Control_3EFC3789F1D849D493D37DB287196162.exe</td><td>1</td><td>1</td><td>DATABASEDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Sistema_de_Controle.exe</td><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>##IDS_SHORTCUT_DISPLAY_NAME16##</td><td>Sistema_de_Controle.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Sistema_de_Control_D5BCFD0332FB479B9279D86E61DC471F.exe</td><td>1</td><td>1</td><td>DATABASEDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>##IDS_SHORTCUT_DISPLAY_NAME14##</td><td>Sistema_de_Controle_de_Ambulancias.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Sistema_de_Control_691A20C0762D40B79363BAE77F74F4A9.exe</td><td>1</td><td>1</td><td>DATABASEDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td>sistem_1_sistema_de_controle_de_ambulancia</td><td>##IDS_SHORTCUT_DISPLAY_NAME15##</td><td>Sistema_de_Controle_de_Ambulancias.vshost.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Sistema_de_Control_EDBBAF2925044B4B9A0FC8E2D15567A2.exe</td><td>0</td><td>1</td><td>DATABASEDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

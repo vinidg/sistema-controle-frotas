@@ -16,7 +16,7 @@ namespace db_transporte_sanitario
     {
         public int idcancelados_pacientes { get; set; }
         public Nullable<int> idPaciente { get; set; }
-        public int? idSolicitacaoAM { get; set; }
+        public Nullable<int> idSolicitacaoAM { get; set; }
         public string MotivoCancelamento { get; set; }
         public DateTime DtHrCancelamento { get; set; }
         public string ResposavelCancelamento { get; set; }

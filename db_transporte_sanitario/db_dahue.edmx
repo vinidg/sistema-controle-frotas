@@ -15,7 +15,6 @@
           <Property Name="TipoAM" Type="nvarchar" MaxLength="45" />
           <Property Name="Desativado" Type="int" />
           <Property Name="Bica" Type="int" />
-          <Property Name="BicaDtHr" Type="datetime" />
         </EntityType>
         <EntityType Name="bloqueio">
           <Key>
@@ -35,7 +34,7 @@
           <Property Name="idPaciente" Type="int" />
           <Property Name="idSolicitacaoAM" Type="int" />
           <Property Name="MotivoCancelamento" Type="nvarchar" MaxLength="100" />
-          <Property Name="DtHrCancelamento" Type="datetime" Nullable="false" />
+          <Property Name="DtHrCancelamento" Type="datetime" />
           <Property Name="ResposavelCancelamento" Type="nvarchar" MaxLength="45" />
           <Property Name="ObsCancelamento" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -66,7 +65,7 @@
           <Property Name="idEquipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Condutor" Type="nvarchar" MaxLength="45" />
           <Property Name="Enfermeiros" Type="nvarchar" MaxLength="200" />
-          <Property Name="DtEscala" Type="datetime" />
+          <Property Name="DtEscala" Type="datetime" Nullable="false" />
           <Property Name="idAM" Type="int" />
         </EntityType>
         <EntityType Name="equipe_solam">
@@ -86,6 +85,31 @@
           <Property Name="DtHrRegistro" Type="datetime" Nullable="false" />
           <Property Name="idPaciente_Solicitacao" Type="int" Nullable="false" />
           <Property Name="Obs" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="prontuarios">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomePaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="NomedaMae" Type="nvarchar" MaxLength="150" />
+          <Property Name="NomeSoliciante" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgPaciente" Type="nvarchar" MaxLength="45" />
+          <Property Name="RgSolicitante" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtNascimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="DtAtendimento" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="45" />
+          <Property Name="Unidade" Type="nvarchar" MaxLength="45" />
+          <Property Name="Internacao" Type="nvarchar" MaxLength="3" />
+          <Property Name="Dias" Type="nvarchar" MaxLength="1" />
+          <Property Name="Obs" Type="nvarchar" MaxLength="200" />
+          <Property Name="DtSolicitacao" Type="nvarchar" MaxLength="80" />
+          <Property Name="Status" Type="nvarchar" MaxLength="45" />
+          <Property Name="Funcionario" Type="nvarchar" MaxLength="45" />
+          <Property Name="DtRetirada" Type="nvarchar" MaxLength="20" />
+          <Property Name="Motivo_Rg" Type="nvarchar" MaxLength="90" />
+          <Property Name="DtHrFato" Type="nvarchar" MaxLength="45" />
+          <Property Name="LocalFato" Type="nvarchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="prontuariosupas">
           <Key>
@@ -187,7 +211,7 @@
           <Property Name="Diagnostico" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Motivo" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="SubMotivo" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Prioridade" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="150" />
           <Property Name="Origem" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="EnderecoOrigem" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Destino" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -310,6 +334,7 @@
           <EntitySet Name="equipe" EntityType="Self.equipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="equipe_solam" EntityType="Self.equipe_solam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="historico" EntityType="Self.historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prontuarios" EntityType="Self.prontuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prontuariosupas" EntityType="Self.prontuariosupas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="referencias" EntityType="Self.referencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="solicitacoes_agendamentos" EntityType="Self.solicitacoes_agendamentos" Schema="dbo" store:Type="Tables" />
@@ -352,7 +377,6 @@
           <Property Name="TipoAM" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="Desativado" Type="Int32" />
           <Property Name="Bica" Type="Int32" />
-          <Property Name="BicaDtHr" Type="DateTime" Precision="3" />
           <NavigationProperty Name="equipe" Relationship="Self.equipe_idAM" FromRole="ambulancia" ToRole="equipe" />
           <NavigationProperty Name="solicitacoes_ambulancias" Relationship="Self.solicitacoes_ambulancias_idAmbulanciaSol" FromRole="ambulancia" ToRole="solicitacoes_ambulancias" />
         </EntityType>
@@ -374,7 +398,7 @@
           <Property Name="idPaciente" Type="Int32" />
           <Property Name="idSolicitacaoAM" Type="Int32" />
           <Property Name="MotivoCancelamento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DtHrCancelamento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtHrCancelamento" Type="DateTime" Precision="3" />
           <Property Name="ResposavelCancelamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="ObsCancelamento" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -405,7 +429,7 @@
           <Property Name="idEquipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Condutor" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="Enfermeiros" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="DtEscala" Type="DateTime" Precision="3" />
+          <Property Name="DtEscala" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idAM" Type="Int32" />
           <NavigationProperty Name="ambulancia" Relationship="Self.equipe_idAM" FromRole="equipe" ToRole="ambulancia" />
           <NavigationProperty Name="equipe_solam" Relationship="Self.equipe_solam_idEquipe" FromRole="equipe" ToRole="equipe_solam" />
@@ -429,6 +453,31 @@
           <Property Name="idPaciente_Solicitacao" Type="Int32" Nullable="false" />
           <Property Name="Obs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="solicitacoes_paciente" Relationship="Self.FK__historico__idPac__640DD89F" FromRole="historico" ToRole="solicitacoes_paciente" />
+        </EntityType>
+        <EntityType Name="prontuarios">
+          <Key>
+            <PropertyRef Name="idProntuarios" />
+          </Key>
+          <Property Name="idProntuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomePaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NomedaMae" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NomeSoliciante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgPaciente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="RgSolicitante" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtNascimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DtAtendimento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Unidade" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Internacao" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Dias" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DtSolicitacao" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Funcionario" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DtRetirada" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo_Rg" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="DtHrFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="LocalFato" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="prontuariosupas">
           <Key>
@@ -532,7 +581,7 @@
           <Property Name="Diagnostico" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Motivo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SubMotivo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Prioridade" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prioridade" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Origem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EnderecoOrigem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Destino" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
@@ -626,6 +675,7 @@
           <EntitySet Name="equipe" EntityType="Self.equipe" />
           <EntitySet Name="equipe_solam" EntityType="Self.equipe_solam" />
           <EntitySet Name="historico" EntityType="Self.historico" />
+          <EntitySet Name="prontuarios" EntityType="Self.prontuarios" />
           <EntitySet Name="prontuariosupas" EntityType="Self.prontuariosupas" />
           <EntitySet Name="referencias" EntityType="Self.referencias" />
           <EntitySet Name="solicitacoes_agendamentos" EntityType="Self.solicitacoes_agendamentos" />
@@ -709,7 +759,6 @@
                 <ScalarProperty Name="TipoAM" ColumnName="TipoAM" />
                 <ScalarProperty Name="Desativado" ColumnName="Desativado" />
                 <ScalarProperty Name="Bica" ColumnName="Bica" />
-                <ScalarProperty Name="BicaDtHr" ColumnName="BicaDtHr" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -787,6 +836,32 @@
                 <ScalarProperty Name="DtHrRegistro" ColumnName="DtHrRegistro" />
                 <ScalarProperty Name="idPaciente_Solicitacao" ColumnName="idPaciente_Solicitacao" />
                 <ScalarProperty Name="Obs" ColumnName="Obs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prontuarios">
+            <EntityTypeMapping TypeName="DAHUEModel.prontuarios">
+              <MappingFragment StoreEntitySet="prontuarios">
+                <ScalarProperty Name="idProntuarios" ColumnName="idProntuarios" />
+                <ScalarProperty Name="NomePaciente" ColumnName="NomePaciente" />
+                <ScalarProperty Name="NomedaMae" ColumnName="NomedaMae" />
+                <ScalarProperty Name="NomeSoliciante" ColumnName="NomeSoliciante" />
+                <ScalarProperty Name="RgPaciente" ColumnName="RgPaciente" />
+                <ScalarProperty Name="RgSolicitante" ColumnName="RgSolicitante" />
+                <ScalarProperty Name="DtNascimento" ColumnName="DtNascimento" />
+                <ScalarProperty Name="DtAtendimento" ColumnName="DtAtendimento" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+                <ScalarProperty Name="Internacao" ColumnName="Internacao" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="DtSolicitacao" ColumnName="DtSolicitacao" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
+                <ScalarProperty Name="DtRetirada" ColumnName="DtRetirada" />
+                <ScalarProperty Name="Motivo_Rg" ColumnName="Motivo_Rg" />
+                <ScalarProperty Name="DtHrFato" ColumnName="DtHrFato" />
+                <ScalarProperty Name="LocalFato" ColumnName="LocalFato" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

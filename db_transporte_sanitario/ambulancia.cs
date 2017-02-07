@@ -27,7 +27,6 @@ namespace db_transporte_sanitario
         public string TipoAM { get; set; }
         public Nullable<int> Desativado { get; set; }
         public Nullable<int> Bica { get; set; }
-        public Nullable<System.DateTime> BicaDtHr { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<equipe> equipe { get; set; }
